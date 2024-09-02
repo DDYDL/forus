@@ -1,2 +1,2 @@
-# forus
+# ForUs
 Kosta Mini Project
