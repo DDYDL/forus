@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/font.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/body.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/content.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/bigbutton.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/minibutton.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/common/header.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/common/font.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/common/body.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/common/content.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/common/bigbutton.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/common/minibutton.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="header">

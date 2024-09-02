@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/common/menu.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<aside id="left">
