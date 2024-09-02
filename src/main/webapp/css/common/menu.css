@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+/* 메뉴 크기 설정 */
+aside#left {
+	margin-top:60px;
+	margin-left:300px;
+	float:left; display:flex; position:absolute;
+	width:200px; height:100%;
+}
+/* 메뉴 스타일 설정 */
+ul{ padding-inline-start:0px; list-style-type:none; text-align: left; }
+li { text-decoration-line:none; padding:5px 10px;}
