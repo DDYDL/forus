@@ -17,7 +17,7 @@
         <div class="menu_box">
             <a href="${pageContext.request.contextPath}/reserv/hospitallist.jsp">병원예약</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="${pageContext.request.contextPath}/recruit/recruitlist.jsp">Help Us</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="${pageContext.request.contextPath}/my/recruitapplylist.jsp">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="${pageContext.request.contextPath}/my/myafterreserv.jsp">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="${pageContext.request.contextPath}/hmy/hmytodaysresrvation.jsp">마이병원</a>
         </div>
         <div class="login"><a href="login.jsp">로그인</a>&nbsp;&nbsp;<a href="join.jsp">회원가입</a></div>
