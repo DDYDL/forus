@@ -16,6 +16,7 @@ public class user {
 	public user() {
 		super();
 	}
+	
 	public user(String email, String password, String name, String nickname, String phone, String birthday,
 			String gender, String address, String picture, boolean ishospital) {
 		super();
