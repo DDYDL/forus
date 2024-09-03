@@ -5,12 +5,29 @@ public class reservation {
 	private Integer userId;
 	private Integer petId;
 	private Integer hId;
-	private String reservDate;
-	private String reservTime;
+	private LocalDate reservDate;
+	private LocalTime reservTime;
 	private String reservApplyTime;
 	private String reservContent;
 	private String reservStatus;
 	private String reservMemo;
+
+	public reservation() {
+	}
+
+	public reservation(Integer reservId, Integer userId, Integer petId, Integer hId, LocalDate reservDate,
+		LocalTime reservTime, String reservApplyTime, String reservContent, String reservStatus, String reservMemo) {
+		this.reservId = reservId;
+		this.userId = userId;
+		this.petId = petId;
+		this.hId = hId;
+		this.reservDate = reservDate;
+		this.reservTime = reservTime;
+		this.reservApplyTime = reservApplyTime;
+		this.reservContent = reservContent;
+		this.reservStatus = reservStatus;
+		this.reservMemo = reservMemo;
+	}
 
 	public Integer getReservId() {
 		return reservId;
@@ -44,19 +61,19 @@ public class reservation {
 		this.hId = hId;
 	}
 
-	public String getReservDate() {
+	public LocalDate getReservDate() {
 		return reservDate;
 	}
 
-	public void setReservDate(String reservDate) {
+	public void setReservDate(LocalDate reservDate) {
 		this.reservDate = reservDate;
 	}
 
-	public String getReservTime() {
+	public LocalTime getReservTime() {
 		return reservTime;
 	}
 
-	public void setReservTime(String reservTime) {
+	public void setReservTime(LocalTime reservTime) {
 		this.reservTime = reservTime;
 	}
 
@@ -92,18 +109,18 @@ public class reservation {
 		this.reservMemo = reservMemo;
 	}
 
-	public reservation(Integer reservId, Integer userId, Integer petId, Integer hId, String reservDate,
-		String reservTime,
-		String reservApplyTime, String reservContent, String reservStatus, String reservMemo) {
-		this.reservId = reservId;
-		this.userId = userId;
-		this.petId = petId;
-		this.hId = hId;
-		this.reservDate = reservDate;
-		this.reservTime = reservTime;
-		this.reservApplyTime = reservApplyTime;
-		this.reservContent = reservContent;
-		this.reservStatus = reservStatus;
-		this.reservMemo = reservMemo;
+	public java.lang.String toString() {
+		return "reservation{" +
+			"reservId=" + reservId +
+			", userId=" + userId +
+			", petId=" + petId +
+			", hId=" + hId +
+			", reservDate=" + reservDate +
+			", reservTime=" + reservTime +
+			", reservApplyTime='" + reservApplyTime + '\'' +
+			", reservContent='" + reservContent + '\'' +
+			", reservStatus='" + reservStatus + '\'' +
+			", reservMemo='" + reservMemo + '\'' +
+			'}';
 	}
 }
