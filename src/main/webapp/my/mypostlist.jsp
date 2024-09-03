@@ -53,6 +53,7 @@
 </head>
 <body>
 	<%@ include file="../mainmypage.jsp" %>
+		<div class = "mypage-content-list">
 	<div class="title">
 		<h2>게시글 관리</h2>
 	</div>
@@ -88,6 +89,7 @@
 	</table>
 	<div>
 		<button type="submit" class="btn">삭제하기</button>
+	</div>
 	</div>
 </body>
 </html>

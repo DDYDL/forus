@@ -12,7 +12,7 @@
 </head>
 <body>
 	<%@ include file="../mainmypage.jsp" %>
-	<div class = "mycontent">
+	<div class = "mypage-content-list">
 		<div class="mytitle">
 			<a href="myafterreserv.jsp">이후 예약</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 			<a href="mybeforereserv.jsp">지난 예약</a>

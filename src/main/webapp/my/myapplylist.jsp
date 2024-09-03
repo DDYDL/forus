@@ -7,20 +7,6 @@
 <meta charset="UTF-8">
 <title>마이페이지-지원현황</title>
 <style>
-body {
-	padding-top: 5%;
-	padding-left: 15%;
-	padding-right: 15%;
-}
-
-table {
-	width: 950px;
-	border-top: 2px solid #444444;
-	border-collapse: collapse;
-	text-align: center;
-	margin-left: 200px;
-}
-
 th, td {
 	border-bottom: 1px solid #444444;
 	padding: 10px;
@@ -53,6 +39,7 @@ th, td {
 
 <body>
 	<%@ include file="../mainmypage.jsp" %>
+	<div class="mypage-content-list">
 	<div class="mytitle">
 		<h2>지원현황</h2>
 	</div>
@@ -89,5 +76,6 @@ th, td {
 			</tr>
 		</tbody>
 	</table>
+	</div>
 </body>
 </html>
