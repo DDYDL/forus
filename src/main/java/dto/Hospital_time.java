@@ -1,16 +1,16 @@
 package dto;
 
-public class hospital_time {
+public class Hospital_time {
 	private Integer h_id;
 	private String week;
 	private String htime_opening;
 	private String htime_closing;
 	private boolean htime_isable;
-	public hospital_time() {
+	
+	public Hospital_time() {
 		super();
 	}
-
-	public hospital_time(String week, String htime_opening, String htime_closing, boolean htime_isable) {
+	public Hospital_time(String week, String htime_opening, String htime_closing, boolean htime_isable) {
 		super();
 		this.week = week;
 		this.htime_opening = htime_opening;
@@ -18,7 +18,6 @@ public class hospital_time {
 		this.htime_isable = htime_isable;
 	}
 	
-
 	public Integer getH_id() {
 		return h_id;
 	}
@@ -52,7 +51,7 @@ public class hospital_time {
 	
 	@Override
 	public String toString() {
-		return "hospital_time [h_id=" + h_id + ", week=" + week + ", htime_opening=" + htime_opening
+		return "Hospital_time [h_id=" + h_id + ", week=" + week + ", htime_opening=" + htime_opening
 				+ ", htime_closing=" + htime_closing + ", htime_isable=" + htime_isable + "]";
 	}
 }
