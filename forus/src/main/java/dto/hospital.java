@@ -19,7 +19,6 @@ public class hospital {
 	private String h_pay;
 	private String h_sns;
 	private Boolean h_parking;
-
 	private Boolean h_isopen;
 	private LocalTime h_lunch_time_start;
 	private LocalTime h_lunch_time_end;
@@ -204,14 +203,13 @@ public class hospital {
 		this.h_interval_time = h_interval_time;
 	}
 
-	public hospital(Integer h_id, Integer user_id, String h_exponent_name, Integer h_num, String h_license,
-		String h_name,
-		String h_manager_name, String h_phone, String h_address, Double h_longitude, Double h_latitude,
-		String h_animal_type, String h_picture, String h_memo, String h_memo_road, String h_pay, String h_sns,
-		Boolean h_parking, Boolean h_isopen, LocalTime h_lunch_time_start, LocalTime h_lunch_time_end,
+	// h_id와 user_id를 제외한 생성자
+	public Hospital(String h_exponent_name, Integer h_num, String h_license, String h_name,
+		String h_manager_name, String h_phone, String h_address, Double h_longitude,
+		Double h_latitude, String h_animal_type, String h_picture, String h_memo,
+		String h_memo_road, String h_pay, String h_sns, Boolean h_parking,
+		Boolean h_isopen, LocalTime h_lunch_time_start, LocalTime h_lunch_time_end,
 		Integer h_interval_time) {
-		this.h_id = h_id;
-		this.user_id = user_id;
 		this.h_exponent_name = h_exponent_name;
 		this.h_num = h_num;
 		this.h_license = h_license;

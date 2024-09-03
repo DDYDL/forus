@@ -15,12 +15,10 @@ public class reservation {
 	public reservation() {
 	}
 
-	public reservation(Integer reservId, Integer userId, Integer petId, Integer hId, LocalDate reservDate,
-		LocalTime reservTime, String reservApplyTime, String reservContent, String reservStatus, String reservMemo) {
-		this.reservId = reservId;
-		this.userId = userId;
-		this.petId = petId;
-		this.hId = hId;
+
+	// 생성자에서 자동 생성 또는 외부에서 가져오는 필드 제거
+	public Reservation(LocalDate reservDate, LocalTime reservTime, String reservApplyTime,
+		String reservContent, String reservStatus, String reservMemo) {
 		this.reservDate = reservDate;
 		this.reservTime = reservTime;
 		this.reservApplyTime = reservApplyTime;
@@ -28,6 +26,7 @@ public class reservation {
 		this.reservStatus = reservStatus;
 		this.reservMemo = reservMemo;
 	}
+
 
 	public Integer getReservId() {
 		return reservId;
