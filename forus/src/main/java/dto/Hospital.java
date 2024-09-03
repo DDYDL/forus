@@ -24,7 +24,7 @@ public class Hospital {
 	private LocalTime h_lunch_time_end;
 	private Integer h_interval_time;
 
-	public hospital() {
+	public Hospital() {
 	}
 
 	public Integer getH_id() {
@@ -233,7 +233,7 @@ public class Hospital {
 	}
 
 	public java.lang.String toString() {
-		return "hospital{" +
+		return "Hospital{" +
 			"h_id=" + h_id +
 			", user_id=" + user_id +
 			", h_exponent_name='" + h_exponent_name + '\'' +
