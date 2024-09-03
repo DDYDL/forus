@@ -1,6 +1,6 @@
 package dto;
 
-public class user {
+public class User {
 	private Integer id;
 	private String email;
 	private String password;
@@ -13,11 +13,11 @@ public class user {
 	private String picture;
 	private boolean ishospital;
 	
-	public user() {
+	public User() {
 		super();
 	}
 	
-	public user(String email, String password, String name, String nickname, String phone, String birthday,
+	public User(String email, String password, String name, String nickname, String phone, String birthday,
 			String gender, String address, String picture, boolean ishospital) {
 		super();
 		this.email = email;
@@ -101,7 +101,7 @@ public class user {
 	
 	@Override
 	public String toString() {
-		return "user [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", nickname="
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", nickname="
 				+ nickname + ", phone=" + phone + ", birthday=" + birthday + ", gender=" + gender + ", address="
 				+ address + ", picture=" + picture + ", ishospital=" + ishospital + "]";
 	}
