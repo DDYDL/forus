@@ -1,6 +1,6 @@
 package dto;
 
-public class recruit_post {
+public class Recruit_post {
 	private Integer post_id;
 	private Integer user_id;
 	private Integer pet_id;
@@ -14,10 +14,10 @@ public class recruit_post {
 	private String post_end_time;
 	private String post_status;
 	
-	public recruit_post() {
+	public Recruit_post() {
 		super();
 	}
-	public recruit_post(String post_time, String post_title, String post_content, String post_address, String post_form,
+	public Recruit_post(String post_time, String post_title, String post_content, String post_address, String post_form,
 			String post_pay, String post_start_time, String post_end_time, String post_status) {
 		super();
 		this.post_time = post_time;
@@ -106,7 +106,7 @@ public class recruit_post {
 	
 	@Override
 	public String toString() {
-		return "recruit_post [post_id=" + post_id + ", user_id=" + user_id + ", pet_id=" + pet_id + ", post_time="
+		return "Recruit_post [post_id=" + post_id + ", user_id=" + user_id + ", pet_id=" + pet_id + ", post_time="
 				+ post_time + ", post_title=" + post_title + ", post_content=" + post_content + ", post_address="
 				+ post_address + ", post_form=" + post_form + ", post_pay=" + post_pay + ", post_start_time="
 				+ post_start_time + ", post_end_time=" + post_end_time + ", post_status=" + post_status + "]";
