@@ -20,13 +20,13 @@ public class hospital {
 	private String h_sns;
 	private Boolean h_parking;
 
-	public hospital() {
-	}
-
 	private Boolean h_isopen;
 	private LocalTime h_lunch_time_start;
 	private LocalTime h_lunch_time_end;
 	private Integer h_interval_time;
+
+	public hospital() {
+	}
 
 	public Integer getH_id() {
 		return h_id;
