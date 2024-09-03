@@ -1,6 +1,6 @@
 package dto;
 
-public class hospital {
+public class Hospital {
 	private Integer h_id;
 	private Integer user_id;
 	private String h_exponent_name;
