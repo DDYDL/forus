@@ -19,6 +19,7 @@ public class hospital_time {
 		this.htime_isable = htime_isable;
 	}
 	
+
 	public Integer getH_id() {
 		return h_id;
 	}

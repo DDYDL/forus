@@ -13,7 +13,6 @@ public class hospital_qna {
 		super();
 	}
 	
-	
 	public hospital_qna(Integer user_id, Integer h_id, String q_title, String q_time, String a_title, String a_time) {
 		super();
 		this.user_id = user_id;
@@ -23,8 +22,6 @@ public class hospital_qna {
 		this.a_title = a_title;
 		this.a_time = a_time;
 	}
-
-
 
 	public Integer getUser_id() {
 		return user_id;
