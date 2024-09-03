@@ -1,5 +1,8 @@
 package dto;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class reservation {
 	private Integer reservId;
 	private Integer userId;
@@ -17,7 +20,7 @@ public class reservation {
 
 
 	// 생성자에서 자동 생성 또는 외부에서 가져오는 필드 제거
-	public Reservation(LocalDate reservDate, LocalTime reservTime, String reservApplyTime,
+	public reservation(LocalDate reservDate, LocalTime reservTime, String reservApplyTime,
 		String reservContent, String reservStatus, String reservMemo) {
 		this.reservDate = reservDate;
 		this.reservTime = reservTime;

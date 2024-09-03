@@ -1,5 +1,9 @@
 package dto;
 
+import java.time.LocalTime;
+
+import java.time.LocalTime;
+
 public class hospital {
 	private Integer h_id;
 	private Integer user_id;
@@ -204,7 +208,7 @@ public class hospital {
 	}
 
 	// h_id와 user_id를 제외한 생성자
-	public Hospital(String h_exponent_name, Integer h_num, String h_license, String h_name,
+	public hospital(String h_exponent_name, Integer h_num, String h_license, String h_name,
 		String h_manager_name, String h_phone, String h_address, Double h_longitude,
 		Double h_latitude, String h_animal_type, String h_picture, String h_memo,
 		String h_memo_road, String h_pay, String h_sns, Boolean h_parking,
