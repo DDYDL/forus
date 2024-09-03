@@ -1,6 +1,6 @@
 package dto;
 
-public class recruit_apply {
+public class Recruit_apply {
 	private Integer apply_id;
 	private Integer user_id;
 	private Integer	post_id;
@@ -9,10 +9,10 @@ public class recruit_apply {
 	private String apply_content;
 	private String apply_status;
 	
-	public recruit_apply() {
+	public Recruit_apply() {
 		super();
 	}
-	public recruit_apply(String apply_time, String apply_title, String apply_content, String apply_status) {
+	public Recruit_apply(String apply_time, String apply_title, String apply_content, String apply_status) {
 		super();
 		this.apply_time = apply_time;
 		this.apply_title = apply_title;
@@ -65,7 +65,7 @@ public class recruit_apply {
 	
 	@Override
 	public String toString() {
-		return "recruit_apply [apply_id=" + apply_id + ", user_id=" + user_id + ", post_id=" + post_id + ", apply_time="
+		return "Recruit_apply [apply_id=" + apply_id + ", user_id=" + user_id + ", post_id=" + post_id + ", apply_time="
 				+ apply_time + ", apply_title=" + apply_title + ", apply_content=" + apply_content + ", apply_status="
 				+ apply_status + "]";
 	}
