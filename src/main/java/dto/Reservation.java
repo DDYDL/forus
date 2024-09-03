@@ -3,7 +3,7 @@ package dto;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class reservation {
+public class Reservation {
 	private Integer reservId;
 	private Integer userId;
 	private Integer petId;
@@ -15,12 +15,12 @@ public class reservation {
 	private String reservStatus;
 	private String reservMemo;
 
-	public reservation() {
+	public Reservation() {
 	}
 
 
 	// 생성자에서 자동 생성 또는 외부에서 가져오는 필드 제거
-	public reservation(LocalDate reservDate, LocalTime reservTime, String reservApplyTime,
+	public Reservation(LocalDate reservDate, LocalTime reservTime, String reservApplyTime,
 		String reservContent, String reservStatus, String reservMemo) {
 		this.reservDate = reservDate;
 		this.reservTime = reservTime;
@@ -112,7 +112,7 @@ public class reservation {
 	}
 
 	public java.lang.String toString() {
-		return "reservation{" +
+		return "Reservation{" +
 			"reservId=" + reservId +
 			", userId=" + userId +
 			", petId=" + petId +
