@@ -4,7 +4,7 @@ import java.time.LocalTime;
 
 import java.time.LocalTime;
 
-public class hospital {
+public class Hospital {
 	private Integer h_id;
 	private Integer user_id;
 	private String h_exponent_name;
@@ -28,7 +28,7 @@ public class hospital {
 	private LocalTime h_lunch_time_end;
 	private Integer h_interval_time;
 
-	public hospital() {
+	public Hospital() {
 	}
 
 	public Integer getH_id() {
@@ -208,7 +208,7 @@ public class hospital {
 	}
 
 	// h_id와 user_id를 제외한 생성자
-	public hospital(String h_exponent_name, Integer h_num, String h_license, String h_name,
+	public Hospital(String h_exponent_name, Integer h_num, String h_license, String h_name,
 		String h_manager_name, String h_phone, String h_address, Double h_longitude,
 		Double h_latitude, String h_animal_type, String h_picture, String h_memo,
 		String h_memo_road, String h_pay, String h_sns, Boolean h_parking,
@@ -237,7 +237,7 @@ public class hospital {
 	}
 
 	public java.lang.String toString() {
-		return "hospital{" +
+		return "Hospital{" +
 			"h_id=" + h_id +
 			", user_id=" + user_id +
 			", h_exponent_name='" + h_exponent_name + '\'' +
