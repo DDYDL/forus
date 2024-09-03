@@ -10,9 +10,8 @@ public class hospital_time {
 		super();
 	}
 
-	public hospital_time(Integer h_id, String week, String htime_opening, String htime_closing, boolean htime_isable) {
+	public hospital_time(String week, String htime_opening, String htime_closing, boolean htime_isable) {
 		super();
-		this.h_id = h_id;
 		this.week = week;
 		this.htime_opening = htime_opening;
 		this.htime_closing = htime_closing;
