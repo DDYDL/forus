@@ -63,8 +63,4 @@ public class hospital_qna {
 		return "hospital_qna [user_id=" + user_id + ", h_id=" + h_id + ", q_title=" + q_title + ", q_time=" + q_time
 				+ ", a_title=" + a_title + ", a_time=" + a_time + "]";
 	}
-	
-
 }
-
-

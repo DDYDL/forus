@@ -262,5 +262,4 @@ public class hospital {
 			", h_interval_time=" + h_interval_time +
 			'}';
 	}
-
 }
