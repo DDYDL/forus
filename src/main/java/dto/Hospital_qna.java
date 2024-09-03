@@ -1,6 +1,6 @@
 package dto;
 
-public class hospital_qna {
+public class Hospital_qna {
 	private Integer user_id;
 	private Integer h_id;
 	private String q_title;
@@ -9,11 +9,11 @@ public class hospital_qna {
 	private String a_time;
 	
 	
-	public hospital_qna() {
+	public Hospital_qna() {
 		super();
 	}
 	
-	public hospital_qna(String q_title, String q_time, String a_title, String a_time) {
+	public Hospital_qna(String q_title, String q_time, String a_title, String a_time) {
 		super();
 		this.q_title = q_title;
 		this.q_time = q_time;
@@ -60,7 +60,7 @@ public class hospital_qna {
 
 	@Override
 	public String toString() {
-		return "hospital_qna [user_id=" + user_id + ", h_id=" + h_id + ", q_title=" + q_title + ", q_time=" + q_time
+		return "Hospital_qna [user_id=" + user_id + ", h_id=" + h_id + ", q_title=" + q_title + ", q_time=" + q_time
 				+ ", a_title=" + a_title + ", a_time=" + a_time + "]";
 	}
 }
