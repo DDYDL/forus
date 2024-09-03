@@ -1,6 +1,6 @@
 package dto;
 
-public class pet {
+public class Pet {
 
 	private Integer pet_id;
 	private Integer user_id;
@@ -14,11 +14,11 @@ public class pet {
 	private String pet_memo;
 	private Integer pet_num;
 
-	public pet() {
+	public Pet() {
 		super();
 	}
 
-	public pet(String pet_name, String pet_species, String pet_breed, String pet_gender,
+	public Pet(String pet_name, String pet_species, String pet_breed, String pet_gender,
 			Integer pet_age, boolean pet_neutering, String pet_picture, String pet_memo, Integer pet_num) {
 		super();
 		this.pet_name = pet_name;
@@ -122,7 +122,7 @@ public class pet {
 
 	@Override
 	public String toString() {
-		return "pet [pet_id=" + pet_id + ", user_id=" + user_id + ", pet_name=" + pet_name + ", pet_species="
+		return "Pet [pet_id=" + pet_id + ", user_id=" + user_id + ", pet_name=" + pet_name + ", pet_species="
 				+ pet_species + ", pet_breed=" + pet_breed + ", pet_gender=" + pet_gender + ", pet_age=" + pet_age
 				+ ", pet_neutering=" + pet_neutering + ", pet_picture=" + pet_picture + ", pet_memo=" + pet_memo
 				+ ", pet_num=" + pet_num + "]";
