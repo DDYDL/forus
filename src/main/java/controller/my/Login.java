@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.User;
-import service.UserService;
-import service.UserServiceImpl;
+import service.my.UserService;
+import service.my.UserServiceImpl;
 
 /**
  * Servlet implementation class Login

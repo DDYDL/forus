@@ -1,7 +1,7 @@
-package service;
+package service.my;
 
-import dao.UserDao;
-import dao.UserDaoImpl;
+import dao.my.UserDao;
+import dao.my.UserDaoImpl;
 import dto.User;
 
 public class UserServiceImpl implements UserService {

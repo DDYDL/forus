@@ -1,4 +1,4 @@
-package dao;
+package dao.my;
 
 import org.apache.ibatis.session.SqlSession;
 
