@@ -39,7 +39,7 @@ public class RecruitBypage extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String param = request.getParameter("param");
-		System.out.println(param);
+		System.out.println("param:"+param);
 		response.setCharacterEncoding("utf-8");
 		
 		List<String> areas = new ArrayList<>(); // 지역
@@ -52,24 +52,29 @@ public class RecruitBypage extends HttpServlet {
 			JSONArray areaArr = (JSONArray)jsonObj.get("areas"); // 객체 안의 배열들 가져오기
 			JSONArray speciesArr = (JSONArray)jsonObj.get("species");
 			
+			if(areaArr!=null) {
 			for(int i=0; i<areaArr.size(); i++) {
 				areas.add((String)areaArr.get(i)); // 배열 String 배열로 변환
 			}
+			}
+			if(speciesArr!=null) {
 			for(int i=0; i<speciesArr.size(); i++) {
 				species.add((String)speciesArr.get(i));
+			}
 			}
 			page = (Long)jsonObj.get("page"); // 현재 페이지 가져오기
 			
 			SearchService service = new SearchServiceImpl();
 			// 현재 조건의 recruit post 리스트 가져오기
 			List<Recruit_post> posts = service.getRecruit_postList(areas, species, page.intValue());
+			System.out.println("posts:"+posts);
 			// 최대 페이지 수 가져오기
 			Integer maxPage = service.getMaxPage(areas, species);
 			
 			// jsp response로 recruit_post 자바 객체를 전달하기 위해 JSON타입 스트링 만들기
 			JSONObject resJson = new JSONObject();
 			resJson.put("page", page);
-			resJson.put("page", maxPage);
+			resJson.put("maxPage", maxPage);
 			JSONArray jsonPosts = new JSONArray();
 			
 			for(Recruit_post post : posts) {

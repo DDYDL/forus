@@ -8,6 +8,7 @@
 <title>HelpUs</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="http://code.jquery.com//jquery-latest.min.js"></script>
 <link href="./css/recruit/recruitlist.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -109,15 +110,7 @@
                 <th>지역</th><th>제목</th><th>급여(원)</th><th>근무시간</th><th>등록일</th>
             </tr>
         </thead>
-        <tbody id="recruitlist_body">
-            <tr onclick="location.href='./recruitDetailpage?post_id=${recruit_post.post_id}'">
-                <td>${recruit_post.post_address}</td>
-                <td>${recruit_post.post_title}</td>
-                <td>${recruit_post.post_pay}</td>
-                <td>${recruit_post.post_start_time}~${recruit_post.post_end_time}</td>
-                <td>${recruit_post.post_time}</td>
-            </tr>
-        </tbody>
+        <tbody id="recruitlist_body"></tbody>
     </table>
     <div><button id="moreBtn">더보기</button></div>
     </div>
@@ -128,8 +121,8 @@
     	
     	// recruit_post 리스트를 가져와서 페이지 수에 맞게 보여주는 함수
     	function requestData() {
-    		var areas = document.querySelectorAll('option[class="area"]').innerHTML(); // 선택한 지역 배열 들어감
-    		var species = document.querySelectorAll('option[class="animal"]').innerHTML(); // 선택한 동물 배열 들어감
+    		var areas = document.querySelectorAll('option[class="area"]').innerHTML; // 선택한 지역 배열 들어감
+    		var species = document.querySelectorAll('option[class="animal"]').innerHTML; // 선택한 동물 배열 들어감
     		var param = {areas:areas, species:species, page:page+1}
     		
     		$.ajax({
@@ -138,17 +131,13 @@
     			async:true,
     			data:{param:JSON.stringify(param)}, // 객체를 JSON 문자열로 변환
     			success:function(result) { // recruitBypage 서블릿에서 넘어온 recruit_post 리스트가 result에 담겨옴(JSON 문자열 형식)
-    				concole.log(result);
+    				console.log(result);
     				var res = JSON.parse(result); // JSON 문자열을 객체로 변환
-    				res.recruit_postList.forEach(function(recruit_post)) {
+    				res.recruit_postList.forEach(function(recruit_post) {
+    					console.log(recruit_post);
     					// 테이블 안에 recruit_post 한 행을 추가
-    					$('recruitlist_body').append(`<tr id="appendtr" onclick="location.href='./recruitDetailpage?post_id=\${recruit_post.post_id}'"></tr>`);
-    					document.getElementById("appendtr").appendChild(`<td>\${recruit_post.post_address}</td>`);
-    					document.getElementById("appendtr").appendChild(`<td>\${recruit_post.post_title}</td>`);
-    					document.getElementById("appendtr").appendChild(`<td>\${recruit_post.post_pay}</td>`);
-    					document.getElementById("appendtr").appendChild(`<td>\${recruit_post.post_start_time}~\${recruit_post.post_end_time}</td>`);
-    					document.getElementById("appendtr").appendChild(`<td>\${recruit_post.post_time}</td>`);
-    				}
+    					$('#recruitlist_body').append(`<tr onclick="location.href='./recruitDetailpage?post_id=\${recruit_post.post_id}'"><td>\${recruit_post.post_address}</td><td>\${recruit_post.post_title}</td><td>\${recruit_post.post_pay}</td><td>\${recruit_post.post_start_time}~\${recruit_post.post_end_time}</td><td>\${recruit_post.post_time}</td></tr>`);
+    				})
     				maxPage = res.maxPage; // 넘어온 페이지로 설정
     				page = res.page;
     				
