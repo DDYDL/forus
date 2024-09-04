@@ -36,7 +36,7 @@ public class HospitalList extends HttpServlet {
 		// 위도와 경도를 파싱할 때, 값이 null인 경우 기본값을 설정하거나 예외 처리
 		double latitude = 33.450701; // 기본값
 		double longitude = 126.570667; // 기본값
-		double radius = 10.0;
+		double radius = 5.0;
 
 		if (latStr != null && lonStr != null && !latStr.isEmpty() && !lonStr.isEmpty()) {
 			try {
