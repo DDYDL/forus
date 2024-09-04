@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/* recruitapplydetailpage.jsp와 recruitdetailpage.jsp의 공통 설정 */
+.list-header { display: flex; justify-content: space-between; }
+
+/* recruitdetailpage.jsp의 모달 설정 */
+	/* 제목 입력칸 */
+input.title {
+	width: 100%;
+	min-height: 50px;
+	border: 1px solid darkgray;
+	border-radius: 10px;
+}
+	/* 내용 입력칸 */
+.textarea {
+	width: 100%;
+	min-height: 150px;
+	border: 1px solid darkgray;
+	border-radius: 10px;
+}

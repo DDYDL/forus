@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="dto.User" alias="user"/>
+		<typeAlias type="dto.Pet" alias="pet"/>
+		<typeAlias type="dto.Hospital" alias="hospital"/>
+		<typeAlias type="dto.Hospital_qna" alias="hospital_qna"/>
+		<typeAlias type="dto.Hospital_time" alias="hospital_time"/>
+		<typeAlias type="dto.Recruit_post" alias="recruit_post"/>
+		<typeAlias type="dto.Recruit_apply" alias="recruit_apply"/>
+		<typeAlias type="dto.Reservation" alias="reservation"/>
+		<typeAlias type="dto.Search" alias="search"/>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="org.mariadb.jdbc.Driver"/>
+				<property name="url" value="jdbc:mariadb://192.168.0.11:3306/forusDB"/>
+				<property name="username" value="forusDB"/>
+				<property name="password" value="forusDB"/>
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="mapper/user.xml"/>
+		<mapper resource="mapper/pet.xml"/>
+		<mapper resource="mapper/hospital.xml"/>
+		<mapper resource="mapper/hospital_qna.xml"/>
+		<mapper resource="mapper/hospital_time.xml"/>
+		<mapper resource="mapper/recruit_post.xml"/>
+		<mapper resource="mapper/recruit_apply.xml"/> 
+		<mapper resource="mapper/reservation.xml"/>
+		<mapper resource="mapper/search.xml"/>
+	</mappers>
+</configuration>

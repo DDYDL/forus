@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+/* 드랍버튼 스타일 설정 */
+.btn { background-color:#69E92E; border:1px solid #D1D1D1; }
+.btn:hover { background-color:#6CBE46; border:1px solid #D1D1D1; }
+.btn:active { background-color:#6CBE46; border:1px solid #D1D1D1; }
+
+/* 검색 박스 설정 */
+.searchbox {
+	border: 1px solid #D1D1D1;
+	height: auto;
+	min-height: 50px;
+	border-radius: 10px;
+}
+.tabletd { border-style: none; margin: 0px; padding: 0px; }
+select {
+	width: 200px;
+	border-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+/* 리스트 설정 */
+table { border-top: 2px solid; }
+.list-header { display:flex; justify-content: space-between; }
+.list-count { align-self: flex-end; }
+.list-btn { align-self:flex-end; }

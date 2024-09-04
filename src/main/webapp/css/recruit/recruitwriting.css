@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/* 동물 프로필 선택칸 */
+.pet_profile { width: 700px; }
+.pet_td1 { width: 80px; padding-left:35px; padding-top:10px; padding-bottom:10px; }
+.pet_td2 { width: 120px; padding-left:30px; }
+.pet_td3 { width: 500px; padding-left:30px; }
+
+/* 조건 설정 칸 */
+.setting { width: 500px; text-align: left; padding-top:10px; padding-bottom:10px; }
+.setting_td1 { padding-left: 40px; padding-top:40px; width:120px; vertical-align: top; }
+.setting_td2 { padding-top:40px; }
+	/* 캘린더 */
+.form-control { width: 310px; }
+
+/* 위치 검색바 */
+.btn { width: 50px; }
+
+/* 제목 입력칸 */
+input.title {
+	width: 100%;
+	min-height: 50px;
+	border: 1px solid darkgray;
+	border-radius: 10px;
+}
+/* 내용 입력칸 */
+.textarea {
+	width: 100%;
+	min-height: 150px;
+	border: 1px solid darkgray;
+	border-radius: 10px;
+}
+/* 등록 버튼 */
+.btndiv { text-align: center; }
+.btnstyle {
+	width: 100px; height: 50px; background-color: #69E92E;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+}

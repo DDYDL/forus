@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.search">
+	<select id="selectRecruit_postList" parameterType="Map" resultType="Search">
+		select * from recruit_post
+		<where>
+			<foreach collection="areas" item="area" separator="or" open="(" close=")">
+				post_address like '%${area}'
+			</foreach>
+			<if test="species!=null">
+				and
+				<foreach collection="species" item="specie" separator="or" open="(" close=")">
+					(select p.pet_speices from pet p join recruit_post r using(pet_id)) like '%${specie}'
+				</foreach>
+			</if>
+		</where>
+		limit #{row}, 10
+	</select>
+	
+	<select id="selectListCount" resultType="Integer" parameterType="Map">
+		select count(*) from recruit_post
+		<where>
+			<foreach collection="areas" item="area" separator="or" open="(" close=")">
+				post_address like '%${area}'
+			</foreach>
+			<if test="species!=null">
+				and
+				<foreach collection="species" item="specie" separator="or" open="(" close=")">
+					(select p.pet_speices from pet p join recruit_post r using(pet_id)) like '%${specie}'
+				</foreach>
+			</if>
+		</where>
+	</select>
+</mapper>
