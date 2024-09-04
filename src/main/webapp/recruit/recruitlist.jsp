@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <title>HelpUs</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<link href="../css/recruit/recruitlist.css" rel="stylesheet" type="text/css">
+<link href="./css/recruit/recruitlist.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -108,30 +109,24 @@
                 <th>지역</th><th>제목</th><th>급여(원)</th><th>근무시간</th><th>등록일</th>
             </tr>
         </thead>
-        <tbody>
-            <tr onclick="location.href='recruitdetailpage.jsp'">
-                <td>금천구 가산동</td>
-                <td>강아지 산책</td>
-                <td>30000</td>
-                <td>7:00~10:00</td>
-                <td>2024.08.16</td>
-            </tr>
-            <tr>
-                <td>금천구 독산동</td>
-                <td>온도조절</td>
-                <td>15000</td>
-                <td>18:00~22:00</td>
-                <td>2024.08.16</td>
+        <tbody id="recruitlist_body">
+            <tr onclick="location.href='./recruitDetailpage?post_id=${recruit_post.post_id}'">
+                <td>${recruit_post.post_address}</td>
+                <td>${recruit_post.post_title}</td>
+                <td>${recruit_post.post_pay}</td>
+                <td>${recruit_post.post_start_time}~${recruit_post.post_end_time}</td>
+                <td>${recruit_post.post_time}</td>
             </tr>
         </tbody>
     </table>
-    </div>
     <div><button id="moreBtn">더보기</button></div>
+    </div>
     
     <script>
     	var page=0;
     	var maxPage=0;
     	
+    	// recruit_post 리스트를 가져와서 페이지 수에 맞게 보여주는 함수
     	function requestData() {
     		var areas = document.querySelectorAll('option[class="area"]').innerHTML(); // 선택한 지역 배열 들어감
     		var species = document.querySelectorAll('option[class="animal"]').innerHTML(); // 선택한 동물 배열 들어감
@@ -142,15 +137,38 @@
     			type:'post',
     			async:true,
     			data:{param:JSON.stringify(param)}, // 객체를 JSON 문자열로 변환
-    			success:function(result) {
+    			success:function(result) { // recruitBypage 서블릿에서 넘어온 recruit_post 리스트가 result에 담겨옴(JSON 문자열 형식)
     				concole.log(result);
     				var res = JSON.parse(result); // JSON 문자열을 객체로 변환
-    				res.locs.forEach(function(loc)) {
-    					
+    				res.recruit_postList.forEach(function(recruit_post)) {
+    					// 테이블 안에 recruit_post 한 행을 추가
+    					$('recruitlist_body').append(`<tr id="appendtr" onclick="location.href='./recruitDetailpage?post_id=\${recruit_post.post_id}'"></tr>`);
+    					document.getElementById("appendtr").appendChild(`<td>\${recruit_post.post_address}</td>`);
+    					document.getElementById("appendtr").appendChild(`<td>\${recruit_post.post_title}</td>`);
+    					document.getElementById("appendtr").appendChild(`<td>\${recruit_post.post_pay}</td>`);
+    					document.getElementById("appendtr").appendChild(`<td>\${recruit_post.post_start_time}~\${recruit_post.post_end_time}</td>`);
+    					document.getElementById("appendtr").appendChild(`<td>\${recruit_post.post_time}</td>`);
+    				}
+    				maxPage = res.maxPage; // 넘어온 페이지로 설정
+    				page = res.page;
+    				
+    				// 현재 페이지수가 최대 페이지수와 같거나 크면 더보기 버튼 안 보이게 함
+    				if(page>=maxPage) {
+    					document.getElementById("moreBtn").style.visibility = 'hidden';
+    				} else {
+    					document.getElementById("moreBtn").style.visibility = 'visible';
     				}
     			}
     		})
     	}
+    	
+    	// 더보기 버튼 눌리면 함수 한 번 실행
+    	document.getElementById("moreBtn").onclick = function() {
+    		requestData();
+    	}
+    	
+    	// 처음 한 번 실행
+    	requestData();
     </script>
 </body>
 </html>
