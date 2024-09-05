@@ -6,61 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지-게시글관리</title>
-<style>
-/* body { */
-/* 	padding-top: 5%; */
-/* 	padding-left: 15%; */
-/* 	padding-right: 15%; */
-/* } */
+<!-- table -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-/* table { */
-/* 	width: 950px; */
-/* 	border-top: 2px solid #444444; */
-/* 	border-collapse: collapse; */
-/* 	text-align: center; */
-/* 	margin-left: 200px; */
-/* } */
-
-/* th, td { */
-/* 	border-bottom: 1px solid #444444; */
-/* 	padding: 10px; */
-/* } */
-
-/* .title { */
-/* 	padding-top: 20px; */
-/* 	padding-bottom: 50px; */
-/* 	margin-right:100px; */
-/* } */
-/* .btn{ */
-/* 	width: 100px; */
-/* 	height: 40px; */
-/* 	font-size: 16px; */
-/* 	font-weight: bold; */
-/* 	border-radius:10px; */
-/* 	border: 0; */
-/*     background: rgba(105, 233, 46, 0.37); */
-/*     margin-right:700px; */
-/*     margin-top:10px; */
-/* } */
-/* .btn:hover{ */
-/*     background: rgba(44, 207, 39, 0.37); */
-/* } */
-/* #listcnt { */
-/* 	text-align: left; */
-/* } */
-</style>
+<link href="../css/my/mycommon.css" rel="stylesheet" type="text/css">
 <link href="../css/my/mycommon.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="../mainmypage.jsp" %>
 		<div class = "mypage-content-list">
-	<div class="title">
-		<h2>게시글 관리</h2>
+	<div class="mytitle">
+		<p>게시글 관리</p>
 	</div>
 	<div id="listcnt">
 		<p>총 2건</p>
 	</div>
-	<table>
+	<table class="table table-hover mytable">
 		<thead>
 			<tr>
 				<th></th>
@@ -88,7 +50,7 @@
 		</tbody>
 	</table>
 	<div>
-		<button type="submit" class="btn">삭제하기</button>
+		<button type="submit" class="minibtn">삭제하기</button>
 	</div>
 	</div>
 </body>

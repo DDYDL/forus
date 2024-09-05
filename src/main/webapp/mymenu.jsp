@@ -9,9 +9,9 @@
 <body>
 	<aside id="left">
 		<ul>
-			<li><a href="../my/myafterreserv.jsp">예약내역</a></li><br>
-			<li><a href="../my/mypostlist.jsp">게시글 관리</a></li><br>
-			<li><a href="../my/myapplylist.jsp">지원현황</a></li><br>
+			<li><a href="${pageContext.request.contextPath}/my/myafterreserv.jsp">예약내역</a></li><br>
+			<li><a href="${pageContext.request.contextPath}/my/mypostlist.jsp">게시글 관리</a></li><br>
+			<li><a href="${pageContext.request.contextPath}/my/myapplylist.jsp">지원현황</a></li><br>
 			<li><a href="#" class="my">내 프로필</a></li><br>
 			<li><a href="#" class="pet">반려동물 프로필</a></li>
 		</ul>

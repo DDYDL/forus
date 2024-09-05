@@ -1,16 +1,18 @@
 package dto;
 
+import java.time.LocalTime;
+
 public class Hospital_time {
 	private Integer h_id;
 	private String week;
-	private String htime_opening;
-	private String htime_closing;
+	private LocalTime htime_opening;
+	private LocalTime htime_closing;
 	private boolean htime_isable;
 	
 	public Hospital_time() {
 		super();
 	}
-	public Hospital_time(String week, String htime_opening, String htime_closing, boolean htime_isable) {
+	public Hospital_time(String week, LocalTime htime_opening, LocalTime htime_closing, boolean htime_isable) {
 		super();
 		this.week = week;
 		this.htime_opening = htime_opening;
@@ -30,16 +32,16 @@ public class Hospital_time {
 	public void setWeek(String week) {
 		this.week = week;
 	}
-	public String getHtime_opening() {
+	public LocalTime getHtime_opening() {
 		return htime_opening;
 	}
-	public void setHtime_opening(String htime_opening) {
+	public void setHtime_opening(LocalTime htime_opening) {
 		this.htime_opening = htime_opening;
 	}
-	public String getHtime_closing() {
+	public LocalTime getHtime_closing() {
 		return htime_closing;
 	}
-	public void setHtime_closing(String htime_closing) {
+	public void setHtime_closing(LocalTime htime_closing) {
 		this.htime_closing = htime_closing;
 	}
 	public boolean isHtime_isable() {
