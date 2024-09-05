@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="http://code.jquery.com//jquery-latest.min.js"></script>
 <link href="${pageContext.request.contextPath}/css/common/header.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/common/font.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/common/body.css" rel="stylesheet" type="text/css">

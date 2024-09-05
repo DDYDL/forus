@@ -16,4 +16,10 @@ public class RecruitServiceImpl implements RecruitService {
 		return null;
 	}
 
+	@Override
+	public Integer checkApply(String id, Integer post_id) throws Exception {
+		
+		return null;
+	}
+
 }
