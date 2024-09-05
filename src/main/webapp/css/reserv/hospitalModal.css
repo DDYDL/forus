@@ -1,0 +1,67 @@
+
+#time-slots-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-items: center;
+    margin-top: 6%;
+    padding: 7%;
+}
+
+
+
+
+.time-slot-label {
+    display: inline-block;
+    margin: 5px;
+}
+
+.time-slot-button {
+    display: inline-block;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    font-size: 15px;
+}
+
+.time-slot-label input[type="radio"] {
+    display: none;
+}
+
+.time-slot-label input[type="radio"]:checked + .time-slot-button {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.time-slot-button:hover {
+    background-color: #f1f1f1;
+    border-color: #999;
+}
+
+.time-slot-label input[type="radio"]:disabled + .time-slot-button {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/*#reservation-modal-content{*/
+/*    margin-left: 1%;*/
+/*}*/
+
+.flatpickr-calendar {
+    margin-left: 12%;
+}
+
+
+.flatpickr-calendar.inline {
+    display: block;
+    position: relative;
+    top: 2px;
+    margin-top: 6%;
+}
+
+
+
