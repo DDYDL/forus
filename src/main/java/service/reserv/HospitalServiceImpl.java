@@ -18,16 +18,10 @@ public class HospitalServiceImpl implements HospitalListService{
 	@Override
 	public List<Hospital> getHospitalsByLocation(double latitude, double longitude, double radius) {
 		//값 출력
-		System.out.println("latitude : " + latitude);
-		System.out.println("longitude : " + longitude);
-		System.out.println("radius : " + radius);
-
 		Map<String , Double> map = new java.util.HashMap<>();
 		map.put("latitude",latitude);
 		map.put("longitude",longitude);
 		map.put("radius",radius);
-
-
 		return hospitalDao.findHospitalByLocation(map);
 	}
 

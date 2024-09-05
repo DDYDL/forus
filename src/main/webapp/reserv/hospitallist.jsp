@@ -39,9 +39,108 @@
 </html>
 
 <script>
+    var map;
+    var userMarker;
+    var searchMarker;
+    var markers = [];
     // Kakao Places 객체 생성
     var ps = new kakao.maps.services.Places();
+</script>
 
+
+<script>
+    // 사용자 마커 추가 함수
+    function addUserMarker(lat, lon) {
+        var position = new kakao.maps.LatLng(lat, lon);
+        //기존 사용자 마커 제거
+        if (userMarker) {
+            userMarker.setMap(null);
+        }
+        //새로운 마커 생성
+        userMarker = new kakao.maps.Marker({
+            map: map,
+            position: position,
+            zIndex: 2,
+
+        });
+
+    }
+</script>
+
+
+<script>
+    //검색 위치가 -> 사용자 마커
+    function addSearchUserMarker(lat, lon) {
+        var position = new kakao.maps.LatLng(lat, lon);
+        // 기존 검색 마커 제거
+        if (searchMarker) {
+            searchMarker.setMap(null);
+        }
+
+        searchMarker = new kakao.maps.Marker({
+            map: map,
+            position: position,
+
+            zIndex: 1
+        });
+    }
+</script>
+
+<script>
+    // 지도에 병원 마커 추가 함수
+    function addHospitalMarker(hospital) {
+        var position = new kakao.maps.LatLng(hospital.h_latitude, hospital.h_longitude);
+        var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
+        var imageSize = new kakao.maps.Size(24, 35);
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+        // 마커 생성
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: position,
+            image: markerImage
+        });
+        markers.push(marker);// 마커 배열에 추가 나중에 초기화 할때 사용 가능
+
+        //  (마커에 병원 이름 표시)
+        var infoWindowContent = `<div style="padding:5px; font-size:12px;">${"${hospital.h_name}"}</div>`;
+
+
+        var infowindow = new kakao.maps.InfoWindow({
+            content: infoWindowContent
+        });
+
+        kakao.maps.event.addListener(marker, 'mouseover', function () {
+            infowindow.open(map, marker);
+        });
+
+        kakao.maps.event.addListener(marker, 'mouseout', function () {
+            infowindow.close();
+        });
+    }
+
+</script>
+
+
+<script>
+    // 기존 마커 초기화
+    function resetMarkers() {
+        markers.forEach(marker => marker.setMap(null));
+        markers = [];
+
+        // 마커 제거 부분임
+        if (userMarker) {
+            userMarker.setMap(null);
+            userMarker = null;
+        }
+        if (searchMarker) {
+            searchMarker.setMap(null);
+            searchMarker = null;
+        }
+    }
+</script>
+
+<script>
     // 검색 입력 필드에 이벤트 리스너 추가
     $('#search-input').on('input', function () {
         var query = $(this).val();
@@ -62,15 +161,30 @@
         }
     }
 
-    // 제안 항목 클릭 이벤트 추가
+    //자동완성  제안 항목
     $(document).on('click', '.suggestion-item', function () {
         var placeName = $(this).data('place-name');
         var addressName = $(this).data('address-name');
+        var placeLat = $(this).data('place-lat'); // 위도
+        var placeLng = $(this).data('place-lng'); // 경도
+
+
         $('#search-input').val(placeName); // 선택한 이름을 검색창에 입력
         $('#suggestions').hide();
 
+        resetMarkers();
 
-        <%--console.log(`선택된 장소: ${placeName}, 주소: ${addressName}`);--%>
+        var newLocation = new kakao.maps.LatLng(placeLat, placeLng);
+        map.setCenter(newLocation);
+
+        addSearchUserMarker(placeLat, placeLng);
+
+        updateHospitalList(placeLat, placeLng);
+
+        if (userMarker) {
+            addUserMarker(userMarker.getPosition().getLat(), userMarker.getPosition().getLng());
+        }
+
     });
 </script>
 
@@ -103,48 +217,17 @@
         });
     }
 
-    // 지도에 병원 마커 추가 함수
-    function addHospitalMarker(hospital) {
-        var position = new kakao.maps.LatLng(hospital.h_latitude, hospital.h_longitude);
-        var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-        var imageSize = new kakao.maps.Size(24, 35);
-        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-        // 마커 생성
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: position,
-            image: markerImage
-        });
-
-        //  (마커에 병원 이름 표시)
-        var infoWindowContent = `<div style="padding:5px; font-size:12px;">${"${hospital.h_name}"}</div>`;
-
-        // 인포윈도우 생성
-        var infowindow = new kakao.maps.InfoWindow({
-            content: infoWindowContent
-        });
-
-        kakao.maps.event.addListener(marker, 'mouseover', function () {
-            infowindow.open(map, marker); // 마커 위에 인포윈도우 표시
-        });
-
-        kakao.maps.event.addListener(marker, 'mouseout', function () {
-            infowindow.close();
-        });
-    }
-
 </script>
 
 <script>
     // 지도 생성
     var container = document.getElementById('map-container');
     var options = { // 지도를 생성할 때 필요한 기본 옵션
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 6 // 지도의 확대 레벨
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 6
     };
     // 지도를 생성
-    var map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+    var map = new kakao.maps.Map(container, options);
 
     var markers = [];
 
@@ -162,18 +245,12 @@
                 // 지도 중심을 사용자의 현재 위치로 이동
                 map.setCenter(locPosition);
 
-                // 사용자의 현재 위치에 마커를 생성
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: locPosition
-                });
+                // 사용자의 현재 위치에 마커 생성
+                addUserMarker(lat, lon);
                 updateHospitalList(lat, lon);
-
             },
             function (error) {
-                // 위치 가져오기 실패 시
                 alert('위치를 가져올 수 없습니다: ' + error.message);
-                // 기본 위치로 이동
                 map.setCenter(new kakao.maps.LatLng(33.450701, 126.570667));
             },
             {
@@ -194,10 +271,11 @@
         return data
             .map(
                 (place) =>
-                    `<div class="suggestion-item" data-place-name="${"${place.place_name}"}" data-address-name="${"${place.address_name}"}">${"${place.place_name}"} (${"${place.address_name}"})</div>`
+                    `<div class="suggestion-item" data-place-name="${"${place.place_name}"}" data-address-name="${"${place.address_name}"}" data-place-lat="${"${place.y}"}" data-place-lng="${"${place.x}"}">${"${place.place_name}"} (${"${place.address_name}"})</div>`
             )
             .join('');
     }
+
     // 병원 목록 HTML 생성 함수
     function generateHospitalHTML(hospital) {
         return `

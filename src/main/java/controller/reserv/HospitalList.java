@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import controller.reserv.check.StringUtil;
 import dto.Hospital;
 import service.reserv.HospitalListService;
 import service.reserv.HospitalServiceImpl;
@@ -19,6 +20,10 @@ import service.reserv.HospitalServiceImpl;
 public class HospitalList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static final double DEFAULT_LATITUDE = 33.450701;
+	private static final double DEFAULT_LONGITUDE = 126.570667;
+	private static final double DEFAULT_RADIUS = 5.0;
+
 	public HospitalList() {
 		super();
 	}
@@ -26,19 +31,18 @@ public class HospitalList extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-		// HospitalServiceImpl 객체 초기화
 		HospitalListService hospitalService = new HospitalServiceImpl();
-
-
 		String latStr = request.getParameter("latitude");
 		String lonStr = request.getParameter("longitude");
 
-		// 위도와 경도를 파싱할 때, 값이 null인 경우 기본값을 설정하거나 예외 처리
-		double latitude = 33.450701; // 기본값
-		double longitude = 126.570667; // 기본값
-		double radius = 5.0;
+		// 초기값 설정
+		double latitude = DEFAULT_LATITUDE;
+		double longitude = DEFAULT_LONGITUDE;
+		double radius = DEFAULT_RADIUS;
 
-		if (latStr != null && lonStr != null && !latStr.isEmpty() && !lonStr.isEmpty()) {
+
+		// if (latStr != null && lonStr != null && !latStr.isEmpty() && !lonStr.isEmpty()) {
+		if (StringUtil.isNotEmpty(latStr) && StringUtil.isNotEmpty(lonStr)) {
 			try {
 				latitude = Double.parseDouble(latStr);
 				longitude = Double.parseDouble(lonStr);
@@ -46,17 +50,14 @@ public class HospitalList extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-
 		// 병원 데이터 조회
 		List<Hospital> hospitals = hospitalService.getHospitalsByLocation(latitude, longitude, radius);
-		String isAjax = request.getParameter("ajax");
 
+		String isAjax = request.getParameter("ajax");
 		if ("true".equals(isAjax)) {
 			// JSON 응답 설정
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
-
 			Gson gson = new Gson();
 			String json = gson.toJson(hospitals);
 			response.getWriter().write(json);
