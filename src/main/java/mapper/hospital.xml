@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.Hospital">
+<mapper namespace="mapper.hospital">
 	<insert id="insertHospital" parameterType="Hospital">
 		<![CDATA[
 			insert into Hospital (h_id, user_id, h_exponent_name, h_num,
