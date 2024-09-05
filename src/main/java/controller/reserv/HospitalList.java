@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import controller.reserv.check.StringUtil;
+import controller.reserv.check.StringNullCheck;
 import dto.Hospital;
 import service.reserv.HospitalListService;
 import service.reserv.HospitalServiceImpl;
@@ -44,7 +44,7 @@ public class HospitalList extends HttpServlet {
 		List<Hospital> hospitals = new ArrayList<>();
 
 		// if (latStr != null && lonStr != null && !latStr.isEmpty() && !lonStr.isEmpty()) {
-		if (StringUtil.isNotEmpty(latStr) && StringUtil.isNotEmpty(lonStr)) {
+		if (StringNullCheck.isNotEmpty(latStr) && StringNullCheck.isNotEmpty(lonStr)) {
 			try {
 				latitude = Double.parseDouble(latStr);
 				longitude = Double.parseDouble(lonStr);
@@ -54,7 +54,6 @@ public class HospitalList extends HttpServlet {
 
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
-				// 예외가 발생해도 빈 리스트 상태 유지
 			}
 		}
 

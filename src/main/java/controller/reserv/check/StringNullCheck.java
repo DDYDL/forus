@@ -1,6 +1,6 @@
 package controller.reserv.check;
 
-public class StringUtil {
+public class StringNullCheck {
 	/**
 	 * 문자열이 null이 아니고, 비어있지 않은지 검사하는 메서드
 	 * @param string 검사할 문자열
