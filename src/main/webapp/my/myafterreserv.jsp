@@ -17,7 +17,7 @@
 			<a href="myafterreserv.jsp">이후 예약</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 			<a href="mybeforereserv.jsp">지난 예약</a>
 		</div>
-	<table class="table table-hover">
+	<table class="table table-hover mytable">
 			<div>
 				<p>총 2건</p>
 			</div>

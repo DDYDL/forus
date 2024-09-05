@@ -6,31 +6,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dto.User;
 import service.my.UserService;
 import service.my.UserServiceImpl;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Join
  */
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/join")
+public class Join extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Join() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+		request.getRequestDispatcher("join.jsp").forward(request, response);
 	}
 
 	/**
@@ -38,20 +38,25 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		User user = new User();
+		user.setEmail(request.getParameter("email"));
+		user.setPassword(request.getParameter("password"));
+		user.setName(request.getParameter("name"));
+		user.setNickname(request.getParameter("nickname"));
+		user.setPhone(request.getParameter("phone"));
+		user.setBirthday(request.getParameter("birthday"));
+		user.setGender(request.getParameter("gender"));
+		user.setAddress(request.getParameter("address"));
+		user.setPicture(request.getParameter("picture"));
+		user.setIshospital(Integer.parseInt(request.getParameter("ishospital")));
 		try {
 			UserService service = new UserServiceImpl();
-			service.login(email, password);
-			HttpSession session = request.getSession();
-			session.setAttribute("email", email);
-			response.sendRedirect("join");
-			return;
+			service.join(user);
+			response.sendRedirect("login");
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("err.jsp").forward(request, response);
-			return;
 		}
 	}
 
