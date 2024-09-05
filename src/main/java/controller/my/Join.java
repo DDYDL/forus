@@ -48,12 +48,10 @@ public class Join extends HttpServlet {
 			UserService service = new UserServiceImpl();
 			service.join(user);
 			response.sendRedirect("login");
-			return;
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("err.jsp").forward(request, response);
-			return;
 		}
 	}
 
