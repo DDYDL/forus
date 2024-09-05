@@ -8,7 +8,7 @@
 <link href="css/my/mycommon.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<%@ include file="../mainpage.jsp" %>
+	<%@ include file="mainpage.jsp"%>
 	<div class="content user-content">
 	<form action="login" method="post">
 	<p class="content-title">로그인</p>

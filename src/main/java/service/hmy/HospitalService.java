@@ -1,10 +1,10 @@
 package service.hmy;
 
+import javax.servlet.http.HttpServletRequest;
+
 import dto.Hospital;
 
 public interface HospitalService {
-	void join(Hospital hos) throws Exception;
-
-	void login(String id, String password) throws Exception;
-
+	void hospitalNew (HttpServletRequest request) throws Exception;
+	Integer hospitalModify(HttpServletRequest request)throws Exception;
 }

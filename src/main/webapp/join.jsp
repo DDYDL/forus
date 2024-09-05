@@ -43,7 +43,7 @@
 <link href="css/my/mycommon.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<%@ include file="../mainpage.jsp" %>
+	<%@ include file="mainpage.jsp" %>
 	<div class="content user-content">
 	<p class="content-title">회원가입</p><br><br>
 		<table class="join-table">

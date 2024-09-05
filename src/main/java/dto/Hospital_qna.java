@@ -1,19 +1,21 @@
 package dto;
 
+import java.time.LocalDateTime;
+
 public class Hospital_qna {
 	private Integer user_id;
 	private Integer h_id;
 	private String q_title;
 	private String q_time;
 	private String a_title;
-	private String a_time;
+	private LocalDateTime a_time;
 	
 	
 	public Hospital_qna() {
 		super();
 	}
 	
-	public Hospital_qna(String q_title, String q_time, String a_title, String a_time) {
+	public Hospital_qna(String q_title, String q_time, String a_title, LocalDateTime a_time) {
 		super();
 		this.q_title = q_title;
 		this.q_time = q_time;
@@ -51,10 +53,10 @@ public class Hospital_qna {
 	public void setA_title(String a_title) {
 		this.a_title = a_title;
 	}
-	public String getA_time() {
+	public LocalDateTime getA_time() {
 		return a_time;
 	}
-	public void setA_time(String a_time) {
+	public void setA_time(LocalDateTime a_time) {
 		this.a_time = a_time;
 	}
 
