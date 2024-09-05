@@ -6,7 +6,7 @@
     <title>Title</title>
     <link href="css/reserv/hospital.css" rel="stylesheet">
     <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=16b7470c6f4bec9cf478c43505c8b0ae&libraries=services"></script>
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=94ab9074f87bbed0edf5b0d9cb32cdbd&libraries=services"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -30,7 +30,6 @@
     <div id="map-container">
         <img src="#" alt="Map">
     </div>
-
 
     <div id="hospitals-container">
         <%-- 비동기로 받아온 병원 목록이 여기에 추가됨 --%>
