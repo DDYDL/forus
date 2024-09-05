@@ -18,7 +18,12 @@
 			#{h_lunch_time_start},#{_lunch_time_end},#{h_interval_time})
 		]]>
 	</insert>
-	
+
+	<select id="selectHospital" parameterType="String"
+		resultType="hospital">
+	<![CDATA[
+		select * from hospital where h_id = #{h_id}]]></select>
+
 	<update id="updateHospital" parameterType="Hospital">
 		update hospital
 		<set>
@@ -30,7 +35,8 @@
 		where user_id=#{user_id}
 	</update>
 
-	<select id="findHospitalByLocation" parameterType="map" resultType="dto.Hospital">
+	<select id="findHospitalByLocation" parameterType="map"
+		resultType="dto.Hospital">
         <![CDATA[
 		SELECT
 			h.h_id,
@@ -57,7 +63,7 @@
 		ORDER BY
 			distance ASC;
 		]]>
-    </select>
+	</select>
 
 
 

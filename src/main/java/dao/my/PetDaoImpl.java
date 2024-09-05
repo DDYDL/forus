@@ -1,8 +1,7 @@
-package controller.my;
+package dao.my;
 
 import org.apache.ibatis.session.SqlSession;
 
-import dao.my.PetDao;
 import dto.Pet;
 import util.MybatisSqlSessionFactory;
 
@@ -20,6 +19,13 @@ public class PetDaoImpl implements PetDao {
 	@Override
 	public Pet selectPet(Integer pet_id) throws Exception {
 		return sqlSession.selectOne("mapper.Pet.selectPet", pet_id);
+	}
+
+	@Override
+	public void updatePet(Pet pet) throws Exception {
+		sqlSession.update("mapper.pet.updatePet",pet);
+		sqlSession.commit();
+		
 	}
 
 }

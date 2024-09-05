@@ -14,14 +14,14 @@ import service.hmy.HospitalServiceImpl;
 /**
  * Servlet implementation class HmyHospital
  */
-@WebServlet("/hmyHospital")
-public class HmyHospital extends HttpServlet {
+@WebServlet("/hmyNewHospital")
+public class HmyNewHospital extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public HmyHospital() {
+	public HmyNewHospital() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,8 +32,7 @@ public class HmyHospital extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/hmy/hmyNewHospital.jsp").forward(request, response);
 	}
 
 	/**
@@ -66,7 +65,7 @@ public class HmyHospital extends HttpServlet {
 
 		try {
 			HospitalService service = new HospitalServiceImpl();
-			//service.join(hospital);
+			service.join(hospital);
 			response.sendRedirect("success");
 
 		} catch (Exception e) { //?
