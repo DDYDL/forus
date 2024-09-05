@@ -17,16 +17,13 @@ public class HospitalServiceImpl implements HospitalListService{
 
 	@Override
 	public List<Hospital> getHospitalsByLocation(double latitude, double longitude, double radius) {
-		//값 출력
 		Map<String , Double> map = new java.util.HashMap<>();
 		map.put("latitude",latitude);
 		map.put("longitude",longitude);
 		map.put("radius",radius);
+
 		return hospitalDao.findHospitalByLocation(map);
 	}
 
-	@Override
-	public List<Hospital> getHospitalsByAddress(String address) {
-		return hospitalDao.findHospitalByAddress(address);
-	}
+
 }

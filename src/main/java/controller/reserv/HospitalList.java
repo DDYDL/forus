@@ -1,6 +1,7 @@
 package controller.reserv;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -40,18 +41,23 @@ public class HospitalList extends HttpServlet {
 		double longitude = DEFAULT_LONGITUDE;
 		double radius = DEFAULT_RADIUS;
 
+		List<Hospital> hospitals = new ArrayList<>();
 
 		// if (latStr != null && lonStr != null && !latStr.isEmpty() && !lonStr.isEmpty()) {
 		if (StringUtil.isNotEmpty(latStr) && StringUtil.isNotEmpty(lonStr)) {
 			try {
 				latitude = Double.parseDouble(latStr);
 				longitude = Double.parseDouble(lonStr);
+
+				// 병원 데이터 조회
+				hospitals = hospitalService.getHospitalsByLocation(latitude, longitude, radius);
+
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
+				// 예외가 발생해도 빈 리스트 상태 유지
 			}
 		}
-		// 병원 데이터 조회
-		List<Hospital> hospitals = hospitalService.getHospitalsByLocation(latitude, longitude, radius);
+
 
 		String isAjax = request.getParameter("ajax");
 		if ("true".equals(isAjax)) {
