@@ -27,5 +27,4 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.update("mapper.user.updateUser",user);
 		sqlSession.commit();
 	}
-
 }

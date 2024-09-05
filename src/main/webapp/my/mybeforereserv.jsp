@@ -50,7 +50,7 @@
 			</ul>
 		</div>
 
-		<table class="table table-hover">
+		<table class="table table-hover mytable">
 			<thead>
 				<tr>
 					<th id="date">날짜</th>

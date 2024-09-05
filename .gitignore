@@ -23,6 +23,9 @@ target/
 .factorypath
 .springBeans
 .sts4-cache
+.classpath
+.project
+.settings/
 
 ### NetBeans ###
 /nbproject/private/

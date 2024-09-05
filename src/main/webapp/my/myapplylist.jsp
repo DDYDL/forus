@@ -22,7 +22,7 @@
 		<div id="listcnt">
 			<p>총 2건</p>
 		</div>
-		<table class="table table-hover">
+		<table class="table table-hover mytable">
 			<thead>
 				<tr>
 					<th id="apply_time">지원일</th>

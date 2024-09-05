@@ -17,12 +17,12 @@
 	<%@ include file="../mainmypage.jsp" %>
 		<div class = "mypage-content-list">
 	<div class="mytitle">
-		<h2>게시글 관리</h2>
+		<p>게시글 관리</p>
 	</div>
 	<div id="listcnt">
 		<p>총 2건</p>
 	</div>
-	<table class="table table-hover">
+	<table class="table table-hover mytable">
 		<thead>
 			<tr>
 				<th></th>
