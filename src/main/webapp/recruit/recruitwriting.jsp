@@ -95,7 +95,7 @@
 	        <textarea name="" id="" class="textarea" cols="50" rows="10" placeholder=" 내용을 입력하세요"></textarea>
 	    </div>
 	    <br>
-	    <div class="btndiv"><a href="../recruit/recruitlist.jsp" title="Button push blue/green" class="button btnPush btnBlueGreen">등록</a></div>
+	    <div class="btndiv"><a href="recruitList" title="Button push blue/green" class="button btnPush btnBlueGreen">등록</a></div>
 	    <br><br>
 	    </div>
 	    

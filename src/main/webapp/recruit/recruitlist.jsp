@@ -23,7 +23,7 @@
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#demo1">지역</button>
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#demo2">동물</button>
             <div class="searchbox">
-            	<input type="text" placeholder="검색 조건을 선택하세요"/>
+            	<input id="init_text" type="text" style="border:none;text-align:center;" placeholder="검색 조건을 선택하세요"/>
                 <div id="demo1" class="collapse">
                     <table class="table">
                         <thead><tr><th>시·도</th><th>시·구·군</th><th>동·읍·면</th></tr></thead>
@@ -66,7 +66,7 @@
                 </div>
                 <div id="demo2" class="collapse">
                     <table class="table">
-                        <thead><tr><th>종</th><th>동물종</th><th>품종</th></tr></thead>
+                        <thead><tr><th>종</th><th>동물종</th></tr></thead>
                         <tbody>
                         	<tr>
                         		<td class="tabletd">
@@ -95,7 +95,7 @@
                 </div>
                 
                 <div id="search_btn"></div>
-                <input type="button" onclick="delete_selectall()" value="초기화">
+                <input id="init_btn" type="button" onclick="delete_selectall()" value="초기화">
             </div>
         </div>
     </div>
@@ -103,8 +103,8 @@
     <!-- 글 목록 -->
     <br>
     <div class="list-header">
-    	<div class="list-count"><p>총 2건</p></div>
-    	<div class="list-btn btndiv"><a href="../recruit/recruitwriting.jsp" class="minibutton minibtnFade minibtnBlueGreen">구인등록</a></div>
+    	<div class="list-count"><p id="count"></p></div>
+    	<div class="list-btn btndiv"><a href="recruitWriting?user_id=${id}" class="minibutton minibtnFade minibtnBlueGreen">구인등록</a></div>
     </div>
     <table class="table table-hover">
         <thead>
@@ -125,6 +125,15 @@
     	
     	// recruit_post 리스트를 가져와서 페이지 수에 맞게 보여주는 함수
     	function requestData() {
+    		if(areas.length > 0 || species.length > 0) {
+    			// 하나라도 조건이 선택되어 있으면 초기화 버튼 보이게 함
+    			document.getElementById("init_btn").style.visibility = 'visible';
+    			document.getElementById("init_text").style.visibility = 'hidden';
+    		} else {
+    			document.getElementById("init_btn").style.visibility = 'hidden';
+    			document.getElementById("init_text").style.visibility = 'visible';
+    		}
+    		
     		console.log(areas);
     		console.log(species);
     		var param = {areas:areas, species:species, page:page+1}
@@ -137,6 +146,7 @@
     			success:function(result) { // recruitBypage 서블릿에서 넘어온 recruit_post 리스트가 result에 담겨옴(JSON 문자열 형식)
     				console.log(result);
     				var res = JSON.parse(result); // JSON 문자열을 객체로 변환
+    				document.getElementById("count").innerHTML = "총 " + res.recruit_postList.length + "건";
     				res.recruit_postList.forEach(function(recruit_post) {
     					console.log(recruit_post);
     					// 테이블 안에 recruit_post 한 행을 추가

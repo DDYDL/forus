@@ -42,7 +42,7 @@ public class RecruitDetailpage extends HttpServlet {
 			if(id!=null) { // 로그인 되어 있으면 지원하기 버튼 띄우기 위해 설정
 				request.setAttribute("apply", service.checkApply(id,post_id));
 			}
-			request.getRequestDispatcher("recruitdetailpage.jsp").forward(request, response);
+			request.getRequestDispatcher("./recruit/recruitdetailpage.jsp").forward(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
