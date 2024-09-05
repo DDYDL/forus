@@ -25,9 +25,9 @@
     <hr>
     
     <script>
-	    $('a').click(function() {
-	        toggleClass(".active-color");
-	    });
+// 	    $('a').click(function() {
+// 	        toggleClass(".active-color");
+// 	    });
     </script>
 </body>
 </html>

@@ -11,9 +11,6 @@ import dto.User;
 import service.my.UserService;
 import service.my.UserServiceImpl;
 
-/**
- * Servlet implementation class Join
- */
 @WebServlet("/join")
 public class Join extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +20,6 @@ public class Join extends HttpServlet {
      */
     public Join() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -48,15 +44,16 @@ public class Join extends HttpServlet {
 		user.setGender(request.getParameter("gender"));
 		user.setAddress(request.getParameter("address"));
 		user.setPicture(request.getParameter("picture"));
-		user.setIshospital(Integer.parseInt(request.getParameter("ishospital")));
 		try {
 			UserService service = new UserServiceImpl();
 			service.join(user);
 			response.sendRedirect("login");
+			return;
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("err.jsp").forward(request, response);
+			return;
 		}
 	}
 
