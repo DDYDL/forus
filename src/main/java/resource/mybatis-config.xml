@@ -30,13 +30,13 @@
 
 	<mappers>
 		<mapper resource="mapper/user.xml"/>
-<!--		<mapper resource="mapper/pet.xml"/>-->
+		<mapper resource="mapper/pet.xml"/>
 		<mapper resource="mapper/hospital.xml"/>
-<!--		<mapper resource="mapper/hospital_qna.xml"/>-->
-<!--		<mapper resource="mapper/hospital_time.xml"/>-->
-<!--		<mapper resource="mapper/recruit_post.xml"/>-->
-<!--		<mapper resource="mapper/recruit_apply.xml"/> -->
-<!--		<mapper resource="mapper/reservation.xml"/>-->
-<!--		<mapper resource="mapper/search.xml"/>-->
+		<mapper resource="mapper/hospital_qna.xml"/>
+		<mapper resource="mapper/hospital_time.xml"/>
+		<mapper resource="mapper/recruit_post.xml"/>
+		<mapper resource="mapper/recruit_apply.xml"/>
+		<mapper resource="mapper/reservation.xml"/>
+		<mapper resource="mapper/search.xml"/>
 	</mappers>
 </configuration>

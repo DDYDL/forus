@@ -16,18 +16,6 @@ target/
 *.iws
 *.iml
 *.ipr
-out/
-# javax.servlet-api-4.0.1.jar 파일만 무시
-src/main/webapp/WEB-INF/lib/javax.servlet-api-4.0.1.jar
-
-
-# web.xml 파일 무시
-web/WEB-INF/web.xml
-
-
-
-
-
 
 
 ### Eclipse ###
@@ -35,12 +23,6 @@ web/WEB-INF/web.xml
 .factorypath
 .springBeans
 .sts4-cache
-.classpath
-.project
-.settings/
-
-
-
 
 ### NetBeans ###
 /nbproject/private/
@@ -58,8 +40,3 @@ build/
 ### Mac OS ###
 .DS_Store
 /bin/
-
-# bin 디렉토리 무시
-
-
-

@@ -1,52 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-<<<<<<< HEAD
-
-
-
-=======
-            
-    
->>>>>>> branch 'develop' of https://github.com/DDYDL/forus.git
     <wb-module deploy-name="forus">
-<<<<<<< HEAD
-
-
-=======
-                        
-        
->>>>>>> branch 'develop' of https://github.com/DDYDL/forus.git
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-<<<<<<< HEAD
-
-
-=======
-                        
-        
->>>>>>> branch 'develop' of https://github.com/DDYDL/forus.git
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-<<<<<<< HEAD
-	
-	
-	<property name="context-root" value="forus"/>
-
-=======
-                        
-        
->>>>>>> branch 'develop' of https://github.com/DDYDL/forus.git
-        <property name="java-output-path" value="/forus/bin"/>
-<<<<<<< HEAD
-
-=======
         <property name="context-root" value="forus"/>
-                    
-    
->>>>>>> branch 'develop' of https://github.com/DDYDL/forus.git
+        <property name="java-output-path" value="/forus/bin"/>
     </wb-module>
-<<<<<<< HEAD
-
 </project-modules>
-=======
-        
-
-</project-modules>
->>>>>>> branch 'develop' of https://github.com/DDYDL/forus.git
