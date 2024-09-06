@@ -44,8 +44,7 @@ public class HospitalList extends HttpServlet {
 
 		List<Hospital> hospitals = new ArrayList<>();
 
-		// if (latStr != null && lonStr != null && !latStr.isEmpty() &&
-		// !lonStr.isEmpty()) {
+
 		if (StringNullCheck.isNotEmpty(latStr) && StringNullCheck.isNotEmpty(lonStr)) {
 			try {
 				latitude = Double.parseDouble(latStr);

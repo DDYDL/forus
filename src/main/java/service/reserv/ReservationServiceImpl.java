@@ -8,10 +8,12 @@ import java.util.Map;
 
 import dao.reserv.ReservationDao;
 import dao.reserv.ReservationDaoImpl;
+import dto.Pet;
 import dto.Reservation;
 import dto.Hospital;
 import dto.Hospital_time;
 import dto.TimeSlot;
+import dto.User;
 
 public class ReservationServiceImpl implements ReservationService {
 
@@ -39,6 +41,16 @@ public class ReservationServiceImpl implements ReservationService {
 		result.put("availableTimeSlots", availableTimeSlots);
 		return result;
 
+	}
+
+	@Override
+	public User getUserInfo(Integer userId) {
+	return reservationDao.findUserInfoByUserId(userId);
+	}
+
+	@Override
+	public Pet getPetInfo(Integer userId) {
+		return reservationDao.findPetInfByPetId(userId);
 	}
 
 	private List<TimeSlot> calculateAvailableTimeSlots(

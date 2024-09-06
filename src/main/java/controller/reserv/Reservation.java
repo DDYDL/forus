@@ -27,10 +27,8 @@ public class Reservation extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
 		ServletException,
 		IOException {
-
 		int hospitalId = Integer.parseInt(Objects.requireNonNull(request.getParameter("hospitalId")));
 		String selectedDate = request.getParameter("dateStr");
-
 
 		ReservationService reservationService = new ReservationServiceImpl();
 
