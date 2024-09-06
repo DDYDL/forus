@@ -104,7 +104,11 @@
     <br>
     <div class="list-header">
     	<div class="list-count"><p id="count"></p></div>
-    	<div class="list-btn btndiv"><a href="recruitWriting?user_id=${id}" class="minibutton minibtnFade minibtnBlueGreen">구인등록</a></div>
+    	<div class="list-btn btndiv">
+    		<c:if test="${user ne null}">
+    			<a href="recruitWriting" class="minibutton minibtnFade minibtnBlueGreen">구인등록</a>
+    		</c:if>
+    	</div>
     </div>
     <table class="table table-hover">
         <thead>
