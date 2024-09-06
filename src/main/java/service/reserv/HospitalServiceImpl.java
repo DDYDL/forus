@@ -6,33 +6,33 @@ import java.util.Map;
 import dao.reserv.HospitalDao;
 import dao.reserv.HospitalDaoImpl;
 import dto.Hospital;
+import dto.Hospital_time;
 
-public class HospitalServiceImpl implements HospitalListService{
+public class HospitalServiceImpl implements HospitalListService, HospitalDetailService {
 	private HospitalDao hospitalDao;
+
 	public HospitalServiceImpl() {
 		hospitalDao = new HospitalDaoImpl();
 	}
 
-
-
 	@Override
 	public List<Hospital> getHospitalsByLocation(double latitude, double longitude, double radius) {
-		//값 출력
-		System.out.println("latitude : " + latitude);
-		System.out.println("longitude : " + longitude);
-		System.out.println("radius : " + radius);
-
-		Map<String , Double> map = new java.util.HashMap<>();
-		map.put("latitude",latitude);
-		map.put("longitude",longitude);
-		map.put("radius",radius);
-
+		Map<String, Double> map = new java.util.HashMap<>();
+		map.put("latitude", latitude);
+		map.put("longitude", longitude);
+		map.put("radius", radius);
 
 		return hospitalDao.findHospitalByLocation(map);
 	}
 
 	@Override
-	public List<Hospital> getHospitalsByAddress(String address) {
-		return hospitalDao.findHospitalByAddress(address);
+	public Hospital getHospitalDetailByHospitalId(int hospitalId) {
+		return hospitalDao.findHospitalDetailByHospitalId(hospitalId);
 	}
+
+	@Override
+	public List<Hospital_time> getHospitalTimeByHospitalId(int hospitalId) {
+		return hospitalDao.findHospitalTimeByHospitalId(hospitalId);
+	}
+
 }
