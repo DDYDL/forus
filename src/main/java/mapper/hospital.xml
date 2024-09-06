@@ -18,7 +18,14 @@
 			#{h_lunch_time_start},#{_lunch_time_end},#{h_interval_time})
 		]]>
 	</insert>
-	
+
+
+	<select id="selectHospital" parameterType="String"
+		resultType="hospital">
+	<![CDATA[
+		select * from hospital where h_id = #{h_id}]]></select>
+
+
 	<update id="updateHospital" parameterType="Hospital">
 		update hospital
 		<set>
@@ -30,7 +37,11 @@
 		where user_id=#{user_id}
 	</update>
 
+
+<!--거리 기반 쿼리   -->
+
 	<select id="findHospitalByLocation" parameterType="map" resultType="dto.Hospital">
+
         <![CDATA[
 		SELECT
 			h.h_id,
@@ -57,8 +68,29 @@
 		ORDER BY
 			distance ASC;
 		]]>
-    </select>
+	</select>
 
 
+
+	<select id="findHospitalDetailByHospitalId" parameterType="int" resultType="dto.Hospital">
+		SELECT
+			*
+		FROM
+			hospital h
+		WHERE
+			h.h_id = #{h_id}
+	</select>
+
+
+	<select id="findHospitalTimeByHospitalId" parameterType="int" resultType="dto.Hospital_time">
+		SELECT
+			*
+		FROM
+			hospital_time ht
+		WHERE
+			ht.h_id = #{h_id}
+		ORDER BY
+			FIELD(ht.htime_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+	</select>
 
 </mapper>

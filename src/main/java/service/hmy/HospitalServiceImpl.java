@@ -36,4 +36,12 @@ public class HospitalServiceImpl implements HospitalService {
 		return null;
 	}
 
+
+	@Override
+	public void join(Hospital hospital) throws Exception {
+		Hospital shospital = hospitalDao.selectHospital(hospital.getH_id());
+		hospitalDao.insertHospital(hospital);
+		
+	}
+
 }

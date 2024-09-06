@@ -12,7 +12,7 @@ public class HospitalDaoImpl implements HospitalDao {
 	@Override
 	public void insertHospital(Hospital hospital) throws Exception {
 		// Hospital shospital = selectHospital(hospital.getH_id());
-		sqlSession.insert("mapper.Hospital.insertHospital");
+		sqlSession.insert("mapper.Hospital.insertHospital",hospital);
 		sqlSession.commit();
 
 	}
@@ -22,6 +22,11 @@ public class HospitalDaoImpl implements HospitalDao {
 		sqlSession.update("mapper.Hospital.updateHospital", hospital);
 		sqlSession.commit();
 
+	}
+
+	@Override
+	public Hospital selectHospital(Integer h_id) {
+		return sqlSession.selectOne("mapper.hospital.selectHospital", h_id);
 	}
 
 }

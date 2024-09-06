@@ -1,6 +1,7 @@
 package controller.reserv;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import controller.reserv.check.StringNullCheck;
+
 import dto.Hospital;
 import service.reserv.HospitalListService;
 import service.reserv.HospitalServiceImpl;
@@ -19,44 +22,48 @@ import service.reserv.HospitalServiceImpl;
 public class HospitalList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static final double DEFAULT_LATITUDE = 33.450701;
+	private static final double DEFAULT_LONGITUDE = 126.570667;
+	private static final double DEFAULT_RADIUS = 5.0;
+
 	public HospitalList() {
 		super();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
-		// HospitalServiceImpl 객체 초기화
+			throws ServletException, IOException {
 		HospitalListService hospitalService = new HospitalServiceImpl();
-
-
 		String latStr = request.getParameter("latitude");
 		String lonStr = request.getParameter("longitude");
 
-		// 위도와 경도를 파싱할 때, 값이 null인 경우 기본값을 설정하거나 예외 처리
-		double latitude = 33.450701; // 기본값
-		double longitude = 126.570667; // 기본값
-		double radius = 5.0;
+		// 초기값 설정
+		double latitude = DEFAULT_LATITUDE;
+		double longitude = DEFAULT_LONGITUDE;
+		double radius = DEFAULT_RADIUS;
 
-		if (latStr != null && lonStr != null && !latStr.isEmpty() && !lonStr.isEmpty()) {
+		List<Hospital> hospitals = new ArrayList<>();
+
+		// if (latStr != null && lonStr != null && !latStr.isEmpty() &&
+		// !lonStr.isEmpty()) {
+		if (StringNullCheck.isNotEmpty(latStr) && StringNullCheck.isNotEmpty(lonStr)) {
 			try {
 				latitude = Double.parseDouble(latStr);
 				longitude = Double.parseDouble(lonStr);
+
+				// 병원 데이터 조회
+				hospitals = hospitalService.getHospitalsByLocation(latitude, longitude, radius);
+
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
 		}
 
-
-		// 병원 데이터 조회
-		List<Hospital> hospitals = hospitalService.getHospitalsByLocation(latitude, longitude, radius);
 		String isAjax = request.getParameter("ajax");
-
 		if ("true".equals(isAjax)) {
 			// JSON 응답 설정
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
-
 			Gson gson = new Gson();
 			String json = gson.toJson(hospitals);
 			response.getWriter().write(json);
