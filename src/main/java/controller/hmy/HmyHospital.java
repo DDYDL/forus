@@ -28,7 +28,7 @@ public class HmyHospital extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/hmy/hmyHospital.jsp").forward(request1, response);
+		request.getRequestDispatcher("/hmy/hmyHospital.jsp").forward(request, response);
 	}
 
 	/**
