@@ -35,9 +35,9 @@
           AND reserv_date = #{date}
     </select>
 
-    <select id="selectMyAfterReserv" parameterType="Integer" resultType="reservation">
+    <select id="selectMyAfterReserv" parameterType="Integer" resultType="Map">
         <![CDATA[
-            SELECT r.reserv_time,  p.pet_picture,  p.pet_name,  h.h_name
+            SELECT r.reserv_date, r.reserv_time,  p.pet_picture,  p.pet_name,  h.h_name
             FROM  reservation r
             JOIN pet p
             ON r.pet_id = p.pet_id

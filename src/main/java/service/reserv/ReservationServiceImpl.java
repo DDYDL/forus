@@ -27,9 +27,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<Reservation> myAfterReserv() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map<String, Object>> myAfterReservList(Integer id) throws Exception {
+		return reservationDao.selectMyAfterReservList(id);
 	}
 
 	@Override

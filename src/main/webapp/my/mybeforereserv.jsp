@@ -23,7 +23,7 @@
 	<%@ include file="../mainmypage.jsp"%>
 	<div class="mypage-content-list">
 		<div class="mytitle">
-			<a href="myafterreserv.jsp">이후 예약</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/myAfterReserv">이후 예약</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 			<a href="mybeforereserv.jsp">지난 예약</a>
 		</div>
 		<div class="listcnt">

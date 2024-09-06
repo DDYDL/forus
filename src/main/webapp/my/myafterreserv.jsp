@@ -14,13 +14,13 @@
 	<%@ include file="../mainmypage.jsp" %>
 	<div class = "mypage-content-list">
 		<div class="mytitle">
-			<a href="myafterreserv.jsp">이후 예약</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/myAfterReserv">이후 예약</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 			<a href="mybeforereserv.jsp">지난 예약</a>
 		</div>
-	<table class="table table-hover mytable">
-			<div>
+			<div class="listcnt">
 				<p>총 2건</p>
 			</div>
+	<table class="table table-hover mytable">
 		<thead>
 			<tr>
 				<th id="date">날짜</th>
@@ -30,30 +30,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${boardList }" var="reserv">
+			<c:forEach items="${afterReservList }" var="reserv">
 			<tr>
-				<td>${board.num }</td>
-				<td><a href="boardDetail?num=${board.num}">${board.subject }</a></td>
-				<td>${board.writer }</td>
-				<td>${board.create_date }</td>
-				<td>${board.view_cnt }</td>
+				<td>${reserv.date }</td>
+				<td>${reserv.time }</td>
+				<td><img src="image?file=${reserv.pet_picture}" width="100px"></td>
+				<td>${reserv.pet_name }</td>
+				<td>${reserv.h_name }</td>
 			</tr>
 			</c:forEach>
-			
-			<tr onclick="location.href='#'"> <!-- reservdetail.jsp -->
-				<td>2024.8.19</td>
-				<td>14:00</td>
-				<td><img src="../img/dog1.png" class="pet-img"></td>
-				<td>또치</td>
-				<td>올리브동물병원</td>
-			</tr>
-			<tr>
-				<td>2024.8.31</td>
-				<td>16:00</td>
-				<td><img src="../img/dog2.png" class="pet-img"></td>
-				<td>지구</td>
-				<td>플라잉동물병원</td>
-			</tr>
 		</tbody>
 	</table>
 </div>
