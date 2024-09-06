@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import dto.Pet;
 import dto.Recruit_post;
+import dto.User;
 
 public interface RecruitService {
 	// 작성한 Recruit_post를 데이터베이스에 저장하기
@@ -16,4 +17,5 @@ public interface RecruitService {
 	boolean checkApply(Integer user_id, Integer post_id) throws Exception;
 	// user id로 해당하는 pet 리스트 가져오기
 	List<Pet> getPetList(Integer user_id) throws Exception;
+	User selectUserId(Integer user_id) throws Exception;
 }

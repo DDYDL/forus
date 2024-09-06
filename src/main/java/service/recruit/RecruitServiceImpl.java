@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import dao.my.PetDao;
 import dao.my.PetDaoImpl;
+import dao.my.UserDao;
+import dao.my.UserDaoImpl;
 import dao.recruit.RecruitDao;
 import dao.recruit.RecruitDaoImpl;
 import dto.Pet;
@@ -17,9 +19,11 @@ import dto.User;
 public class RecruitServiceImpl implements RecruitService {
 	private RecruitDao recruitDao;
 	private PetDao petDao;
+	private UserDao userDao;
 	public RecruitServiceImpl() {
 		recruitDao = new RecruitDaoImpl();
 		petDao = new PetDaoImpl();
+		userDao = new UserDaoImpl();
 	}
 
 	@Override
@@ -79,6 +83,13 @@ public class RecruitServiceImpl implements RecruitService {
 		List<Pet> pets = petDao.selectPetList(user_id);
 		if(pets==null) throw new Exception("애완동물 없음");
 		return pets;
+	}
+
+	@Override
+	public User selectUserId(Integer user_id) throws Exception {
+		User user = userDao.selectUserId(user_id);
+		if(user==null) throw new Exception("사용자 없음");
+		return null;
 	}
 
 }

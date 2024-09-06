@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,43 +16,37 @@
 	<%@ include file="../header.jsp" %>
 	
 	<div class="content">
-		<p class="content-title">강아지 산책시켜주실 분!!</p>
+		<p class="content-title">${post.post_title}</p>
 	
 	<!-- user 프로필 가져오기 -->
-    <h5>작성자</h5>
+    <p class="content-inner-title">작성자</p>
     <div class="box">
     	<div class="profile">
-    	<div>
-    		<img src="../img/users.png">
-    		<p>홍길동</p>
-    	</div>
-    	<p>3마리의 강아지를 키우고 있습니다.</p>
+    	<div><img src="${post_user.picture}"><p class="content-document">${post_user.name}</p></div>
+    	<p class="content-document">${post_user.email}</p>
     	</div>
     </div>
 
 	<!-- pet 프로필 가져오기 -->
-    <h5>이번에 맡길 동물은요</h5>
-    <div class="box">
-        <table>
-    		<tr>
-    			<td><img src="../img/dog1.png"></td>
-    			<td>또치</td>
-    			<td>(10살, 남)</td>
-    			<td>저먼셰퍼드</td>
-    			<td>장난기가 많고 사람을 물어요</td>
-    			<td>슬개골 탈구를 가지고 있어요</td>
-    		</tr>
-    		<tr>
-    			<td><img src="../img/dog3.png"></td>
-    			<td>한치</td>
-    			<td>(8살, 여)</td>
-    			<td>불테리안</td>
-    			<td>소심하고 잘 다가가지 않아요</td>
-    		</tr>
-    	</table>
-    </div>
+    <p class="content-inner-title">이번에 맡길 동물은요</p>
+    <div class="box"><table class="pet_profile"></table></div>
     
-    <h5>조건</h5>
+    <script>
+	    $.ajax({
+			url:'recruitWritingPetList',
+			type:'get',
+			async:true,
+			success:function(result) {
+				console.log(result);
+				var res = JSON.parse(result);
+				res.petList.forEach(function(pet) {
+					$('#pet_profile').append(`<td><img src="\${pet.pet_picture}"></td><td>\${pet.pet_name}</td><td>(\${pet.pet_age}살, \${pet.pet_gender})</td><td>\${pet.pet_breed}</td><td>\${pet.pet_memo}</td>`);
+				})
+			}
+		})
+    </script>
+    
+    <p class="content-inner-title">조건</p>
     <div class="box">
     	<table>
     		<tr>
@@ -130,17 +125,17 @@
 		    </div>
 			<table>
 		    	<tr>
-		    		<td class="left"><p class="content-document">정아지</p></td>
-		    		<td class="right"><p class="content-document">(여,22세)</p></td>
+		    		<td class="left"><p class="content-document">${user.name}</p></td>
+		    		<td class="right"><p class="content-document">(${user.gender}, ${user.birthday})</p></td>
 		    	</tr>
 		    	<tr>
 		    		<td class="left"><p class="content-document">휴대폰</p></td>
-		    		<td class="middle"><p class="content-document">010-1234-5678</p></td>
+		    		<td class="middle"><p class="content-document">${user.phone}</p></td>
 		    		<td class="right"><p class="content-document">공개</p></td>
 		    	</tr>
 		    	<tr>
 		    		<td class="left"><p class="content-document">이메일</p></td>
-		    		<td class="middle"><p class="content-document">gohome@kosta.org</p></td>
+		    		<td class="middle"><p class="content-document">${user.email}</p></td>
 		    		<td class="right"><p class="content-document">공개</p></td>
 		    	</tr>
 		    </table>
@@ -148,7 +143,19 @@
     	</form>
     </div>
     
-    <div class="btndiv"><a href="#modal" id="openmodal" rel="modal:open" class="button btnPush btnBlueGreen">지원하기</a></div>
+    <!-- 현재 로그인한 user id와 recruit_post의 user id가 같으면 지원하기 버튼을 수정하기 버튼으로 변경 -->
+    <div class="btndiv">
+    <c:if test="${apply ne null}">
+    	<c:choose>
+    		<c:when test="${apply eq true}">
+    			<a href="#" id="modify" class="button btnPush btnBlueGreen">수정하기</a>
+    		</c:when>
+    		<c:otherwise>
+    			<a href="#modal" id="openmodal" rel="modal:open" class="button btnPush btnBlueGreen">지원하기</a>
+    		</c:otherwise>
+    	</c:choose>
+    </c:if>
+    </div>
     </div>
 </body>
 </html>

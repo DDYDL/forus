@@ -12,10 +12,6 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
 <link href="./css/recruit/recruitwriting.css?after" rel="stylesheet" type="text/css">
 <link href="./css/recruit/calendar.css?after" rel="stylesheet" type="text/css">
-<style>
-	p { font-size: 25px; font-weight: bold; }
-	#ss { font-size: 15px; }
-</style>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>

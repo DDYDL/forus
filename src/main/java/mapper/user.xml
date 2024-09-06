@@ -31,4 +31,10 @@
 			</set>
 			where email = ${email}
 		</update>
+		
+		<select id="selectUserId" parameterType="Integer" resultType="user">
+			<![CDATA[
+				select * from user where id=#{id}
+			]]>
+		</select>
 </mapper>
