@@ -68,10 +68,19 @@
                 Swal.fire({
                     title: '예약 정보 확인',
                     html: generateReservationHtml(result.value, user, pet),
-                    confirmButtonText: '예약 완료'
+                    confirmButtonText: '예약 완료',
+
+                    preConfirm:()=>{
+                        const form = document.getElementById('reservationForm');
+                        if (form) {
+                            form.submit();
+                        }else {
+                            Swal.showValidationMessage('예약 정보를 찾을 수 없습니다. 다시 시도해 주세요.');
+                        }
+                    }
+
                 });
-            },
-                    error: function (jqXHR, textStatus, errorThrown) {
+            }, error: function (jqXHR, textStatus, errorThrown) {
                         // 요청이 실패할 경우 오류 메시지 표시
                         Swal.fire({
                             icon: 'error',
@@ -162,7 +171,6 @@
 </script>
 
 <script>
-
     function initializeCheckboxHandler() {
         $(document).on('click', '.single-select-checkbox', function() {
             $('.single-select-checkbox').not(this).prop('checked', false);
@@ -172,17 +180,23 @@
                 $('#otherText').prop('disabled', true).val('');
             }
         });
+
+        $(document).on('submit', '#reservationForm', function() {
+            $('#otherText').prop('disabled', false);
+        });
     }
 
-    // 예약 정보를 HTML로 출력하는 함수
     function generateReservationHtml(result, user, pet) {
-
         return `
+        <form id="reservationForm" action="reservation" method="POST">
+
             <div class="reservation-summary">
                 <h3>예약 정보</h3>
 
                 <div class="pet-selection">
-                   <p><strong>펫 선택:</strong>${"${pet.pet_name}"}</p>
+                   <p><strong>펫 선택:</strong> ${"${pet.pet_name}"}</p>
+                   <input type="hidden" name="petName" value="${"${pet.pet_name}"}">
+                   <input type="hidden" name="petId" value="${"${pet.pet_id}"}">
                 </div>
 
                 <div class="reservation-items">
@@ -192,25 +206,29 @@
                     <label><input type="checkbox" class="single-select-checkbox" name="reservationItem" value="미용"> 미용</label>
                     <label>
                         <input type="checkbox" class="single-select-checkbox" name="reservationItem" value="기타" id="otherCheck"> 기타
-                        <input type="text" id="otherText" placeholder="직접 입력하기" disabled>
+                        <input type="text" id="otherText" name="customItem" placeholder="직접 입력하기" disabled>
                     </label>
                 </div>
 
                 <div class="reservation-date">
                   <p><strong>예약 날짜:</strong> ${"${result.selectedDate}"}</p>
+                  <input type="hidden" name="selectedDate" value="${"${result.selectedDate}"}">
                   <p><strong>예약 시간:</strong> ${"${result.selectedTime}"}</p>
+                  <input type="hidden" name="selectedTime" value="${"${result.selectedTime}"}">
                 </div>
 
                 <div class="guardian-info">
                     <h4>보호자 정보</h4>
                     <p><strong>예약자 이름:</strong> ${"${user.name}"}</p>
+                    <input type="hidden" name="userName" value="${"${user.name}"}">
+                    <input type="hidden" name="userId" value="${"${user.id}"}">
                 </div>
 
             </div>
+        </form>
         `;
     }
 
-    // 이벤트 핸들러 초기화 호출
     $(document).ready(function() {
         initializeCheckboxHandler();
     });
