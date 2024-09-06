@@ -28,7 +28,7 @@
     </select>
 
     <!-- 해당 병원과 날짜에 예약된 시간들을 조회하는 쿼리 -->
-    <select id="findReservedTimesByDate" parameterType="map" resultType="dto.Reservation">
+    <select id="findReservedTimesByDate" parameterType="map" resultType="java.time.LocalTime">
         SELECT reserv_time
         FROM reservation
         WHERE h_id = #{hospitalId}

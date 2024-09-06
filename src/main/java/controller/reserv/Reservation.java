@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import service.reserv.ReservationService;
 import service.reserv.ReservationServiceImpl;
 
@@ -25,15 +27,21 @@ public class Reservation extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
 		ServletException,
 		IOException {
-		Integer hospitalId = 11;
-		String selectedDate = "2024-09-05";
+
+		int hospitalId = Integer.parseInt(Objects.requireNonNull(request.getParameter("hospitalId")));
+		String selectedDate = request.getParameter("dateStr");
+
 
 		ReservationService reservationService = new ReservationServiceImpl();
 
 		Map<String, Object> availableTimeSlots = reservationService.getAvailableTimeSlots(hospitalId, selectedDate);
 
+		Gson gson = new Gson();
+		String jsonResponse = gson.toJson(availableTimeSlots);
 
-
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(jsonResponse);
 	}
 
 	@Override
