@@ -13,11 +13,11 @@
 <link
 	href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css"
 	rel="stylesheet" />
-<link rel="stylesheet" href="../css/containerbox.css" />
-<link rel="stylesheet" href="../css/input.css" />
-<link rel="stylesheet" href="../css/font.css" />
-<link rel="stylesheet" href="../css/time.css" />
-<link rel="stylesheet" href="../css/button.css" />
+<link rel="stylesheet" href="css/containerbox.css" />
+<link rel="stylesheet" href="css/input.css" />
+<link rel="stylesheet" href="css/font.css" />
+<link rel="stylesheet" href="css/time.css" />
+<link rel="stylesheet" href="css/button.css" />
 <script>
 	function readURL(input) {
 		if (input.files && input.files[0]) {

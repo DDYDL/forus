@@ -1,4 +1,4 @@
-package controller.hmy;
+package controller.my;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,34 +7,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dto.Hospital_time;
-
 /**
- * Servlet implementation class HmyTodaysReservation
+ * Servlet implementation class MyAfterReserv
  */
-@WebServlet("/hmyTodaysReservation")
-public class HmyTodaysReservation extends HttpServlet {
+@WebServlet("/myAfterReserv")
+public class MyAfterReserv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HmyTodaysReservation() {
+    public MyAfterReserv() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/hmy/hmyManagerReservationTime.jsp").forward(request, response);
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		Hospital_time hostime = new Hospital_time();
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

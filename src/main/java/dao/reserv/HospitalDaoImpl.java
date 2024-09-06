@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import dto.Hospital;
+import dto.Hospital_time;
 import util.MybatisSqlSessionFactory;
 
 public class HospitalDaoImpl implements HospitalDao {
@@ -22,7 +23,13 @@ public class HospitalDaoImpl implements HospitalDao {
 	}
 
 	@Override
-	public List<Hospital> findHospitalByAddress(String address) {
-		return sqlSession.selectList("mapper.hospital.findHospitalByAddress", address);
+	public Hospital findHospitalDetailByHospitalId(int hospitalId) {
+		return sqlSession.selectOne("mapper.hospital.findHospitalDetailByHospitalId", hospitalId);
 	}
+
+	@Override
+	public List<Hospital_time> findHospitalTimeByHospitalId(int hospitalId) {
+		return sqlSession.selectList("mapper.hospital.findHospitalTimeByHospitalId", hospitalId);
+	}
+
 }
