@@ -280,7 +280,7 @@
     function generateHospitalHTML(hospital) {
         return `
         <div class="hospital-item">
-            <a href="hospitalDetail.jsp?hospitalId=${"${hospital.h_id}"}" class="hospital-link">
+            <a href="hospitalDetail?hospitalId=${"${hospital.h_id}"}" class="hospital-link">
                 <img src="img/hospital/kosta3.png" alt="${"${hospital.h_name}"}">
                 <div class="hospital-info">
                     <strong>${"${hospital.h_name}"}</strong>
