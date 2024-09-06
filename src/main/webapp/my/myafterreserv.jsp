@@ -30,6 +30,16 @@
 			</tr>
 		</thead>
 		<tbody>
+			<c:forEach items="${boardList }" var="reserv">
+			<tr>
+				<td>${board.num }</td>
+				<td><a href="boardDetail?num=${board.num}">${board.subject }</a></td>
+				<td>${board.writer }</td>
+				<td>${board.create_date }</td>
+				<td>${board.view_cnt }</td>
+			</tr>
+			</c:forEach>
+			
 			<tr onclick="location.href='#'"> <!-- reservdetail.jsp -->
 				<td>2024.8.19</td>
 				<td>14:00</td>

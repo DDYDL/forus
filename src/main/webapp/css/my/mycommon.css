@@ -65,14 +65,15 @@ tr { vertical-align: middle; }
 .choose-date { float:right; }
 
 /* mybeforereserv hover 캘린더 */
-.list { display:none; position:absolute; }
+.list { display: none; position:absolute; }
 .hoverdate { display:none; 
        position:absolute; 
        background: white;
        list-style:none;
        text-align:center; 
        }
-li:hover> .hoverdate { display : block; }
+li:hover> .hoverdate { display : flex; }
+li:hover> .choose-date { display : flex; }
 
 /* mybeforereserv hover input */
 .calendar { width:50px; }

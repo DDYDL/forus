@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="mapper.reservation">
 
     <select id="findHospitalTimeByHospitalId" parameterType="map" resultType="dto.Hospital_time">
@@ -36,4 +35,16 @@
           AND reserv_date = #{date}
     </select>
 
+    <select id="selectMyAfterReserv" parameterType="Integer" resultType="reservation">
+        <![CDATA[
+            SELECT r.reserv_time,  p.pet_picture,  p.pet_name,  h.h_name
+            FROM  reservation r
+            JOIN pet p
+            ON r.pet_id = p.pet_id
+            JOIN hospital h
+            ON r.h_id = h.h_id
+            WHERE r.user_id = #{id}
+            AND DATE(r.reserv_date) >= CURDATE()
+        ]]>
+    </select>	
 </mapper>

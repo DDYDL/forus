@@ -42,16 +42,15 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 		try {
 			UserService service = new UserServiceImpl();
-			service.login(email, password);
+			User user = service.login(email, password);
 			HttpSession session = request.getSession();
-			session.setAttribute("email", email);
-			response.sendRedirect("join");
-			return;
+			session.setAttribute("user", user);
+//			response.sendRedirect("hospitalList");
+			request.getRequestDispatcher("/reserv/hospitallist.jsp").forward(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("err.jsp").forward(request, response);
-			return;
 		}
 	}
 

@@ -13,6 +13,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void join(User user) throws Exception {
+		System.out.println(user.toString());
 		User suser = userDao.selectUser(user.getEmail());
 		if(suser!=null) throw new Exception("아이디 중복 오류");
 		userDao.insertUser(user);
@@ -20,7 +21,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User login(String email, String password) throws Exception {
-		System.out.println(email);
 		User suser = userDao.selectUser(email);
 		if(suser==null) throw new Exception("아이디 오류");
 		if(!password.equals(suser.getPassword())) throw new Exception("비밀번호 오류");

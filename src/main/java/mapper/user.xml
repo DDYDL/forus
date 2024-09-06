@@ -6,7 +6,7 @@
 		<insert id="insertUser" parameterType="user">
 			<![CDATA[
 				insert into user (email,password,name,nickname,phone,birthday,gender,address,picture,ishospital)
-					values (#{email},#{password},#{name},#{nickname},#{phone},#{birthday},#{gender},#{address},#{picture},#{ishospital})
+					values (#{email},#{password},#{name},#{nickname},#{phone},#{birthday},#{gender},#{address},#{picture},0)
 			]]>
 		</insert>
 		
