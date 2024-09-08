@@ -11,6 +11,29 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+	$(function(){
+		$("#doubleEmail").click(function(e){
+			e.preventDefault();
+			consol.log("도착1")
+			$.ajax({
+				consol.log("도착2")
+				url:'userDoubleEmail',
+				type:'post',
+				dataType:'text',
+				data:{email:$("#email").val()},
+				success:function(result){
+					if(result=='true'){
+						alert("이미 가입된 이메일입니다.")
+					} else {
+						alert("사용가능한 이메일입니다.")
+					}
+				},
+				error:function(err){
+					console.log(err)
+				}
+			})
+		})
+
 	// 카카오(다음) 주소 입력
     function daumPostcode() {
         new daum.Postcode({
@@ -31,13 +54,11 @@
             }
         }).open();
     }
-</script>
-<script>
     document.addEventListener('DOMContentLoaded', function() {
         // form 내 Enter 키 submit 방지
-        document.getElementById('join').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // 기본 동작(폼 제출) 방지
+        document.getElementById('join').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // 기본 동작(폼 제출) 방지
             }
         });
     });
@@ -54,10 +75,10 @@
 			<table class="join-table">
 				<tr>
 					<td class="columnsize-title">이메일<br></td>
-					<td class="columnsize"><input type="text"
-						placeholder=" 이메일을 입력해주세요" name="email"
+					<td class="columnsize">
+					<input type="text" placeholder=" 이메일을 입력해주세요" name="email" id="email"
 						class="user-input join-input-short">&nbsp;
-						<button class="minibtn">중복 확인</button></td>
+					<button type="button" id="doubleEmail" class="minibtn">중복 확인</button></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
@@ -77,12 +98,8 @@
 				<tr>
 					<td>휴대전화번호</td>
 					<td><input type="text" placeholder=" 휴대전화번호를 입력해주세요" name="phone"
-					class="user-input join-input"></td>
-				</tr>
-				<tr>
-					<td>인증번호</td>
-					<td><input type="text" placeholder=" 인증번호를 입력해주세요" class="user-input join-input-short">&nbsp;
-						<button class="minibtn">인증번호 요청</button></td>
+					class="user-input join-input-short">
+					<button id="doublePhone" class="minibtn">중복 확인</button></td>
 				</tr>
 				<tr>
 					<td>생년월일</td>

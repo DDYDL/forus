@@ -59,7 +59,7 @@ tr { vertical-align: middle; }
 .join-bigbtn { background: #FFF; color: black; box-shadow: 0px 5px 0px 0px lightgray;} 
 
 /* mybeforereserv 드롭다운 */
-.choose-mypet { float: right; text-align: center; }
+.petSelect { float: right; text-align: center; }
 
 /* mybeforereserv 기간 설정 버튼 */
 .choose-date { float:right; }

@@ -4,6 +4,7 @@ package dao.reserv;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,25 +67,19 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public List<Map<String, Object>> selectMyAfterReservList(Integer id) throws Exception {
 		List<Map<String, Object>> afterReservList = sqlSession.selectList("mapper.reservation.selectMyAfterReserv",id);
-	    for (Map<String, Object> row : afterReservList) {
-	    	LocalDate reserv_Date = ((Date)row.get("reserv_date")).toLocalDate();
-	    	LocalDate reserv_Time = ((Date)row.get("reserv_Time")).toLocalDate();
-	        String pet_picture = (String) row.get("pet_picture");
-	        String pet_name = (String) row.get("pet_name");
-	        String h_name = (String) row.get("h_name");
-	        System.out.println("reserv_Date");
-	        System.out.println("reserv_Time");
-	        System.out.println("pet_picture");
-	        System.out.println("pet_name");
-	        System.out.println("h_name");
-	       }
 		return afterReservList;
 	}
 
 	@Override
-	public List<Map<String, Object>> selectMyBeforeReservList(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, String pet_name, String startDate, String endDate, boolean isConsult) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("pet_name", pet_name);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+        params.put("isConsult", isConsult);
+
+        return sqlSession.selectList("mapper.reservation.selectMyBeforeReserv", params);
 	}
 
 	@Override
