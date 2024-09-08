@@ -19,12 +19,14 @@ public interface ReservationDao {
 	User findUserInfoByUserId(Integer userId);
 	Pet  findPetInfByPetId(Integer useId);
 
+	void insertReservation(Reservation reservation);
 
 
 	void insertReserv(Reservation reserv) throws Exception;
 	void updateReserv(Reservation reservation) throws Exception;
 	void deleteReserv(Reservation reservation) throws Exception;
 	Reservation selectReserv(Integer id) throws Exception;
+
 	
 	// 오늘 이후, 지난 예약 조회
 	Reservation selectAllAfterReserv(Integer id) throws Exception;

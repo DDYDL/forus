@@ -49,6 +49,22 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
+	public void insertReservation(Reservation reservation) {
+		try {
+			sqlSession.insert("mapper.reservation.insertReservation", reservation);
+			sqlSession.commit();
+		} catch (Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+
+		}
+
+	}
+
+
+	@Override
 	public void insertReserv(Reservation reserv) throws Exception {
 		// TODO Auto-generated method stub
 

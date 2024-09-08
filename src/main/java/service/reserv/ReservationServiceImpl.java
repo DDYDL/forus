@@ -1,5 +1,6 @@
 package service.reserv;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +54,12 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationDao.findPetInfByPetId(userId);
 	}
 
+	@Override
+	public void insertReservation(Reservation reservation) {
+		reservationDao.insertReservation(reservation);
+	}
+
+
 	private List<TimeSlot> calculateAvailableTimeSlots(
 		List<Hospital_time> hospitalTimes,
 		List<LocalTime> reservedTimes,
@@ -95,6 +102,30 @@ public class ReservationServiceImpl implements ReservationService {
 	private static boolean isDuringLunchTime(LocalTime currentTime, LocalTime lunchStartTime, LocalTime lunchEndTime) {
 		return currentTime.isAfter(lunchStartTime.minusMinutes(1)) && currentTime.isBefore(
 			lunchEndTime.plusMinutes(1));
+	}
+
+
+	@Override
+	public Reservation createReservation(String selectedDate, String selectedTime, String reservationContent,
+		String customContent, String userId, String petId, String hospitalId) {
+
+		if ("기타".equals(reservationContent) && customContent != null && !customContent.isEmpty()) {
+			reservationContent = customContent;
+		}
+
+		LocalDate reservationDate = LocalDate.parse(selectedDate);
+		LocalTime reservationTime = LocalTime.parse(selectedTime);
+
+		Reservation reservation = new Reservation();
+		reservation.sethId(Integer.parseInt(hospitalId));
+		reservation.setUserId(Integer.parseInt(userId));
+		reservation.setPetId(Integer.parseInt(petId));
+		reservation.setReservDate(reservationDate);
+		reservation.setReservTime(reservationTime);
+		reservation.setReservContent(reservationContent);
+
+
+		return reservation;
 	}
 
 	@Override

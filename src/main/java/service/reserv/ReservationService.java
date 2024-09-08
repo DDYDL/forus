@@ -14,8 +14,13 @@ public interface ReservationService {
 	User getUserInfo(Integer userId);
 	Pet getPetInfo(Integer petId);
 
+	void insertReservation(Reservation reservation);
 
-	List<Reservation> myAfterReserv() throws Exception;
+	public Reservation createReservation(String selectedDate, String selectedTime, String reservationContent,
+		String customContent, String userId, String petId, String hId);
+
+
+		List<Reservation> myAfterReserv() throws Exception;
 	// List<Reservation> myBeforeReserv(PageInfo pageInfo) throws Exception;
 	Reservation reservDetail(Integer reserv_id) throws Exception;
 }

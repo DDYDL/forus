@@ -201,12 +201,12 @@
 
                 <div class="reservation-items">
                     <h4>예약 항목</h4>
-                    <label><input type="checkbox" class="single-select-checkbox" name="reservationItem" value="진료"> 진료</label>
-                    <label><input type="checkbox" class="single-select-checkbox" name="reservationItem" value="상담"> 상담</label>
-                    <label><input type="checkbox" class="single-select-checkbox" name="reservationItem" value="미용"> 미용</label>
+                    <label><input type="checkbox" class="single-select-checkbox" name="reservationContent" value="진료"> 진료</label>
+                    <label><input type="checkbox" class="single-select-checkbox" name="reservationContent" value="상담"> 상담</label>
+                    <label><input type="checkbox" class="single-select-checkbox" name="reservationContent" value="미용"> 미용</label>
                     <label>
-                        <input type="checkbox" class="single-select-checkbox" name="reservationItem" value="기타" id="otherCheck"> 기타
-                        <input type="text" id="otherText" name="customItem" placeholder="직접 입력하기" disabled>
+                        <input type="checkbox" class="single-select-checkbox" name="reservationContent" value="기타" id="otherCheck"> 기타
+                        <input type="text" id="otherText" name="customContent" placeholder="직접 입력하기" disabled>
                     </label>
                 </div>
 
@@ -223,6 +223,9 @@
                     <input type="hidden" name="userName" value="${"${user.name}"}">
                     <input type="hidden" name="userId" value="${"${user.id}"}">
                 </div>
+
+                  <input type="hidden" name="hospitalId" value="${hospital.h_id}">
+
 
             </div>
         </form>
