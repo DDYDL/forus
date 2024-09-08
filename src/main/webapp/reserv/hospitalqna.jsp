@@ -129,12 +129,11 @@
 
 <script>
     function createQnAItem(qna) {
-        console.log(`Creating item with: ${"${qna.q_title}"}, ${"${qna.q_time}"}, ${"${qna.user_id}"}`);
 
         return  `
                     <div class="qna-item">
                         <div class="qna-content">
-                            <div class="qna-writer">${"${qna.user_id}"}</div>
+                            <div class="qna-writer">${"${qna.q_writer}"}</div>
                             <div class="qna-title">${"${qna.q_title}"}</div>
                             <div class="qna-time">${"${qna.q_time}"}</div>
                         </div>

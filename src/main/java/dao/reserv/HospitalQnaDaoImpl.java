@@ -30,7 +30,10 @@ public class HospitalQnaDaoImpl implements HospitalQnaDao {
 	}
 
 	@Override
-	public List<Hospital_qna> selectHospitalQnaList(Integer hospitalId) {
-		return sqlSession.selectList("mapper.hospital_qna.selectQnaList" , hospitalId);
+	public List<Hospital_qna> findHospitalQnaListByHospitalId(Integer hospitalId) {
+		return sqlSession.selectList("mapper.hospital_qna.findHospitalQnaListByHospitalId" , hospitalId);
 	}
+
+
+
 }

@@ -4,13 +4,15 @@
 
 <mapper namespace="mapper.hospital_qna">
 	<insert id="insertQuestion" parameterType="dto.Hospital_qna">
-		INSERT INTO hospital_qna (user_id, h_id, q_title, q_time)
-		VALUES (#{user_id}, #{h_id}, #{q_title}, NOW());
+		INSERT INTO hospital_qna (user_id, h_id, q_title, q_time, q_writer)
+		VALUES (#{user_id}, #{h_id}, #{q_title}, NOW(), #{q_writer});
 	</insert>
 
-	<select id="selectQnaList" parameterType="dto.Hospital_qna" resultType="dto.Hospital_qna">
+	<select id="findHospitalQnaListByHospitalId" parameterType="dto.Hospital_qna" resultType="dto.Hospital_qna">
 
 		SELECT * FROM hospital_qna WHERE h_id = #{h_id} ORDER BY q_time DESC;
 	</select>
+
+
 
 </mapper>

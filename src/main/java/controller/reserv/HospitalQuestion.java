@@ -57,11 +57,13 @@ public class HospitalQuestion extends HttpServlet {
 		HttpSession session = request.getSession(false);
 
 		Integer userId = null;
+		String userEmail = null;
 		try {
 			if (session != null) {
 				User sessionUser = (User)session.getAttribute("user");
 				if (sessionUser != null) {
 					userId = sessionUser.getId();
+					userEmail = sessionUser.getEmail();
 				} else {
 					System.out.println("세션에서 유저 정보를 찾을 수 없습니다.");
 				}
@@ -82,11 +84,9 @@ public class HospitalQuestion extends HttpServlet {
 		hospitalQna.setH_id(Integer.parseInt(hospitalId));
 		hospitalQna.setUser_id(userId);
 		hospitalQna.setQ_title(questionContent);
+		hospitalQna.setQ_writer(userEmail);
 
 		hospitalQnaService.insertHospitalQuestion(hospitalQna);
-
-
-
 
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
