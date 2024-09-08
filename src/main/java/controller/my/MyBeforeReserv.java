@@ -23,11 +23,11 @@ import service.reserv.ReservationServiceImpl;
 /**
  * Servlet implementation class MyAfterReserv
  */
-@WebServlet("/myAfterReserv")
-public class MyAfterReserv extends HttpServlet {
+@WebServlet("/myBeforeReserv")
+public class MyBeforeReserv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public MyAfterReserv() {
+    public MyBeforeReserv() {
         super();
     }
 
@@ -38,10 +38,10 @@ public class MyAfterReserv extends HttpServlet {
 			User user = (User)session.getAttribute("user");
 			Integer id = user.getId();
 			ReservationService service = new ReservationServiceImpl();
-			List<Map<String, Object>> afterReservList = service.myAfterReservList(id);
-			System.out.println(afterReservList);
-			request.setAttribute("afterReservList", afterReservList);
-			request.getRequestDispatcher("/my/myafterreserv.jsp").forward(request, response);
+			List<Map<String, Object>> beforeReservList = service.myAfterReservList(id);
+			System.out.println(beforeReservList);
+			request.setAttribute("beforeReservList", beforeReservList);
+			request.getRequestDispatcher("/my/mybeforereserv.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "게시글 목록 오류");
