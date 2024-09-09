@@ -48,7 +48,7 @@
 				console.log(result);
 				var res = JSON.parse(result);
 				res.post_petList.forEach(function(pet) {
-					$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,\${pet.pet_gender})</td><td class="pet_td3">\${pet.pet_breed}</td><td class="pet_td3">\${pet.pet_memo}</td></tr>`);
+					$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,\${pet.pet_gender})</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3">\${pet.pet_breed}</td><td class="pet_td3">\${pet.pet_memo}</td></tr>`);
 				})
 			}
 		})

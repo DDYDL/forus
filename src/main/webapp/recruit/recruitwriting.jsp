@@ -133,7 +133,7 @@
     			console.log(result);
     			var res = JSON.parse(result);
     			res.petList.forEach(function(pet) {
-    				$('#pet_profile').append(`<tr><td class="pet_td1"><img src="\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3"><input type="radio" name="pet_name" value="\${pet.pet_name}"></td></tr>`);
+    				$('#pet_profile').append(`<tr><td class="pet_td1"><img src="\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3"><input type="radio" name="pet_name" value="\${pet.pet_name}"></td></tr>`);
     			})
     		}
     	})

@@ -1,6 +1,6 @@
 package service.recruit;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -44,9 +44,9 @@ public class RecruitServiceImpl implements RecruitService {
 		}
 		
 		// 현재 날짜 구하기
-		LocalDate now = LocalDate.now();
+		LocalDateTime now = LocalDateTime.now();
 		// 날짜 형식 지정
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		post.setPost_time(now.format(formatter)); // 등록일 설정
 		
 		post.setPost_title(request.getParameter("post_title"));
