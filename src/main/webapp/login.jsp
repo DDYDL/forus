@@ -15,7 +15,7 @@
 			<br> <br>
 			<div>
 				<input type="text" placeholder=" 이메일 아이디" name="email"
-					class="user-input"><br> <br> <input type="text"
+					class="user-input"><br> <br> <input type="password"
 					placeholder=" 비밀번호" name="password" class="user-input"><br>
 				<br> <br> <br>
 			</div>

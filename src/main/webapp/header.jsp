@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="header">
-    	<div class="logo_box"><img src="${pageContext.request.contextPath}/img/logo2.png" title="logo"/></div>
+    	<div class="logo_box"><a href="${pageContext.request.contextPath}/hospitalList"><img src="${pageContext.request.contextPath}/img/logo2.png" title="logo"/></a></div>
         <div class="menu_box">
             <a href="${pageContext.request.contextPath}/hospitalList">병원예약</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="${pageContext.request.contextPath}/recruitList">Help Us</a>&nbsp;&nbsp;&nbsp;&nbsp;
