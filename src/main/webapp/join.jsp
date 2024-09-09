@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -14,18 +17,17 @@
 	$(function(){
 		$("#doubleEmail").click(function(e){
 			e.preventDefault();
-			consol.log("도착1")
+			console.log("도착1");
 			$.ajax({
-				consol.log("도착2")
 				url:'userDoubleEmail',
 				type:'post',
 				dataType:'text',
 				data:{email:$("#email").val()},
 				success:function(result){
 					if(result=='true'){
-						alert("이미 가입된 이메일입니다.")
+						alert("이미 가입된 이메일입니다.");
 					} else {
-						alert("사용가능한 이메일입니다.")
+						alert("사용가능한 이메일입니다.");
 					}
 				},
 				error:function(err){
@@ -33,6 +35,7 @@
 				}
 			})
 		})
+	});
 
 	// 카카오(다음) 주소 입력
     function daumPostcode() {
@@ -99,7 +102,7 @@
 					<td>휴대전화번호</td>
 					<td><input type="text" placeholder=" 휴대전화번호를 입력해주세요" name="phone"
 					class="user-input join-input-short">
-					<button id="doublePhone" class="minibtn">중복 확인</button></td>
+					<button type="button" id="doublePhone" class="minibtn">중복 확인</button></td>
 				</tr>
 				<tr>
 					<td>생년월일</td>
@@ -113,7 +116,7 @@
 				<tr>
 					<td>주소</td>
 					<td><input type="text" id="postcode" placeholder=" 우편번호" class="user-input join-input-short">&nbsp;
-						<input type="button" onclick="daumPostcode()" class="minibtn" value="주소 검색">
+						<input onclick="daumPostcode()" class="minibtn" value="주소 검색">
 						<input type="text" id="address" placeholder=" 주소" class="user-input join-input" name="address">
 					</td>
 				</tr>
