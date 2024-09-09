@@ -27,7 +27,7 @@
 			</dataSource>
 		</environment>
 	</environments>
-	
+
 	<mappers>
 		<mapper resource="mapper/user.xml"/>
 		<mapper resource="mapper/pet.xml"/>

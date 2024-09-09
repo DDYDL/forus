@@ -45,30 +45,13 @@ public class ReservationServiceImpl implements ReservationService {
 
 	}
 
-	@Override
-	public User getUserInfo(Integer userId) {
-	return reservationDao.findUserInfoByUserId(userId);
-	}
-
-	@Override
-	public Pet getPetInfo(Integer userId) {
-		return reservationDao.findPetInfByPetId(userId);
-	}
-
-	@Override
-	public void insertReservation(Reservation reservation) {
-		reservationDao.insertReservation(reservation);
-	}
-
 
 	private List<TimeSlot> calculateAvailableTimeSlots(
-		List<Hospital_time> hospitalTimes,
-		List<LocalTime> reservedTimes,
-		Hospital hospital,
-		LocalDate reservationDate) {
+		List<Hospital_time> hospitalTimes, List<LocalTime> reservedTimes, Hospital hospital, LocalDate reservationDate) {
 
 		LocalTime lunchStartTime = hospital.getH_lunch_time_start();
 		LocalTime lunchEndTime = hospital.getH_lunch_time_end();
+
 		int intervalMinutes = hospital.getH_interval_time();
 
 		List<TimeSlot> availableTimeSlots = new ArrayList<>();
@@ -77,6 +60,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 		LocalTime openingTime = null;
 		LocalTime closingTime = null;
+
 		for (Hospital_time time : hospitalTimes) {
 			openingTime = time.getHtime_opening();
 			closingTime = time.getHtime_closing();
@@ -87,25 +71,43 @@ public class ReservationServiceImpl implements ReservationService {
 			}
 
 			//시간대 별로 예약 가능한 시간을 계산
-			for (LocalTime currentTime = openingTime; !currentTime.isAfter(
-				closingTime); currentTime = currentTime.plusMinutes(intervalMinutes)) {
-				boolean isReserved = reservedTimes.contains(currentTime);
-				boolean isLunchTime = isDuringLunchTime(currentTime, lunchStartTime, lunchEndTime);
-
-	            boolean isPastTime = reservationDate.equals(today) && currentTime.isBefore(nowTime);
-
-				boolean isAvailable = !isReserved && !isLunchTime && !isPastTime;
-
-				if (isAvailable) {
-					availableTimeSlots.add(new TimeSlot(currentTime, true));
-				} else {
-					availableTimeSlots.add(new TimeSlot(currentTime, false));
-				}
-
-			}
+			validateAvailableTimeSlots(
+				reservedTimes,
+				reservationDate,
+				openingTime,
+				closingTime,
+				intervalMinutes,
+				lunchStartTime,
+				lunchEndTime,
+				today,
+				nowTime,
+				availableTimeSlots);
 		}
 			return availableTimeSlots;
 		}
+
+	private  void validateAvailableTimeSlots(List<LocalTime> reservedTimes, LocalDate reservationDate, LocalTime openingTime,
+		LocalTime closingTime, int intervalMinutes, LocalTime lunchStartTime, LocalTime lunchEndTime, LocalDate today,
+		LocalTime nowTime, List<TimeSlot> availableTimeSlots) {
+
+		for (LocalTime currentTime = openingTime; isBeforeClosingTime(closingTime, currentTime); currentTime = currentTime.plusMinutes(intervalMinutes)) {
+			boolean isReserved = reservedTimes.contains(currentTime);
+			boolean isLunchTime = isDuringLunchTime(currentTime, lunchStartTime, lunchEndTime);
+			boolean isPastTime = reservationDate.equals(today) && currentTime.isBefore(nowTime);
+			boolean isAvailable = !isReserved && !isLunchTime && !isPastTime;
+
+			if (isAvailable) {
+				availableTimeSlots.add(new TimeSlot(currentTime, true));
+			} else {
+				availableTimeSlots.add(new TimeSlot(currentTime, false));
+			}
+
+		}
+	}
+
+	private static boolean isBeforeClosingTime(LocalTime closingTime, LocalTime currentTime) {
+		return !currentTime.isAfter(closingTime);
+	}
 
 	private static boolean isDuringLunchTime(LocalTime currentTime, LocalTime lunchStartTime, LocalTime lunchEndTime) {
 		return currentTime.isAfter(lunchStartTime.minusMinutes(1)) && currentTime.isBefore(
@@ -135,6 +137,23 @@ public class ReservationServiceImpl implements ReservationService {
 
 		return reservation;
 	}
+
+	@Override
+	public User getUserInfo(Integer userId) {
+		return reservationDao.findUserInfoByUserId(userId);
+	}
+
+	@Override
+	public Pet getPetInfo(Integer userId) {
+		return reservationDao.findPetInfByPetId(userId);
+	}
+
+	@Override
+	public void insertReservation(Reservation reservation) {
+		reservationDao.insertReservation(reservation);
+	}
+
+
 
 	@Override
 	public List<Reservation> myAfterReserv() throws Exception {
