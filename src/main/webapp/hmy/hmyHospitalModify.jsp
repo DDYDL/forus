@@ -43,7 +43,7 @@
 				<div class="containerbox">
 
 					<div>
-						<h3>신규 병원 등록</h3>
+						<h3>내 병원 수정하기</h3>
 					</div>
 
 					<h4>기본 정보</h4>
@@ -54,14 +54,14 @@
 							<tr>
 								<td><label for="name">대표자 이름</label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_exponent_name" required></td>
+									name="h_exponent_name" value = "${hospital.h_exponent_name  }" required></td>
 								<td></td>
 							</tr>
 
 							<tr>
 								<td><label for="name">사업자 등록번호</label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_num" required></td>
+									name="h_num" value = "${hospital.h_num }" required></td>
 							</tr>
 							<tr>
 								<td><label for="name">의사 면허증</label></td>
@@ -79,17 +79,17 @@
 							<tr>
 								<td><label for="name">병원 이름</label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_name" required></td>
+									name="h_name" value = "${hospital.h_name }" required></td>
 							</tr>
 							<tr>
 								<td><label for="name">병원장 이름</label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_manager_name" required></td>
+									name="h_manager_name" value = "${hospital.h_manager_name }" required></td>
 							</tr>
 							<tr>
 								<td><label for="name">병원 연락처</label></td>
 								<td class="tdinput"><input type="tel" id="tel"
-									name="h_phone" required></td>
+									name="h_phone" value = "${hospital.h_phone }" required></td>
 							</tr>
 
 							<tr>
@@ -228,13 +228,11 @@
 						<tbody>
 							<tr>
 								<td><label for="name">상세 설명</label></td>
-								<td><input class="tdinput" type="text" id="input_box"
-									name="h_memo" required></td>
+								<td><textarea class="tdinput" id="input_box" rows="4" cols="30">${hospital.h_memo }</textarea></td>
 							</tr>
 							<tr>
 								<td><label for="name">찾아오는 길</label></td>
-								<td><input class="tdinput" type="text" id="input_box"
-									name="h_memo_road" required></td>
+								<td><textarea class="tdinput" id="input_box" rows="4" cols="30">${hospital.h_memo_road }</textarea></td>
 							</tr>
 
 							<tr>
@@ -243,7 +241,7 @@
 							<tr>
 								<td><label for="name"> SNS / Blog </label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_sns" required></td>
+									name="h_sns" value = "${hospital.h_sns }" required></td>
 
 							</tr>
 
@@ -264,25 +262,14 @@
 
 						</tbody>
 					</table>
-					<div class="rowwrite">
-						<p>
-							<b>주의사항</b>
-						</p>
-						<p>1. 병원 정보는 즉시 등록됩니다.</p>
-						<p>2. 병원정보는 등록 된 이후 마이병원을 통해 언제든 수정이 가능합니다.</p>
-						<p>3. 잘못된 장소는 강제로 삭제될 수 있습니다.</p>
-
-					</div>
-					<div>
-						<input type="checkbox" required> 위 사항에 동의합니다.<br>
-					</div>
+					
 
 					<br> <br> <br>
 					<div class="row">
 						<div class="find-btn">
 							<input type="submit" title="Button push blue/green"
 								class=" btn btnPush btnBlueGreen find-btn1"
-								onclick="location.href='/forus/hmyNewHospitalSuccess'" value="병원 등록">
+								onclick="location.href='/forus/hmyHospital'" value="수정 완료">
 
 						</div>
 					</div>
