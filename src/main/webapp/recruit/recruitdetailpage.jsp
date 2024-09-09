@@ -64,8 +64,7 @@
     		</tr>
     		<tr>
     			<td><label for="time">시간</label></td>
-    			<td>오전</td>
-    			<td>${post.post_start_time}&nbsp;~&nbsp;${post.post_end_time}</td>
+    			<td id="time_td"></td>
     		</tr>
     		<tr>
     			<td><label for="week">요일</label></td>
@@ -73,6 +72,14 @@
     		</tr>
     	</table>
     </div>
+    
+    <script>
+    	var start_time = `${post.post_start_time}`.substr(0,5);
+		var end_time = `${post.post_end_time}`.substr(0,5);
+		if(start_time !== null && end_time !== null){
+			document.getElementById('time_td').innerText = start_time+" ~ "+end_time;
+		}
+    </script>
 
     <p class="content-inner-title">지역</p>
     <div class="box">

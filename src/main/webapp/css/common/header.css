@@ -10,7 +10,7 @@
 
 /* 로고 이미지 설정 */
 .logo_box { float:left; position:absolute; bottom:3px; }
-.logo_box>img { width:120px; height:60px; text-align:left; }
+.logo_box img { width:120px; height:60px; text-align:left; }
 
 /* 메뉴 설정 */
 .menu_box { float:left; position:absolute; bottom:5px; text-align:center; right:40%; }
