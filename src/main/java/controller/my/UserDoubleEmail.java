@@ -23,7 +23,6 @@ public class UserDoubleEmail extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("도착");
 		request.setCharacterEncoding("UTF-8");
 		String email = request.getParameter("email");
 		System.out.println(email);

@@ -101,8 +101,7 @@
 				<tr>
 					<td>휴대전화번호</td>
 					<td><input type="text" placeholder=" 휴대전화번호를 입력해주세요" name="phone"
-					class="user-input join-input-short">
-					<button type="button" id="doublePhone" class="minibtn">중복 확인</button></td>
+					class="user-input join-input">
 				</tr>
 				<tr>
 					<td>생년월일</td>
