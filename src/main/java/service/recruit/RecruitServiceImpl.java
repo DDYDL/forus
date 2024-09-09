@@ -54,6 +54,7 @@ public class RecruitServiceImpl implements RecruitService {
 		post.setPost_address(request.getParameter("post_address"));
 		post.setPost_form(request.getParameter("post_form"));
 		post.setPost_pay(request.getParameter("post_pay"));
+		post.setPost_date(request.getParameter("post_date"));
 		post.setPost_start_time(request.getParameter("post_start_time"));
 		post.setPost_end_time(request.getParameter("post_end_time"));
 		post.setPost_status("게시중");

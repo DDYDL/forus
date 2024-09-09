@@ -51,7 +51,7 @@
 			    	<tr><!-- 캘린더 로드 -->
 			    		<td class="setting_td1"><label class="form-label" for="dayOfTheWeek">날짜</label></td>
 			    		<td class="setting_td2" colspan="2"><div class="col-6">
-			    			<input class="form-control" id="dayOfTheWeek" name="post_date" type="text" value="">
+			    			<input class="form-control" id="dayOfTheWeek" name="post_date" type="text">
 						</div></td>
 			    	</tr>
 		    	</table>

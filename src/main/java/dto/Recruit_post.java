@@ -10,6 +10,7 @@ public class Recruit_post {
 	private String post_address;
 	private String post_form;
 	private String post_pay;
+	private String post_date;
 	private String post_start_time;
 	private String post_end_time;
 	private String post_status;
@@ -18,7 +19,7 @@ public class Recruit_post {
 		super();
 	}
 	public Recruit_post(String post_time, String post_title, String post_content, String post_address, String post_form,
-			String post_pay, String post_start_time, String post_end_time, String post_status) {
+			String post_pay, String post_date, String post_start_time, String post_end_time, String post_status) {
 		super();
 		this.post_time = post_time;
 		this.post_title = post_title;
@@ -26,11 +27,12 @@ public class Recruit_post {
 		this.post_address = post_address;
 		this.post_form = post_form;
 		this.post_pay = post_pay;
+		this.post_date = post_date;
 		this.post_start_time = post_start_time;
 		this.post_end_time = post_end_time;
 		this.post_status = post_status;
 	}
-	
+
 	public Integer getPost_id() {
 		return post_id;
 	}
@@ -85,6 +87,12 @@ public class Recruit_post {
 	public void setPost_pay(String post_pay) {
 		this.post_pay = post_pay;
 	}
+	public String getPost_date() {
+		return post_date;
+	}
+	public void setPost_date(String post_date) {
+		this.post_date = post_date;
+	}
 	public String getPost_start_time() {
 		return post_start_time;
 	}
@@ -108,7 +116,8 @@ public class Recruit_post {
 	public String toString() {
 		return "Recruit_post [post_id=" + post_id + ", user_id=" + user_id + ", pet_id=" + pet_id + ", post_time="
 				+ post_time + ", post_title=" + post_title + ", post_content=" + post_content + ", post_address="
-				+ post_address + ", post_form=" + post_form + ", post_pay=" + post_pay + ", post_start_time="
-				+ post_start_time + ", post_end_time=" + post_end_time + ", post_status=" + post_status + "]";
+				+ post_address + ", post_form=" + post_form + ", post_pay=" + post_pay + ", post_date=" + post_date
+				+ ", post_start_time=" + post_start_time + ", post_end_time=" + post_end_time + ", post_status="
+				+ post_status + "]";
 	}
 }

@@ -69,7 +69,7 @@
     		</tr>
     		<tr>
     			<td><label for="week">요일</label></td>
-    			<td>월, 수, 금</td>
+    			<td>${post.post_date}</td>
     		</tr>
     	</table>
     </div>
@@ -108,10 +108,16 @@
 		// recruit_post에 저장된 주소 가져오기
 		var address = document.getElementById('post_address').innerHTML;
 		console.log(address);
+		// 괄호 안에 있는 동만 가져오기
+		const result = Array.from(address.matchAll('\\((.*?)\\)'), match => `\${match[0]}`);
+		var address_0 = result[0].toString();
+		var address_1 = address_0.replace("(", "");
+		var address_2 = address_1.replace(")", "");
+		console.log(address_2);
 		
 		// 주소로 위도 경도 가져오기
 		var position = new kakao.maps.services.Places();
-		position.keywordSearch(address,placesSearchCB);
+		position.keywordSearch(address_2,placesSearchCB);
 		// 호출되는 함수
 		var locData;
 		function placesSearchCB(data, status, pagination) {

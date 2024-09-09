@@ -88,6 +88,7 @@ public class RecruitBypage extends HttpServlet {
 				jsonPost.put("post_address", post.getPost_address());
 				jsonPost.put("post_form", post.getPost_form());
 				jsonPost.put("post_pay", post.getPost_pay());
+				jsonPost.put("post_date", post.getPost_date());
 				jsonPost.put("post_start_time", post.getPost_start_time());
 				jsonPost.put("post_end_time", post.getPost_end_time());
 				jsonPost.put("post_status", post.getPost_status());
