@@ -7,6 +7,6 @@ public interface HospitalDao {
 
 	void updateHospital(Hospital hospital) throws Exception;
 
-	Hospital selectHospital(Integer h_id);
+	Hospital selectHospital(Integer h_id) throws Exception;
 
 }

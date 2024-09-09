@@ -20,10 +20,11 @@
 	</insert>
 
 
-	<select id="selectHospital" parameterType="String"
-		resultType="hospital">
+	<select id="selectHospital" parameterType="Integer"
+		resultType="Hospital">
 	<![CDATA[
-		select * from hospital where h_id = #{h_id}]]></select>
+		select * from hospital where h_id = #{h_id}]]>
+	</select>
 
 
 	<update id="updateHospital" parameterType="Hospital">
@@ -38,9 +39,10 @@
 	</update>
 
 
-<!--거리 기반 쿼리   -->
+	<!--거리 기반 쿼리 -->
 
-	<select id="findHospitalByLocation" parameterType="map" resultType="dto.Hospital">
+	<select id="findHospitalByLocation" parameterType="map"
+		resultType="dto.Hospital">
 
         <![CDATA[
 		SELECT
@@ -72,25 +74,28 @@
 
 
 
-	<select id="findHospitalDetailByHospitalId" parameterType="int" resultType="dto.Hospital">
+	<select id="findHospitalDetailByHospitalId" parameterType="int"
+		resultType="dto.Hospital">
 		SELECT
-			*
+		*
 		FROM
-			hospital h
+		hospital h
 		WHERE
-			h.h_id = #{h_id}
+		h.h_id = #{h_id}
 	</select>
 
 
-	<select id="findHospitalTimeByHospitalId" parameterType="int" resultType="dto.Hospital_time">
+	<select id="findHospitalTimeByHospitalId" parameterType="int"
+		resultType="dto.Hospital_time">
 		SELECT
-			*
+		*
 		FROM
-			hospital_time ht
+		hospital_time ht
 		WHERE
-			ht.h_id = #{h_id}
+		ht.h_id = #{h_id}
 		ORDER BY
-			FIELD(ht.htime_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+		FIELD(ht.htime_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+		'Sunday');
 	</select>
 
 </mapper>

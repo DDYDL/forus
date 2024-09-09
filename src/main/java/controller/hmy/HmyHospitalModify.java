@@ -26,7 +26,7 @@ public class HmyHospitalModify extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/hmy/hmyHospitalModify.jsp").forward(request, response);
+		request.getRequestDispatcher("/hmy/hmyhospitalmodify.jsp").forward(request, response);
 	}
 
 	/**

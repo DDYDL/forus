@@ -18,16 +18,24 @@
 
 </head>
 <body>
+
+      
+      
+      
 	<%@ include file="../mainmypage.jsp"%>
 
 	<div class="mypage-content">
+	
+	<span id="authentication">병원관계자라면?&nbsp;
+         <a href="/forus/hmyNewHospital"><img src="play.png" width="16px">&nbsp;병원인증하기</a>
+      </span>
 		<div>
 			<h3>내 프로필</h3>
 		</div>
 		<div>
 			<ul>
 				<li>프로필 사진</li>
-				<li><img src="../img/profileicon.png" class="img-icon"></li>
+				<li><img src="img/profileicon.png" class="img-icon"></li>
 
 				<li class="title">이름</li>
 				<li class="line"><span>${user.name }</span></li>

@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.Hospital;
+import service.hmy.HospitalService;
+import service.hmy.HospitalServiceImpl;
+
 /**
  * Servlet implementation class HmyHospital
  */
@@ -28,7 +32,22 @@ public class HmyHospital extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/hmy/hmyHospital.jsp").forward(request, response);
+		Integer h_id = 11;
+		System.out.println(h_id);
+		try {
+			HospitalService service = new HospitalServiceImpl();
+
+			Hospital hospital = service.hmyHospital(h_id);
+			System.out.println(h_id);
+			request.setAttribute("hospital", hospital);
+
+			request.getRequestDispatcher("/hmy/hmyhospital.jsp").forward(request, response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("err.jsp").forward(request, response);
+		}
 	}
 
 	/**

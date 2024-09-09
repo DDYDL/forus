@@ -11,12 +11,13 @@
 	border-radius: 70%;
 	width: 100%;
 	height: 100%;
-	object-fit:cover;
+	object-fit: cover;
 }
 
 placeholder {
 	color: blue;
-	font-size: 1.3 text-align: center;
+	font-size: 1.3;
+	text-align: center;
 }
 
 ::-ms-input-placeholder {
@@ -31,21 +32,26 @@ placeholder {
 	border: 1px solid rgb(201, 201, 201)
 }
 
-input[type="date"]::before{
-	content:attr(data-placeholder);
-	width:100%;
+input[type="date"]::before {
+	content: attr(data-placeholder);
+	width: 100%;
 }
 
-.title{
-	padding-top:10px;
+.title {
+	padding-top: 10px;
 }
+
 .line {
 	margin: 5px 10px;
 	padding: 15px 30px 10px 5px;
-	border-bottom-style: solid ;
-	border-bottom-color:rgb(201, 201, 201);
+	border-bottom-style: solid;
+	border-bottom-color: rgb(201, 201, 201);
 	border-bottom-width: 5px;
 	width: fit-content;
+}
+
+.authentication {
+	float: left;
 }
 
 .row {

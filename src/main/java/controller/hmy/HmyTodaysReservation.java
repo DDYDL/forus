@@ -25,7 +25,7 @@ public class HmyTodaysReservation extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/hmy/hmyTodaysReservation2.jsp").forward(request, response);
+		request.getRequestDispatcher("/hmy/hmytodaysreservation.jsp").forward(request, response);
 	}
 
 	/**

@@ -36,7 +36,7 @@
 <body>
 	<%@ include file="../mainhmypage.jsp"%>
 
-	<div class="bodycontainerbox">
+	<div class="mypage-content">
 
 		<div class="bodybox">
 

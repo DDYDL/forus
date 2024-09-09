@@ -14,7 +14,7 @@
 <body>
 	<%@ include file="../mainmypage.jsp"%>
 	<div>
-		<div>
+		<div class="mypage-content">
 			<img src="img/mail.png">
 			<h2>병원 등록이 완료 되었습니다.</h2>
 			<hr width="10%">

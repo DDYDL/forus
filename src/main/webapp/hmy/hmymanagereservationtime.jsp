@@ -14,15 +14,16 @@
 	color: rgba(105, 233, 46);
 }
 </style>
-<link rel="stylesheet" href="request.css" />
+<link rel="stylesheet" href="css/hmy/request.css" />
 <link rel="stylesheet" href="css/hmy/list.css" />
 <link rel="stylesheet" href="css/hmy/containerbox.css" />
 <link rel="stylesheet" href="css/hmy/weekbutton.css" />
+<link rel="stylesheet" href="css/my/button.css" />
 </head>
 <body>
 	<%@ include file="../mainhmypage.jsp"%>
 
-	<div class="bodycontainerbox">
+	<div class="mypage-content">
 
 		<div class="bodybox">
 			<div>
