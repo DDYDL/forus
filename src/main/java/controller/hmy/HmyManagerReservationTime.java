@@ -26,7 +26,7 @@ public class HmyManagerReservationTime extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/hmy/hmyManagerReservationTime.jsp").forward(request, response);
+		request.getRequestDispatcher("/hmy/hmyManageReservationTime.jsp").forward(request, response);
 	}
 
 	/**

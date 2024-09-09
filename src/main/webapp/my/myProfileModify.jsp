@@ -1,0 +1,90 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/my/containerbox.css" />
+<link rel="stylesheet" href="css/my/profile.css" />
+<link rel="stylesheet" href="css/my/input.css" />
+<link rel="stylesheet" href="css/my/button.css" />
+<style>
+.my {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+</style>
+</head>
+
+<script>
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('preview').src = e.target.result;
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+</script>
+<body>
+	<%@ include file="../mainmypage.jsp"%>
+
+	<div class="mypage-content">
+		<div>
+			<h3>내 프로필</h3>
+		</div>
+		<div>
+			<ul>
+				<li>프로필 사진</li>
+				<li><img src="../img/profileicon.png" class="img-icon"
+					alt="이미지 선택" id="preview" width="100px"
+					onclick="document.getElementById('file').click();"> <input
+					type="file" name="file" id="file" accept="image/*"
+					onchange="readURL(this);" style="display: none"></li>
+
+				<li class="title">이름</li><br><br>
+				<li><input type="text" class="underline" value="홍길동"></li>
+
+				<li class="title">닉네임</li><br><br>
+				<li><input type="text" class="underline" value="또치아빠"></li>
+
+				<li class="title">이메일</li><br><br>
+				<li><input type="text" class="underline"
+					value="honggildong@kosta.com"></li>
+
+				<li class="title">비밀번호</li><br><br>
+				<li><input type="password" class="underlinesmall"
+					value="asdfasdf">
+				<button>변경하기</button></li>
+
+				<li class="title">휴대전화번호</li><br><br>
+				<li><input type="tel" class="underlinesmall"
+					placeholder="입력이 필요합니다.">
+				<button>변경하기</button></li>
+
+				<li class="title">생년월일</li>
+				<br>
+				<br>
+				<li><input type="date" name="birthday"></li>
+
+				<li class="title">성별</li>
+				<br>
+				<br>
+				<li><input type="radio" name="gender" value="male"
+					checked="checked"> 남 <input type="radio" name="gender"
+					value="female"> 여</li>
+			</ul>
+
+			<div class="find-btn">
+				<button type="submit" title="Button push blue/green"
+					class=" btn btnPush btnBlueGreen find-btn1"
+					onclick="location.href='/forus/myProfile'">수정 완료</button>
+
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

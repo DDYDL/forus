@@ -1,5 +1,7 @@
 package dao.my;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import dto.Pet;
@@ -26,6 +28,11 @@ public class PetDaoImpl implements PetDao {
 		sqlSession.update("mapper.pet.updatePet",pet);
 		sqlSession.commit();
 		
+	}
+	
+	@Override
+	public List<Pet> selectPetList(Integer user_id) throws Exception {
+		return sqlSession.selectList("mapper.pet.selectPetList", user_id);
 	}
 
 }

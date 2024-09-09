@@ -13,11 +13,11 @@
 <link
 	href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css"
 	rel="stylesheet" />
-<link rel="stylesheet" href="css/containerbox.css" />
-<link rel="stylesheet" href="css/input.css" />
-<link rel="stylesheet" href="css/font.css" />
-<link rel="stylesheet" href="css/time.css" />
-<link rel="stylesheet" href="css/button.css" />
+<link rel="stylesheet" href="css/hmy/containerbox.css" />
+<link rel="stylesheet" href="css/hmy/input.css" />
+<link rel="stylesheet" href="css/hmy/font.css" />
+<link rel="stylesheet" href="css/hmy/time.css" />
+<link rel="stylesheet" href="css/hmy/button.css" />
 <script>
 	function readURL(input) {
 		if (input.files && input.files[0]) {
@@ -271,8 +271,7 @@
 					<div class="find-btn">
 						<button type="button" title="Button push blue/green"
 							class=" btn btnPush btnBlueGreen find-btn1"
-							onclick="location.href='hmyNewHospitalSuccess.jsp'">신청
-							제출</button>
+							onclick="location.href='/forus/hmyHospitalModify'">수정</button>
 
 					</div>
 				</div>

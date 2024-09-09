@@ -282,7 +282,7 @@
 						<div class="find-btn">
 							<input type="submit" title="Button push blue/green"
 								class=" btn btnPush btnBlueGreen find-btn1"
-								onclick="location.href='hmyNewHospitalSuccess'" value="병원 등록">
+								onclick="location.href='/forus/hmyNewHospitalSuccess'" value="병원 등록">
 
 						</div>
 					</div>

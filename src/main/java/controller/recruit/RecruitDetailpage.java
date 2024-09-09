@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Recruit_post;
+import dto.User;
 import service.recruit.RecruitService;
 import service.recruit.RecruitServiceImpl;
 
@@ -36,11 +37,13 @@ public class RecruitDetailpage extends HttpServlet {
 		try {
 			RecruitService service = new RecruitServiceImpl();
 			Recruit_post post = service.recruit_postDatail(post_id); // Recruit_post 객체 생성
+			User post_user = service.selectUserId(post.getUser_id());
+			User user = (User)request.getSession().getAttribute("user");
 			request.setAttribute("post", post); // request에 객체 넣기
-			String id = (String)request.getSession().getAttribute("id");
+			request.setAttribute("post_user", post_user);
 			
-			if(id!=null) { // 로그인 되어 있으면 지원하기 버튼 띄우기 위해 설정
-				request.setAttribute("apply", service.checkApply(id,post_id));
+			if(user!=null && user.getId() == post_user.getId()) { // 로그인 되어 있고, 작성자와 같으면 수정하기 버튼 띄우기 위해 설정
+				request.setAttribute("modify", service.checkModify(post_user.getId(), post_id));
 			}
 			request.getRequestDispatcher("./recruit/recruitdetailpage.jsp").forward(request, response);
 		} catch(Exception e) {

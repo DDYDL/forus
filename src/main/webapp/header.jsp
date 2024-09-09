@@ -17,10 +17,10 @@
     <div class="header">
     	<div class="logo_box"><img src="${pageContext.request.contextPath}/img/logo2.png" title="logo"/></div>
         <div class="menu_box">
-            <a href="${pageContext.request.contextPath}/reserv/hospitallist.jsp">병원예약</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="${pageContext.request.contextPath}/hospitalList">병원예약</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="${pageContext.request.contextPath}/recruitList">Help Us</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="${pageContext.request.contextPath}/myAfterReserv">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="${pageContext.request.contextPath}/hmy/hmytodaysresrvation.jsp">마이병원</a>
+            <a href="${pageContext.request.contextPath}/hmyTodaysReservation">마이병원</a>
         </div>
         <div class="login">
 	        <c:choose>

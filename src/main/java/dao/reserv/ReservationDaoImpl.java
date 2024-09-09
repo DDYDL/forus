@@ -11,9 +11,11 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 
+import dto.Pet;
 import dto.Reservation;
 import dto.Hospital;
 import dto.Hospital_time;
+import dto.User;
 import util.MybatisSqlSessionFactory;
 
 public class ReservationDaoImpl implements ReservationDao {
@@ -40,6 +42,33 @@ public class ReservationDaoImpl implements ReservationDao {
 		// 예약된 시간을 리스트로 가져옴
 		return sqlSession.selectList("mapper.reservation.findReservedTimesByDate", params);
 	}
+
+	@Override
+	public User findUserInfoByUserId(Integer userId) {
+		return sqlSession.selectOne("mapper.reservation.findUserInfoByUserId", userId);
+	}
+
+	@Override
+	public Pet findPetInfByPetId(Integer useId) {
+		return sqlSession.selectOne("mapper.reservation.findPetInfoByUserId", useId);
+	}
+
+	@Override
+	public void insertReservation(Reservation reservation) {
+		try {
+			sqlSession.insert("mapper.reservation.insertReservation", reservation);
+			sqlSession.commit();
+		} catch (Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+
+		}
+
+	}
+
+
 	@Override
 	public void insertReserv(Reservation reserv) throws Exception {
 		// TODO Auto-generated method stub

@@ -6,9 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>HelpUs</title>
+<!-- 부트스트랩 테이블 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- jquery 라이브러리 -->
 <script src="http://code.jquery.com//jquery-latest.min.js"></script>
+<!-- css 파일 -->
 <link href="./css/recruit/recruitlist.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -104,7 +107,11 @@
     <br>
     <div class="list-header">
     	<div class="list-count"><p id="count"></p></div>
-    	<div class="list-btn btndiv"><a href="recruitWriting?user_id=${id}" class="minibutton minibtnFade minibtnBlueGreen">구인등록</a></div>
+    	<div class="list-btn btndiv">
+    		<c:if test="${user ne null}">
+    			<a href="recruitWriting" class="minibutton minibtnFade minibtnBlueGreen">구인등록</a>
+    		</c:if>
+    	</div>
     </div>
     <table class="table table-hover">
         <thead>
