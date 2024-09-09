@@ -45,7 +45,6 @@ public class Login extends HttpServlet {
 			User user = service.login(email, password);
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-//			response.sendRedirect("hospitalList");
 			request.getRequestDispatcher("/reserv/hospitallist.jsp").forward(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();

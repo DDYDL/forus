@@ -19,7 +19,7 @@
 		<div class="mytitle">
 			<p>지원현황</p>
 		</div>
-		<div id="listcnt">
+		<div class="listcnt">
 			<p>총 2건</p>
 		</div>
 		<table class="table table-hover mytable">

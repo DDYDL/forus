@@ -1,10 +1,15 @@
 package dao.reserv;
 
+
+import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+
 
 import dto.Reservation;
 import dto.Hospital;
@@ -60,31 +65,37 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public Reservation selectAllAfterReserv(Integer id) throws Exception {
+	public List<Map<String, Object>> selectMyAfterReservList(Integer id) throws Exception {
+		List<Map<String, Object>> afterReservList = sqlSession.selectList("mapper.reservation.selectMyAfterReserv",id);
+		return afterReservList;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, String pet_name, String startDate, String endDate, boolean isConsult) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("pet_name", pet_name);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+        params.put("isConsult", isConsult);
+
+        return sqlSession.selectList("mapper.reservation.selectMyBeforeReserv", params);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectPetReservList(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Reservation selectAllBeforeReserv(Integer id) throws Exception {
+	public List<Map<String, Object>> selectCompleteReservList(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Reservation selectPetReservList(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Reservation selectCompleteReservList(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Reservation selectPeriodReservList(Integer id) throws Exception {
+	public List<Map<String, Object>> selectPeriodReservList(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
