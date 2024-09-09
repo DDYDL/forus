@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
 	public void join(User user) throws Exception {
 		System.out.println(user.toString());
 		User suser = userDao.selectUser(user.getEmail());
-		if(suser!=null) throw new Exception("아이디 중복 오류");
+		if(suser!=null) throw new Exception("이메일 중복 오류");
 		userDao.insertUser(user);
 	}
 

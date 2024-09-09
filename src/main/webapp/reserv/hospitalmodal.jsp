@@ -5,15 +5,43 @@
 
 <%--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>--%>
 <%--<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>--%>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 
-<%
+<style>
+    #loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }
 
-%>
+    .spinner {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+    }
 
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<div id="loading-spinner" style="display: none;">
+    <div class="spinner"></div>
+</div>
+
+
+
+<!-- 예약 모달 초기화 및 Swalfire 처리 -->
 <script>
     function initializeReservationModal() {
         Swal.fire({
-            title:`병원 예약 - ${hospital.h_name}`,
+            title: `병원 예약 - ${hospital.h_name}`,
             html: `
                 <div id="reservation-modal-content">
                     <input type="text" id="reservation-date-picker" placeholder="예약 날짜를 선택하세요">
@@ -25,76 +53,188 @@
             preConfirm: () => {
                 const selectedDate = $('#reservation-date-picker').val();
                 const selectedTime = $('input[name="timeSlot"]:checked').val();
-                return {selectedDate, selectedTime};
+                return { selectedDate, selectedTime };
             }
         }).then((result) => {
             if (result.isConfirmed) {
+                $.ajax({
+                    url: 'reservationInfo',
+                    dataType: 'json',
+                    method: 'POST',
+                    success: function (response) {
+                        console.log(response);
+                       const user = response.user;
+                       const pet = response.pet;
                 Swal.fire({
                     title: '예약 정보 확인',
-                    html: `
-                        <p>선택된 날짜: ${"${result.value.selectedDate}"}</p>
-                        <p>선택된 시간: ${"${result.value.selectedTime}"}</p>
-                    `,
-                    confirmButtonText: '예약 완료'
+                    html: generateReservationHtml(result.value, user, pet),
+                    confirmButtonText: '예약 완료',
+
+                    preConfirm:()=>{
+                        const form = document.getElementById('reservationForm');
+                        if (form) {
+                            form.submit();
+                        }else {
+                            Swal.showValidationMessage('예약 정보를 찾을 수 없습니다. 다시 시도해 주세요.');
+                        }
+                    }
+
+                });
+            }, error: function (jqXHR, textStatus, errorThrown) {
+                        // 요청이 실패할 경우 오류 메시지 표시
+                        Swal.fire({
+                            icon: 'error',
+                            title: '오류 발생',
+                            text: '예약 정보를 가져오는 중 오류가 발생했습니다. 다시 시도해 주세요.'
+                        });
+                    }
                 });
             }
         });
+        initializeDatePicker();
+    }
+</script>
 
+<!-- Flatpickr 및 디바운스 처리 -->
+<script>
+    function showLoadingSpinner() {
+        $('#loading-spinner').show();
+    }
+
+    function hideLoadingSpinner() {
+        $('#loading-spinner').hide();
+    }
+
+    const debouncedFetch = _.debounce(function(dateStr) {
+        showLoadingSpinner();
+        getAvailableTimeSlots(dateStr);
+    }, 300);
+
+    function initializeDatePicker() {
         // 플리피커(Flatpickr) 초기화
         flatpickr("#reservation-date-picker", {
-            inline: true, // 캘린더가 인라인으로 표시되도록 설정
-            dateFormat: "Y-m-d", // 날짜 형식 설정
-            minDate: "today", // 선택 가능 최소 날짜를 오늘로 설정
-            maxDate: new Date().fp_incr(7), // 선택 가능 최대 날짜를 오늘로부터 7일 후로 설정
+            inline: true,
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            maxDate: new Date().fp_incr(7),
             onChange: function (selectedDates, dateStr) {
-                updateAvailableTimeSlots(dateStr); // 날짜 선택 시 시간 슬롯 업데이트
+                // updateAvailableTimeSlots(dateStr);
+                debouncedFetch(dateStr);
             }
         });
     }
+</script>
 
-    function updateAvailableTimeSlots(dateStr) {
-        const availableTimes = calculateAvailableTimes(dateStr);
-        const $timeSlotsContainer = $('#time-slots-container');
-        $timeSlotsContainer.html(generateTimeSlotHTML(availableTimes));
+<!-- 예약 가능한 시간 슬롯 요청 -->
+<script>
+    function getAvailableTimeSlots(dateStr) {
+        const hospitalId = ${hospital.h_id};
+        $.ajax({
+            url: 'reservation',
+            dataType: 'json',
+            type: 'GET',
+            data: { hospitalId, dateStr },
+            success: function (response) {
+
+                const availableTimes = response.availableTimeSlots;
+                const $timeSlotContainer = $('#time-slots-container');
+                $timeSlotContainer.html(generateTimeSlotHTML(availableTimes));
+                hideLoadingSpinner();
+            }
+        });
     }
+    function updateAvailableTimeSlots(dateStr) {
+        getAvailableTimeSlots(dateStr);
+    }
+</script>
 
+<!-- 시간 슬롯 생성 및 HTML 생성 관련 함수 -->
+<script>
     function generateTimeSlotHTML(availableTimes) {
         return availableTimes.map(time => createTimeSlotLabel(time)).join('');
     }
 
     function createTimeSlotLabel(time) {
-        const disabledAttribute = getDisabledAttribute(time.isReserved);
+        const hour = String(time.time.hour).padStart(2, '0');
+        const minute = String(time.time.minute).padStart(2, '0');
+        const timeLabel = `${"${hour}"}:${"${minute}"}`;
+        const disabledAttribute = getDisabledAttribute(time.isAvailable);
         return `
              <label class="time-slot-label">
-                <input type="radio" name="timeSlot" value="${"${time.label}"}" ${"${disabledAttribute}"}>
-                <span class="time-slot-button">${"${time.label}"}</span>
+                <input type="radio" name="timeSlot" value="${"${timeLabel}"}" ${"${disabledAttribute}"}>
+                <span class="time-slot-button">${"${timeLabel}"}</span>
             </label>
         `;
     }
+    function getDisabledAttribute(isAvailable) {
+        return !isAvailable ? 'disabled' : '';
+    }
+</script>
 
-    function getDisabledAttribute(isDisabled) {
-        return isDisabled ? 'disabled' : '';
+<script>
+    function initializeCheckboxHandler() {
+        $(document).on('change', '.single-select-radio', function() {
+            if ($('#otherRadio').is(':checked')) {
+                $('#otherText').prop('disabled', false);
+            } else {
+                $('#otherText').prop('disabled', true).val('');
+            }
+        });
+
+        // 폼이 제출될 때 텍스트 입력이 비활성화되지 않도록 설정
+        $(document).on('submit', '#reservationForm', function() {
+            $('#otherText').prop('disabled', false);
+        });
     }
 
-    function calculateAvailableTimes(dateStr) {
-        const allTimes = [
-            "09:00", "09:30",
-            "10:00", "10:30",
-            "11:00", "11:30",
-            "12:00", "12:30",
-            "13:00", "13:30",
-            "14:00", "14:30",
-            "15:00", "15:30",
-            "16:00", "16:30",
-            "17:00", "17:30",
-            "18:00"
-        ];
 
-        const reservedTimes = ["10:00", "14:00", "16:30"];  // 예시로 이미 예약된 시간들
+    function generateReservationHtml(result, user, pet) {
+        return `
+        <form id="reservationForm" action="reservation" method="POST">
 
-        return allTimes.map(time => ({
-            label: time,
-            isReserved: reservedTimes.includes(time)
-        }));
+            <div class="reservation-summary">
+                <h3>예약 정보</h3>
+
+                <div class="pet-selection">
+                   <p><strong>펫 선택:</strong> ${"${pet.pet_name}"}</p>
+                   <input type="hidden" name="petName" value="${"${pet.pet_name}"}">
+                   <input type="hidden" name="petId" value="${"${pet.pet_id}"}">
+                </div>
+
+               <div class="reservation-items">
+                    <h4>예약 항목</h4>
+                    <label><input type="radio" class="single-select-radio" name="reservationContent" value="진료"> 진료</label>
+                    <label><input type="radio" class="single-select-radio" name="reservationContent" value="상담"> 상담</label>
+                    <label><input type="radio" class="single-select-radio" name="reservationContent" value="미용"> 미용</label>
+                    <label>
+                        <input type="radio" class="single-select-radio" name="reservationContent" value="기타" id="otherRadio"> 기타
+                        <input type="text" id="otherText" name="customContent" placeholder="직접 입력하기" disabled>
+                    </label>
+                </div>
+
+                <div class="reservation-date">
+                  <p><strong>예약 날짜:</strong> ${"${result.selectedDate}"}</p>
+                  <input type="hidden" name="selectedDate" value="${"${result.selectedDate}"}">
+                  <p><strong>예약 시간:</strong> ${"${result.selectedTime}"}</p>
+                  <input type="hidden" name="selectedTime" value="${"${result.selectedTime}"}">
+                </div>
+
+                <div class="guardian-info">
+                    <h4>보호자 정보</h4>
+                    <p><strong>예약자 이름:</strong> ${"${user.name}"}</p>
+                    <input type="hidden" name="userName" value="${"${user.name}"}">
+                    <input type="hidden" name="userId" value="${"${user.id}"}">
+                </div>
+
+                  <input type="hidden" name="hospitalId" value="${hospital.h_id}">
+
+
+            </div>
+        </form>
+        `;
     }
+
+    $(document).ready(function() {
+        initializeCheckboxHandler();
+    });
 </script>
