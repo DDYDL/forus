@@ -35,7 +35,7 @@ public class HospitalQuestion extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			Integer hospitalId = Integer.parseInt(request.getParameter("hospitalId"));
 
-			List<Hospital_qna> hospitalQnaList = hospitalQnaService.selectHospitalQnaList(hospitalId);
+			List<Hospital_qna> hospitalQnaList = hospitalQnaService.getHospitalQnaList(hospitalId);
 
 			Gson gson = new Gson();
 			String json = gson.toJson(hospitalQnaList);
@@ -80,17 +80,16 @@ public class HospitalQuestion extends HttpServlet {
 
 		HospitalQnaService hospitalQnaService = new HospitalQnaServiceImpl();
 
-		Hospital_qna hospitalQna = new Hospital_qna();
-		hospitalQna.setH_id(Integer.parseInt(hospitalId));
-		hospitalQna.setUser_id(userId);
-		hospitalQna.setQ_title(questionContent);
-		hospitalQna.setQ_writer(userEmail);
+		Hospital_qna hospitalQna= hospitalQnaService.createHospitalQna(hospitalId, userId, userEmail, questionContent);
 
 		hospitalQnaService.insertHospitalQuestion(hospitalQna);
 
+
+		Gson gson = new Gson();
+
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write("{\"status\":\"success\"}");
+		response.getWriter().write(gson.toJson(hospitalQna));
 
 	}
 

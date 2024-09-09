@@ -9,6 +9,7 @@ public interface HospitalQnaService {
 
 	public void insertHospitalQuestion(Hospital_qna hospitalQna);
 
-	public List<Hospital_qna> selectHospitalQnaList(Integer hospitalId);
+	public List<Hospital_qna> getHospitalQnaList(Integer hospitalId);
 
+	Hospital_qna createHospitalQna(String hospitalId, Integer userId, String userEmail, String questionContent);
 }

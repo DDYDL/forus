@@ -276,6 +276,7 @@
     padding: 4px;
     background-color: #f9f9f9;
     text-align: center;
+    margin-right: -10%;
 }
 
 .qna-time, .qna-writer {
@@ -286,8 +287,9 @@
 
 .qna-title {
     color: #007bff;
-    text-align: left;
+    /*text-align: left;*/
     width: 40%;
+    margin-right: -28%;
 }
 
 .qna-title:hover {

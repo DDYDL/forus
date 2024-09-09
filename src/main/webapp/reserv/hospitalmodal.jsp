@@ -135,6 +135,7 @@
             type: 'GET',
             data: { hospitalId, dateStr },
             success: function (response) {
+
                 const availableTimes = response.availableTimeSlots;
                 const $timeSlotContainer = $('#time-slots-container');
                 $timeSlotContainer.html(generateTimeSlotHTML(availableTimes));
@@ -172,19 +173,20 @@
 
 <script>
     function initializeCheckboxHandler() {
-        $(document).on('click', '.single-select-checkbox', function() {
-            $('.single-select-checkbox').not(this).prop('checked', false);
-            if ($('#otherCheck').is(':checked')) {
+        $(document).on('change', '.single-select-radio', function() {
+            if ($('#otherRadio').is(':checked')) {
                 $('#otherText').prop('disabled', false);
             } else {
                 $('#otherText').prop('disabled', true).val('');
             }
         });
 
+        // 폼이 제출될 때 텍스트 입력이 비활성화되지 않도록 설정
         $(document).on('submit', '#reservationForm', function() {
             $('#otherText').prop('disabled', false);
         });
     }
+
 
     function generateReservationHtml(result, user, pet) {
         return `
@@ -199,13 +201,13 @@
                    <input type="hidden" name="petId" value="${"${pet.pet_id}"}">
                 </div>
 
-                <div class="reservation-items">
+               <div class="reservation-items">
                     <h4>예약 항목</h4>
-                    <label><input type="checkbox" class="single-select-checkbox" name="reservationContent" value="진료"> 진료</label>
-                    <label><input type="checkbox" class="single-select-checkbox" name="reservationContent" value="상담"> 상담</label>
-                    <label><input type="checkbox" class="single-select-checkbox" name="reservationContent" value="미용"> 미용</label>
+                    <label><input type="radio" class="single-select-radio" name="reservationContent" value="진료"> 진료</label>
+                    <label><input type="radio" class="single-select-radio" name="reservationContent" value="상담"> 상담</label>
+                    <label><input type="radio" class="single-select-radio" name="reservationContent" value="미용"> 미용</label>
                     <label>
-                        <input type="checkbox" class="single-select-checkbox" name="reservationContent" value="기타" id="otherCheck"> 기타
+                        <input type="radio" class="single-select-radio" name="reservationContent" value="기타" id="otherRadio"> 기타
                         <input type="text" id="otherText" name="customContent" placeholder="직접 입력하기" disabled>
                     </label>
                 </div>

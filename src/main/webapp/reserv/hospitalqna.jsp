@@ -93,25 +93,7 @@
 
                 data.forEach(function (qna) {
                     const qnaItem = createQnAItem(qna);
-
-                <%--    const qnaItem = `--%>
-                <%--    <div class="qna-item">--%>
-                <%--        <div class="qna-content">--%>
-                <%--            <div class="qna-writer">${"${qna.user_id}"}</div>--%>
-                <%--            <div class="qna-title">${"${qna.q_title}"}</div>--%>
-                <%--            <div class="qna-time">${"${qna.q_time}"}</div>--%>
-                <%--        </div>--%>
-                <%--        <div class="qna-answer" style="display: none;">--%>
-                <%--            <p><strong>ㄴ답변:</strong> ${"${qna.a_title || '답변이 없습니다.'}"}</p>--%>
-                <%--        </div>--%>
-                <%--    </div>--%>
-                <%--    <hr>--%>
-                <%--`;--%>
-
                     $('#qna-list').append(qnaItem);
-
-                    console.log("QnA Object:", qna);
-                    console.log(JSON.stringify(qna))
                 });
 
                 $('.qna-item').on('click', function () {
@@ -129,13 +111,14 @@
 
 <script>
     function createQnAItem(qna) {
+        const formattedTime = formatDate(qna.q_time);
 
         return  `
                     <div class="qna-item">
                         <div class="qna-content">
                             <div class="qna-writer">${"${qna.q_writer}"}</div>
                             <div class="qna-title">${"${qna.q_title}"}</div>
-                            <div class="qna-time">${"${qna.q_time}"}</div>
+                            <div class="qna-time">${"${formattedTime}"}</div>
                         </div>
                         <div class="qna-answer" style="display: none;">
                             <p><strong>ㄴ답변:</strong> ${"${qna.a_title || '답변이 없습니다.'}"}</p>
@@ -147,6 +130,20 @@
 
 </script>
 
+<script>
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+
+        return `${"${year}"}-${"${month}"}-${"${day}"} ${"${hours}"}:${"${minutes}"}`;
+    }
+
+
+</script>
 
 
 

@@ -36,8 +36,9 @@ public class ReservationServiceImpl implements ReservationService {
 		Hospital hospital = reservationDao.findHospitalLunchTimeAndIntervalByHospitalId(hospitalId);
 		List<LocalTime> reservedTimes = reservationDao.findReservedTimesByDate(params);
 
+		LocalDate reservationDate = LocalDate.parse(date);
 
-		List<TimeSlot> availableTimeSlots = calculateAvailableTimeSlots(hospitalTimes, reservedTimes, hospital);
+		List<TimeSlot> availableTimeSlots = calculateAvailableTimeSlots(hospitalTimes, reservedTimes, hospital, reservationDate);
 
 		result.put("availableTimeSlots", availableTimeSlots);
 		return result;
@@ -63,13 +64,16 @@ public class ReservationServiceImpl implements ReservationService {
 	private List<TimeSlot> calculateAvailableTimeSlots(
 		List<Hospital_time> hospitalTimes,
 		List<LocalTime> reservedTimes,
-		Hospital hospital) {
+		Hospital hospital,
+		LocalDate reservationDate) {
 
 		LocalTime lunchStartTime = hospital.getH_lunch_time_start();
 		LocalTime lunchEndTime = hospital.getH_lunch_time_end();
 		int intervalMinutes = hospital.getH_interval_time();
 
 		List<TimeSlot> availableTimeSlots = new ArrayList<>();
+		LocalTime nowTime = LocalTime.now();
+		LocalDate today = LocalDate.now();
 
 		LocalTime openingTime = null;
 		LocalTime closingTime = null;
@@ -82,12 +86,17 @@ public class ReservationServiceImpl implements ReservationService {
 				continue;
 			}
 
+			//시간대 별로 예약 가능한 시간을 계산
 			for (LocalTime currentTime = openingTime; !currentTime.isAfter(
 				closingTime); currentTime = currentTime.plusMinutes(intervalMinutes)) {
 				boolean isReserved = reservedTimes.contains(currentTime);
 				boolean isLunchTime = isDuringLunchTime(currentTime, lunchStartTime, lunchEndTime);
 
-				if (!isLunchTime && !isReserved) {
+	            boolean isPastTime = reservationDate.equals(today) && currentTime.isBefore(nowTime);
+
+				boolean isAvailable = !isReserved && !isLunchTime && !isPastTime;
+
+				if (isAvailable) {
 					availableTimeSlots.add(new TimeSlot(currentTime, true));
 				} else {
 					availableTimeSlots.add(new TimeSlot(currentTime, false));
@@ -97,7 +106,6 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 			return availableTimeSlots;
 		}
-
 
 	private static boolean isDuringLunchTime(LocalTime currentTime, LocalTime lunchStartTime, LocalTime lunchEndTime) {
 		return currentTime.isAfter(lunchStartTime.minusMinutes(1)) && currentTime.isBefore(
