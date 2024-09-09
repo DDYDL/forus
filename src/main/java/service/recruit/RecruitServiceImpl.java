@@ -69,7 +69,7 @@ public class RecruitServiceImpl implements RecruitService {
 	}
 
 	@Override
-	public boolean checkApply(Integer user_id, Integer post_id) throws Exception {
+	public boolean checkModify(Integer user_id, Integer post_id) throws Exception {
 		Recruit_post post = recruitDao.selectRecruit_post(post_id);
 		if(post==null) throw new Exception("구인 글 없음");
 		
@@ -89,7 +89,7 @@ public class RecruitServiceImpl implements RecruitService {
 	public User selectUserId(Integer user_id) throws Exception {
 		User user = userDao.selectUserId(user_id);
 		if(user==null) throw new Exception("사용자 없음");
-		return null;
+		return user;
 	}
 
 }

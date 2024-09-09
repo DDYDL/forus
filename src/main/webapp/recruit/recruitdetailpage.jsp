@@ -142,12 +142,12 @@
 		    <div class="btndiv"><a href="#" rel="modal:close" class="button btnPush btnBlueGreen">지원</a></div>
     	</form>
     </div>
-    
+    <br><br>
     <!-- 현재 로그인한 user id와 recruit_post의 user id가 같으면 지원하기 버튼을 수정하기 버튼으로 변경 -->
     <div class="btndiv">
-    <c:if test="${apply ne null}">
+    <c:if test="${user ne null}">
     	<c:choose>
-    		<c:when test="${apply eq true}">
+    		<c:when test="${modify eq true}">
     			<a href="#" id="modify" class="button btnPush btnBlueGreen">수정하기</a>
     		</c:when>
     		<c:otherwise>
