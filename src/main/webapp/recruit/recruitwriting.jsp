@@ -5,11 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>recruit writing</title>
+<!-- 부트스트랩 네비게이션 바 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- 캘린더 라이브러리 -->
+<!-- 캘린더 라이브러리 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+<!-- 카카오 주소 검색 API -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- css 파일 -->
 <link href="./css/recruit/recruitwriting.css?after" rel="stylesheet" type="text/css">
 <link href="./css/recruit/calendar.css?after" rel="stylesheet" type="text/css">
 </head>
@@ -58,12 +63,41 @@
 		    <nav class="navbar navbar-expand-sm">
 		        <div class="container-fluid">
 		            <div class="collapse navbar-collapse" id="mynavbar">
-		                <input class="form-control me-2" type="text" name="post_address" placeholder="지역명 검색">
-		                <button class="btn" type="button"><img src="./img/search.png" style="width:20px;height:20px"></button>
+		                <input id="address" class="form-control me-2" type="text" name="post_address" placeholder="지역명 검색">
+		                <button class="btn" type="button" onclick="daumPostcode()"><img src="./img/search.png" style="width:20px;height:20px"></button>
 		            </div>
 		        </div>
 		    </nav>
 		    </div>
+		    
+		    <!-- 카카오 주소 검색 API -->
+		    <script>
+		    	function daumPostcode() {
+		    		new daum.Postcode({
+		    			oncomplete: function(data) {
+		    				var roadAddr = data.roadAddress;
+		    				var extraRoadAddr = '';
+		    				
+		    				// 참고 항목 변수를 설정한다
+		    				// ~동/로/가 로 끝나는 주소 넣기
+		    				if(data.bulidingName !== '' && /[동|로|가]$/g.test(data.bname)) {
+		    					extraRoadAddr += data.bname;
+		    				}
+		    				// 빌딩, 아파트 이름 넣기
+		    				if(data.buildingName !== '' && data.apartment === 'Y'){
+		    	                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		    	            }
+		    				// 참고 항목이 있으면 괄호 안에 넣는다.
+		    				if(extraRoadAddr !== ''){
+		                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+		                    }
+		    				// 선택한 주소를 필드에 넣는다.
+		                    document.getElementById("address").value = roadAddr + extraRoadAddr;
+		    			}
+		    		}).open();
+		    	}
+		    </script>
+		    
 			<br>
 		    <p class="content-inner-title">제목</p>
 		    <div>

@@ -6,11 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>recruit detail page</title>
+<!-- 카카오 지도 API -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a46ab533ae3e523e60dc7d0057f867b&libraries=services">
+<!-- jquery 라이브러리 -->
 <script src="http://code.jquery.com//jquery-latest.min.js"></script>
+<!-- 모달 라이브러리 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<!-- css 파일 -->
 <link href="./css/recruit/recruitapplydetailpage.css" rel="stylesheet" type="text/css">
 <link href="./css/recruit/modal.css" rel="stylesheet" type="text/css">
 </head>
@@ -108,7 +112,7 @@
 		// 주소로 위도 경도 가져오기
 		var position = new kakao.maps.services.Places();
 		position.keywordSearch(address,placesSearchCB);
-		
+		// 호출되는 함수
 		var locData;
 		function placesSearchCB(data, status, pagination) {
 			locData = data;
@@ -117,9 +121,10 @@
 			console.log(paging);
 			if (status === kakao.maps.services.Status.OK) {
 				var bound = new kakao.maps.LatLngBounds();
-				// 마커 그리기
+				// 동으로 검색 시 첫번째 장소만 가져온다.
 				for (var i=0; i<1; i++) {
-					displayMaker(data[i]); 
+					// 마커 그리기
+					displayMaker(data[i]);
 					// 지도 범위 재설정하기
 					bound.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
 					map.setBounds(bound);
