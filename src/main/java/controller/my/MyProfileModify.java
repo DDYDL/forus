@@ -26,8 +26,18 @@ public class MyProfileModify extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/my/myProfileModify.jsp").forward(request, response);
+		request.setCharacterEncoding("utf-8");
+		Integer num = Integer.parseInt(request.getParameter("num"));
+		try {
+//			BoardService service = new BoardServiceImpl();
+//			Board board = service.boardDetail(num);
+//			request.setAttribute("board", board);
+//			request.getRequestDispatcher("/my/myProfileModify.jsp").forward(request, response);
+		} catch(Exception e) {
+			request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("err.jsp").forward(request, response);
+		}
+		
 	}
 
 	/**

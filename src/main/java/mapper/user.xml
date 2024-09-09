@@ -29,7 +29,7 @@
 				<if test="address != null">address=#{address},</if>
 				<if test="picture != null">picture=#{picture},</if>
 			</set>
-			where email = ${email}
+			where email = #{email}
 		</update>
 		
 		<select id="selectUserId" parameterType="Integer" resultType="user">

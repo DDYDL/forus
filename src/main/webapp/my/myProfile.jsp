@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,9 +27,9 @@
 
 	<div class="mypage-content">
 	
-	<span id="authentication">병원관계자라면?&nbsp;
+	<c:if test="${h_id ne null}"><span id="authentication">병원관계자라면?&nbsp;
          <a href="/forus/hmyNewHospital"><img src="play.png" width="16px">&nbsp;병원인증하기</a>
-      </span>
+      </span></c:if>
 		<div>
 			<h3>내 프로필</h3>
 		</div>
@@ -56,8 +57,8 @@
 				<li><span>${user.birthday }</span></li>
 				
 				<li class="title">성별</li><br><br>
-				<li><input type="radio" name="gender" value="male" checked="checked">
-						남 <input type="radio" name="gender" value="female"> 여
+				<li><input type="radio" name="gender" value="\${user.gender }">
+						남 <input type="radio" name="gender" value="\${user.gender }"> 여
 				</li>
 			</ul>
 
