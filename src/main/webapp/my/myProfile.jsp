@@ -45,7 +45,7 @@
 				<li class="line"><span>${user.phone }</span></li>
 				
 				<li class="title">생년월일</li><br><br>
-				<li><input type="date" name="birthday" data-placeholder="생일 선택"></li>
+				<li><span>${user.birthday }</span></li>
 				
 				<li class="title">성별</li><br><br>
 				<li><input type="radio" name="gender" value="male" checked="checked">
