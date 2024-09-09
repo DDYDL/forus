@@ -45,23 +45,23 @@
 					onchange="readURL(this);" style="display: none"></li>
 
 				<li class="title">이름</li><br><br>
-				<li><input type="text" class="underline" value="홍길동"></li>
+				<li><input type="text" class="underline" value=${user.name }></li>
 
 				<li class="title">닉네임</li><br><br>
-				<li><input type="text" class="underline" value="또치아빠"></li>
+				<li><input type="text" class="underline" value=${user.nickname }></li>
 
 				<li class="title">이메일</li><br><br>
 				<li><input type="text" class="underline"
-					value="honggildong@kosta.com"></li>
+					value=${user.email }></li>
 
 				<li class="title">비밀번호</li><br><br>
 				<li><input type="password" class="underlinesmall"
-					value="asdfasdf">
+					value=${user.password }>
 				<button>변경하기</button></li>
 
 				<li class="title">휴대전화번호</li><br><br>
 				<li><input type="tel" class="underlinesmall"
-					placeholder="입력이 필요합니다.">
+					value=${user.phone }>
 				<button>변경하기</button></li>
 
 				<li class="title">생년월일</li>
