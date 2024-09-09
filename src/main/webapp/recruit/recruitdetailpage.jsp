@@ -6,11 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>recruit detail page</title>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a46ab533ae3e523e60dc7d0057f867b&libraries=services">
+<script src="http://code.jquery.com//jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<link href="../css/recruit/recruitapplydetailpage.css" rel="stylesheet" type="text/css">
-<link href="../css/recruit/modal.css" rel="stylesheet" type="text/css">
+<link href="./css/recruit/recruitapplydetailpage.css" rel="stylesheet" type="text/css">
+<link href="./css/recruit/modal.css" rel="stylesheet" type="text/css">
 </head>
 <body> 
 	<%@ include file="../header.jsp" %>
@@ -29,18 +31,20 @@
 
 	<!-- pet 프로필 가져오기 -->
     <p class="content-inner-title">이번에 맡길 동물은요</p>
-    <div class="box"><table class="pet_profile"></table></div>
+    <div class="box"><table id="post_pet_profile"></table></div>
     
     <script>
+    	// post user의 pet 리스트 가져오기
 	    $.ajax({
 			url:'recruitWritingPetList',
-			type:'get',
+			type:'post',
 			async:true,
+			data:{post_user:${post_user.id}},
 			success:function(result) {
 				console.log(result);
 				var res = JSON.parse(result);
-				res.petList.forEach(function(pet) {
-					$('#pet_profile').append(`<td><img src="\${pet.pet_picture}"></td><td>\${pet.pet_name}</td><td>(\${pet.pet_age}살, \${pet.pet_gender})</td><td>\${pet.pet_breed}</td><td>\${pet.pet_memo}</td>`);
+				res.post_petList.forEach(function(pet) {
+					$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,\${pet.pet_gender})</td><td class="pet_td3">\${pet.pet_breed}</td><td class="pet_td3">\${pet.pet_memo}</td></tr>`);
 				})
 			}
 		})
@@ -51,13 +55,13 @@
     	<table>
     		<tr>
     			<td><label for="pay">급여</label></td>
-    			<td>일급</td>
-    			<td>30,000원</td>
+    			<td>${post.post_form}</td>
+    			<td>${post.post_pay}&nbsp;원</td>
     		</tr>
     		<tr>
     			<td><label for="time">시간</label></td>
     			<td>오전</td>
-    			<td>9:00 ~ 12:00</td>
+    			<td>${post.post_start_time}&nbsp;~&nbsp;${post.post_end_time}</td>
     		</tr>
     		<tr>
     			<td><label for="week">요일</label></td>
@@ -66,14 +70,14 @@
     	</table>
     </div>
 
-    <h5>지역</h5>
+    <p class="content-inner-title">지역</p>
     <div class="box">
     	<!-- 지도 API -->
-    	<table>
-    		<tr><td colspan="3" width="0"><div style="width:100%"><img src="../img/map.png" width="100%"></div></td></tr>
+    	<table style="width:100%">
+    		<tr><td colspan="3"><div id="map" style="width:100%; height:200px;"></div></td></tr>
     		<tr>
     			<td><label for="location">근무위치</label></td>
-    			<td>서울시 금천구 독산동</td>
+    			<td id="post_address">${post.post_address}</td>
     		</tr>
     		<tr>
     			<td><label for="subway">인근지하철</label></td>
@@ -83,11 +87,58 @@
     	</table>
 	</div>
 	
-    <h5>상세요강</h5>
+	<!-- 카카오 지도 API -->
+	<script>
+		// 지도를 담을 컨테이너
+		var container = document.getElementById('map');
+		
+		// 지도 옵션 설정
+		var option = {
+			center: new kakao.maps.LatLng(37.566826, 126.9786567), // recruit_post에 저장된 위치를 지도의 중앙으로 설정
+			level: 3 // 지도 확대 레벨
+		}
+		
+		// 지도 생성
+		var map = new kakao.maps.Map(container, option);
+		
+		// recruit_post에 저장된 주소 가져오기
+		var address = document.getElementById('post_address').innerHTML;
+		console.log(address);
+		
+		// 주소로 위도 경도 가져오기
+		var position = new kakao.maps.services.Places();
+		position.keywordSearch(address,placesSearchCB);
+		
+		var locData;
+		function placesSearchCB(data, status, pagination) {
+			locData = data;
+			paging = pagination;
+			console.log(data);
+			console.log(paging);
+			if (status === kakao.maps.services.Status.OK) {
+				var bound = new kakao.maps.LatLngBounds();
+				// 마커 그리기
+				for (var i=0; i<1; i++) {
+					displayMaker(data[i]); 
+					// 지도 범위 재설정하기
+					bound.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+					map.setBounds(bound);
+				}
+			}
+		}
+		
+		// 해당 위치에 마커 표시하기
+		function displayMaker(place) {
+			var marker = new kakao.maps.Marker({
+				map: map,
+				position: new kakao.maps.LatLng(place.y, place.x)
+			});
+		}
+	</script>
+	
+    <p class="content-inner-title">상세요강</p>
     <div class="box">
-        <p>8월 한달동안 주 3회 강아지 산책해주실 분 구합니다.
-			강아지가 활발해서 잘 달리시는 분 우대합니다~
-			10살 노견이라 중간에 안아달라고 할 수도 있습니다!!</p>
+        <p>${post.post_content}</p>
     </div>
     
     <!-- 모달 -->
@@ -101,10 +152,10 @@
 	      });
 	    });
 	 	// Close modal custom
-    	$("#custom-close").modal({
+    	/* $("#custom-close").modal({
     	  closeClass: 'icon-remove',
     	  closeText: 'x'
-    	});
+    	}); */
     </script>
     
     <div id="modal" class="modal">
@@ -142,6 +193,7 @@
 		    <div class="btndiv"><a href="#" rel="modal:close" class="button btnPush btnBlueGreen">지원</a></div>
     	</form>
     </div>
+    
     <br><br>
     <!-- 현재 로그인한 user id와 recruit_post의 user id가 같으면 지원하기 버튼을 수정하기 버튼으로 변경 -->
     <div class="btndiv">

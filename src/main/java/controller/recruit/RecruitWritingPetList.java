@@ -75,8 +75,39 @@ public class RecruitWritingPetList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		
+		try {
+			RecruitService service = new RecruitServiceImpl();
+			Integer post_user_id = Integer.parseInt(request.getParameter("post_user"));
+			List<Pet> pets = service.getPetList(post_user_id);
+			System.out.println("pets:" + pets);
+			
+			JSONObject resJson = new JSONObject();
+			JSONArray jsonPosts = new JSONArray();
+			for(Pet pet : pets) {
+				JSONObject jsonPost = new JSONObject();
+				jsonPost.put("pet_id", pet.getPet_id());
+				jsonPost.put("user_id", pet.getUser_id());
+				jsonPost.put("pet_name", pet.getPet_name());
+				jsonPost.put("pet_species", pet.getPet_species());
+				jsonPost.put("pet_breed", pet.getPet_breed());
+				jsonPost.put("pet_gender", pet.getPet_gender());
+				jsonPost.put("pet_age", pet.getPet_age());
+				jsonPost.put("pet_neutering", pet.isPet_neutering());
+				jsonPost.put("pet_picture", pet.getPet_picture());
+				jsonPost.put("pet_memo", pet.getPet_memo());
+				jsonPost.put("pet_num", pet.getPet_num());
+				jsonPosts.add(jsonPost);
+			}
+			resJson.put("post_petList", jsonPosts);
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().write(resJson.toJSONString());
+		} catch(Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("err.jsp").forward(request, response);
+		}
 	}
 
 }
