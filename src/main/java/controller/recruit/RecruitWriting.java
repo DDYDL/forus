@@ -44,9 +44,8 @@ public class RecruitWriting extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RecruitService service = new RecruitServiceImpl();
-		
 		try {
+			RecruitService service = new RecruitServiceImpl();
 			// form태그의 name으로 넘어온 value들을 파라미터로 전송
 			service.recruit_postWrite(request);
 			// recruitList.jsp로 이동

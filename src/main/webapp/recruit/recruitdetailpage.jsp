@@ -26,6 +26,7 @@
 	
 	<!-- pet_id를 위한 필드 -->
     <input id="post_pet_id" type="hidden" value="${post.pet_id}">
+    
 	<!-- user 프로필 가져오기 -->
     <p class="content-inner-title">작성자</p>
     <div class="box">
@@ -175,14 +176,16 @@
     <div id="modal" class="modal">
     	<p class="content-title">지원하기</p>
     	<p class="content-inner-title">강아지 산책시켜주실 분!!</p>
-		<form action="recruitapplyend.jsp" method="post">
+		<form action="recruitApply" method="post">
+			<!-- post_id를 위한 필드 -->
+    		<input type="hidden" name="post_id" value="${post.post_id}">
 			<p class="content-inner-title">제목</p>
     		<div>
-        		<input type="text" class="title" placeholder=" 제목을 입력하세요">
+        		<input type="text" name="apply_title" class="title" placeholder="제목을 입력하세요">
     		</div>
 			<p class="content-inner-title">전달 메시지</p>
 		    <div>
-		        <textarea name="" class="textarea" cols="63" rows="10" placeholder=" 전달할 메시지를 입력하세요"></textarea>
+		        <textarea name="apply_content" class="textarea" cols="63" rows="10" placeholder="전달할 메시지를 입력하세요"></textarea>
 		    </div>
 		    <div class="list-header">
 		        <div><p class="content-inner-title">지원정보 확인</p></div>
@@ -204,7 +207,7 @@
 		    		<td class="right"><p class="content-document">공개</p></td>
 		    	</tr>
 		    </table>
-		    <div class="btndiv"><a href="#" rel="modal:close" class="button btnPush btnBlueGreen">지원</a></div>
+		    <div class="btndiv"><input type="submit" class="button btnPush btnBlueGreen" value="지원"></div>
     	</form>
     </div>
     
