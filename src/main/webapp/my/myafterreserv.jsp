@@ -31,7 +31,7 @@
 			<tr onclick="location.href='./reservdetail?reserv_id=\${reserv.reserv_id}'">
 				<td>${reserv.reserv_date }</td>
 				<td>${reserv.reserv_time }</td>
-				<td><img src="img/pet/${reserv.pet_picture}" width="80px"></td>
+				<td><img src="image?file=${reserv.pet_picture}" width="80px"></td>
 				<td class="textalign_left">${reserv.pet_name }</td>
 				<td>${reserv.h_name }</td>
 			</tr>
