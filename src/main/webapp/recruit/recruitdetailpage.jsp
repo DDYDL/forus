@@ -24,6 +24,9 @@
 	<div class="content">
 		<p class="content-title">${post.post_title}</p>
 	
+	<!-- pet_id를 위한 필드 -->
+    <input id="post_pet_id" type="hidden" value="${post.pet_id}">
+    
 	<!-- user 프로필 가져오기 -->
     <p class="content-inner-title">작성자</p>
     <div class="box">
@@ -47,8 +50,11 @@
 			success:function(result) {
 				console.log(result);
 				var res = JSON.parse(result);
+				var pet_id = document.getElementById('post_pet_id').value;
 				res.post_petList.forEach(function(pet) {
-					$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,\${pet.pet_gender})</td><td class="pet_td3">\${pet.pet_breed}</td><td class="pet_td3">\${pet.pet_memo}</td></tr>`);
+					if(pet_id == pet.pet_id) {
+						$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,\${pet.pet_gender})</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3">\${pet.pet_breed}</td><td class="pet_td3">\${pet.pet_memo}</td></tr>`);
+					}
 				})
 			}
 		})
@@ -64,8 +70,7 @@
     		</tr>
     		<tr>
     			<td><label for="time">시간</label></td>
-    			<td>오전</td>
-    			<td>${post.post_start_time}&nbsp;~&nbsp;${post.post_end_time}</td>
+    			<td id="time_td"></td>
     		</tr>
     		<tr>
     			<td><label for="week">요일</label></td>
@@ -73,6 +78,14 @@
     		</tr>
     	</table>
     </div>
+    
+    <script>
+    	var start_time = `${post.post_start_time}`.slice(0,5);
+		var end_time = `${post.post_end_time}`.slice(0,5);
+		if(start_time !== null && end_time !== null){
+			document.getElementById('time_td').innerText = start_time+" ~ "+end_time;
+		}
+    </script>
 
     <p class="content-inner-title">지역</p>
     <div class="box">
@@ -93,12 +106,13 @@
 	
 	<!-- 카카오 지도 API -->
 	<script>
+		// recruit_post에 저장된 위치를 지도의 중앙으로 설정
 		// 지도를 담을 컨테이너
 		var container = document.getElementById('map');
 		
 		// 지도 옵션 설정
 		var option = {
-			center: new kakao.maps.LatLng(37.566826, 126.9786567), // recruit_post에 저장된 위치를 지도의 중앙으로 설정
+			center: new kakao.maps.LatLng(37.566826, 126.9786567), // 아무것도 안 뜨면 기본으로 뜨는 좌표
 			level: 3 // 지도 확대 레벨
 		}
 		
@@ -108,41 +122,31 @@
 		// recruit_post에 저장된 주소 가져오기
 		var address = document.getElementById('post_address').innerHTML;
 		console.log(address);
-		// 괄호 안에 있는 동만 가져오기
-		const result = Array.from(address.matchAll('\\((.*?)\\)'), match => `\${match[0]}`);
-		var address_0 = result[0].toString();
-		var address_1 = address_0.replace("(", "");
-		var address_2 = address_1.replace(")", "");
-		console.log(address_2);
+		// 앞의 주소만 가져오기
+		const results = address.split("(");
+		console.log(results[0]);
 		
-		// 주소로 위도 경도 가져오기
-		var position = new kakao.maps.services.Places();
-		position.keywordSearch(address_2,placesSearchCB);
-		// 호출되는 함수
-		var locData;
-		function placesSearchCB(data, status, pagination) {
-			locData = data;
-			paging = pagination;
-			console.log(data);
-			console.log(paging);
+		// 주소-좌표 변환 객체 생성
+		var geocoder = new kakao.maps.services.Geocoder();
+		// 주소로 검색하는 함수
+		geocoder.addressSearch(results[0],function(result, status) {
 			if (status === kakao.maps.services.Status.OK) {
-				var bound = new kakao.maps.LatLngBounds();
-				// 동으로 검색 시 첫번째 장소만 가져온다.
-				for (var i=0; i<1; i++) {
-					// 마커 그리기
-					displayMaker(data[i]);
-					// 지도 범위 재설정하기
-					bound.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-					map.setBounds(bound);
-				}
+				// 좌표 받아오기
+				 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				// 지도 범위 재설정하기
+				 var bound = new kakao.maps.LatLngBounds();
+				 bound.extend(new kakao.maps.LatLng(result[0].y, result[0].x));
+				 map.setBounds(bound);
+				// 마커 그리기
+				 displayMaker(coords);
 			}
-		}
+		});
 		
 		// 해당 위치에 마커 표시하기
-		function displayMaker(place) {
+		function displayMaker(coords) {
 			var marker = new kakao.maps.Marker({
 				map: map,
-				position: new kakao.maps.LatLng(place.y, place.x)
+				position: coords
 			});
 		}
 	</script>
@@ -172,14 +176,16 @@
     <div id="modal" class="modal">
     	<p class="content-title">지원하기</p>
     	<p class="content-inner-title">강아지 산책시켜주실 분!!</p>
-		<form action="recruitapplyend.jsp" method="post">
+		<form action="recruitApply" method="post">
+			<!-- post_id를 위한 필드 -->
+    		<input type="hidden" name="post_id" value="${post.post_id}">
 			<p class="content-inner-title">제목</p>
     		<div>
-        		<input type="text" class="title" placeholder=" 제목을 입력하세요">
+        		<input type="text" name="apply_title" class="title" placeholder="제목을 입력하세요">
     		</div>
 			<p class="content-inner-title">전달 메시지</p>
 		    <div>
-		        <textarea name="" class="textarea" cols="63" rows="10" placeholder=" 전달할 메시지를 입력하세요"></textarea>
+		        <textarea name="apply_content" class="textarea" cols="63" rows="10" placeholder="전달할 메시지를 입력하세요"></textarea>
 		    </div>
 		    <div class="list-header">
 		        <div><p class="content-inner-title">지원정보 확인</p></div>
@@ -201,7 +207,7 @@
 		    		<td class="right"><p class="content-document">공개</p></td>
 		    	</tr>
 		    </table>
-		    <div class="btndiv"><a href="#" rel="modal:close" class="button btnPush btnBlueGreen">지원</a></div>
+		    <div class="btndiv"><input type="submit" class="button btnPush btnBlueGreen" value="지원"></div>
     	</form>
     </div>
     
@@ -211,7 +217,7 @@
     <c:if test="${user ne null}">
     	<c:choose>
     		<c:when test="${modify eq true}">
-    			<a href="#" id="modify" class="button btnPush btnBlueGreen">수정하기</a>
+    			<a href="recruitDetailpageModify?post_id=${post.post_id}" id="modify" class="button btnPush btnBlueGreen">수정하기</a>
     		</c:when>
     		<c:otherwise>
     			<a href="#modal" id="openmodal" rel="modal:open" class="button btnPush btnBlueGreen">지원하기</a>

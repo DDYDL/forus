@@ -15,7 +15,10 @@ public interface RecruitService {
 	Recruit_post recruit_postDatail(Integer post_id) throws Exception;
 	// 로그인 되어있을 경우 수정하기 버튼 띄우기
 	boolean checkModify(Integer user_id, Integer post_id) throws Exception;
+	// 이미 작성된 Recruit_post 수정하기
+	Integer recruit_postModify(HttpServletRequest request) throws Exception;
 	// user id로 해당하는 pet 리스트 가져오기
 	List<Pet> getPetList(Integer user_id) throws Exception;
+	// user id로 해당하는 user 가져오기
 	User selectUserId(Integer user_id) throws Exception;
 }
