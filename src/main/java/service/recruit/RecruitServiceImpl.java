@@ -78,6 +78,37 @@ public class RecruitServiceImpl implements RecruitService {
 		if(post.getUser_id().equals(user_id)) return true;
 		return false;
 	}
+	
+	@Override
+	public Integer recruit_postModify(HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		
+		// RecruitDetailpageModify에서 파라미터로 넘어온 value들을 지정
+		Recruit_post post = new Recruit_post();
+		// request session의 인자 user
+		User user = (User)request.getSession().getAttribute("user");
+		
+		// 해당 user의 pet 리스트 가져오기
+		List<Pet> pets = getPetList(user.getId());
+		for(Pet pet: pets) {
+			if(pet.getPet_name().equals(request.getParameter("pet_name"))) {
+				post.setPet_id(pet.getPet_id());
+			}
+		}
+		
+		post.setPost_id(Integer.parseInt(request.getParameter("post_id")));
+		post.setPost_title(request.getParameter("post_title"));
+		post.setPost_content(request.getParameter("post_content"));
+		post.setPost_address(request.getParameter("post_address"));
+		post.setPost_form(request.getParameter("post_form"));
+		post.setPost_pay(request.getParameter("post_pay"));
+		post.setPost_date(request.getParameter("post_date"));
+		post.setPost_start_time(request.getParameter("post_start_time"));
+		post.setPost_end_time(request.getParameter("post_end_time"));
+		System.out.println("post:"+post);
+		recruitDao.updateRecruit_post(post);
+		return post.getPost_id();
+	}
 
 	@Override
 	public List<Pet> getPetList(Integer user_id) throws Exception {
@@ -92,5 +123,4 @@ public class RecruitServiceImpl implements RecruitService {
 		if(user==null) throw new Exception("사용자 없음");
 		return user;
 	}
-
 }

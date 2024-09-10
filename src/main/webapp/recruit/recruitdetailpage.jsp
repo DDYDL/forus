@@ -24,6 +24,8 @@
 	<div class="content">
 		<p class="content-title">${post.post_title}</p>
 	
+	<!-- pet_id를 위한 필드 -->
+    <input id="post_pet_id" type="hidden" value="${post.pet_id}">
 	<!-- user 프로필 가져오기 -->
     <p class="content-inner-title">작성자</p>
     <div class="box">
@@ -47,8 +49,11 @@
 			success:function(result) {
 				console.log(result);
 				var res = JSON.parse(result);
+				var pet_id = document.getElementById('post_pet_id').value;
 				res.post_petList.forEach(function(pet) {
-					$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,\${pet.pet_gender})</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3">\${pet.pet_breed}</td><td class="pet_td3">\${pet.pet_memo}</td></tr>`);
+					if(pet_id == pet.pet_id) {
+						$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,\${pet.pet_gender})</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3">\${pet.pet_breed}</td><td class="pet_td3">\${pet.pet_memo}</td></tr>`);
+					}
 				})
 			}
 		})
@@ -100,12 +105,13 @@
 	
 	<!-- 카카오 지도 API -->
 	<script>
+		// recruit_post에 저장된 위치를 지도의 중앙으로 설정
 		// 지도를 담을 컨테이너
 		var container = document.getElementById('map');
 		
 		// 지도 옵션 설정
 		var option = {
-			center: new kakao.maps.LatLng(37.566826, 126.9786567), // recruit_post에 저장된 위치를 지도의 중앙으로 설정
+			center: new kakao.maps.LatLng(37.566826, 126.9786567), // 아무것도 안 뜨면 기본으로 뜨는 좌표
 			level: 3 // 지도 확대 레벨
 		}
 		
@@ -121,6 +127,7 @@
 		
 		// 주소-좌표 변환 객체 생성
 		var geocoder = new kakao.maps.services.Geocoder();
+		// 주소로 검색하는 함수
 		geocoder.addressSearch(results[0],function(result, status) {
 			if (status === kakao.maps.services.Status.OK) {
 				// 좌표 받아오기
@@ -207,7 +214,7 @@
     <c:if test="${user ne null}">
     	<c:choose>
     		<c:when test="${modify eq true}">
-    			<a href="#" id="modify" class="button btnPush btnBlueGreen">수정하기</a>
+    			<a href="recruitDetailpageModify?post_id=${post.post_id}" id="modify" class="button btnPush btnBlueGreen">수정하기</a>
     		</c:when>
     		<c:otherwise>
     			<a href="#modal" id="openmodal" rel="modal:open" class="button btnPush btnBlueGreen">지원하기</a>

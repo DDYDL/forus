@@ -10,4 +10,5 @@ public interface RecruitDao {
 	void insertRecruit_post(Recruit_post post) throws Exception;
 	// Recruit_post 데이터베이스에서 select
 	Recruit_post selectRecruit_post(Integer post_id) throws Exception;
+	void updateRecruit_post(Recruit_post post) throws Exception;
 }
