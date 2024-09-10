@@ -5,10 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import dto.Pet;
 
 public interface PetService {
-	void join(Pet pet) throws Exception;
+	//작성한 펫 프로필 데베에 저장
+	void insertPet(HttpServletRequest request)throws Exception;
 
-	void petprofile(HttpServletRequest request) throws Exception;
 
 	Integer petModify(HttpServletRequest request) throws Exception;
+	Pet petDetail(Integer pet_id)throws Exception;
 
 }

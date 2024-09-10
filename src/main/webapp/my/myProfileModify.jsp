@@ -30,7 +30,7 @@
 </script>
 <body>
 	<%@ include file="../mainmypage.jsp"%>
-	<form action = "/forus/myProfile" method="post">
+	<form action = "/forus/myProfile" method="post" enctype="multipart/form-data">
 		<div class="mypage-content">
 			<div>
 				<h3>내 프로필</h3>
@@ -47,18 +47,18 @@
 					<li class="title">이름</li>
 					<br>
 					<br>
-					<li><input type="text" class="underline" value=${user.name }></li>
+					<li><input type="text" class="underline" name="name" value=${user.name }></li>
 
 					<li class="title">닉네임</li>
 					<br>
 					<br>
-					<li><input type="text" class="underline"
+					<li><input type="text" class="underline" name="nickname"
 						value=${user.nickname }></li>
 
 					<li class="title">이메일</li>
 					<br>
 					<br>
-					<li><input type="text" class="underline" value=${user.email }></li>
+					<li><input type="text" class="underline" name="name" value=${user.email }></li>
 
 					<li class="title">비밀번호</li>
 					<br>
@@ -90,7 +90,7 @@
 				<div class="find-btn">
 					<input type="submit" title="Button push blue/green"
 						class=" btn btnPush btnBlueGreen find-btn1"
-						onclick="location.href='/forus/myProfile'" value="수정완료">
+						value="수정완료">
 
 				</div>
 			</div>

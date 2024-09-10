@@ -25,7 +25,7 @@
 </script>
 <body>
 	<%@ include file="../mainmypage.jsp"%>
-
+<form action="myPetModify" method="post" enctype="multipart/form-data">
 	<div class="mypage-content">
 		<div>
 			<h3>반려동물 프로필 수정</h3>
@@ -40,23 +40,23 @@
 					onchange="readURL(this);" style="display: none"></li>
 
 				<li>반려동물 이름</li>
-				<li><input type="text" class="underline" value="또치"></li>
+				<li><input type="text" class="underline" value="${pet.pet_name }"></li>
 
 				<li>종류</li>
-				<li><input type="text" class="underline" value="개"></li>
+				<li><input type="text" class="underline" value="${pet.pet_species }"></li>
 
 				<li>품종</li>
-				<li><input type="text" class="underline" value="저먼셰퍼드"></li>
+				<li><input type="text" class="underline" value="${pet.pet_breed }"></li>
 
 				<li>동물등록번호</li>
-				<li><input type="text" class="underline" value="123456789"></li>
+				<li><input type="text" class="underline" value="${pet.pet_num }"></li>
 
 				<li class="title">성별</li>
 				<br>
 				<br>
-				<li><form>
-				<input type="radio" name="gender" value="male"> 남
-				<input type="radio" name="gender"value="female"> 여
+				<li><form >
+				<input type="radio" name="gender" value="M"> 남
+				<input type="radio" name="gender"value="F"> 여
 				</form></li>
 
 				<li class="title">나이</li>
@@ -88,19 +88,20 @@
 						</select>
 						</li>
 						<li class="title">특이사항</li><br><br>
-						<li><textarea class="tdinput" id="input_box" rows="4" cols="30">가족이 된 지 5년차!</textarea></li>
+						<li><textarea class="tdinput" id="input_box" rows="4" cols="30">${pet.pet_memo }</textarea></li>
 <br><br><br>
 
 			</ul>
 <br><br><br><br><br><br>
 			<div class="find-btn">
-				<button type="submit" title="Button push blue/green"
+				<input type="submit" title="Button push blue/green"
 					class=" btn btnPush btnBlueGreen find-btn1"
-					onclick="location.href='/forus/myPetList'">수정 완료</button>
+					onclick="location.href='/forus/myPetList'" value="수정완료">
 
 			</div>
 		</div>
 
 	</div>
+	</form>
 </body>
 </html>

@@ -5,13 +5,18 @@
 <mapper namespace="mapper.pet">
 	<insert id="insertPet" parameterType="pet">
 		<![CDATA[
-			insert into pet (pet_name,pet_species, pet_breed, pet_gender,
+			insert into pet (user_id,pet_name,pet_species, pet_breed, pet_gender,
 pet_age, pet_neutering, pet_picture, pet_memo, pet_num)
-			values(#{pet_name}, #{pet_species}, #{pet_breed}, #{pet_gender}, #{pet_age},
+			values(#{user_id},#{pet_name}, #{pet_species}, #{pet_breed}, #{pet_gender}, #{pet_age},
 			 #{pet_neutering}, #{pet_picture}, #{pet_memo}, #{pet_num} )
 		]]>
 	</insert>
 
+	<select id="selectPet" parameterType="Integer" resultType="pet">
+		<![CDATA[
+			select * from pet where pet_id=#{pet_id}
+		]]>
+	</select>
 
 	<update id="updatePet" parameterType="pet">
 		update pet
@@ -26,7 +31,7 @@ pet_age, pet_neutering, pet_picture, pet_memo, pet_num)
 			<if test="pet_memo!=null"> pet_memo=#{pet_memo}, </if>
 			<if test="pet_num!=null"> pet_num=#{pet_num},  </if>
 		</set>
-		where pet_id = ${pet_id}
+		where pet_id = #{pet_id}
 	</update>
 	
 	<select id="selectPetList" parameterType="Integer" resultType="pet">

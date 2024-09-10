@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,7 @@
 <body>
 	<%@ include file="../mainmypage.jsp"%>
 
-	<div class="mypage-content">
+	<div class="mypage-content-list">
 		<div>
 			<h3 align="center">반려동물 프로필</h3>
 		</div>
@@ -62,40 +63,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td><div class="profilebox">
-							<img class="profile" src="/img/dog1.png">
-						</div></td>
-					<td><a href="/forus/myPetModify">또치</a></td>
-					<td>개</td>
-					<td>저먼셰퍼드</td>
-					<td>남</td>
+				<c:forEach items="${petList }" var="pet">
+					<tr id="petlist">
+						<td><input type="checkbox" /></td>
+						<td><div class="profilebox">
+								<img class="profile" src="/img/dog1.png">
+							</div></td>
+						<td><a href="/forus/myPetModify?pet_id=${pet.pet_id}">${pet.pet_name }</a></td>
+						<td>${pet.pet_species }</td>
+						<td>${pet.pet_breed }</td>
+						<td>${pet.pet_gender }</td>
+					</tr>
+				</c:forEach>
 
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td><div class="profilebox">
-							<img class="profile" src="../img/dog2.png">
-						</div></td>
-					<td><a href="/forus/myPetModify">지구</a></td>
-					<td>새</td>
-					<td>사랑앵무</td>
-					<td>여</td>
-
-				</tr>
-
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td><div class="profilebox">
-							<img class="profile" src="../img/dog3.png">
-						</div></td>
-					<td><a href="/forus/myPetModify">후추</a></td>
-					<td>고양이</td>
-					<td>아메리칸 숏헤어</td>
-					<td>남</td>
-
-				</tr>
 			</tbody>
 		</table>
 		<div>

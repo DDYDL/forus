@@ -11,7 +11,7 @@
 			h_memo_road , h_pay, h_sns, h_parking, h_isopen,
 			h_lunch_time_start, _lunch_time_end, h_interval_time)
 			
-			values (#{h_id},#{user_id},#{h_exponent_name},#{h_num},
+			values (#{user_id},#{h_exponent_name},#{h_num},
 			#{h_license},#{h_name},#{h_manager_name},#{h_phone},#{h_address},
 			#{h_longitude},#{_latitude},#{h_animal_type},#{h_picture},#{h_memo},
 			#{h_memo_road},#{h_pay},#{h_sns},#{h_parking},#{h_isopen},

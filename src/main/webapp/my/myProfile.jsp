@@ -27,9 +27,9 @@
 
 	<div class="mypage-content">
 	
-	<c:if test="${h_id ne null}"><span id="authentication">병원관계자라면?&nbsp;
+	<span id="authentication">병원관계자라면?&nbsp;
          <a href="/forus/hmyNewHospital"><img src="play.png" width="16px">&nbsp;병원인증하기</a>
-      </span></c:if>
+      </span>
 		<div>
 			<h3>내 프로필</h3>
 		</div>
@@ -65,7 +65,7 @@
 			<div class="find-btn">
 				<button type="button" title="Button push blue/green"
 					class=" btn btnPush btnBlueGreen find-btn1"
-					onclick="location.href='/forus/myProfileModify'">수정</button>
+					onclick="location.href='/forus/myProfileModify?id=${user.id}'">수정</button>
 
 			</div>
 		</div>

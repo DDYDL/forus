@@ -7,43 +7,54 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.User;
+import service.my.UserService;
+import service.my.UserServiceImpl;
+
 /**
  * Servlet implementation class MyProfileModify
  */
 @WebServlet("/myProfileModify")
 public class MyProfileModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public MyProfileModify() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		Integer num = Integer.parseInt(request.getParameter("num"));
-		try {
-//			BoardService service = new BoardServiceImpl();
-//			Board board = service.boardDetail(num);
-//			request.setAttribute("board", board);
-//			request.getRequestDispatcher("/my/myProfileModify.jsp").forward(request, response);
-		} catch(Exception e) {
-			request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("err.jsp").forward(request, response);
-		}
-		
+	public MyProfileModify() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		
+		System.out.println(id);
+		
+		try {
+			UserService service = new UserServiceImpl();
+			User user = service.userDetail(id);
+			request.setAttribute("user", user);
+			request.getRequestDispatcher("/my/myProfileModify.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("err.jsp").forward(request, response);
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

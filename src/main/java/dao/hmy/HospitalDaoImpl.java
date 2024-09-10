@@ -1,8 +1,11 @@
 package dao.hmy;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import dto.Hospital;
+import dto.Reservation;
 import util.MybatisSqlSessionFactory;
 
 public class HospitalDaoImpl implements HospitalDao {
@@ -11,7 +14,6 @@ public class HospitalDaoImpl implements HospitalDao {
 
 	@Override
 	public void insertHospital(Hospital hospital) throws Exception {
-		// Hospital shospital = selectHospital(hospital.getH_id());
 		sqlSession.insert("mapper.Hospital.insertHospital", hospital);
 		sqlSession.commit();
 
@@ -27,6 +29,11 @@ public class HospitalDaoImpl implements HospitalDao {
 		sqlSession.update("mapper.Hospital.updateHospital", hospital);
 		sqlSession.commit();
 
+	}
+
+	@Override
+	public List<Reservation> selectReservationList(Integer user_id) throws Exception {
+		return sqlSession.selectList("mapper.reservation.reservList", user_id);
 	}
 
 }

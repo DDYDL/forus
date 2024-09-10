@@ -91,4 +91,11 @@
 		    </if>
     	]]>
 	</select>
+	
+	
+	<select id="reservList" parameterType="String" resultType="Reservation">
+		<![CDATA[
+			select * from Reservation where user_id=#{user_id}
+		]]> 
+	</select>
 </mapper>

@@ -5,8 +5,10 @@ import java.util.List;
 import dto.Pet;
 
 public interface PetDao {
+	//pet 데이터베이스에 insert
 	void insertPet(Pet pet) throws Exception;
-
+	
+	//pet 불러오기
 	Pet selectPet(Integer pet_id) throws Exception;
 
 	void updatePet(Pet pet) throws Exception;

@@ -44,28 +44,16 @@ public class MyNewPet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		Pet pet = new Pet();
-		pet.setPet_name(request.getParameter("name"));
-		pet.setPet_species(request.getParameter("species"));
-		pet.setPet_breed(request.getParameter("breed"));
-		pet.setPet_gender(request.getParameter("gender"));
-		pet.setPet_age(Integer.parseInt(request.getParameter("age")));
-		//pet.setPet_neutering(request.getParameter("neutering"));
-		pet.setPet_picture(request.getParameter("picture"));
-		pet.setPet_memo(request.getParameter("memo"));
-		pet.setPet_num(Integer.parseInt(request.getParameter("pet_num")));
-		
-		
-		
-	
-		//HttpSession session = request.getSession();
+
+		PetService service = new PetServiceImpl();
 		try {
-				PetService service = new PetServiceImpl();
-				service.join(pet);
-			
+			service.insertPet(request);
+			response.sendRedirect("myPetList");
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", e.getMessage());
+			request.setAttribute("err", "등록 오류");
+			request.getRequestDispatcher("err.jsp").forward(request, response);
+
 		}
 	}
 }

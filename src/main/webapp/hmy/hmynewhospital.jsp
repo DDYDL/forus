@@ -39,7 +39,7 @@
 	<div class="mypage-content">
 
 		<div class="bodybox">
-			<form>
+			<form action="hmyNewHospital" method="post" enctype="multipart/form-data">
 				<div class="containerbox">
 
 					<div>
@@ -228,13 +228,11 @@
 						<tbody>
 							<tr>
 								<td><label for="name">상세 설명</label></td>
-								<td><input class="tdinput" type="text" id="input_box"
-									name="h_memo" required></td>
+								<td><textarea class="tdinput" id="input_box" rows="4" cols="30" name="h_memo" placeholder="방문자들의 편의를 위해 진료 가능한 동물 종류 다양하게 또는 가능한 업무(진료, 미용, 엑스레이, 수술) 등을 작성해주세요"></textarea></td>
 							</tr>
 							<tr>
 								<td><label for="name">찾아오는 길</label></td>
-								<td><input class="tdinput" type="text" id="input_box"
-									name="h_memo_road" required></td>
+								<td><textarea class="tdinput" id="input_box" rows="4" cols="30" name="h_memo_road" placeholder="골목 또는 2층 이상의 찾기 어려운 위치일 경우 상세 입력 부탁합니다."></textarea></td>
 							</tr>
 
 							<tr>
@@ -282,7 +280,7 @@
 						<div class="find-btn">
 							<input type="submit" title="Button push blue/green"
 								class=" btn btnPush btnBlueGreen find-btn1"
-								onclick="location.href='/forus/hmyNewHospitalSuccess'" value="병원 등록">
+								 value="병원 등록">
 
 						</div>
 					</div>
