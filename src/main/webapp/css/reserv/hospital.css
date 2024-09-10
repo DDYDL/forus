@@ -250,11 +250,11 @@
     border-bottom: 1px solid #ddd;
 }
 
-.qna-item {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-}
+/*.qna-item {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    !*cursor: pointer;*!*/
+/*}*/
 
 .qna-content {
     display: flex;
@@ -277,6 +277,7 @@
     background-color: #f9f9f9;
     text-align: center;
     margin-right: -10%;
+    pointer-events: none;
 }
 
 .qna-time, .qna-writer {
@@ -290,6 +291,7 @@
     /*text-align: left;*/
     width: 40%;
     margin-right: -28%;
+    cursor: pointer;
 }
 
 .qna-title:hover {
@@ -321,7 +323,10 @@
     cursor: pointer;
 }
 
-
+.qna-answer .answer-input,
+.qna-answer .answer-submit-btn {
+    pointer-events: auto; /* 내부 입력 요소에는 클릭 가능하게 설정 */
+}
 
 
 
@@ -424,3 +429,97 @@
 
 
 
+
+
+.qna-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+
+.qna-table thead th {
+    border-bottom: 2px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.qna-table tbody td {
+    padding: 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+
+.qna-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+
+.qna-title {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* QnA 입력 컨테이너 스타일 */
+#qna-input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* 입력 필드 스타일 */
+#qna-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* 버튼 스타일 */
+#qna-submit-btn {
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#qna-submit-btn:hover {
+    background-color: #555;
+}
+
+.qna-answer-row td {
+    vertical-align: middle;
+
+}
+
+
+
+
+
+/* 답변 입력 필드 스타일 */
+.answer-input {
+    flex: 1;
+    height: 50px;
+    width: 128%;
+    margin-left: -48%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* 답변 등록 버튼 스타일 */
+.answer-submit-btn {
+    height: 40px;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    color: #333;
+    cursor: pointer;
+}

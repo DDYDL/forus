@@ -27,26 +27,27 @@ public class HospitalQuestion extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
+		ServletException,
+		IOException {
 		request.setCharacterEncoding("UTF-8");
 
+		HospitalQnaService hospitalQnaService = new HospitalQnaServiceImpl();
+		request.setCharacterEncoding("UTF-8");
+		Integer hospitalId = Integer.parseInt(request.getParameter("hospitalId"));
 
-			HospitalQnaService hospitalQnaService = new HospitalQnaServiceImpl();
-			request.setCharacterEncoding("UTF-8");
-			Integer hospitalId = Integer.parseInt(request.getParameter("hospitalId"));
+		List<Hospital_qna> hospitalQnaList = hospitalQnaService.getHospitalQnaList(hospitalId);
+		System.out.println("hospitalQnaList = " + hospitalQnaList);
 
-			List<Hospital_qna> hospitalQnaList = hospitalQnaService.getHospitalQnaList(hospitalId);
+		Gson gson = new Gson();
+		String json = gson.toJson(hospitalQnaList);
 
-			Gson gson = new Gson();
-			String json = gson.toJson(hospitalQnaList);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(json);
 
-			response.getWriter().write(json);
-
-
-		}
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
@@ -80,10 +81,9 @@ public class HospitalQuestion extends HttpServlet {
 
 		HospitalQnaService hospitalQnaService = new HospitalQnaServiceImpl();
 
-		Hospital_qna hospitalQna= hospitalQnaService.createHospitalQna(hospitalId, userId, userEmail, questionContent);
+		Hospital_qna hospitalQna = hospitalQnaService.createHospitalQna(hospitalId, userId, userEmail, questionContent);
 
 		hospitalQnaService.insertHospitalQuestion(hospitalQna);
-
 
 		Gson gson = new Gson();
 
