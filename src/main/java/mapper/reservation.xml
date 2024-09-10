@@ -73,8 +73,8 @@
 		    WHERE r.user_id = #{id}
 		    AND DATE(r.reserv_date) &lt; CURDATE()
 
-			<if test="pet_name != null and pet_name != ''">
-		        AND p.pet_name = #{pet_name}
+			<if test="pet_id != null and pet_id != ''">
+		        AND p.pet_id = #{pet_id}
 		    </if>
 
 			<if test="startDate != null and startDate != ''">

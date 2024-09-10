@@ -18,15 +18,17 @@
 
 <script>
 $(document).ready(function() {
+	const isConsultChecked = $('#isConsult').is(':checked');
+    const isConsultValue = isConsultChecked ? 'on' : 'off';
     // 이벤트 핸들러 등록
-     $('#pet_name').on('change', submitForm);
+     $('#pet_id').on('change', submitForm);
      $('#isConsult').on('change', submitForm);
      $('#startDate').on('change', submitForm);
      $('#endDate').on('change', submitForm);
 
 
     function submitForm() {
- 		let param = {pet_name:$("#pet_name").val(), isConsult:$("#isConsult").val(), startDate:$("#startDate").val(), endDate:$("#endDate").val()};
+ 		let param = {pet_id:$("#pet_id").val(),      isConsult: isConsultValue, startDate:$("#startDate").val(), endDate:$("#endDate").val()};
 		console.log(param)
         $.ajax({
             url: 'myBeforeReserv',
@@ -77,14 +79,14 @@ $(document).ready(function() {
 			<a href="${pageContext.request.contextPath}/myBeforeReserv">지난 예약</a>
 		</div>
 		<div class="listcnt">
-			<input type="checkbox" id="isConsult" name="isConsult" value="on"><p>진료완료만 보기</p>
+			<input type="checkbox" id="isConsult" name="isConsult" value="on"> <label for="isConsult">진료완료만 보기</label>
 		</div>
 		<div class="petSelect">
-			<select id="pet_name" name = "pet_name">
+			<select id="pet_id" name = "pet_id">
 				<option value="" selected>반려동물별</option>
-				<option value="또치">또치</option>
-				<option value="지구">지구</option>
-				<option value="후추">후추</option>
+				<c:forEach items="${petList }" var="pet">
+					<option value="${pet.pet_id}">${pet.pet_name}</option>
+				</c:forEach>
 			</select>
 		</div>
 		<div class="choose-date">
@@ -92,7 +94,7 @@ $(document).ready(function() {
 				<li>
 					<ol class="hoverdate">
 						<li class="calender">
-						<input class="datecalendar" id="startDate" name="startDate"  type="text"> ~ <input class="datecalendar" id="endDate" name="endDate"  type="text"><button type="button" class="minibtn">기간 입력</button>
+						<input class="datecalendar" id="startDate" name="startDate" type="text"> ~ <input class="datecalendar" id="endDate" name="endDate"  type="text"><button type="button" class="minibtn">기간 입력</button>
 						</li> 
 					</ol>
 				</li>

@@ -100,10 +100,10 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, String pet_name, String startDate, String endDate, boolean isConsult) throws Exception {
+	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception {
 		Map<String, Object> params = new HashMap<>();
         params.put("id", id);
-        params.put("pet_name", pet_name);
+        params.put("pet_id", pet_id);
         params.put("startDate", startDate);
         params.put("endDate", endDate);
         params.put("isConsult", isConsult);

@@ -166,8 +166,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, String pet_name, String startDate, String endDate, boolean isConsult) throws Exception {
-		 return reservationDao.selectMyBeforeReservList(id, pet_name, startDate, endDate, isConsult);
+	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception {
+		 return reservationDao.selectMyBeforeReservList(id, pet_id, startDate, endDate, isConsult);
 	}
 
 	@Override
