@@ -18,24 +18,29 @@
 
 <script>
 $(document).ready(function() {
-	const isConsultChecked = $('#isConsult').is(':checked');
-    const isConsultValue = isConsultChecked ? 'on' : 'off';
+	
     // 이벤트 핸들러 등록
      $('#pet_id').on('change', submitForm);
      $('#isConsult').on('change', submitForm);
-     $('#startDate').on('change', submitForm);
-     $('#endDate').on('change', submitForm);
-
+     $('#dateRange').on('change', submitForm);
 
     function submitForm() {
- 		let param = {pet_id:$("#pet_id").val(),      isConsult: isConsultValue, startDate:$("#startDate").val(), endDate:$("#endDate").val()};
+    	const isChecked = $('#isConsult').is(':checked'); // 체크박스 상태 가져오기
+        console.log('isConsult 체크박스 상태:', isChecked);
+        var vIsChecked = 'false';
+        if (isChecked) {
+            vIsChecked = 'true';
+          } else {
+            vIsChecked = 'false';
+          }
+    	
+ 		var param = {pet_id:$("#pet_id").val(), isConsult:vIsChecked, dateRange:$("#dateRange").val()};
 		console.log(param)
         $.ajax({
             url: 'myBeforeReserv',
             method: 'POST',
-            dataType : "json",
-            contentType:"application/json",
-            data : param,
+            async:true,
+            data : {param:JSON.stringify(param)},
             success: function(data) {
                 console.log(data);
                 const resultBody = $('#resultBody');
@@ -79,7 +84,7 @@ $(document).ready(function() {
 			<a href="${pageContext.request.contextPath}/myBeforeReserv">지난 예약</a>
 		</div>
 		<div class="listcnt">
-			<input type="checkbox" id="isConsult" name="isConsult" value="on"> <label for="isConsult">진료완료만 보기</label>
+			<input type="checkbox" id="isConsult" name="isConsult"> <label for="isConsult">진료완료만 보기</label>
 		</div>
 		<div class="petSelect">
 			<select id="pet_id" name = "pet_id">
@@ -89,12 +94,13 @@ $(document).ready(function() {
 				</c:forEach>
 			</select>
 		</div>
-		<div class="choose-date">
+		<div class="dateSelect">
 			<ul>
 				<li>
+					<button type="button" class="minibtn datebutton">기간 입력</button>
 					<ol class="hoverdate">
 						<li class="calender">
-						<input class="datecalendar" id="startDate" name="startDate" type="text"> ~ <input class="datecalendar" id="endDate" name="endDate"  type="text"><button type="button" class="minibtn">기간 입력</button>
+						<input class="datecalendar" id="dateRange" name="dateRange" type="text">
 						</li> 
 					</ol>
 				</li>

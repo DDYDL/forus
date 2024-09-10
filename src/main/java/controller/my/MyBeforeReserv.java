@@ -65,24 +65,43 @@ public class MyBeforeReserv extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		// String paramPage = request.getParameter("page");
 		
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		Integer id = user.getId();
+		String sparam = request.getParameter("param");
+		System.out.println("sparam: "+sparam);
+		Integer pet_id = null;
+		String startDate = null;
+		String endDate = null;
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
         try {
-            HttpSession session = request.getSession();
-            User user = (User)session.getAttribute("user");
-            Integer id = user.getId();
-            String spet_id = request.getParameter("pet_id");
-            Integer pet_id;
-            if(spet_id != null && spet_id != "") {
+        	JSONParser parser = new JSONParser();
+        	JSONObject jsonObj = (JSONObject)parser.parse(sparam);
+        	
+        	// JSON > String 변환
+        	String spet_id = (String)jsonObj.get("pet_id");
+        	System.out.println(spet_id);
+            if(spet_id != null && !spet_id.isEmpty()) {
             	pet_id = Integer.parseInt(spet_id);
             } else { pet_id = null;}
-            String startDate = request.getParameter("startDate");
-            String endDate = request.getParameter("endDate");
-            boolean isConsult = "on".equals((String)request.getParameter("isConsult"));
+            
+            String dateRange = (String)jsonObj.get("dateRange");
+            System.out.println(dateRange);
+            if (dateRange != null && dateRange != "") {
+                String[] dates = dateRange.split(" ~ ");
+                if (dates.length == 2) {
+		            startDate = dates[0].trim();
+		            endDate = dates[1].trim();
+                } else { System.out.println("기간을 선택해주세요"); }
+            }
+            String sIsConsult = (String)jsonObj.get("isConsult");
+            boolean isConsult = "true".equals(sIsConsult);
             System.out.println(isConsult);
-            System.out.println(pet_id);
+            
             ReservationService service = new ReservationServiceImpl();
             List<Map<String, Object>> beforeReservList = service.selectMyBeforeReservList(id, pet_id, startDate, endDate, isConsult);
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             JSONArray jsonArray = new JSONArray();
 			for(Map<String, Object> reserv : beforeReservList) {
 				JSONObject jsonReserv = new JSONObject();
