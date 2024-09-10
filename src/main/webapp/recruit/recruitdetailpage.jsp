@@ -74,8 +74,8 @@
     </div>
     
     <script>
-    	var start_time = `${post.post_start_time}`.substr(0,5);
-		var end_time = `${post.post_end_time}`.substr(0,5);
+    	var start_time = `${post.post_start_time}`.slice(0,5);
+		var end_time = `${post.post_end_time}`.slice(0,5);
 		if(start_time !== null && end_time !== null){
 			document.getElementById('time_td').innerText = start_time+" ~ "+end_time;
 		}
@@ -115,41 +115,30 @@
 		// recruit_post에 저장된 주소 가져오기
 		var address = document.getElementById('post_address').innerHTML;
 		console.log(address);
-		// 괄호 안에 있는 동만 가져오기
-		const result = Array.from(address.matchAll('\\((.*?)\\)'), match => `\${match[0]}`);
-		var address_0 = result[0].toString();
-		var address_1 = address_0.replace("(", "");
-		var address_2 = address_1.replace(")", "");
-		console.log(address_2);
+		// 앞의 주소만 가져오기
+		const results = address.split("(");
+		console.log(results[0]);
 		
-		// 주소로 위도 경도 가져오기
-		var position = new kakao.maps.services.Places();
-		position.keywordSearch(address_2,placesSearchCB);
-		// 호출되는 함수
-		var locData;
-		function placesSearchCB(data, status, pagination) {
-			locData = data;
-			paging = pagination;
-			console.log(data);
-			console.log(paging);
+		// 주소-좌표 변환 객체 생성
+		var geocoder = new kakao.maps.services.Geocoder();
+		geocoder.addressSearch(results[0],function(result, status) {
 			if (status === kakao.maps.services.Status.OK) {
-				var bound = new kakao.maps.LatLngBounds();
-				// 동으로 검색 시 첫번째 장소만 가져온다.
-				for (var i=0; i<1; i++) {
-					// 마커 그리기
-					displayMaker(data[i]);
-					// 지도 범위 재설정하기
-					bound.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-					map.setBounds(bound);
-				}
+				// 좌표 받아오기
+				 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				// 지도 범위 재설정하기
+				 var bound = new kakao.maps.LatLngBounds();
+				 bound.extend(new kakao.maps.LatLng(result[0].y, result[0].x));
+				 map.setBounds(bound);
+				// 마커 그리기
+				 displayMaker(coords);
 			}
-		}
+		});
 		
 		// 해당 위치에 마커 표시하기
-		function displayMaker(place) {
+		function displayMaker(coords) {
 			var marker = new kakao.maps.Marker({
 				map: map,
-				position: new kakao.maps.LatLng(place.y, place.x)
+				position: coords
 			});
 		}
 	</script>

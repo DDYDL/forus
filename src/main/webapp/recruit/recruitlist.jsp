@@ -157,9 +157,9 @@
     				res.recruit_postList.forEach(function(recruit_post) {
     					console.log(recruit_post);
     					// 초 단위 자르기
-    					var post_time = recruit_post.post_time.substr(0,16);
-    					var start_time = recruit_post.post_start_time.substr(0,5);
-    					var end_time = recruit_post.post_end_time.substr(0,5);
+    					var post_time = recruit_post.post_time.slice(0,16);
+    					var start_time = recruit_post.post_start_time.slice(0,5);
+    					var end_time = recruit_post.post_end_time.slice(0,5);
     					// 테이블 안에 recruit_post 한 행을 추가
     					$('#recruitlist_body').append(`<tr onclick="location.href='./recruitDetailpage?post_id=\${recruit_post.post_id}'"><td>\${recruit_post.post_address}</td><td>\${recruit_post.post_title}</td><td>\${recruit_post.post_pay}</td><td>\${start_time}~\${end_time}</td><td>\${post_time}</td></tr>`);
     				})
