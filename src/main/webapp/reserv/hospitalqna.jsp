@@ -8,6 +8,7 @@
 
 
 <c:set var="sessionUser" value="${sessionScope.user}" />
+
 <html>
 <head>
     <title></title>
@@ -173,7 +174,7 @@
           <td></td>
             <td colspan="3" style="padding: 10px;">
                 <p><strong>ㄴ답변:</strong> ${"${qna.a_title || '답변이 없습니다.'}"}</p>
-                 <!-- isHospital이 1인 경우에만 답변 입력 부분을 보여줌 -->
+
                    <c:if test="${sessionUser !=null && sessionUser.ishospital == 1}">
                     <div class="answer-form">
                             <input type="text" class="answer-input form-control" data-qna-id="${"${qna.qna_id}"}" placeholder="답변을 입력하세요">

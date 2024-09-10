@@ -29,8 +29,8 @@ public class ReservationInfo extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReservationService reservationService = new ReservationServiceImpl();
 
+		ReservationService reservationService = new ReservationServiceImpl();
 		HttpSession session = request.getSession(false);
 
 		User user = null;

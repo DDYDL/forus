@@ -39,5 +39,6 @@
 		<mapper resource="mapper/recruit_apply.xml"/>
 		<mapper resource="mapper/reservation.xml"/>
 		<mapper resource="mapper/search.xml"/>
+		<mapper resource="mapper/myHospital.xml"/>
 	</mappers>
 </configuration>
