@@ -9,7 +9,6 @@
 	</insert>
 
 	<select id="findHospitalQnaListByHospitalId" parameterType="dto.Hospital_qna" resultType="dto.Hospital_qna">
-
 		SELECT * FROM hospital_qna WHERE h_id = #{h_id} ORDER BY q_time DESC;
 	</select>
 
