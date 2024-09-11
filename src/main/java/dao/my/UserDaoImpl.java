@@ -27,14 +27,9 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.update("mapper.user.updateUser",user);
 		sqlSession.commit();
 	}
-
-	@Override
-	public User selectUser(Integer user_id) throws Exception {
-		return sqlSession.selectOne("mapper.user.selectUserId", user_id);
-	}
-
+	
 	@Override
 	public User selectUserId(Integer id) throws Exception {
-		return sqlSession.selectOne("mapper.user.selectId", id);
+		return sqlSession.selectOne("mapper.user.selectUserId", id);
 	}
 }

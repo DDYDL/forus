@@ -15,4 +15,16 @@
 			select * from recruit_apply where user_id=#{user_id}
 		]]>
 	</select>
-</mapper>
+	
+	<select id="selectRecruit_applyList" parameterType="Integer" resultType="Recruit_apply">
+		<![CDATA[
+			select * from recruit_apply where post_id=#{post_id}
+		]]>
+	</select>
+	
+	<select id="selectRecruit_applyId" parameterType="Integer" resultType="Recruit_apply">
+		<![CDATA[
+			select * from recruit_apply where apply_id=#{apply_id}
+		]]>
+	</select>
+ </mapper>

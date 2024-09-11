@@ -34,7 +34,7 @@
 		
 		<select id="selectUserId" parameterType="Integer" resultType="user">
 			<![CDATA[
-				select * from user where id=#{user_id}
+				select * from user where id=#{id}
 			]]>
 		</select>
 </mapper>
