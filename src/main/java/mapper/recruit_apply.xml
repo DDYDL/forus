@@ -12,13 +12,13 @@
 	
 	<select id="selectRecruit_apply" parameterType="Integer" resultType="Recruit_apply">
 		<![CDATA[
-			select * from recruit_apply where user_id=#{user_id}
+			select * from recruit_apply where user_id=#{user_id} order by apply_time DESC
 		]]>
 	</select>
 	
 	<select id="selectRecruit_applyList" parameterType="Integer" resultType="Recruit_apply">
 		<![CDATA[
-			select * from recruit_apply where post_id=#{post_id}
+			select * from recruit_apply where post_id=#{post_id} order by apply_time DESC
 		]]>
 	</select>
 	

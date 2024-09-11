@@ -34,6 +34,7 @@
 				</where>
 			</otherwise>
 		</choose>
+		order by post_time DESC
 		limit #{row}, 10
 	</select>
 	
@@ -68,5 +69,6 @@
 				</where>
 			</otherwise>
 		</choose>
+		order by post_time DESC
 	</select>
 </mapper>
