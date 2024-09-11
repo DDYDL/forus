@@ -1,10 +1,7 @@
 package dao.recruit;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
-import dto.Pet;
 import dto.Recruit_post;
 import util.MybatisSqlSessionFactory;
 
