@@ -45,6 +45,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User userDetail(Integer id) throws Exception {
+		User user = userDao.selectUser(id);
+		if (user == null)
+			throw new Exception("유저 조회 오류");
+		return user;
+	}
+
+	@Override
 	public Integer userModify(HttpServletRequest request) throws Exception {
 		String path = request.getServletContext().getRealPath("upload");
 		int size = 10 * 1024 * 1024;
@@ -54,7 +62,7 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setName(multi.getParameter("name"));
 		user.setNickname(multi.getParameter("nickname"));
-		user.setEmail(multi.getParameter("email"));
+		user.setEmail((String) request.getSession().getAttribute("email"));
 		user.setPassword(multi.getParameter("password"));
 		user.setPhone(multi.getParameter("phone"));
 		user.setBirthday(multi.getParameter("birthday"));
@@ -67,13 +75,6 @@ public class UserServiceImpl implements UserService {
 
 		userDao.updateUser(user);
 		return user.getId();
-	}
-
-	@Override
-	public User userDetail(Integer id) throws Exception {
-		User user = userDao.selectUser(id);
-		if(user==null) throw new Exception("글 번호 오류");
-		return user;
 	}
 
 }

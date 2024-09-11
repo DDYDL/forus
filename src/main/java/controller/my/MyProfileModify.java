@@ -34,9 +34,9 @@ public class MyProfileModify extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		
+
 		System.out.println(id);
-		
+
 		try {
 			UserService service = new UserServiceImpl();
 			User user = service.userDetail(id);
@@ -55,8 +55,17 @@ public class MyProfileModify extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+			UserService service = new UserServiceImpl();
+			Integer num = service.userModify(request);
+			User user = service.userDetail(num);
+			request.setAttribute("user", user);
+			request.getRequestDispatcher("/my/myProfile.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", "게시글 수정 오류");
+			request.getRequestDispatcher("err.jsp").forward(request, response);
+		}
 	}
 
 }

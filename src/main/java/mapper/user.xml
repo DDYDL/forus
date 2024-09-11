@@ -27,7 +27,7 @@
 				<if test="birthday != null">address=#{birthday},</if>
 				<if test="gender != null">gender=#{gender},</if>
 				<if test="address != null">address=#{address},</if>
-				<if test="picture != null">picture=#{picture},</if>
+				<if test="picture != null">picture=#{picture}</if>
 			</set>
 			where id = #{id}
 		</update>

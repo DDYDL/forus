@@ -1,4 +1,4 @@
-package controller.recruit;
+package controller.my;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

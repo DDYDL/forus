@@ -30,7 +30,8 @@
 </script>
 <body>
 	<%@ include file="../mainmypage.jsp"%>
-	<form action = "/forus/myProfile" method="post" enctype="multipart/form-data">
+	<form action="/forus/myProfile" method="post"
+		enctype="multipart/form-data">
 		<div class="mypage-content">
 			<div>
 				<h3>내 프로필</h3>
@@ -47,7 +48,8 @@
 					<li class="title">이름</li>
 					<br>
 					<br>
-					<li><input type="text" class="underline" name="name" value=${user.name }></li>
+					<li><input type="text" class="underline" name="name"
+						value=${user.name }></li>
 
 					<li class="title">닉네임</li>
 					<br>
@@ -58,7 +60,8 @@
 					<li class="title">이메일</li>
 					<br>
 					<br>
-					<li><input type="text" class="underline" name="name" value=${user.email }></li>
+					<li><input type="text" class="underline" name="name"
+						readonly="readonly" value=${user.email }></li>
 
 					<li class="title">비밀번호</li>
 					<br>
@@ -77,20 +80,22 @@
 					<li class="title">생년월일</li>
 					<br>
 					<br>
-					<li><input type="date" name="birthday"></li>
+					<li><input type="date" name="birthday" value=${user.birthday }></li>
 
 					<li class="title">성별</li>
 					<br>
 					<br>
-					<li><input type="radio" name="gender" value="male"
-						checked="checked"> 남 <input type="radio" name="gender"
-						value="female"> 여</li>
+					<li><input type="radio" name="gender" value="M"
+					<% if("M".equals("M")){%>checked<%} %>
+						> 남 	 //테스트 후 될 시 checkbox 테스트
+						<input type="radio" name="gender"value="F"
+						<% if("F".equals("F")){%>checked<%} %>
+						> 여</li>
 				</ul>
 
 				<div class="find-btn">
 					<input type="submit" title="Button push blue/green"
-						class=" btn btnPush btnBlueGreen find-btn1"
-						value="수정완료">
+						class=" btn btnPush btnBlueGreen find-btn1" value="수정완료">
 
 				</div>
 			</div>
