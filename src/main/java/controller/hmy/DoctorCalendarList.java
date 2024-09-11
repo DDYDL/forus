@@ -29,6 +29,7 @@ public class DoctorCalendarList extends HttpServlet {
 
 			String startDate = request.getParameter("startDate");
 			String endDate = request.getParameter("endDate");
+			
 			int userId = Integer.parseInt(request.getParameter("userId"));
 
 			DoctorCalendarService doctorCalendarService = new DoctorCalendarServiceImpl();

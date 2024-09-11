@@ -23,8 +23,6 @@ public class DoctorCalendarServiceImpl implements DoctorCalendarService{
 
 		Integer hospitalId = doctorCalendarDao.findHospitalIdByUserId(userId);
 
-		System.out.println("hospitalId = " + hospitalId);
-
 		Map<String, Object> params = new HashMap<>();
 
 		params.put("startDate", startDate);

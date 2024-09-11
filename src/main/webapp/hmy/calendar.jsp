@@ -24,6 +24,8 @@
 <body>
 <%@ include file="../header.jsp" %>
 <%@ include file="../hmymenu.jsp" %>
+
+
 <c:set var="sessionUser" value="${sessionScope.user}" />
 
 <section>
