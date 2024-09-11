@@ -28,7 +28,7 @@
 	<div class="mypage-content">
 	
 	<span id="authentication">병원관계자라면?&nbsp;
-         <a href="/forus/hmyNewHospital"><img src="play.png" width="16px">&nbsp;병원인증하기</a>
+         <a href="./hmyNewHospital"><img src="play.png" width="16px">&nbsp;병원인증하기</a>
       </span>
 		<div>
 			<h3>내 프로필</h3>
@@ -64,7 +64,7 @@
 			<div class="find-btn">
 				<button type="button" title="Button push blue/green"
 					class=" btn btnPush btnBlueGreen find-btn1"
-					onclick="location.href='/forus/myProfileModify?id=${user.id}'">수정</button>
+					onclick="location.href='./myProfileModify?id=${user.id}'">수정</button>
 
 			</div>
 		</div>

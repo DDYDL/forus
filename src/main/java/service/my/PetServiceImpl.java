@@ -61,6 +61,7 @@ public class PetServiceImpl implements PetService {
 		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
 
 		Pet pet = new Pet();
+		pet.setPet_id(Integer.parseInt(multi.getParameter("pet_id")));
 		pet.setPet_name(multi.getParameter("pet_name"));
 		pet.setPet_species(multi.getParameter("pet_species"));
 		pet.setPet_breed(multi.getParameter("pet_breed"));
@@ -88,6 +89,12 @@ public class PetServiceImpl implements PetService {
 
 	public List<Pet> selectPetList(Integer user_id) throws Exception {
 		return petDao.selectPetList(user_id);
+	}
+
+	@Override
+	public Integer petDelete(int pet_Id) throws Exception {
+		return petDao.deletePet(pet_Id);
+		
 	}
 
 }

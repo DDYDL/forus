@@ -15,5 +15,7 @@ public interface PetService {
 	Pet petDetail(Integer pet_id) throws Exception;
 
 	List<Pet> selectPetList(Integer user_id) throws Exception;
+	
+	Integer petDelete(int pet_Id) throws Exception;
 
 }
