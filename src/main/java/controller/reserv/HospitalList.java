@@ -36,6 +36,7 @@ public class HospitalList extends HttpServlet {
 		HospitalListService hospitalService = new HospitalServiceImpl();
 		String latStr = request.getParameter("latitude");
 		String lonStr = request.getParameter("longitude");
+		String keyword = request.getParameter("keyword");
 
 		// 초기값 설정
 		double latitude = DEFAULT_LATITUDE;
@@ -44,8 +45,11 @@ public class HospitalList extends HttpServlet {
 
 		List<Hospital> hospitals = new ArrayList<>();
 
+		if(StringNullCheck.isNotEmpty(keyword)) {
+			hospitals = hospitalService.getHospitalsByKeyword(keyword);
 
-		if (StringNullCheck.isNotEmpty(latStr) && StringNullCheck.isNotEmpty(lonStr)) {
+		}else if (StringNullCheck.isNotEmpty(latStr) && StringNullCheck.isNotEmpty(lonStr)) {
+
 			try {
 				latitude = Double.parseDouble(latStr);
 				longitude = Double.parseDouble(lonStr);

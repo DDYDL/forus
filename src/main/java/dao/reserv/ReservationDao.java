@@ -17,7 +17,9 @@ public interface ReservationDao {
 
 	//findUserInfByUserId
 	User findUserInfoByUserId(Integer userId);
-	Pet  findPetInfByPetId(Integer useId);
+
+
+	List<Pet> findPetsByUserId(Integer userId);
 
 	void insertReservation(Reservation reservation);
 

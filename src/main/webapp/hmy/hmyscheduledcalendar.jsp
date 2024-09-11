@@ -15,9 +15,7 @@
     <!-- FullCalendar 언어 지원 -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 
-
     <link rel="stylesheet" href="css/hmy/doctorCalendar.css">
-
 
 </head>
 
@@ -31,7 +29,6 @@
         <button id="reservationTimeButton">예약 시간 관리</button>
     </div>
 </section>
-
 
 <section>
     <div id="calendar"></div>

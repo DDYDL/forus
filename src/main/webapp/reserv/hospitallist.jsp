@@ -142,6 +142,46 @@
 </script>
 
 <script>
+    function getUserLocationAndAddMarker(updateHospitals = false) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    var lat = position.coords.latitude; // 위도
+                    var lon = position.coords.longitude; // 경도
+
+                    // 새로운 중심 위치 설정
+                    var locPosition = new kakao.maps.LatLng(lat, lon);
+                    map.setCenter(locPosition); // 지도 중심을 사용자 위치로 이동
+
+                    // 사용자의 현재 위치에 마커 생성
+                    addUserMarker(lat, lon);
+
+                    // 초기 로딩 시 병원 목록 업데이트 옵션
+                    if (updateHospitals) {
+                        updateHospitalList(lat, lon);
+                    }
+                },
+                function (error) {
+                    alert('위치를 가져올 수 없습니다: ' + error.message);
+                    map.setCenter(new kakao.maps.LatLng(33.450701, 126.570667)); // 기본 위치로 설정
+                },
+                {
+                    enableHighAccuracy: true, // 높은 정확도 사용 시도
+                    timeout: 5000,
+                    maximumAge: 0
+                }
+            );
+        } else {
+            alert('이 브라우저에서는 위치 정보가 지원되지 않습니다.');
+        }
+    }
+
+
+
+</script>
+
+
+<script>
     // 검색 입력 필드에 이벤트 리스너 추가
     $('#search-input').on('input', function () {
         var query = $(this).val();
@@ -220,6 +260,8 @@
 
 </script>
 
+
+
 <script>
     // 지도 생성
     var container = document.getElementById('map-container');
@@ -232,39 +274,82 @@
 
     var markers = [];
 
+
     // HTML5의 Geolocation API를 사용하여 사용자 위치를 가져오기
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                // 사용자의 현재 위치(위도, 경도) 가져오기
-                var lat = position.coords.latitude; // 위도
-                var lon = position.coords.longitude; // 경도
+    getUserLocationAndAddMarker(true);
 
-                // 새로운 중심 위치 설정
-                var locPosition = new kakao.maps.LatLng(lat, lon);
-
-                // 지도 중심을 사용자의 현재 위치로 이동
-                map.setCenter(locPosition);
-
-                // 사용자의 현재 위치에 마커 생성
-                addUserMarker(lat, lon);
-                updateHospitalList(lat, lon);
-            },
-            function (error) {
-                alert('위치를 가져올 수 없습니다: ' + error.message);
-                map.setCenter(new kakao.maps.LatLng(33.450701, 126.570667));
-            },
-            {
-                enableHighAccuracy: true, // 높은 정확도 사용 시도
-                timeout: 5000,
-                maximumAge: 0
-            }
-        );
-    } else {
-        alert('이 브라우저에서는 위치 정보가 지원되지 않습니다.');
-    }
+    // if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(
+    //         function (position) {
+    //             // 사용자의 현재 위치(위도, 경도) 가져오기
+    //             var lat = position.coords.latitude; // 위도
+    //             var lon = position.coords.longitude; // 경도
+    //
+    //             // 새로운 중심 위치 설정
+    //             var locPosition = new kakao.maps.LatLng(lat, lon);
+    //
+    //             // 지도 중심을 사용자의 현재 위치로 이동
+    //             map.setCenter(locPosition);
+    //
+    //             // 사용자의 현재 위치에 마커 생성
+    //             addUserMarker(lat, lon);
+    //             updateHospitalList(lat, lon);
+    //         },
+    //         function (error) {
+    //             alert('위치를 가져올 수 없습니다: ' + error.message);
+    //             map.setCenter(new kakao.maps.LatLng(33.450701, 126.570667));
+    //         },
+    //         {
+    //             enableHighAccuracy: true, // 높은 정확도 사용 시도
+    //             timeout: 5000,
+    //             maximumAge: 0
+    //         }
+    //     );
+    // } else {
+    //     alert('이 브라우저에서는 위치 정보가 지원되지 않습니다.');
+    // }
 </script>
 
+<script>
+    $('#search-button').on('click', function (){
+        var keyword = $('#search-input').val().trim();
+        if (keyword !== '') {
+
+            searchHospitalsByKeyword(keyword);
+    }
+    });
+   function searchHospitalsByKeyword(keyword) {
+    $.ajax({
+        url: 'hospitalList',
+        type: 'GET',
+        dataType: 'json',
+        data: {
+            keyword: keyword,
+            ajax: 'true'
+        },
+        success: function (data) {
+            if (Array.isArray(data)) {
+                let hospitalListHTML = '';
+                resetMarkers();
+                getUserLocationAndAddMarker(false);
+                data.forEach(function (hospital) {
+                    addHospitalMarker(hospital);
+                    hospitalListHTML += generateHospitalHTML(hospital);
+                });
+                $('#hospitals-container').html(hospitalListHTML);
+                map.setLevel(10);
+            } else {
+                console.error("서버로부터 받은 데이터가 배열이 아닙니다:", data);
+            }
+        },
+
+    })
+
+    }
+
+
+
+</script>
 
 <script>
     // 검색 자동완성 제안 목록 HTML 생성 함수

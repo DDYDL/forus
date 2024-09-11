@@ -10,6 +10,8 @@ public interface HospitalDao {
 
 	List<Hospital> findHospitalByLocation(Map<String, Double> map);
 
+	List<Hospital> findHospitalByKeyword(String keyword);
+
 	Hospital findHospitalDetailByHospitalId(int hospitalId);
 
 	//시간 가져오는 메소드

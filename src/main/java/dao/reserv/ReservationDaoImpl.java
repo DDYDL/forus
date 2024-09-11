@@ -1,8 +1,6 @@
 package dao.reserv;
 
 
-import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
@@ -49,8 +47,8 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public Pet findPetInfByPetId(Integer useId) {
-		return sqlSession.selectOne("mapper.reservation.findPetInfoByUserId", useId);
+	public List<Pet> findPetsByUserId(Integer userId) {
+		return sqlSession.selectList("mapper.reservation.findPetInfoByUserId", userId);
 	}
 
 	@Override

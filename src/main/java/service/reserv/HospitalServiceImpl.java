@@ -26,6 +26,11 @@ public class HospitalServiceImpl implements HospitalListService, HospitalDetailS
 	}
 
 	@Override
+	public List<Hospital> getHospitalsByKeyword(String keyword) {
+		return hospitalDao.findHospitalByKeyword(keyword);
+	}
+
+	@Override
 	public Hospital getHospitalDetailByHospitalId(int hospitalId) {
 		return hospitalDao.findHospitalDetailByHospitalId(hospitalId);
 	}

@@ -71,7 +71,7 @@
                 $.ajax({
                     url: 'reservationInfo',
                     dataType: 'json',
-                    method: 'POST',
+                    method: 'GET',
                     success: function (response) {
                        const user = response.user;
                        const pet = response.pet;
@@ -79,9 +79,18 @@
                     title: '예약 정보 확인',
                     html: generateReservationHtml(result.value, user, pet),
                     confirmButtonText: '예약 완료',
+                    cancelButtonText: '취소',
+                    showCancelButton: true,
 
                     preConfirm:()=>{
                         const form = document.getElementById('reservationForm');
+                        const reservationContent = document.querySelector('input[name="reservationContent"]:checked');
+
+                        if (!reservationContent) {
+                            alert('예약 항목을 선택하세요.');
+                            return false;
+                        }
+
                         if (form) {
                             form.submit();
                         }else {
@@ -181,6 +190,7 @@
     }
 </script>
 
+
 <script>
     function initializeCheckboxHandler() {
         $(document).on('change', '.single-select-radio', function() {
@@ -198,32 +208,37 @@
     }
 
 
-    function generatePetHtml(pet) {
-        if (!pet || !pet.pet_name) {
+    function generatePetHtml(pets) {
+        if (!pets || !pets.length) {
             return `<p><strong>등록된 펫이 없습니다.</strong></p>`;
         } else {
-            return `
+            return pets.map(pet => `
               <div class="pet-selection">
-                   <p><strong>펫 선택:</strong> ${"${pet.pet_name}"}</p>
-                   <input type="hidden" name="petName" value="${"${pet.pet_name}"}">
-                   <input type="hidden" name="petId" value="${"${pet.pet_id}"}">
+              <label>
+                    <input type="radio" name="selectedPetId" value="${"${pet.pet_id}"}">
+                    <img src="${"${pet.pet_picture}"}" alt="${"${pet.pet_name}"}">
+
+                </label>
             </div>
-        `;
+        `).join('');
+
         }
     }
 
-    function generateReservationHtml(result, user, pet) {
-        const petHtml = generatePetHtml(pet);
+
+
+    function generateReservationHtml(result, user, pets) {
+        const petHtml = generatePetHtml(pets);
 
         return `
         <form id="reservationForm" action="reservation" method="POST">
 
             <div class="reservation-summary">
-                <h3>예약 정보</h3>
+                  <h3>펫 선택</h3>
                  ${"${petHtml}"}
 
                <div class="reservation-items">
-                    <h4>예약 항목</h4>
+                    <h3>예약 항목</h3>
                     <label><input type="radio" class="single-select-radio" name="reservationContent" value="진료"> 진료</label>
                     <label><input type="radio" class="single-select-radio" name="reservationContent" value="상담"> 상담</label>
                     <label><input type="radio" class="single-select-radio" name="reservationContent" value="미용"> 미용</label>
@@ -232,23 +247,30 @@
                         <input type="text" id="otherText" name="customContent" placeholder="직접 입력하기" disabled>
                     </label>
                 </div>
+                <br>
 
                 <div class="reservation-date">
-                  <p><strong>예약 날짜:</strong> ${"${result.selectedDate}"}</p>
+                  <h3>예약 정보 </h3>
+                  <p>예약 날짜: ${"${result.selectedDate}"}</p>
                   <input type="hidden" name="selectedDate" value="${"${result.selectedDate}"}">
-                  <p><strong>예약 시간:</strong> ${"${result.selectedTime}"}</p>
+                  <p>예약 시간:${"${result.selectedTime}"}</p>
                   <input type="hidden" name="selectedTime" value="${"${result.selectedTime}"}">
                 </div>
 
+                <br>
+
                 <div class="guardian-info">
-                    <h4>보호자 정보</h4>
-                    <p><strong>예약자 이름:</strong> ${"${user.name}"}</p>
+                    <h3>보호자 정보</h4>
+                    <p>예약자 이름: ${"${user.name}"}</p>
+                    <p>예약자 번호 : ${"${user.phone}"}</p>
+                    <p>예약자 메일: ${"${user.email}"}</p>
                     <input type="hidden" name="userName" value="${"${user.name}"}">
                     <input type="hidden" name="userId" value="${"${user.id}"}">
                 </div>
                   <input type="hidden" name="hospitalId" value="${hospital.h_id}">
             </div>
         </form>
+
         `;
     }
 
@@ -256,3 +278,4 @@
         initializeCheckboxHandler();
     });
 </script>
+
