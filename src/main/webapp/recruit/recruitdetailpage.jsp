@@ -98,8 +98,7 @@
     		</tr>
     		<tr>
     			<td><label for="subway">인근지하철</label></td>
-    			<td>독산역 1호선</td>
-    			<td>도보 15분</td>
+    			<td id="subway"></td>
     		</tr>
     	</table>
 	</div>
@@ -129,18 +128,34 @@
 		// 주소-좌표 변환 객체 생성
 		var geocoder = new kakao.maps.services.Geocoder();
 		// 주소로 검색하는 함수
-		geocoder.addressSearch(results[0],function(result, status) {
+		geocoder.addressSearch(results[0],function(result, status){
 			if (status === kakao.maps.services.Status.OK) {
 				// 좌표 받아오기
-				 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				// 지도 중심 설정
+				map.setCenter(coords);
 				// 지도 범위 재설정하기
-				 var bound = new kakao.maps.LatLngBounds();
-				 bound.extend(new kakao.maps.LatLng(result[0].y, result[0].x));
-				 map.setBounds(bound);
+				var bound = new kakao.maps.LatLngBounds();
+				bound.extend(new kakao.maps.LatLng(result[0].y, result[0].x));
+				map.setBounds(bound);
 				// 마커 그리기
-				 displayMaker(coords);
+				displayMaker(coords);
+				
+				// 인근 지하철역 가져오기
+				var places = new kakao.maps.services.Places(map);
+				places.categorySearch('SW8', searchs, {location: coords, radius: 1000});
 			}
 		});
+		
+		// 카테고리 검색 시 호출되는 함수
+		function searchs(data, status, pagination) {
+			if (status === kakao.maps.services.Status.OK) {
+				for (var i=0; i<1; i++) {
+					console.log(data[i]);
+					document.getElementById('subway').innerText = data[i].place_name;
+				}
+			}
+		}
 		
 		// 해당 위치에 마커 표시하기
 		function displayMaker(coords) {
