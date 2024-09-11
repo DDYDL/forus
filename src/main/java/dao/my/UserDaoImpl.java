@@ -29,12 +29,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User selectUser(Integer user_id) throws Exception {
+	public User selectUserId(Integer user_id) throws Exception {
 		return sqlSession.selectOne("mapper.user.selectUserId", user_id);
-	}
-
-	@Override
-	public User selectUserId(Integer id) throws Exception {
-		return sqlSession.selectOne("mapper.user.selectId", id);
 	}
 }

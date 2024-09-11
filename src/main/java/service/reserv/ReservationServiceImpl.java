@@ -143,11 +143,6 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<Reservation> myAfterReserv() throws Exception {
-		return null;
-	}
-
-	@Override
 	public User getUserInfo(Integer userId) {
 		return reservationDao.findUserInfoByUserId(userId);
 	}

@@ -121,10 +121,35 @@ $(document).ready(function() {
 			</tbody>
 		</table>
 		<br>
-		<div id="paging">
-			<a href="#">&lt;</a> &nbsp;<a href="#">1</a>&nbsp;<a href="#">2</a>&nbsp;<a
-				href="#">3</a>&nbsp;<a href="#">4</a>&nbsp; <a href="#">&gt;</a>
-		</div>
+<div id="paging">
+	<c:choose>
+		<c:when test="${pageInfo.curPage>1 }">
+			<a href="reservList?page=${pageInfo.curPage-1 }">&lt;</a>
+		</c:when>
+		<c:otherwise>
+			<a>&lt;</a>
+		</c:otherwise>
+	</c:choose>
+	${pageInfo.curPage }
+	<c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="i">
+		<c:choose>
+			<c:when test="${i eq pageInfo.curPage }">
+				<a href="reservList?page=${i}" class="select">${i }</a>
+			</c:when>
+			<c:otherwise>
+				<a href="reservList?page=${i}" class="btn">${i }</a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	<c:choose>
+		<c:when test="${pageInfo.curPage<pageInfo.allPage }">
+			<a href="reservList?page=${pageInfo.curPage+1 }">&gt;</a>
+		</c:when>
+		<c:otherwise>
+			<a>&gt;</a>
+		</c:otherwise>
+	</c:choose>
+</div>
 		<br>
 		<br>
 	</div>
