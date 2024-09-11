@@ -10,6 +10,9 @@ public interface HospitalQnaDao {
 
 	public List<Hospital_qna> findHospitalQnaListByHospitalId(Integer hospitalId);
 
+	public void insertHospitalAnswer(int qnaId, Hospital_qna hospitalQna);
+
+
 
 
 

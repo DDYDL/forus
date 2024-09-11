@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import dto.Hospital_qna;
-import dto.Pet;
 import dto.User;
 import service.reserv.HospitalQnaService;
 import service.reserv.HospitalQnaServiceImpl;
@@ -27,26 +26,34 @@ public class HospitalQuestion extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
+		ServletException,
+		IOException {
+		try {
+			request.setCharacterEncoding("UTF-8");
 
 			HospitalQnaService hospitalQnaService = new HospitalQnaServiceImpl();
-			request.setCharacterEncoding("UTF-8");
+
 			Integer hospitalId = Integer.parseInt(request.getParameter("hospitalId"));
 
 			List<Hospital_qna> hospitalQnaList = hospitalQnaService.getHospitalQnaList(hospitalId);
 
 			Gson gson = new Gson();
 			String json = gson.toJson(hospitalQnaList);
-
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
-
 			response.getWriter().write(json);
 
-
+		} catch (NumberFormatException e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("잘못된 병원 ID입니다.");
+			e.printStackTrace();
+		} catch (Exception e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("QnA 목록을 가져오는 중 오류가 발생했습니다.");
+			e.printStackTrace();
 		}
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
@@ -70,27 +77,31 @@ public class HospitalQuestion extends HttpServlet {
 			} else {
 				System.out.println("세션이 없습니다.");
 			}
+
+			String questionContent = request.getParameter("qnaInput");
+			String hospitalId = request.getParameter("hospitalId");
+
+			HospitalQnaService hospitalQnaService = new HospitalQnaServiceImpl();
+
+			Hospital_qna hospitalQna = hospitalQnaService.createHospitalQna(hospitalId, userId, userEmail,
+				questionContent);
+
+			hospitalQnaService.insertHospitalQuestion(hospitalQna);
+
+			Gson gson = new Gson();
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(gson.toJson(hospitalQna));
+
+		} catch (NumberFormatException e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("잘못된 형식의 입력이 포함되어 있습니다.");
+			e.printStackTrace();
 		} catch (Exception e) {
-			System.err.println("오류가 발생했습니다: " + e.getMessage());
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("QnA 처리 중 오류가 발생했습니다.");
 			e.printStackTrace();
 		}
-
-		String questionContent = request.getParameter("qnaInput");
-		String hospitalId = request.getParameter("hospitalId");
-
-		HospitalQnaService hospitalQnaService = new HospitalQnaServiceImpl();
-
-		Hospital_qna hospitalQna= hospitalQnaService.createHospitalQna(hospitalId, userId, userEmail, questionContent);
-
-		hospitalQnaService.insertHospitalQuestion(hospitalQna);
-
-
-		Gson gson = new Gson();
-
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(gson.toJson(hospitalQna));
-
 	}
 
 }
