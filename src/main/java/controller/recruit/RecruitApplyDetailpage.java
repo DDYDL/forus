@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.Pet;
 import dto.Recruit_apply;
+import dto.Recruit_post;
 import dto.User;
 import service.my.PetService;
 import service.my.PetServiceImpl;
@@ -50,10 +51,12 @@ public class RecruitApplyDetailpage extends HttpServlet {
 			Recruit_apply recruit_apply = service.selectRecruit_apply(apply_id);
 			User apply_user = uservice.selectUserId(recruit_apply.getUser_id());
 			List<Pet> petList = pservice.selectPetList(recruit_apply.getUser_id());
+			Recruit_post recruit_post = uservice.recruit_postDatail(recruit_apply.getPost_id());
 			
 			request.setAttribute("recruit_apply", recruit_apply);
 			request.setAttribute("apply_user", apply_user);
 			request.setAttribute("petList", petList);
+			request.setAttribute("recruit_post", recruit_post);
 			// post로 보냄
 			request.getRequestDispatcher("./recruit/recruitapplydetailpage.jsp").forward(request, response);
 		} catch(Exception e) {

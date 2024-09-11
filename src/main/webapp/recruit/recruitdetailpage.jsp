@@ -189,7 +189,7 @@
 		    </div>
 		    <div class="list-header">
 		        <div><p class="content-inner-title">지원정보 확인</p></div>
-		        <div class="btndiv"><a href="#" class="minibutton minibtnFade minibtnBlueGreen">회원정보수정</a></div>
+		        <div class="btndiv"><a href="myProfile" class="minibutton minibtnFade minibtnBlueGreen">회원정보수정</a></div>
 		    </div>
 			<table>
 		    	<tr>

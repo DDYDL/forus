@@ -59,7 +59,16 @@
     	<p class="content-inner-title">전달 메시지</p>
     	<p class="content-document">${recruit_apply.apply_content}</p>
     </div>
-    <div class="btndiv"><a href="recruitApplyHire?apply_id=${recruit_apply.apply_id}" title="Button push blue/green" class="button btnPush btnBlueGreen">채용</a></div>
+    <div class="btndiv">
+    	<c:choose>
+	    	<c:when test="${recruit_post.post_status eq '마감'}">
+	    		<a href="recruitApplyHire?apply_id=${recruit_apply.apply_id}" title="Button push blue/green" class="button btnPush btnBlueGreen">채용변경</a>
+	    	</c:when>
+	    	<c:otherwise>
+	    		<a href="recruitApplyHire?apply_id=${recruit_apply.apply_id}" title="Button push blue/green" class="button btnPush btnBlueGreen">채용</a>
+	    	</c:otherwise>
+    	</c:choose>
+    </div>
     </div>
 </body>
 </html>
