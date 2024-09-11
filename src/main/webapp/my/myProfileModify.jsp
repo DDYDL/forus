@@ -30,8 +30,10 @@
 </script>
 <body>
 	<%@ include file="../mainmypage.jsp"%>
-	<form action="/forus/myProfile" method="post"
+	
+	<form action="/forus/myProfileModify" method="post"
 		enctype="multipart/form-data">
+		<input type="hidden" name="id" value="${user.id}">
 		<div class="mypage-content">
 			<div>
 				<h3>내 프로필</h3>
@@ -60,20 +62,20 @@
 					<li class="title">이메일</li>
 					<br>
 					<br>
-					<li><input type="text" class="underline" name="name"
+					<li><input type="text" class="underline" name="email"
 						readonly="readonly" value=${user.email }></li>
 
 					<li class="title">비밀번호</li>
 					<br>
 					<br>
 					<li><input type="password" class="underlinesmall"
-						value=${user.password }>
+						name="password" value=${user.password }>
 						<button>변경하기</button></li>
 
 					<li class="title">휴대전화번호</li>
 					<br>
 					<br>
-					<li><input type="tel" class="underlinesmall"
+					<li><input type="tel" class="underlinesmall" name="phone"
 						value=${user.phone }>
 						<button>변경하기</button></li>
 
@@ -86,11 +88,9 @@
 					<br>
 					<br>
 					<li><input type="radio" name="gender" value="M"
-					<% if("M".equals("M")){%>checked<%} %>
-						> 남 	 //테스트 후 될 시 checkbox 테스트
-						<input type="radio" name="gender"value="F"
-						<% if("F".equals("F")){%>checked<%} %>
-						> 여</li>
+						<%if ("M".equals("M")) {%> checked <%}%>> 남 <!-- 테스트 후 될 시 checkbox 테스트-->
+						<input type="radio" name="gender" value="F"
+						<%if ("F".equals("F")) {%> checked <%}%>> 여</li>
 				</ul>
 
 				<div class="find-btn">

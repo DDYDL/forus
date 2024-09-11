@@ -29,7 +29,7 @@ pet_age, pet_neutering, pet_picture, pet_memo, pet_num)
 			<if test="pet_neutering!=null"> pet_neutering=#{pet_neutering},  </if>
 			<if test="pet_picture!=null"> pet_picture=#{pet_picture}, </if>
 			<if test="pet_memo!=null"> pet_memo=#{pet_memo}, </if>
-			<if test="pet_num!=null"> pet_num=#{pet_num},  </if>
+			<if test="pet_num!=null"> pet_num=#{pet_num} </if>
 		</set>
 		where pet_id = #{pet_id}
 	</update>
