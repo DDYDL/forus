@@ -60,6 +60,7 @@ public class UserServiceImpl implements UserService {
 		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
 
 		User user = new User();
+		user.setId(Integer.parseInt(multi.getParameter("id")));
 		user.setName(multi.getParameter("name"));
 		user.setNickname(multi.getParameter("nickname"));
 		user.setEmail((String) request.getSession().getAttribute("email"));
@@ -73,7 +74,10 @@ public class UserServiceImpl implements UserService {
 			user.setPicture(multi.getFilesystemName("file"));
 		}
 
+		System.out.println(user);
 		userDao.updateUser(user);
+		User suser = userDao.selectUserId(user.getId());
+		System.out.println(suser);
 		return user.getId();
 	}
 

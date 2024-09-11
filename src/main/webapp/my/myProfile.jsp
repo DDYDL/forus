@@ -47,8 +47,8 @@
 				<li class="title">이메일</li>
 				<li class="line"><span>${user.email }</span></li>
 					
-				<li class="title">비밀번호</li>
-				<li class="line"><span>${user.password }</span></li>
+				<li class="title">비밀번호</li><br>
+				<li class="line"><span>수정 페이지에서 변경가능</span></li>
 				
 				<li class="title">휴대전화번호</li>
 				<li class="line"><span>${user.phone }</span></li>
@@ -57,8 +57,7 @@
 				<li><span>${user.birthday }</span></li>
 				
 				<li class="title">성별</li><br><br>
-				<li><input type="radio" name="gender" value="\${user.gender }">
-						남 <input type="radio" name="gender" value="\${user.gender }"> 여
+				<li><span>${user.gender }</span>
 				</li>
 			</ul>
 

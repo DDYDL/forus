@@ -24,9 +24,8 @@
 				<if test="name != null">name=#{name},</if>
 				<if test="nickname != null">nickname=#{nickname},</if>
 				<if test="phone != null">phone=#{phone},</if>
-				<if test="birthday != null">address=#{birthday},</if>
+				<if test="birthday != null">birthday=#{birthday},</if>
 				<if test="gender != null">gender=#{gender},</if>
-				<if test="address != null">address=#{address},</if>
 				<if test="picture != null">picture=#{picture}</if>
 			</set>
 			where id = #{id}

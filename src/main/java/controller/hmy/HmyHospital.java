@@ -32,7 +32,7 @@ public class HmyHospital extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Integer h_id = 11;
+		Integer h_id = Integer.parseInt(request.getParameter("h_id"));
 		System.out.println(h_id);
 		try {
 			HospitalService service = new HospitalServiceImpl();
