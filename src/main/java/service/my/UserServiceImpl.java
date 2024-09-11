@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User userDetail(Integer id) throws Exception {
-		User user = userDao.selectUser(id);
+		User user = userDao.selectUserId(id);
 		if (user == null)
 			throw new Exception("유저 조회 오류");
 		return user;

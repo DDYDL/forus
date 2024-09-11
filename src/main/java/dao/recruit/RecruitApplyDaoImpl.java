@@ -24,4 +24,14 @@ public class RecruitApplyDaoImpl implements RecruitApplyDao {
 		return sqlSession.selectList("mapper.recruit_apply.selectRecruit_apply", user_id);
 	}
 
+	@Override
+	public List<Recruit_apply> selectRecruit_applyList(Integer post_id) throws Exception {
+		return sqlSession.selectList("mapper.recruit_apply.selectRecruit_applyList", post_id);
+	}
+
+	@Override
+	public Recruit_apply selectRecruit_applyId(Integer apply_id) throws Exception {
+		return  sqlSession.selectOne("mapper.recruit_apply.selectRecruit_applyId", apply_id);
+	}
+
 }

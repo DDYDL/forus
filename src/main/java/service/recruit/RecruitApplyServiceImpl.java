@@ -47,4 +47,18 @@ public class RecruitApplyServiceImpl implements RecruitApplyService {
 		recruitApplyDao.insertRecruit_apply(apply);
 	}
 
+	@Override
+	public List<Recruit_apply> selectRecruit_applyList(Integer post_id) throws Exception {
+		List<Recruit_apply> recruit_apply = recruitApplyDao.selectRecruit_applyList(post_id);
+		if(recruit_apply==null) throw new Exception("지원자가 없습니다");
+		return recruit_apply;
+	}
+
+	@Override
+	public Recruit_apply selectRecruit_apply(Integer apply_id) throws Exception {
+		Recruit_apply recruit_apply = recruitApplyDao.selectRecruit_applyId(apply_id);
+		if(recruit_apply==null) throw new Exception("지원자가 없습니다");
+		return recruit_apply;
+	}
+
 }
