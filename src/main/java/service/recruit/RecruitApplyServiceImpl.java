@@ -8,13 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 
 import dao.recruit.RecruitApplyDao;
 import dao.recruit.RecruitApplyDaoImpl;
+import dao.recruit.RecruitDao;
+import dao.recruit.RecruitDaoImpl;
 import dto.Recruit_apply;
+import dto.Recruit_post;
 import dto.User;
 
 public class RecruitApplyServiceImpl implements RecruitApplyService {
 	private RecruitApplyDao recruitApplyDao;
+	private RecruitDao recruitDao;
 	public RecruitApplyServiceImpl() {
 		recruitApplyDao = new RecruitApplyDaoImpl();
+		recruitDao = new RecruitDaoImpl();
 	}
 	
 	@Override
@@ -61,4 +66,13 @@ public class RecruitApplyServiceImpl implements RecruitApplyService {
 		return recruit_apply;
 	}
 
+	@Override
+	public void updateRecruit_apply_status(Recruit_apply apply) throws Exception {
+		recruitApplyDao.updateRecruit_apply_status(apply);
+	}
+	
+	@Override
+	public void updateRecruit_post_status(Recruit_post post) throws Exception {
+		recruitDao.updateRecruit_post_status(post);
+	}
 }

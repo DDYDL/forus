@@ -34,4 +34,9 @@ public class RecruitApplyDaoImpl implements RecruitApplyDao {
 		return  sqlSession.selectOne("mapper.recruit_apply.selectRecruit_applyId", apply_id);
 	}
 
+	@Override
+	public void updateRecruit_apply_status(Recruit_apply apply) throws Exception {
+		sqlSession.update("mapper.recruit_apply.updateRecruit_apply_status", apply);
+		sqlSession.commit();
+	}
 }

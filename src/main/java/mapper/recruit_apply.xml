@@ -27,4 +27,10 @@
 			select * from recruit_apply where apply_id=#{apply_id}
 		]]>
 	</select>
+	
+	<update id="updateRecruit_apply_status" parameterType="Recruit_apply">
+		<![CDATA[
+			update recruit_apply set apply_status=#{apply_status} where apply_id=#{apply_id}
+		]]>
+	</update>
  </mapper>

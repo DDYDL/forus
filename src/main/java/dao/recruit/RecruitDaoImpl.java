@@ -27,4 +27,10 @@ public class RecruitDaoImpl implements RecruitDao {
 		sqlSession.update("mapper.recruit_post.updateRecruit_post", post);
 		sqlSession.commit();
 	}
+	
+	@Override
+	public void updateRecruit_post_status(Recruit_post post) throws Exception {
+		sqlSession.update("mapper.recruit_post.updateRecruit_post_status", post);
+		sqlSession.commit();
+	}
 }

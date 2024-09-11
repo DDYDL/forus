@@ -41,7 +41,7 @@
     <br>
     <!-- pet 프로필 가져오기 -->
     <div class="box">
-    	<h5>반려동물</h5>
+    	<p class="content-inner-title">반려동물</p>
         <table>
         	<c:forEach items="${petList}" var="pet">
     		<tr>
@@ -56,10 +56,10 @@
     
     <br>
     <div class="box">
-    	<h5>전달 메시지</h5>
-    	<p>${recruit_apply.apply_content}</p>
+    	<p class="content-inner-title">전달 메시지</p>
+    	<p class="content-document">${recruit_apply.apply_content}</p>
     </div>
-    <div class="btndiv"><a href="recruitApplyList" title="Button push blue/green" class="button btnPush btnBlueGreen">채용</a></div>
+    <div class="btndiv"><a href="recruitApplyHire?apply_id=${recruit_apply.apply_id}" title="Button push blue/green" class="button btnPush btnBlueGreen">채용</a></div>
     </div>
 </body>
 </html>

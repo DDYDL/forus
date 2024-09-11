@@ -25,4 +25,10 @@
 				where post_id=#{post_id}
 		]]>
 	</update>
+	
+	<update id="updateRecruit_post_status" parameterType="Recruit_post">
+		<![CDATA[
+			update recruit_post set post_status=#{post_status} where post_id=#{post_id}
+		]]>
+	</update>
 </mapper>
