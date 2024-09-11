@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="./css/common.scc" rel="stylesheet">
 </head>
 <body>
 	<%@ include file="mainpage.jsp"%>

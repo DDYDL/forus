@@ -30,7 +30,7 @@ public interface ReservationDao {
 	
 	// 오늘 이후, 지난 예약 조회
 	List<Map<String, Object>> selectMyAfterReservList(Integer id) throws Exception;
-	List<Map<String, Object>> selectMyBeforeReservList(Integer userId, String pet, String startDate, String endDate, boolean isConsult) throws Exception;
+	List<Map<String, Object>> selectMyBeforeReservList(Integer userId, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception;
 	
 	// 지난 예약 검색 옵션(펫별, 진료완료, 기간별)
 	List<Map<String, Object>> selectPetReservList(Integer id) throws Exception;

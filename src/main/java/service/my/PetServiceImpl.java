@@ -1,5 +1,8 @@
 package service.my;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import dao.my.PetDao;
@@ -31,6 +34,12 @@ public class PetServiceImpl implements PetService {
 		Pet spet = petDao.selectPet(pet.getPet_id());
 		petDao.insertPet(pet);
 		
+	}
+
+
+	@Override
+	public List<Pet> selectPetList(Integer user_id) throws Exception {
+		return petDao.selectPetList(user_id);
 	}
 
 }
