@@ -26,11 +26,28 @@ public class DoctorCalendar extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
+		ServletException,
+		IOException {
+		try {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/hmy/calendar.jsp");
+			dispatcher.forward(request, response);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/hmy/calendar.jsp");
-		dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("서버 오류가 발생했습니다: JSP 페이지를 처리하는 중 오류가 발생했습니다.");
+			e.printStackTrace();
 
+		} catch (IOException e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("서버 오류가 발생했습니다: 입력/출력 처리 중 오류가 발생했습니다.");
+			e.printStackTrace();
+
+		} catch (Exception e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("예기치 않은 오류가 발생했습니다.");
+			e.printStackTrace();
+		}
 
 	}
 }

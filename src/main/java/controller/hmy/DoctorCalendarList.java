@@ -25,26 +25,35 @@ public class DoctorCalendarList extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
-		int userId = Integer.parseInt(request.getParameter("userId"));
+		try {
 
-		// String startDate = "2024-09-01";
-		// String endDate = "2024-09-30";
-		// int userId = 6;
+			String startDate = request.getParameter("startDate");
+			String endDate = request.getParameter("endDate");
+			int userId = Integer.parseInt(request.getParameter("userId"));
 
+			DoctorCalendarService doctorCalendarService = new DoctorCalendarServiceImpl();
+			List<Reservation> reservationList = doctorCalendarService.getReservationList(startDate, endDate, userId);
 
-		DoctorCalendarService doctorCalendarService = new DoctorCalendarServiceImpl();
-		List<Reservation> reservationList = doctorCalendarService.getReservationList(startDate, endDate, userId);
+			Gson gson = new Gson();
+			String json = gson.toJson(reservationList);
 
-		System.out.println("reservationList = " + reservationList);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+		} catch (NumberFormatException e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("잘못된 유저 ID입니다.");
+			e.printStackTrace();
 
-		Gson gson = new Gson();
-		String json = gson.toJson(reservationList);
+		} catch (NullPointerException e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("잘못된 요청 처리 .");
 
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(json);
+		} catch (Exception e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("예약 목록을 가져오는 중 오류가 발생했습니다.");
+			e.printStackTrace();
+		}
 
 
 
