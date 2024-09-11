@@ -47,14 +47,15 @@ public class MyPetModify extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			System.out.println("ss");
 			PetService service = new PetServiceImpl();
 			Integer pet_id = service.petModify(request);
 			Pet pet = service.petDetail(pet_id);
 			request.setAttribute("pet", pet);
-			request.getRequestDispatcher("/my/myPetModify.jsp").forward(request, response);
+			request.getRequestDispatcher("/myPetList").forward(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "게시글 수정 오류");
+			request.setAttribute("err", "펫 수정 오류");
 			request.getRequestDispatcher("err.jsp").forward(request, response);
 		}
 	}

@@ -25,10 +25,8 @@
 </script>
 <body>
 	<%@ include file="../mainmypage.jsp"%>
-	
-	<form action="/forus/myPetModify" method="post" enctype="multipart/form-data">
+	<form action="myPetModify?pet_id=${pet.pet_id}" method="post" enctype="multipart/form-data">
 		<div class="mypage-content">
-		<input type="hidden" name="pet_id" value="${pet.pet_id}">
 			<div>
 				<h3>반려동물 프로필 수정</h3>
 			</div>
@@ -42,35 +40,24 @@
 						onchange="readURL(this);" style="display: none"></li>
 
 					<li>반려동물 이름</li>
-					<li><input type="text" class="underline" name="pet_name"
-						value="${pet.pet_name }"></li>
+					<li class="line"><span>${pet.pet_name }</span></li>
 
 					<li>종류</li>
-					<li><input type="text" class="underline" name= "pet_species"
-						value="${pet.pet_species }"></li>
+					<li class="line"><span>${pet.pet_species }</span></li>
 
 					<li>품종</li>
-					<li><input type="text" class="underline" name="pet_breed"
-						value="${pet.pet_breed }"></li>
+					<li class="line"><span>${pet.pet_breed }</span></li>
 
 					<li>동물등록번호</li>
-					<li><input type="text" class="underline" name="pet_num"
-						value="${pet.pet_num }"></li>
+					<li class="line"><span>${pet.pet_num }</span></li>
 
 					<li class="title">성별</li>
 					<br>
 					<br>
-					<li>
-							<input type="radio" name="pet_gender" value="M"
-								<%if ("M".equals("M")) {%> checked <%}%>> 남
-							<input type="radio" name="pet_gender" value="F"
-								<%if ("F".equals("F")) {%> checked <%}%>> 여
-							<input type="radio" name="pet_neutering" value="0"
-								<%if ("0".equals("0")) {%> checked <%}%>> 중성화 O 
-							<input type="radio" name="pet_neutering" value="1"
-								<%if ("1".equals("1")) {%> checked <%}%>> 중성화 X
-								
-						</li>
+					<li><form>
+							<input type="radio" name="gender" value="M"> 남 <input
+								type="radio" name="gender" value="F"> 여
+						</form></li>
 
 					<li class="title">나이</li>
 					<br>

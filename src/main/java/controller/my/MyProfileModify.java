@@ -56,14 +56,15 @@ public class MyProfileModify extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			
 			UserService service = new UserServiceImpl();
 			Integer num = service.userModify(request);
 			User user = service.userDetail(num);
 			request.setAttribute("user", user);
-			request.getRequestDispatcher("/my/myProfile.jsp").forward(request, response);
+			request.getRequestDispatcher("/myProfile").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "게시글 수정 오류");
+			request.setAttribute("err", "프로필 수정 오류");
 			request.getRequestDispatcher("err.jsp").forward(request, response);
 		}
 	}
