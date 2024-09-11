@@ -66,30 +66,28 @@
 
 
 	<select id="selectMyBeforeReserv" parameterType="Map" resultType="Map">
-		<![CDATA[
 		    SELECT r.reserv_id, r.reserv_date, p.pet_picture, p.pet_name, h.h_name, r.reserv_status
 		    FROM reservation r
 		    JOIN pet p ON r.pet_id = p.pet_id
 		    JOIN hospital h ON r.h_id = h.h_id
 		    WHERE r.user_id = #{id}
-		    AND DATE(r.reserv_date) < CURDATE()
+		    AND DATE(r.reserv_date) &lt; CURDATE()
 
-			<if test='pet_name!=null and pet_name=""'>
-		        AND p.pet_name = #{pet_name}
+			<if test="pet_id != null and pet_id != ''">
+		        AND p.pet_id = #{pet_id}
 		    </if>
 
-		    <if test="startDate != null and !startDate.isEmpty()">
-		        AND r.reserv_date >= #{startDate}
+			<if test="startDate != null and startDate != ''">
+		        AND r.reserv_date &gt;= #{startDate}
 		    </if>
 
-		    <if test="endDate != null and endDate.trim() != ''">
-		        AND r.reserv_date <= #{endDate}
+			<if test="endDate != null and endDate != ''">
+		        AND r.reserv_date &lt;= #{endDate}
 		    </if>
 
-		    <if test="isConsult">
+		    <if test="isConsult == true">
 		        AND r.reserv_status = '진료완료'
 		    </if>
-    	]]>
 	</select>
 	
 	

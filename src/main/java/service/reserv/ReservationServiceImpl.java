@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import controller.reserv.check.IntegerNullCheck;
+import controller.reserv.check.StringNullCheck;
 import dao.reserv.ReservationDao;
 import dao.reserv.ReservationDaoImpl;
 import dto.Pet;
@@ -119,9 +121,11 @@ public class ReservationServiceImpl implements ReservationService {
 	public Reservation createReservation(String selectedDate, String selectedTime, String reservationContent,
 		String customContent, String userId, String petId, String hospitalId) {
 
-		if ("기타".equals(reservationContent) && customContent != null && !customContent.isEmpty()) {
+		if ("기타".equals(reservationContent) && StringNullCheck.isNotEmpty(customContent)) {
 			reservationContent = customContent;
 		}
+
+		Integer parsedPetId = IntegerNullCheck.parseInteger(petId);
 
 		LocalDate reservationDate = LocalDate.parse(selectedDate);
 		LocalTime reservationTime = LocalTime.parse(selectedTime);
@@ -129,7 +133,7 @@ public class ReservationServiceImpl implements ReservationService {
 		Reservation reservation = new Reservation();
 		reservation.sethId(Integer.parseInt(hospitalId));
 		reservation.setUserId(Integer.parseInt(userId));
-		reservation.setPetId(Integer.parseInt(petId));
+		reservation.setPetId(parsedPetId);
 		reservation.setReservDate(reservationDate);
 		reservation.setReservTime(reservationTime);
 		reservation.setReservContent(reservationContent);
@@ -166,8 +170,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<Map<String, Object>> myBeforeReservList(Integer id, String pet_name, String startDate, String endDate, boolean isConsult) throws Exception {
-		 return reservationDao.selectMyBeforeReservList(id, pet_name, startDate, endDate, isConsult);
+	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception {
+		 return reservationDao.selectMyBeforeReservList(id, pet_id, startDate, endDate, isConsult);
 	}
 
 	@Override

@@ -14,6 +14,7 @@
 <%@ include file="../header.jsp" %>
 
 <div id="content-container">
+<%--<div class="content">--%>
     <div id="filter-container">
         <div id="search-bar-container">
             <input type="text" placeholder="주소로 검색" id="search-input">

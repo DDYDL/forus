@@ -3,6 +3,9 @@ package dto;
 import java.time.LocalDateTime;
 
 public class Hospital_qna {
+	private Integer qna_id;
+
+
 	private Integer user_id;
 	private Integer h_id;
 	private String q_writer;
@@ -23,6 +26,15 @@ public class Hospital_qna {
 		this.a_time = a_time;
 	}
 
+
+
+	public Integer getQna_id() {
+		return qna_id;
+	}
+
+	public void setQna_id(Integer qna_id) {
+		this.qna_id = qna_id;
+	}
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -82,9 +94,10 @@ public class Hospital_qna {
 	@Override
 	public String toString() {
 		return "Hospital_qna{" +
-			"user_id=" + user_id +
-			", writer='" + q_writer + '\'' +
+			"qna_id=" + qna_id +
+			", user_id=" + user_id +
 			", h_id=" + h_id +
+			", q_writer='" + q_writer + '\'' +
 			", q_title='" + q_title + '\'' +
 			", q_time='" + q_time + '\'' +
 			", a_title='" + a_title + '\'' +

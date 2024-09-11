@@ -23,6 +23,6 @@ public interface ReservationService {
 		List<Reservation> myAfterReserv() throws Exception;
 	// List<Reservation> myBeforeReserv(PageInfo pageInfo) throws Exception;
 	List<Map<String, Object>> myAfterReservList(Integer id) throws Exception;
-	List<Map<String, Object>> myBeforeReservList(Integer id, String pet_name, String startDate, String endDate, boolean isConsult) throws Exception;
+	List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception;
 	Reservation reservDetail(Integer reserv_id) throws Exception;
 }
