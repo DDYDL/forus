@@ -19,6 +19,8 @@ public class HospitalQnaServiceImpl implements HospitalQnaService {
 		hospitalQnaDao.insertHospitalQna(hospitalQna);
 	}
 
+
+
 	@Override
 	public List<Hospital_qna> getHospitalQnaList(Integer hospitalId) {
 		return hospitalQnaDao.findHospitalQnaListByHospitalId(hospitalId);
@@ -33,5 +35,16 @@ public class HospitalQnaServiceImpl implements HospitalQnaService {
 		hospitalQna.setQ_title(questionContent);
 
 		return hospitalQna;
+	}
+
+	@Override
+	public boolean insertHospitalAnswer(int qnaId, Hospital_qna hospitalQna) {
+		try {
+			hospitalQnaDao.insertHospitalAnswer(qnaId, hospitalQna);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

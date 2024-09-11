@@ -9,9 +9,14 @@
 	</insert>
 
 	<select id="findHospitalQnaListByHospitalId" parameterType="dto.Hospital_qna" resultType="dto.Hospital_qna">
-
 		SELECT * FROM hospital_qna WHERE h_id = #{h_id} ORDER BY q_time DESC;
 	</select>
+
+	<update id="insertAnswer" parameterType="map">
+		UPDATE hospital_qna
+		SET a_title = #{hospitalQna.a_title}, a_time = NOW()
+		WHERE qna_id = #{qnaId};
+	</update>
 
 
 

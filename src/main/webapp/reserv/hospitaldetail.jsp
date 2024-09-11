@@ -80,8 +80,6 @@
                         </c:otherwise>
                     </c:choose>
                 </p>
-
-
                 </c:forEach>
 
 

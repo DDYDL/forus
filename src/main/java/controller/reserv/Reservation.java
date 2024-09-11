@@ -27,45 +27,68 @@ public class Reservation extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
 		ServletException,
 		IOException {
-		int hospitalId = Integer.parseInt(Objects.requireNonNull(request.getParameter("hospitalId")));
-		String selectedDate = request.getParameter("dateStr");
 
-		ReservationService reservationService = new ReservationServiceImpl();
+		try {
+			int hospitalId = Integer.parseInt(Objects.requireNonNull(request.getParameter("hospitalId")));
+			String selectedDate = request.getParameter("dateStr");
 
-		Map<String, Object> availableTimeSlots = reservationService.getAvailableTimeSlots(hospitalId, selectedDate);
+			ReservationService reservationService = new ReservationServiceImpl();
+			Map<String, Object> availableTimeSlots = reservationService.getAvailableTimeSlots(hospitalId, selectedDate);
 
-		Gson gson = new Gson();
-		String jsonResponse = gson.toJson(availableTimeSlots);
+			Gson gson = new Gson();
+			String jsonResponse = gson.toJson(availableTimeSlots);
 
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(jsonResponse);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(jsonResponse);
+
+		} catch (NumberFormatException e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("잘못된 병원 ID입니다..");
+			e.printStackTrace();
+
+		}catch (Exception e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("요청 처리 중 오류가 발생했습니다");
+			e.printStackTrace();
+
+		}
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		try {
+			request.setCharacterEncoding("UTF-8");
 
+			String selectedDate = request.getParameter("selectedDate");
+			String selectedTime = request.getParameter("selectedTime");
+			String customContent = request.getParameter("customContent");
+			String reservationContent = request.getParameter("reservationContent");
+			String userId = request.getParameter("userId");
+			String petId = request.getParameter("petId");
+			String hospitalId = request.getParameter("hospitalId");
 
-		String selectedDate = request.getParameter("selectedDate");
-		String selectedTime = request.getParameter("selectedTime");
-		String customContent = request.getParameter("customContent");
-		String reservationContent = request.getParameter("reservationContent");
-		String userId = request.getParameter("userId");
-		String petId = request.getParameter("petId");
-		String hospitalId = request.getParameter("hospitalId");
+			ReservationService reservationService = new ReservationServiceImpl();
 
-		ReservationService reservationService = new ReservationServiceImpl();
+			dto.Reservation reservation = reservationService.createReservation(selectedDate, selectedTime,
+				reservationContent, customContent, userId, petId, hospitalId);
 
-		dto.Reservation reservation = reservationService.createReservation(selectedDate, selectedTime,
-			reservationContent, customContent, userId, petId, hospitalId);
+			reservationService.insertReservation(reservation);
 
-		reservationService.insertReservation(reservation);
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().write("예약완료.");
 
+		} catch (NumberFormatException e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("잘못된 입력 형식입니다.");
+			e.printStackTrace();
 
-		// 클라이언트로 간단한 응답을 보냄
-		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().write("예약완료.");
+		}catch (Exception e){
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("예약 처리 중 오류가 발생했습니다.");
+			e.printStackTrace();
+		}
 
 
 	}

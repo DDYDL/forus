@@ -50,9 +50,20 @@
             `,
             showCancelButton: true,
             confirmButtonText: '다음',
+            cancelButtonText: '취소',
             preConfirm: () => {
                 const selectedDate = $('#reservation-date-picker').val();
                 const selectedTime = $('input[name="timeSlot"]:checked').val();
+
+                if (!selectedDate) {
+                    alert('요일을 선택해주세요.');
+                    return false;
+                }
+                if (!selectedTime) {
+                    alert('예약 시간을 선택해주세요.');
+                    return false;
+                }
+
                 return { selectedDate, selectedTime };
             }
         }).then((result) => {
@@ -62,7 +73,6 @@
                     dataType: 'json',
                     method: 'POST',
                     success: function (response) {
-                        console.log(response);
                        const user = response.user;
                        const pet = response.pet;
                 Swal.fire({
@@ -188,18 +198,29 @@
     }
 
 
+    function generatePetHtml(pet) {
+        if (!pet || !pet.pet_name) {
+            return `<p><strong>등록된 펫이 없습니다.</strong></p>`;
+        } else {
+            return `
+              <div class="pet-selection">
+                   <p><strong>펫 선택:</strong> ${"${pet.pet_name}"}</p>
+                   <input type="hidden" name="petName" value="${"${pet.pet_name}"}">
+                   <input type="hidden" name="petId" value="${"${pet.pet_id}"}">
+            </div>
+        `;
+        }
+    }
+
     function generateReservationHtml(result, user, pet) {
+        const petHtml = generatePetHtml(pet);
+
         return `
         <form id="reservationForm" action="reservation" method="POST">
 
             <div class="reservation-summary">
                 <h3>예약 정보</h3>
-
-                <div class="pet-selection">
-                   <p><strong>펫 선택:</strong> ${"${pet.pet_name}"}</p>
-                   <input type="hidden" name="petName" value="${"${pet.pet_name}"}">
-                   <input type="hidden" name="petId" value="${"${pet.pet_id}"}">
-                </div>
+                 ${"${petHtml}"}
 
                <div class="reservation-items">
                     <h4>예약 항목</h4>
@@ -225,10 +246,7 @@
                     <input type="hidden" name="userName" value="${"${user.name}"}">
                     <input type="hidden" name="userId" value="${"${user.id}"}">
                 </div>
-
                   <input type="hidden" name="hospitalId" value="${hospital.h_id}">
-
-
             </div>
         </form>
         `;
