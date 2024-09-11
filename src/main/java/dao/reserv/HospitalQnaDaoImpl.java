@@ -45,8 +45,8 @@ public class HospitalQnaDaoImpl implements HospitalQnaDao {
 			params.put("hospitalQna", hospitalQna);
 
 			sqlSession.update("mapper.hospital_qna.insertAnswer", params);
-
 			sqlSession.commit();
+
 		} catch (Exception e) {
 			sqlSession.rollback();
 			e.printStackTrace();

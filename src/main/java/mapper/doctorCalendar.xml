@@ -42,4 +42,33 @@
         ORDER BY reserv_date, reserv_time
     </select>
 
+    <update id="updateReservationMemo" parameterType="map">
+        UPDATE reservation
+        SET reserv_memo = #{memo}
+        WHERE reserv_id = #{reservationId}
+    </update>
+
+    <select id="findUserPetInfoByReservationId" resultType="dto.UserPetInfo">
+        SELECT
+        u.name AS userName,
+        u.phone AS userPhone,
+        u.email AS userEmail,
+        COALESCE(p.pet_name, '펫 등록 안함') AS petName,
+        COALESCE(p.pet_species, '펫 등록 안함') AS petSpecies,
+        COALESCE(p.pet_breed, '펫 등록 안함') AS petBreed,
+        COALESCE(p.pet_gender, '펫 등록 안함') AS petGender,
+        COALESCE(p.pet_age, 0) AS petAge,
+        COALESCE(p.pet_picture, '이미지 없음') AS petPicture
+        FROM
+        reservation r
+        JOIN
+        user u ON r.user_id = u.id
+        LEFT JOIN
+        pet p ON r.pet_id = p.pet_id
+        WHERE
+        r.reserv_id = #{reservationId};
+    </select>
+    
+    
+
 </mapper>
