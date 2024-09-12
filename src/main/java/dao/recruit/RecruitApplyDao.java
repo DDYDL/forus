@@ -19,4 +19,6 @@ public interface RecruitApplyDao {
 	
 	// user_id에 해당하는 Recruit_apply 및 post_status 리스트 select
 	List<Map<String, Object>> selectApplyListByUserId(Integer user_id) throws Exception;
+	// apply_id에 해당하는 Recruit_apply 삭제
+	void deleteApplyByApplyId(Integer apply_id) throws Exception;
 }

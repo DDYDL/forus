@@ -43,4 +43,12 @@
 			update recruit_apply set apply_status=#{apply_status} where apply_id=#{apply_id}
 		]]>
 	</update>
+	
+	<delete id="deleteApplyByApplyId" parameterType="Integer">
+		<![CDATA[
+			delete from recruit_apply where apply_id=#{apply_id}
+		]]>
+	</delete>
+	
+	
  </mapper>

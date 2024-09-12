@@ -22,4 +22,6 @@ public interface RecruitApplyService {
 	
 	// user_id에 해당하는 apply 리스트 가져오기
 	List<Map<String,Object>> selectApplyListByUserId(Integer user_id) throws Exception;
+	// apply_id에 해당하는 apply 삭제하기
+	void deleteApplyByApplyId(Integer apply_id) throws Exception;
 }

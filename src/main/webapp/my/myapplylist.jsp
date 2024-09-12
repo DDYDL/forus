@@ -39,7 +39,10 @@
 				<td class="textalign_left">${apply.post_status }</td>
 			 	<c:choose>
 					<c:when test="${apply.apply_status eq '지원완료'}">
-						<td><button class="minibtn" type="submit">취소하기</button></td>
+							<form action="/myApplyList" method="POST" style="display:inline;">
+								<input type="hidden" name="apply_id" value="${apply.apply_id}" />
+								<td><button class="minibtn" type="submit">취소하기</button></td>
+							</form>
 					</c:when>
 					<c:otherwise>
 						<td><p>${apply.apply_status}</p>

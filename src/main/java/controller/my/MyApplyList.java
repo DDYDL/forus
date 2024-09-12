@@ -59,8 +59,15 @@ public class MyApplyList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		Integer apply_id = Integer.parseInt(request.getParameter("apply_id"));
+		RecruitApplyService service = new RecruitApplyServiceImpl();
+		try {
+			service.deleteApplyByApplyId(apply_id);
+			response.getWriter().write(String.valueOf("삭제완료"));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -45,4 +45,10 @@ public class RecruitApplyDaoImpl implements RecruitApplyDao {
 	public List<Map<String, Object>> selectApplyListByUserId(Integer user_id) throws Exception {
 		return sqlSession.selectList("mapper.recruit_apply.selectApplyListByUserId", user_id);
 	}
+
+	@Override
+	public void deleteApplyByApplyId(Integer apply_id) throws Exception {
+		sqlSession.delete("mapper.recruit_apply.deleteApplyByApplyId", apply_id);
+		sqlSession.commit();
+	}
 }
