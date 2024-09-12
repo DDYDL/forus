@@ -31,5 +31,9 @@ public class PageInfo {
 		this.endPage = endPage;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "PageInfo [curPage=" + curPage + ", allPage=" + allPage + ", startPage=" + startPage + ", endPage="
+				+ endPage + "]";
+	}
 }
