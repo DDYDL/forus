@@ -39,4 +39,15 @@ public class PetDaoImpl implements PetDao {
 		return sqlSession.selectList("mapper.pet.selectPetList", user_id);
 	}
 
+	@Override
+	public Integer deletePet(Integer pet_Id) throws Exception {
+		int deletePet = sqlSession.delete("mapper.pet.deletePet", pet_Id);
+		sqlSession.commit();
+		return deletePet;
+		
+	}
+
+	
+	
+
 }

@@ -50,7 +50,9 @@ public class MyPetModify extends HttpServlet {
 			System.out.println("ss");
 			PetService service = new PetServiceImpl();
 			Integer pet_id = service.petModify(request);
+			System.out.println(pet_id);
 			Pet pet = service.petDetail(pet_id);
+			
 			request.setAttribute("pet", pet);
 			request.getRequestDispatcher("/myPetList").forward(request, response);
 		} catch(Exception e) {

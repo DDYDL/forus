@@ -72,6 +72,8 @@ public class HospitalServiceImpl implements HospitalService {
 		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
 
 		Hospital hospital = new Hospital();
+		hospital.setH_id(Integer.parseInt(multi.getParameter("h_id")));
+		
 		hospital.setH_num(Integer.parseInt(multi.getParameter("h_num")));
 
 		// 파일 수정

@@ -33,12 +33,19 @@ pet_age, pet_neutering, pet_picture, pet_memo, pet_num)
 		</set>
 		where pet_id = #{pet_id}
 	</update>
-	
-	<select id="selectPetList" parameterType="Integer" resultType="pet">
+
+	<select id="selectPetList" parameterType="Integer"
+		resultType="pet">
 		<![CDATA[
 			select * from pet where user_id=#{user_id}
-		]]> 
+		]]>
 	</select>
+
+	<delete id="deletePet" parameterType="Pet">
+		<![CDATA[
+			delete from pet where pet_id = #{pet_id}]]>
+	</delete>
+
 </mapper>
 
  
