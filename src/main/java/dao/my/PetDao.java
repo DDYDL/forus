@@ -15,4 +15,6 @@ public interface PetDao {
 	
 	// user_id에 해당하는 Pet 리스트 가져오기
 	List<Pet> selectPetList(Integer user_id) throws Exception;
+	
+	Integer deletePet(Integer pet_Id)throws Exception;
 }

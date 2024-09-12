@@ -26,7 +26,7 @@
 <body>
 	<%@ include file="../mainmypage.jsp"%>
 	
-	<form action="/forus/myPetModify" method="post" enctype="multipart/form-data">
+	<form action="./myPetModify" method="post" enctype="multipart/form-data">
 		<div class="mypage-content">
 		<input type="hidden" name="pet_id" value="${pet.pet_id}">
 			<div>
@@ -113,7 +113,7 @@
 				<div class="find-btn">
 					<input type="submit" title="Button push blue/green"
 						class=" btn btnPush btnBlueGreen find-btn1"
-						onclick="location.href='/forus/myPetList'" value="수정완료">
+						 value="수정완료">
 
 				</div>
 			</div>

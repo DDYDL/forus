@@ -8,48 +8,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dto.Pet;
 import service.my.PetService;
 import service.my.PetServiceImpl;
 
 /**
- * Servlet implementation class MyPetProfile
+ * Servlet implementation class MyPetDelete
  */
-@WebServlet("/myPetProfile")
-public class MyPetProfile extends HttpServlet {
+@WebServlet("/myPetDelete")
+public class MyPetDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public MyPetProfile() {
+	public MyPetDelete() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		Integer pet_id = Integer.parseInt(request.getParameter("pet_id"));
-		System.out.println(pet_id);
+		int pet_Id = Integer.parseInt(request.getParameter("pet_id"));
+
+		System.out.println("petId" + pet_Id);
+
 		try {
 			PetService service = new PetServiceImpl();
-
-			Pet pet = service.petDetail(pet_id);
-			System.out.println(pet_id);
-			request.setAttribute("pet", pet);
-
-			request.getRequestDispatcher("myPetProfile.jsp").forward(request, response);
-
+			service.petDelete(pet_Id);
+			request.getRequestDispatcher("/myPetList").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("err.jsp").forward(request, response);
 		}
+
 	}
 
 }
