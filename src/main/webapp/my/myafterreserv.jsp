@@ -18,7 +18,7 @@
 			<a href="${pageContext.request.contextPath}/myBeforeReserv">지난 예약</a>
 		</div>
 			<div class="listcnt">
-				<p>총 2건</p>
+				<p>총 ${afterReservList.size() }건</p>
 			</div>
 	<table class="table table-hover mytable">
 			<tr>

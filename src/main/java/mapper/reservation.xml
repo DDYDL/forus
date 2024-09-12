@@ -42,6 +42,7 @@
             ON r.h_id = h.h_id
             WHERE r.user_id = #{id}
             AND DATE(r.reserv_date) >= CURDATE()
+            order by reserv_date
         ]]>
     </select>
 
@@ -69,6 +70,7 @@
 		    JOIN pet p ON r.pet_id = p.pet_id
 		    JOIN hospital h ON r.h_id = h.h_id
 		    WHERE DATE(r.reserv_date) &lt; CURDATE()
+		    AND r.user_id = #{id}
 
 			<if test="pet_id != null and pet_id != ''">
 		        AND p.pet_id = #{pet_id}
@@ -84,7 +86,6 @@
 		    </if>
 		    
 		    order by reserv_date desc
-		    
 	</select>
 	
 	<select id="reservList" parameterType="String" resultType="Reservation">

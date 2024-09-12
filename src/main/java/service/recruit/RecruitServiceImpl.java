@@ -3,6 +3,7 @@ package service.recruit;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -124,4 +125,11 @@ public class RecruitServiceImpl implements RecruitService {
 		if(user==null) throw new Exception("사용자 없음");
 		return user;
 	}
+
+	@Override
+	public List<Map<String,Object>> selectPostListByUserId(Integer user_id) throws Exception {
+		return recruitDao.selectPostListByUserId(user_id);
+	}
+	
+	
 }

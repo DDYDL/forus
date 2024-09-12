@@ -10,8 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<link href="../css/my/mycommon.css" rel="stylesheet" type="text/css">
-<link href="../css/my/mycommon.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/my/mycommon.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="../mainmypage.jsp" %>
@@ -20,7 +19,7 @@
 		<p>게시글 관리</p>
 	</div>
 	<div class="listcnt">
-		<p>총 2건</p>
+		<p>총 ${postList.size() }건</p>
 	</div>
 	<table class="table table-hover mytable">
 		<thead>
@@ -33,20 +32,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td><input type="checkbox"></td>
-				<td>2024.8.19</td>
-				<td>강아지 산책시켜주실 분!!(견주만)</td>
-				<td>게재중</td>
-				<td>1명</td>
+			<c:forEach items="${myPostList }" var="post">
+			<tr onclick="location.href='./recruitApplyDetailpage?post_id=\${post.post_id}'">
+				<td><input type="checkbox" value="${post.post_id}"></td>
+				<td>${post.post_date }</td>
+				<td>${post.post_title }</td>
+				<td class="textalign_left">${post.post_status }</td>
+				<td>${post.applycnt }명</td>
 			</tr>
-			<tr>
-				<td><input type="checkbox"></td>
-				<td>2024.8.19</td>
-				<td>강아지 2마리 집에 같이 있어주세요</td>
-				<td>지원마감</td>
-				<td>2명</td>
-			</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 	<div>
