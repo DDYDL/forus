@@ -19,7 +19,7 @@
 		<p>게시글 관리</p>
 	</div>
 	<div class="listcnt">
-		<p>총 ${postList.size() }건</p>
+		<p>총 ${myPostList.size() }건</p>
 	</div>
 	<table class="table table-hover mytable">
 		<thead>
@@ -33,7 +33,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${myPostList }" var="post">
-			<tr onclick="location.href='./recruitApplyDetailpage?post_id=\${post.post_id}'">
+			<tr onclick="location.href='./recruitDetailpage?post_id=${post.post_id}'">
 				<td><input type="checkbox" value="${post.post_id}"></td>
 				<td>${post.post_date }</td>
 				<td>${post.post_title }</td>

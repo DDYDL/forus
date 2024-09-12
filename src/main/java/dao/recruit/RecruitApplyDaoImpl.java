@@ -1,6 +1,7 @@
 package dao.recruit;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -38,5 +39,10 @@ public class RecruitApplyDaoImpl implements RecruitApplyDao {
 	public void updateRecruit_apply_status(Recruit_apply apply) throws Exception {
 		sqlSession.update("mapper.recruit_apply.updateRecruit_apply_status", apply);
 		sqlSession.commit();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectApplyListByUserId(Integer user_id) throws Exception {
+		return sqlSession.selectList("mapper.recruit_apply.selectApplyListByUserId", user_id);
 	}
 }

@@ -1,6 +1,7 @@
 package service.recruit;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,4 +19,7 @@ public interface RecruitApplyService {
 	void updateRecruit_apply_status(Recruit_apply apply) throws Exception;
 	// Recruit_post 지원상태 수정하기
 	void updateRecruit_post_status(Recruit_post post) throws Exception;
+	
+	// user_id에 해당하는 apply 리스트 가져오기
+	List<Map<String,Object>> selectApplyListByUserId(Integer user_id) throws Exception;
 }

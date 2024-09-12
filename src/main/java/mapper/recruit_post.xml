@@ -23,7 +23,8 @@
 			SELECT p.post_id, p.post_date, p.post_title, p.post_status, COUNT(a.post_id) AS applycnt
 		      FROM recruit_post p
 			  JOIN recruit_apply a ON p.post_id=a.post_id
-			 WHERE p.user_id = #{user_id};
+			 WHERE p.user_id = #{user_id}
+			 ORDER BY p.post_date DESC
 		]]>
 	</select>
 	
