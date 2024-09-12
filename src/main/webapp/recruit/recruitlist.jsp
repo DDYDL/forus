@@ -152,8 +152,13 @@
     			data:{param:JSON.stringify(param)}, // 객체를 JSON 문자열로 변환
     			success:function(result) { // recruitBypage 서블릿에서 넘어온 recruit_post 리스트가 result에 담겨옴(JSON 문자열 형식)
     				console.log(result);
+    				console.log(typeof(result)); // result는 String 타입
+    				if(result === "") {
+    					document.getElementById("recruitlist_body").innerHTML = "글이 없습니다";
+    					document.getElementById("count").innerHTML = "총 0건";
+    					return;
+    				}
     				var res = JSON.parse(result); // JSON 문자열을 객체로 변환
-    				document.getElementById("count").innerHTML = "총 " + res.recruit_postList.length + "건";
     				res.recruit_postList.forEach(function(recruit_post) {
     					console.log(recruit_post);
     					// 초 단위 자르기
@@ -165,6 +170,8 @@
     				})
     				maxPage = res.maxPage; // 넘어온 페이지로 설정
     				page = res.page;
+    				// 전체 페이지 수 설정
+    				document.getElementById("count").innerHTML = "총 " + res.postCount + "건";
     				
     				// 현재 페이지수가 최대 페이지수와 같거나 크면 더보기 버튼 안 보이게 함
     				if(page>=maxPage) {
