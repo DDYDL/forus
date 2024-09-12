@@ -20,8 +20,8 @@ public interface RecruitApplyService {
 	// Recruit_post 지원상태 수정하기
 	void updateRecruit_post_status(Recruit_post post) throws Exception;
 	
-	// user_id에 해당하는 apply 리스트 가져오기
+	// user_id에 해당하는 Recruit_apply 리스트 가져오기
 	List<Map<String,Object>> selectApplyListByUserId(Integer user_id) throws Exception;
-	// apply_id에 해당하는 apply 삭제하기
+	// apply_id에 해당하는 Recruit_apply 삭제하기
 	void deleteApplyByApplyId(Integer apply_id) throws Exception;
 }

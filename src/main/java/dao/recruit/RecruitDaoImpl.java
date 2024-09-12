@@ -41,4 +41,10 @@ public class RecruitDaoImpl implements RecruitDao {
 	public List<Map<String,Object>> selectPostListByUserId(Integer user_id) throws Exception {
 		return sqlSession.selectList("mapper.recruit_post.selectPostListByUserId", user_id);
 	}
+
+	@Override
+	public void deletePostByPostId(String post_id) throws Exception {
+		sqlSession.delete("mapper.recruit_post.deletePostByPostId", post_id);
+		sqlSession.commit();
+	}
 }

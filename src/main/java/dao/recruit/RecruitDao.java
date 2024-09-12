@@ -18,4 +18,6 @@ public interface RecruitDao {
 	
 	// user_id에 해당하는 Recruit_post 및 신청인원 리스트 select
 	List<Map<String,Object>> selectPostListByUserId(Integer user_id) throws Exception;
+	// post_id에 해당하는 Recruit_post 삭제
+	void deletePostByPostId(String post_id) throws Exception;
 }

@@ -24,6 +24,7 @@
 		      FROM recruit_post p
 			  JOIN recruit_apply a ON p.post_id=a.post_id
 			 WHERE p.user_id = #{user_id}
+			 GROUP BY p.post_id, p.post_date, p.post_title, p.post_status
 			 ORDER BY p.post_date DESC
 		]]>
 	</select>
@@ -41,4 +42,11 @@
 			update recruit_post set post_status=#{post_status} where post_id=#{post_id}
 		]]>
 	</update>
+
+	<delete id="deletePostByPostId" parameterType="String">
+		<![CDATA[
+			delete from recruit_post where post_id=#{post_id}
+		]]>
+	</delete>
+
 </mapper>

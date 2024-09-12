@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dto.Recruit_apply;
 import dto.Recruit_post;
 import dto.User;
+import service.recruit.RecruitApplyService;
+import service.recruit.RecruitApplyServiceImpl;
 import service.recruit.RecruitService;
 import service.recruit.RecruitServiceImpl;
 import service.reserv.ReservationService;
@@ -60,8 +63,26 @@ public class MyPostList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-		// 삭제하기
+		request.setCharacterEncoding("UTF-8");
+		String[] postIds = request.getParameterValues("post_id");
+		
+		try {
+			RecruitService service = new RecruitServiceImpl();
+			RecruitApplyService aservice = new RecruitApplyServiceImpl();
+			if (postIds != null) {
+				for (String post_id : postIds) {
+					service.deletePostByPostId(post_id);
+					// 지원상태 > 글 삭제됨
+					Recruit_apply apply = new Recruit_apply();
+					apply.setApply_status("삭제된글");
+					aservice.updateRecruit_apply_status(apply);
+				}
+			} else { System.out.println("선택된 글이 없습니다."); }
+			response.getWriter().write(String.valueOf("삭제완료"));
+			response.sendRedirect("myPostList");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

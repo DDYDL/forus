@@ -130,6 +130,11 @@ public class RecruitServiceImpl implements RecruitService {
 	public List<Map<String,Object>> selectPostListByUserId(Integer user_id) throws Exception {
 		return recruitDao.selectPostListByUserId(user_id);
 	}
+
+	@Override
+	public void deletePostByPostId(String post_id) throws Exception {
+		recruitDao.deletePostByPostId(post_id);
+	}
 	
 	
 }

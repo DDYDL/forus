@@ -84,6 +84,6 @@ public class RecruitApplyServiceImpl implements RecruitApplyService {
 
 	@Override
 	public void deleteApplyByApplyId(Integer apply_id) throws Exception {
-		recruitDao.deleteApplyByApplyId(apply_id);
+		recruitApplyDao.deleteApplyByApplyId(apply_id);
 	}
 }
