@@ -39,7 +39,8 @@
 	<div class="mypage-content">
 
 		<div class="bodybox">
-			<form>
+			<form action="./hmyHospitalModify" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="h_id" value="${hospital.h_id }">
 				<div class="containerbox">
 
 					<div>
@@ -170,12 +171,11 @@
 									value="${hospital.h_lunch_time_end }"></td>
 							</tr>
 							<tr>
-								<td>진료 가능 동물 목록</td>
-								<td>
-								
-								<!-- 체크박스 동물 목록 만들기 -->
-								
-								</td>
+								<td><label for="name"> 진료가능 목록 </label></td>
+								<td class="tdinput"><input type="checkbox" name="h_pay"
+									value="1"> 현금 <input type="checkbox" name="h_pay"
+									value="2"> 카드 <input type="checkbox" name="h_pay"
+									value="3"> 제로페이</td>
 							</tr>
 
 						</tbody>
@@ -245,8 +245,7 @@
 					<div class="row">
 						<div class="find-btn">
 							<input type="submit" title="Button push blue/green"
-								class=" btn btnPush btnBlueGreen find-btn1"
-								onclick="location.href='/forus/hmyHospital'" value="수정 완료">
+								class=" btn btnPush btnBlueGreen find-btn1" value="수정 완료">
 
 						</div>
 					</div>

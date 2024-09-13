@@ -54,7 +54,8 @@
     // Add event listener to the button
     document.getElementById('reservationTimeButton').addEventListener('click', function() {
 
-        window.location.href = './hmyManagerReservationTime';
+        window.location.href = '${pageContext.request.contextPath}/hmyManagerReservationTime';
+
     });
 </script>
 

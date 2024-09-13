@@ -14,7 +14,7 @@ public class HospitalDaoImpl implements HospitalDao {
 
 	@Override
 	public void insertHospital(Hospital hospital) throws Exception {
-		sqlSession.insert("mapper.Hospital.insertHospital", hospital);
+		sqlSession.insert("mapper.hospital.insertHospital", hospital);
 		sqlSession.commit();
 
 	}
@@ -26,7 +26,7 @@ public class HospitalDaoImpl implements HospitalDao {
 
 	@Override
 	public void updateHospital(Hospital hospital) throws Exception {
-		sqlSession.update("mapper.Hospital.updateHospital", hospital);
+		sqlSession.update("mapper.hospital.updateHospital", hospital);
 		sqlSession.commit();
 
 	}
