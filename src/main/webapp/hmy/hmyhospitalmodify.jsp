@@ -39,7 +39,8 @@
 	<div class="mypage-content">
 
 		<div class="bodybox">
-			<form>
+			<form action="./hmyHospitalModify" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="h_id" value="${hospital.h_id }">
 				<div class="containerbox">
 
 					<div>
@@ -244,8 +245,7 @@
 					<div class="row">
 						<div class="find-btn">
 							<input type="submit" title="Button push blue/green"
-								class=" btn btnPush btnBlueGreen find-btn1"
-								onclick="location.href='/forus/hmyHospital'" value="수정 완료">
+								class=" btn btnPush btnBlueGreen find-btn1" value="수정 완료">
 
 						</div>
 					</div>

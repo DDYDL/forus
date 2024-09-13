@@ -45,10 +45,10 @@ public class HmyHospital extends HttpServlet {
 
 			// user_id를 사용해 hospital 테이블에서 hospital 정보 조회
 			Hospital hospital = service.getHospitalByUserId(user_id);
+			System.out.println("hospital new:"+hospital);
 
 			// 조회한 Hospital 객체를 세션에 저장
 			request.getSession().setAttribute("hospital", hospital);
-			System.out.println("Hospital Info: " + hospital);
 
 			request.setAttribute("hospital", hospital);
 			
