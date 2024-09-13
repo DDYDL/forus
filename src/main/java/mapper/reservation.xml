@@ -91,9 +91,27 @@
 	</select>
 	
 	
-	<select id="reservList" parameterType="String" resultType="Reservation">
+	<select id="reservList" parameterType="Integer" resultType="Map">
 		<![CDATA[
-			select * from Reservation where user_id=#{user_id}
+			SELECT
+		r.reserv_id, u.name, u.phone,
+		r.reserv_date, 
+		time_format(r.reserv_time,'%H:%i') as reserv_time,
+		p.pet_name,
+		date(r.reserv_apply_time) AS reserv_apply_time, 
+		r.reserv_content
+		FROM reservation r
+		JOIN user u ON
+		r.user_id = u.id
+		JOIN pet p ON r.pet_id = p.pet_id
+		Where r.h_id=#{h_id}
+		AND reserv_date=CURDATE()
 		]]> 
 	</select>
+	
+	
+	<delete id="deleteReservation" parameterType="Reservation">
+		<![CDATA[
+			delete from pet where reserv_id = #{reserv_id}]]>
+	</delete>
 </mapper>

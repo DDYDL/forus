@@ -53,12 +53,17 @@
 				<li class="title">휴대전화번호</li>
 				<li class="line"><span>${user.phone }</span></li>
 				
+				<li class="title">주소</li><br><br>
+				<li><span>${user.address }</span></li>
+				
 				<li class="title">생년월일</li><br><br>
 				<li><span>${user.birthday }</span></li>
 				
 				<li class="title">성별</li><br><br>
 				<li><span>${user.gender }</span>
 				</li>
+				
+				
 			</ul>
 
 			<div class="find-btn">

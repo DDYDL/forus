@@ -36,4 +36,8 @@ public interface ReservationDao {
 	List<Map<String, Object>> selectPetReservList(Integer id) throws Exception;
 	List<Map<String, Object>> selectCompleteReservList(Integer id) throws Exception;
 	List<Map<String, Object>> selectPeriodReservList(Integer id) throws Exception;
+	
+	Integer deleteReserv(int reserv_id) throws Exception;
+	
+
 }

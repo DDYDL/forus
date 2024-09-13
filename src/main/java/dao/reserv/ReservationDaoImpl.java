@@ -127,4 +127,11 @@ public class ReservationDaoImpl implements ReservationDao {
 		return null;
 	}
 
+	@Override
+	public Integer deleteReserv(int reserv_id) throws Exception {
+		int deleteReserv = sqlSession.delete("mapper.pet.deleteReservation", reserv_id);
+		sqlSession.commit();
+		return deleteReserv;
+	}
+
 }

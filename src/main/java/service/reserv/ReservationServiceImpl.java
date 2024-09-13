@@ -179,4 +179,9 @@ public class ReservationServiceImpl implements ReservationService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Integer deleteReservation(int reserv_id) throws Exception {
+		return reservationDao.deleteReserv(reserv_id);
+	}
 }

@@ -65,10 +65,11 @@
 								<%if ("M".equals("M")) {%> checked <%}%>> 남
 							<input type="radio" name="pet_gender" value="F"
 								<%if ("F".equals("F")) {%> checked <%}%>> 여
-							<input type="radio" name="pet_neutering" value="0"
-								<%if ("0".equals("0")) {%> checked <%}%>> 중성화 O 
-							<input type="radio" name="pet_neutering" value="1"
-								<%if ("1".equals("1")) {%> checked <%}%>> 중성화 X
+								
+								
+							<input type="checkbox" name="pet_neutering" value="0"
+								<%if ("1".equals("1")) {%> checked <%}%>> 중성화 여부
+
 								
 						</li>
 
