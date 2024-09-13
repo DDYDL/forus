@@ -2,6 +2,7 @@ package controller.reserv;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -28,13 +29,13 @@ public class ReservationInfo extends HttpServlet {
 
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		ReservationService reservationService = new ReservationServiceImpl();
 		HttpSession session = request.getSession(false);
 
-		User user = null;
-		Pet pet = null;
+		// User user = null;
+		// List<Pet> pet = null;
 		try {
 			if (session != null) {
 				User sessionUser = (User) session.getAttribute("user");
@@ -42,8 +43,20 @@ public class ReservationInfo extends HttpServlet {
 				if (sessionUser != null) {
 					int userId = sessionUser.getId();
 
-					user = reservationService.getUserInfo(userId);
-					pet = reservationService.getPetInfo(userId);
+					User user = reservationService.getUserInfo(userId);
+					List<Pet>pet  = reservationService.getPetsInfo(userId);
+
+					Gson gson = new Gson();
+					Map<String, Object> responseData = new HashMap<>();
+					responseData.put("user", user);
+					responseData.put("pet", pet);
+
+					String userAndPetInfoJson = gson.toJson(responseData);
+
+					response.setContentType("application/json");
+					response.setCharacterEncoding("UTF-8");
+					response.getWriter().write(userAndPetInfoJson);
+
 
 				} else {
 					System.out.println("세션에서 유저 정보를 찾을 수 없습니다.");
@@ -57,17 +70,6 @@ public class ReservationInfo extends HttpServlet {
 			e.printStackTrace();
 		}
 
-
-		Gson gson = new Gson();
-		Map<String, Object> responseData = new HashMap<>();
-		responseData.put("user", user);
-		responseData.put("pet", pet);
-
-		String userAndPetInfoJson = gson.toJson(responseData);
-
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(userAndPetInfoJson);
 
 
 

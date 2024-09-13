@@ -17,7 +17,9 @@ public interface ReservationDao {
 
 	//findUserInfByUserId
 	User findUserInfoByUserId(Integer userId);
-	Pet  findPetInfByPetId(Integer useId);
+
+
+	List<Pet> findPetsByUserId(Integer userId);
 
 	void insertReservation(Reservation reservation);
 
@@ -36,4 +38,8 @@ public interface ReservationDao {
 	List<Map<String, Object>> selectPetReservList(Integer id) throws Exception;
 	List<Map<String, Object>> selectCompleteReservList(Integer id) throws Exception;
 	List<Map<String, Object>> selectPeriodReservList(Integer id) throws Exception;
+	
+	Integer deleteReserv(int reserv_id) throws Exception;
+	
+
 }

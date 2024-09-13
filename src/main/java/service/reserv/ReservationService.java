@@ -12,7 +12,7 @@ public interface ReservationService {
 	Map<String,Object> getAvailableTimeSlots(int hospitalId, String date);
 
 	User getUserInfo(Integer userId);
-	Pet getPetInfo(Integer petId);
+	List<Pet> getPetsInfo(Integer petId);
 
 	void insertReservation(Reservation reservation);
 
@@ -22,4 +22,6 @@ public interface ReservationService {
 	List<Map<String, Object>> myAfterReservList(Integer id) throws Exception;
 	List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception;
 	Reservation reservDetail(Integer reserv_id) throws Exception;
+	
+	Integer deleteReservation(int reserv_id)throws Exception;
 }

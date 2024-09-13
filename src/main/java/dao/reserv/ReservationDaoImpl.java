@@ -47,8 +47,8 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public Pet findPetInfByPetId(Integer useId) {
-		return sqlSession.selectOne("mapper.reservation.findPetInfoByUserId", useId);
+	public List<Pet> findPetsByUserId(Integer userId) {
+		return sqlSession.selectList("mapper.reservation.findPetInfoByUserId", userId);
 	}
 
 	@Override
@@ -125,6 +125,13 @@ public class ReservationDaoImpl implements ReservationDao {
 	public List<Map<String, Object>> selectPeriodReservList(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Integer deleteReserv(int reserv_id) throws Exception {
+		int deleteReserv = sqlSession.delete("mapper.pet.deleteReservation", reserv_id);
+		sqlSession.commit();
+		return deleteReserv;
 	}
 
 }

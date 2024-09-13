@@ -54,42 +54,31 @@
 							<tr>
 								<td><label for="name">대표자 이름</label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_exponent_name" value = "${hospital.h_exponent_name  }" required></td>
+									name="h_exponent_name" value="${hospital.h_exponent_name  }"
+									required></td>
 								<td></td>
 							</tr>
 
 							<tr>
 								<td><label for="name">사업자 등록번호</label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_num" value = "${hospital.h_num }" required></td>
+									name="h_num" value="${hospital.h_num }" required></td>
 							</tr>
-							<tr>
-								<td><label for="name">의사 면허증</label></td>
-								<td class=" tdinput filebox"><input class="upload-name"
-									value="첨부파일" placeholder="첨부  파일"> <label for="file">파일찾기</label>
-									<input type="file" id="file" name="h_license"></td>
-
-							</tr>
-							<script>
-								$("#file").on('change', function() {
-									var fileName = $("#file").val();
-									$(".upload-name").val(fileName);
-								});
-							</script>
 							<tr>
 								<td><label for="name">병원 이름</label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_name" value = "${hospital.h_name }" required></td>
+									name="h_name" value="${hospital.h_name }" required></td>
 							</tr>
 							<tr>
 								<td><label for="name">병원장 이름</label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_manager_name" value = "${hospital.h_manager_name }" required></td>
+									name="h_manager_name" value="${hospital.h_manager_name }"
+									required></td>
 							</tr>
 							<tr>
 								<td><label for="name">병원 연락처</label></td>
 								<td class="tdinput"><input type="tel" id="tel"
-									name="h_phone" value = "${hospital.h_phone }" required></td>
+									name="h_phone" value="${hospital.h_phone }" required></td>
 							</tr>
 
 							<tr>
@@ -170,37 +159,23 @@
 
 
 
-							<tr>
-								<td class="time"><label for="name">진료 시간</label></td>
-								<td class="tdinput time">시작<input type="time" id="input"
-									name="h_longitude"> &nbsp; &nbsp; 종료<input type="time"
-									id="input" name="h_latitude"></td>
-							</tr>
+
 							<tr>
 								<td class="time"><label for="name">점심 시간</label></td>
 								<td class="tdinput time">시작<input type="time" id="input"
-									name="h_lunch_time_start"> &nbsp; &nbsp; 종료 <input
-									type="time" id="input" name="h_lunch_time_end"></td>
+									name="h_lunch_time_start"
+									value="${hospital.h_lunch_time_start }"> &nbsp; &nbsp;
+
+									종료 <input type="time" id="input" name="h_lunch_time_end"
+									value="${hospital.h_lunch_time_end }"></td>
 							</tr>
 							<tr>
-								<td><label for="name">진료 가능 동물 목록</label></td>
-								<td class="tdinput"><form action="http://httpbin.org/post"
-										method="post">
-										<select data-placeholder="Begin typing a name to filter..."
-											multiple class="chosen-select" name="animal">
-											<option selected disabled>진료 가능한 동물을 선택해주세요.</option>
-											<option value="dog">개</option>
-											<option value="cat">고양이</option>
-											<option value="bird">조류</option>
-											<option value="Reptiles">파충류</option>
-										</select>
-									</form> <script type="text/javascript">
-										$(".chosen-select")
-												.chosen(
-														{
-															no_results_text : "해당하는 종류가 없습니다."
-														})
-									</script></td>
+								<td>진료 가능 동물 목록</td>
+								<td>
+								
+								<!-- 체크박스 동물 목록 만들기 -->
+								
+								</td>
 							</tr>
 
 						</tbody>
@@ -228,11 +203,13 @@
 						<tbody>
 							<tr>
 								<td><label for="name">상세 설명</label></td>
-								<td><textarea class="tdinput" id="input_box" rows="4" cols="30">${hospital.h_memo }</textarea></td>
+								<td><textarea class="tdinput" id="input_box" rows="4"
+										cols="30">${hospital.h_memo }</textarea></td>
 							</tr>
 							<tr>
 								<td><label for="name">찾아오는 길</label></td>
-								<td><textarea class="tdinput" id="input_box" rows="4" cols="30">${hospital.h_memo_road }</textarea></td>
+								<td><textarea class="tdinput" id="input_box" rows="4"
+										cols="30">${hospital.h_memo_road }</textarea></td>
 							</tr>
 
 							<tr>
@@ -241,7 +218,7 @@
 							<tr>
 								<td><label for="name"> SNS / Blog </label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_sns" value = "${hospital.h_sns }" required></td>
+									name="h_sns" value="${hospital.h_sns }" required></td>
 
 							</tr>
 
@@ -262,7 +239,7 @@
 
 						</tbody>
 					</table>
-					
+
 
 					<br> <br> <br>
 					<div class="row">

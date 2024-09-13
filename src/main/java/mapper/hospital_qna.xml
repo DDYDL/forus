@@ -8,8 +8,11 @@
 		VALUES (#{user_id}, #{h_id}, #{q_title}, NOW(), #{q_writer});
 	</insert>
 
-	<select id="findHospitalQnaListByHospitalId" parameterType="dto.Hospital_qna" resultType="dto.Hospital_qna">
-		SELECT * FROM hospital_qna WHERE h_id = #{h_id} ORDER BY q_time DESC;
+	<select id="findHospitalQnaListByHospitalId" parameterType="map" resultType="dto.Hospital_qna">
+		SELECT * FROM hospital_qna
+		WHERE h_id = #{hospitalId}
+		ORDER BY q_time DESC
+			LIMIT #{limit} OFFSET #{offset};
 	</select>
 
 	<update id="insertAnswer" parameterType="map">

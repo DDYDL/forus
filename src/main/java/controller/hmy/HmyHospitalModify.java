@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.Hospital;
 import dto.User;
 import service.hmy.HospitalService;
 import service.hmy.HospitalServiceImpl;
@@ -23,7 +24,6 @@ public class HmyHospitalModify extends HttpServlet {
 	 */
 	public HmyHospitalModify() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -35,13 +35,21 @@ public class HmyHospitalModify extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		User user = (User) request.getSession().getAttribute("user"); // user 세션 가져오기
 
+		int user_id = user.getId();
+
 		try {
 			HospitalService service = new HospitalServiceImpl();
-			request.getRequestDispatcher("/hmy/hmyhospitalmodify.jsp").forward(request, response);
-			
+			Hospital hospital = service.getHospitalByUserId(user_id);
+			request.getSession().setAttribute("hospital", hospital);
+
+			request.setAttribute("hospital", hospital);
+
+			request.getRequestDispatcher("hmy/hmyhospitalmodify.jsp").forward(request, response);
+			System.out.println(hospital);
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", e.getMessage());
+			request.setAttribute("err", "병원 정보 오류");
 			request.getRequestDispatcher("err.jsp").forward(request, response);
 		}
 	}
@@ -52,8 +60,25 @@ public class HmyHospitalModify extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		request.setCharacterEncoding("utf-8");
+		User user = (User) request.getSession().getAttribute("user"); // user 세션 가져오기
 
+		int user_id = user.getId();
+		System.out.println("User ID: " + user_id);
+		try {
+			System.out.println("병원 정보 수정");
+			HospitalService service = new HospitalServiceImpl();
+			Integer hospital = service.hospitalModify(request);
+			System.out.println("ss");
+			request.setAttribute("hospital", hospital);
+
+			// 수정 완료 후 다시 수정 폼으로 리디렉션
+			response.sendRedirect("./hmy/hmyHospital");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", "병원 정보 오류");
+			request.getRequestDispatcher("err.jsp").forward(request, response);
+		}
+	}
 }

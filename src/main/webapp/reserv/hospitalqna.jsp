@@ -36,6 +36,11 @@
         <!-- 비동기적으로 QnA 항목들이 추가됩니다 -->
         </tbody>
     </table>
+    <div id="load-more-container" style="text-align: center;">
+        <button id="load-more-btn" class="btn btn-primary">더보기</button>
+    </div>
+
+
 </div>
 
 </html>
@@ -43,6 +48,9 @@
 
 <script>
     const hospitalId = ${hospital.h_id};
+    let currentPage = 1;
+    const pageSize = 3;
+
 </script>
 
 
@@ -69,7 +77,8 @@
                 success: function (data) {
                     alert('QnA가 등록되었습니다.');
                     $('#qna-input').val('');
-                    loadQnAList();
+                    currentPage = 1; // 페이지를 초기화하여 처음부터 불러옵니다.
+                    loadQnAList(); // 등록 후 목록을 다시 불러옵니다.
                 },
                 error: function () {
                     alert('QnA 등록에 실패했습니다.');
@@ -115,7 +124,8 @@
             },
             success: function (response) {
                 alert('답변이 등록되었습니다.');
-                loadQnAList(); // 답변 등록 후 QnA 목록을 다시 로드
+                currentPage = 1; // 페이지를 초기화
+                loadQnAList();
             },
             error: function (xhr) {
                 alert('답변 등록에 실패했습니다: ' + xhr.responseText);
@@ -129,6 +139,11 @@
 
 <script>
     $(document).ready(function () {
+        $('#load-more-btn').on('click', function () {
+            currentPage++;
+            loadQnAList();
+        });
+
         loadQnAList();
     });
 
@@ -137,13 +152,27 @@
             url: 'hospitalQuestion?hospitalId=' + hospitalId,
             type: 'GET',
             dataType: 'json',
+            data: {
+                page: currentPage,
+                size: pageSize
+            },
             success: function (data) {
-                $('#qna-list').empty();
+                if (currentPage === 1) {
+                    $('#qna-list').empty();
+                }
 
                 data.forEach(function (qna) {
                     const qnaRow = createQnATableRow(qna);
                     $('#qna-list').append(qnaRow);
                 });
+
+                if (data.items.length < pageSize || currentPage * pageSize >= data.total) {
+
+                    $('#load-more-btn').hide();
+                } else {
+                    $('#load-more-btn').show();
+                }
+
 
                 $('.qna-item').on('click', function () {
                     $(this).find('.qna-answer').slideToggle();

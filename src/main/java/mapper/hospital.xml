@@ -43,7 +43,6 @@
 
 	<select id="findHospitalByLocation" parameterType="map"
 		resultType="dto.Hospital">
-
         <![CDATA[
 		SELECT
 			h.h_id,
@@ -68,9 +67,32 @@
 						) / 1000
 					) <= #{radius}
 		ORDER BY
-			distance ASC;
+			distance ASC
+		LIMIT #{offset}, #{limit}
 		]]>
 	</select>
+
+	<select id="findHospitalByKeyword" parameterType="map" resultType="dto.Hospital">
+    <![CDATA[
+		SELECT
+			h.h_id,
+			h.h_name,
+			h.h_address,
+			h.h_latitude,
+			h.h_longitude,
+			h.h_animal_type
+		FROM
+			hospital h
+		WHERE
+			h.h_name LIKE CONCAT('%', #{keyword}, '%')
+		   OR h.h_address LIKE CONCAT('%', #{keyword}, '%')
+		   OR h.h_name LIKE CONCAT('%', REPLACE(#{keyword}, '역', ''), '%')
+		   OR h.h_address LIKE CONCAT('%', REPLACE(#{keyword}, '역', ''), '%')
+		ORDER BY
+			h.h_name ASC
+			LIMIT #{offset}, #{limit}
+		]]>
+</select>
 
 
 
@@ -94,8 +116,14 @@
 		WHERE
 		ht.h_id = #{h_id}
 		ORDER BY
-		FIELD(ht.htime_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+		FIELD(ht.htime_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+		'Friday', 'Saturday',
 		'Sunday');
+	</select>
+
+	<select id="selectHospitalByUserId" parameterType="Integer" resultType="Hospital">
+		Select * From
+		Hospital Where user_id=#{user_id}
 	</select>
 
 </mapper>

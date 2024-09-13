@@ -15,23 +15,20 @@
     <!-- FullCalendar 언어 지원 -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 
-
     <link rel="stylesheet" href="css/hmy/doctorCalendar.css">
-
 
 </head>
 
 <body>
 <%@ include file="../header.jsp" %>
 <%@ include file="../hmymenu.jsp" %>
-<c:set var="sessionUser" value="${sessionScope.user}" />
+<c:set var="sessionUser" value="${sessionScope.user}"/>
 
 <section>
     <div>
         <button id="reservationTimeButton">예약 시간 관리</button>
     </div>
 </section>
-
 
 <section>
     <div id="calendar"></div>
@@ -46,20 +43,29 @@
     <p><strong>예약자 이름:</strong> <span id="reserverName"></span></p>
     <p><strong>동물:</strong> <span id="animalType"></span></p>
     <p><strong>종:</strong> <span id="animalBreed"></span></p>
-    <p><strong>예약 항목:</strong> <span id="reservationItem"></span></p>
 
-    <textarea id="vetNote" placeholder="메모를 입력하세요..."></textarea>
+    <label for="vetNote"></label><textarea id="vetNote" placeholder="메모를 입력하세요..."></textarea>
     <button id="saveNoteButton" onclick="saveNote()">메모 저장</button>
     <button id="closeSidebarButton" onclick="closeSidebar()">닫기</button>
 </div>
 
+<script>
+    // Add event listener to the button
+    document.getElementById('reservationTimeButton').addEventListener('click', function() {
+
+        window.location.href = './hmyManagerReservationTime';
+    });
+</script>
 
 <script>
     var userId = ${sessionUser.id};
+    var calendar;
+
 
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+
+        calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             locale: 'ko',
             headerToolbar: {
@@ -82,25 +88,18 @@
                         userId: userId
                     },
                     success: function (data) {
-                        console.log(data);
-
-
                         var events = data.map(function (reservation) {
                             var startDateTime = formatDateTime(reservation.reservDate, reservation.reservTime);
-
                             return {
                                 title: '예약: ' + reservation.reservId,
                                 start: startDateTime,
                                 end: startDateTime,
                                 extendedProps: {
-                                    reserverName: reservation.userId,
-                                    animalType: '동물 유형',
-                                    animalBreed: '동물 종',
-                                    reservationItem: reservation.reservContent
+                                    reservationId: reservation.reservId,
+                                    reservationContent: reservation.reservContent,
+                                    reservationMemo: reservation.reservMemo
                                 }
-
                             }
-
                         });
                         successCallback(events);
                     },
@@ -108,12 +107,11 @@
                         failureCallback();
                     }
                 })
-
             },
             views: {
                 timeGridDay: {
-                    slotDuration: '00:30:00',
-                    slotLabelInterval: '00:30',
+                    slotDuration: '00:60:00',
+                    slotLabelInterval: '00:60',
                     slotLabelFormat: {
                         hour: '2-digit',
                         minute: '2-digit',
@@ -127,22 +125,17 @@
                 calendar.changeView('timeGridDay', info.dateStr);
             },
             eventClick: function (info) {
-                // 예약 클릭 시 사이드바 열기~하는거~
-                document.getElementById('eventContent').innerText =
-                    '예약 제목: ' + info.event.title + '\n' +
-                    '시작 시간: ' + info.event.start.toLocaleString() + '\n' +
-                    '종료 시간: ' + (info.event.end ? info.event.end.toLocaleString() : 'N/A');
+                //doctorCalendarList에서 가져온 정보를 이용해서 상세보기를 만들어줌
+                generateEventContent(info.event);
+                // 예약자 이름, 동물, 종은 AJAX 요청으로 가져옴
+                var reservationId = info.event.extendedProps.reservationId;
+                getReservationDetails(reservationId);
 
-                document.getElementById('reserverName').innerText = info.event.extendedProps.reserverName;
-                document.getElementById('animalType').innerText = info.event.extendedProps.animalType;
-                document.getElementById('animalBreed').innerText = info.event.extendedProps.animalBreed;
-                document.getElementById('reservationItem').innerText = info.event.extendedProps.reservationItem;
-
-                openSidebar();
             },
         });
         calendar.render();
     });
+
 
     function openSidebar() {
         document.getElementById('sidebar').style.display = 'block';
@@ -157,12 +150,100 @@
 </script>
 
 <script>
-    // 날짜와 시간 객체를 받아서 YYYY-MM-DDTHH:mm:ss 형식의 문자열로 변환하는 함수
-    function formatDateTime(reservDate, reservTime) {
-        return `${"${reservDate.year}"}-${"${reservDate.month.toString().padStart(2, '0')}"}-${"${reservDate.day.toString().padStart(2, '0')}"}T${"${reservTime.hour.toString().padStart(2, '0')}"}:${"${reservTime.minute.toString().padStart(2, '0')}"}:${"${reservTime.second.toString().padStart(2, '0')}"}`
+    function getReservationDetails(reservationId) {
+        $.ajax({
+            url: 'doctorCalendarDetail',
+            type: 'get',
+            dataType: 'json',
+            data: {
+                reservationId: reservationId
+            },
+            success: function (data) {
+                // 예약 상세 정보를 가져와서 화면에 출력
+                generateReservationDetails(data);
+                openSidebar();
+            },
+            error: function () {
+                alert('예약 상세 정보를 불러오는데 실패했습니다.');
+            }
+        });
+
     }
 
 
 </script>
+
+<script>
+    function saveNote() {
+      var reservationId = $('#eventContent').data('reservationId');
+      console.log(reservationId);
+        var memo = $('#vetNote').val();
+
+        $.ajax({
+            url: 'doctorCalendarDetail',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                reservationId: reservationId,
+                memo: memo
+            },
+            success: function (response) {
+                alert('메모가 저장되었습니다.');
+                updateEventMemo(reservationId, memo);
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+                alert('메모 저장에 실패했습니다.');
+            }
+        });
+    }
+
+    function updateEventMemo(reservationId, memo) {
+        var events = calendar.getEvents();
+        var event = events.find(function (e) {
+            return e.extendedProps.reservationId == reservationId;
+        });
+        if (event) {
+            event.setExtendedProp('reservationMemo', memo);
+        }
+    }
+</script>
+
+
+<script>
+    // 날짜와 시간 객체를 받아서 YYYY-MM-DDTHH:mm:ss 형식의 문자열로 변환하는 함수
+    function formatDateTime(reservDate, reservTime) {
+        return `${"${reservDate.year}"}-` +
+            `${"${reservDate.month.toString().padStart(2, '0')}"}-` +
+            `${"${reservDate.day.toString().padStart(2, '0')}"}T` +
+            `${"${reservTime.hour.toString().padStart(2, '0')}"}:` +
+            `${"${reservTime.minute.toString().padStart(2, '0')}"}:` +
+            `${"${reservTime.second.toString().padStart(2, '0')}"}`
+    }
+</script>
+
+<script>
+    function generateEventContent(event) {
+        $('#eventContent').html(
+            '<strong>예약 번호</strong>: ' + event.extendedProps.reservationId + '<br><br>' +
+            '<strong>예약 시간</strong>: ' + event.start.toLocaleString() + '<br><br>' +
+            '<strong>예약 항목</strong>: ' + event.extendedProps.reservationContent
+        )
+            .data('reservationId', event.extendedProps.reservationId);
+
+        $('#vetNote').val(event.extendedProps.reservationMemo || '');
+
+    }
+</script>
+<script>
+    function generateReservationDetails(data) {
+        $('#reserverName').text(data.userName);
+        $('#animalType').text(data.petSpecies);
+        $('#animalBreed').text(data.petBreed);
+    }
+</script>
+
+
+
 </body>
 </html>

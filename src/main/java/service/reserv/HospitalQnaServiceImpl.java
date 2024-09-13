@@ -22,8 +22,8 @@ public class HospitalQnaServiceImpl implements HospitalQnaService {
 
 
 	@Override
-	public List<Hospital_qna> getHospitalQnaList(Integer hospitalId) {
-		return hospitalQnaDao.findHospitalQnaListByHospitalId(hospitalId);
+	public List<Hospital_qna> getHospitalQnaList(Integer hospitalId, int limit, int offset) {
+		return hospitalQnaDao.findHospitalQnaListByHospitalId(hospitalId, limit, offset);
 	}
 
 	@Override

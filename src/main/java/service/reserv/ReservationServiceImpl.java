@@ -148,8 +148,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public Pet getPetInfo(Integer userId) {
-		return reservationDao.findPetInfByPetId(userId);
+	public List<Pet> getPetsInfo(Integer userId) {
+		return reservationDao.findPetsByUserId(userId);
 	}
 
 	@Override
@@ -173,5 +173,10 @@ public class ReservationServiceImpl implements ReservationService {
 	public Reservation reservDetail(Integer reserv_id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Integer deleteReservation(int reserv_id) throws Exception {
+		return reservationDao.deleteReserv(reserv_id);
 	}
 }
