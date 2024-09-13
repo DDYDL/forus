@@ -17,3 +17,26 @@ input.title {
 	border: 1px solid darkgray;
 	border-radius: 10px;
 }
+
+/* 사용자 프로필 설정 */
+.profile { padding-top:10px; padding-left:15px; padding-bottom:15px; padding-right:15px; }
+.user_img { width:100px; height:100px; }
+.user_table { width:800px; margin-left:20px; }
+.user_td1 { padding-top:15px; }
+.user_td2 { padding-top:15px; }
+
+/* 펫 프로필 설정 */
+.pet_profile { width: 800px; }
+.pet_td1 { width:80px; padding-left:35px; padding-top:10px; padding-bottom:10px; }
+.pet_td2 { width:70px; }
+.pet_td3 { width:70px; }
+.pet_td4 { width:70px; }
+.pet_td5 { width:70px; }
+.pet_td6 { width:300px; }
+
+/* 조건 테이블 설정 */
+.condition_td1 { padding-top:10px; padding-bottom:10px; width:70px; }
+
+/* 지도 테이블 설정 */
+.area_td1 { padding-top:10px; padding-bottom:10px; padding-left:15px; width:300px; vertical-align:center; }
+.area_td2 { padding-top:10px; padding-bottom:10px; width:600px; vertical-align:center; }

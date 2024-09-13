@@ -38,7 +38,7 @@
 
 	<!-- pet 프로필 가져오기 -->
     <p class="content-inner-title">이번에 맡길 동물은요</p>
-    <div class="box"><table id="post_pet_profile"></table></div>
+    <div class="box"><table id="post_pet_profile" class="pet_profile"></table></div>
     
     <script>
     	// post user의 pet 리스트 가져오기
@@ -53,7 +53,7 @@
 				var pet_id = document.getElementById('post_pet_id').value;
 				res.post_petList.forEach(function(pet) {
 					if(pet_id == pet.pet_id) {
-						$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,\${pet.pet_gender})</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3">\${pet.pet_breed}</td><td class="pet_td3">\${pet.pet_memo}</td></tr>`);
+						$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,&nbsp;\${pet.pet_gender})</td><td class="pet_td4">\${pet.pet_species}</td><td class="pet_td5">\${pet.pet_breed}</td><td class="pet_td6">\${pet.pet_memo}</td></tr>`);
 					}
 				})
 			}
@@ -61,20 +61,19 @@
     </script>
     
     <p class="content-inner-title">조건</p>
-    <div class="box">
+    <div class="box profile">
     	<table>
     		<tr>
-    			<td><label for="pay">급여</label></td>
-    			<td>${post.post_form}</td>
-    			<td>${post.post_pay}&nbsp;원</td>
+    			<td class="condition_td1"><label for="pay">급여</label></td>
+    			<td class="condition_td2">${post.post_form}&nbsp;&nbsp;${post.post_pay}&nbsp;원</td>
     		</tr>
     		<tr>
-    			<td><label for="time">시간</label></td>
-    			<td id="time_td"></td>
+    			<td class="condition_td1"><label for="time">시간</label></td>
+    			<td class="condition_td2" id="time_td"></td>
     		</tr>
     		<tr>
-    			<td><label for="week">요일</label></td>
-    			<td>${post.post_date}</td>
+    			<td class="condition_td1"><label for="week">요일</label></td>
+    			<td class="condition_td2">${post.post_date}</td>
     		</tr>
     	</table>
     </div>
@@ -93,12 +92,12 @@
     	<table style="width:100%">
     		<tr><td colspan="3"><div id="map" style="width:100%; height:200px;"></div></td></tr>
     		<tr>
-    			<td><label for="location">근무위치</label></td>
-    			<td id="post_address">${post.post_address}</td>
+    			<td class="area_td1"><label for="location">근무위치</label></td>
+    			<td class="area_td2" id="post_address">${post.post_address}</td>
     		</tr>
     		<tr>
-    			<td><label for="subway">인근지하철</label></td>
-    			<td id="subway"></td>
+    			<td class="area_td1"><label for="subway">인근지하철</label></td>
+    			<td class="area_td2" id="subway"></td>
     		</tr>
     	</table>
 	</div>
@@ -167,7 +166,7 @@
 	</script>
 	
     <p class="content-inner-title">상세요강</p>
-    <div class="box">
+    <div class="box profile">
         <p>${post.post_content}</p>
     </div>
     

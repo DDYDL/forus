@@ -3,11 +3,11 @@
 /* 메인페이지 내용 사이즈 설정 */
 .content {
 	margin:0 auto; 
-	width: 900px;
+	width: 1000px;
 }
 .content-list { /* 테이블용 */
 	margin:0 auto;
-	width: 1400px;
+	width: 1600px;
 }
 
 /* 마이페이지 내용 사이즈 설정 */
