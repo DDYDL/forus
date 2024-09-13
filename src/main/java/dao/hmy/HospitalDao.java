@@ -15,4 +15,6 @@ public interface HospitalDao {
 	List<Map> selectReservationList(Integer h_id) throws Exception;
 
 	Hospital selectHospitalByUserId(Integer user_id)throws Exception;
+
+
 }
