@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.User;
 import service.my.UserService;
@@ -56,10 +57,14 @@ public class MyProfileModify extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			HttpSession session = request.getSession();
+			User suser = (User)session.getAttribute("user");
+			String newfilename = "user_"+suser.getId();
 			
 			UserService service = new UserServiceImpl();
-			Integer num = service.userModify(request);
+			Integer num = service.userModify(request, newfilename);
 			User user = service.userDetail(num);
+			
 			request.setAttribute("user", user);
 			request.getRequestDispatcher("/myProfile").forward(request, response);
 		} catch (Exception e) {

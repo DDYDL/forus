@@ -1,5 +1,7 @@
 package service.my;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.oreilly.servlet.MultipartRequest;
@@ -8,6 +10,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dao.my.UserDao;
 import dao.my.UserDaoImpl;
 import dto.User;
+import util.FileUploadRename;
 
 public class UserServiceImpl implements UserService {
 
@@ -53,11 +56,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Integer userModify(HttpServletRequest request) throws Exception {
-		String path = request.getServletContext().getRealPath("upload");
+	public Integer userModify(HttpServletRequest request, String newfilename) throws Exception {
+		String path = request.getServletContext().getRealPath("upload" + "\\" + "user");
 		int size = 10 * 1024 * 1024;
-
-		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
+		
+		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new FileUploadRename(newfilename));
 
 		User user = new User();
 		user.setId(Integer.parseInt(multi.getParameter("id")));
