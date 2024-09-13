@@ -48,28 +48,16 @@ public class HospitalList extends HttpServlet {
 			double longitude = DEFAULT_LONGITUDE;
 			double radius = DEFAULT_RADIUS;
 
-
-			System.out.println("요청 페이지: " + page);
-			System.out.println("계산된 OFFSET: " + offset);
-			System.out.println("요청 위도: " + latStr);
-			System.out.println("요청 경도: " + lonStr);
-
-
 			List<Hospital> hospitals = new ArrayList<>();
 
 			if (StringNullCheck.isNotEmpty(keyword)) {
-				System.out.println("키워드로 검색 - OFFSET: " + offset + ", LIMIT: " + DEFAULT_LIMIT);
 				hospitals = hospitalService.getHospitalsByKeyword(keyword, offset, DEFAULT_LIMIT);
 
 			} else if (StringNullCheck.isNotEmpty(latStr) && StringNullCheck.isNotEmpty(lonStr)) {
 				latitude = Double.parseDouble(latStr);
 				longitude = Double.parseDouble(lonStr);
 
-				System.out.println("쿼리 실행 전 - 위도: " + latitude + ", 경도: " + longitude + ", 반경: " + radius + ", OFFSET: " + offset + ", LIMIT: " + DEFAULT_LIMIT);
-
 				hospitals = hospitalService.getHospitalsByLocation(latitude, longitude, radius, offset, DEFAULT_LIMIT);
-
-				System.out.println("쿼리 결과 개수: " + hospitals.size());
 
 			}
 

@@ -28,6 +28,12 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+	
+	function(e){
+		
+	}
+	
+	
 </script>
 
 
@@ -101,7 +107,7 @@
 								<td><input class="tdinput" type="address"
 									id="sample6_postcode" placeholder="우편번호" name="h_address">
 
-									<button class="btn" onclick="sample6_execDaumPostcode()">주소찾기</button>
+									<button type="button" class="btn" onclick="sample6_execDaumPostcode()">주소찾기</button>
 								</td>
 
 							</tr>
@@ -220,13 +226,13 @@
 						<tbody>
 							<tr>
 								<td><label for="name">상세 설명</label></td>
-								<td><textarea class="tdinput" id="input_box" rows="4"
+								<td><textarea id="input_box" rows="4"
 										cols="30" name="h_memo"
 										placeholder="방문자들의 편의를 위해 진료 가능한 동물 종류 다양하게 또는 가능한 업무(진료, 미용, 엑스레이, 수술) 등을 작성해주세요"></textarea></td>
 							</tr>
 							<tr>
 								<td><label for="name">찾아오는 길</label></td>
-								<td><textarea class="tdinput" id="input_box" rows="4"
+								<td><textarea id="input_box" rows="4"
 										cols="30" name="h_memo_road"
 										placeholder="골목 또는 2층 이상의 찾기 어려운 위치일 경우 상세 입력 부탁합니다."></textarea></td>
 							</tr>
@@ -263,8 +269,9 @@
 							<b>주의사항</b>
 						</p>
 						<p>1. 병원 정보는 즉시 등록됩니다.</p>
-						<p>2. 병원정보는 등록 된 이후 마이병원을 통해 언제든 수정이 가능합니다.</p>
+						<p>2. 병원정보는 등록 된 이후 '마이병원'을 통해 언제든 수정이 가능합니다.</p>
 						<p>3. 잘못된 장소는 강제로 삭제될 수 있습니다.</p>
+						<p>4. 병원 등록 후 진료 시간은 '마이병원'탭에서 설정해야합니다.</p>
 
 					</div>
 					<div>

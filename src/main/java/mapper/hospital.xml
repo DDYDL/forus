@@ -5,17 +5,17 @@
 <mapper namespace="mapper.hospital">
 	<insert id="insertHospital" parameterType="Hospital">
 		<![CDATA[
-			insert into Hospital (h_id, user_id, h_exponent_name, h_num,
+			insert into hospital (user_id, h_exponent_name, h_num,
 			h_license, h_name, h_manager_name, h_phone, h_address,
-			h_longitude, _latitude, h_animal_type, h_picture, h_memo,
+			h_longitude, h_latitude, h_animal_type, h_picture, h_memo,
 			h_memo_road , h_pay, h_sns, h_parking, h_isopen,
-			h_lunch_time_start, _lunch_time_end, h_interval_time)
+			h_lunch_time_start, h_lunch_time_end, h_interval_time)
 			
-			values (#{user_id},#{h_exponent_name},#{h_num},
-			#{h_license},#{h_name},#{h_manager_name},#{h_phone},#{h_address},
-			#{h_longitude},#{_latitude},#{h_animal_type},#{h_picture},#{h_memo},
-			#{h_memo_road},#{h_pay},#{h_sns},#{h_parking},#{h_isopen},
-			#{h_lunch_time_start},#{_lunch_time_end},#{h_interval_time})
+			values (#{user_id}, #{h_exponent_name}, #{h_num},
+			#{h_license}, #{h_name}, #{h_manager_name}, #{h_phone}, #{h_address},
+			#{h_longitude}, #{h_latitude}, #{h_animal_type}, #{h_picture},#{h_memo},
+			#{h_memo_road}, #{h_pay}, #{h_sns}, #{h_parking}, #{h_isopen},
+			#{h_lunch_time_start}, #{h_lunch_time_end}, #{h_interval_time})
 		]]>
 	</insert>
 
@@ -30,12 +30,29 @@
 	<update id="updateHospital" parameterType="Hospital">
 		update hospital
 		<set>
-			<if test="name != null">name=#{name},</if>
-			<if test="password != null">password=#{password},</if>
-			<if test="email != null">email=#{email},</if>
-			<if test="address != null">address=#{address},</if>
+			<if test="h_exponent_name != null">h_exponent_name=#{h_exponent_name},</if>
+			<if test="h_num != null">h_num=#{h_num},</if>
+			<if test="h_license != null">h_license=#{h_license},</if>
+			<if test="h_name != null">h_name=#{h_name},</if>
+			<if test="h_manager_name != null">h_manager_name=#{h_manager_name},</if>
+			<if test="h_phone != null">h_phone=#{h_phone},</if>
+			<if test="h_address != null">h_address=#{h_address},</if>
+			<if test="h_longitude != null">h_longitude=#{h_longitude},</if>
+			<if test="h_latitude != null">h_latitude=#{h_latitude},</if>
+			<if test="h_animal_type != null">h_animal_type=#{h_animal_type},</if>
+			<if test="h_picture != null">h_picture=#{h_picture},</if>
+			<if test="h_memo != null">h_memo=#{h_memo},</if>
+			<if test="h_memo_road != null">h_memo_road=#{h_memo_road},</if>
+			<if test="h_pay != null">h_pay=#{h_pay},</if>
+			<if test="h_sns != null">h_sns=#{h_sns},</if>
+			<if test="h_parking != null">h_parking=#{h_parking},</if>
+			<if test="h_isopen != null">h_isopen=#{h_isopen},</if>
+			<if test="h_lunch_time_start != null">h_lunch_time_start=#{h_lunch_time_start},</if>
+			<if test="h_lunch_time_end != null">h_lunch_time_end=#{h_lunch_time_end},</if>
+			<if test="h_interval_time != null">h_interval_time=#{h_interval_time}</if>
+
 		</set>
-		where user_id=#{user_id}
+		where h_id=#{h_id}
 	</update>
 
 

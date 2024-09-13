@@ -73,7 +73,7 @@ public class HmyHospitalModify extends HttpServlet {
 			request.setAttribute("hospital", hospital);
 
 			// 수정 완료 후 다시 수정 폼으로 리디렉션
-			response.sendRedirect("./hmy/hmyHospital");
+			response.sendRedirect("./hmyHospital");
 
 		} catch (Exception e) {
 			e.printStackTrace();

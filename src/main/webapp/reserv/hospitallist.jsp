@@ -156,7 +156,6 @@
             navigator.geolocation.getCurrentPosition(
                 function (position) {
 
-
                     if (!currentLat || !currentLon) { // 처음 설정된 경우에만 설정
                         currentLat = position.coords.latitude;
                         currentLon = position.coords.longitude;
@@ -240,12 +239,12 @@
     loadMoreButton.addEventListener('click', function () {
         currentPage++;
         isLoadMore = true;
+        console.log('Load More 클릭 - isLoadMore:', isLoadMore);
         if (isSearchingByKeyword) {
             searchHospitalsByKeyword(currentKeyword, currentPage); // 키워드로 검색 시
         } else {
             updateHospitalList(currentLat, currentLon, currentPage); // 위치로 검색 시
         }
-        isLoadMore = false;
     });
 
     // 초기 병원 목록 로드
@@ -265,7 +264,6 @@
     var map = new kakao.maps.Map(container, options);
 
     var markers = [];
-
     // HTML5의 Geolocation API를 사용하여 사용자 위치를 가져오기
     getUserLocationAndAddMarker(true);
 
@@ -279,6 +277,9 @@
             currentKeyword = keyword; // 검색 키워드 저장
             currentPage = 1; // 페이지 초기화
             $('#hospitals-container').html('');
+            isLoadMore = false;
+
+            resetMarkers();
             searchHospitalsByKeyword(keyword);
     }
     });
@@ -287,8 +288,6 @@
             resetMarkers();  // 더보기 시에는 호출되지 않도록 플래그를 사용
             addUserMarker(currentLat, currentLon); // 사용자 마커를 다시 추가
         }
-
-
     $.ajax({
         url: 'hospitalList',
         type: 'GET',
@@ -301,9 +300,11 @@
         success: function (data) {
             if (Array.isArray(data)) {
                 let hospitalListHTML = '';
-                resetMarkers();
-
+                if (page === 1 && !isLoadMore) {
+                    resetMarkers();  // 초기화는 첫 페이지 로딩 시에만
+                }
                 addUserMarker(currentLat, currentLon);
+
                 getUserLocationAndAddMarker(false);
                 data.forEach(function (hospital) {
                     addHospitalMarker(hospital);
@@ -323,13 +324,19 @@
             } else {
                 console.error("서버로부터 받은 데이터가 배열이 아닙니다:", data);
             }
+            isLoadMore = false;
+            console.log('AJAX 요청 완료 후 - isLoadMore:', isLoadMore);
         },
+        error: function (xhr, status, error) {
+            console.error("병원 목록을 불러오는 데 실패했습니다", error);
+            isLoadMore = false;
+            console.log('AJAX 요청 에러 발생 - isLoadMore:', isLoadMore);
+        }
+
 
     })
 
     }
-
-
 
 </script>
 

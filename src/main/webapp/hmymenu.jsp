@@ -11,7 +11,7 @@
 		<ul>
 			<li><a href="./hmyTodaysReservation">오늘 예약일정</a></li><br>
 			<li><a href="./doctorCalendar">예약 관리</a></li><br>
-			<li><a href="./hmyHospital">내 병원정보 수정</a></li>
+			<li><a href="./hmyHospital">내 병원정보</a></li>
 		</ul>
 	</aside>
 </body>

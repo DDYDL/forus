@@ -86,16 +86,17 @@
 						id="sample6_postcode" placeholder="우편번호" name="h_address">
 
 						<button class="btn" onclick="sample6_execDaumPostcode()">주소찾기</button></li>
-						<li><input class="tdinput" type="address"
-									id="sample6_address" placeholder="주소" name="h_address">
-									&nbsp; &nbsp;<input class="tdinput" type="address"
-									id="sample6_detailAddress" placeholder="상세주소"></li>
+					<li><input class="tdinput" type="address" id="sample6_address"
+						placeholder="주소" name="h_address"> &nbsp; &nbsp;<input
+						class="tdinput" type="address" id="sample6_detailAddress"
+						placeholder="상세주소"></li>
 
 
 					<script
 						src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
 						
-					</script> <!-- 다음 줄 script 닫는걸 추천 -->
+					</script>
+					<!-- 다음 줄 script 닫는걸 추천 -->
 					<script>
 						function sample6_execDaumPostcode() {
 							new daum.Postcode(
@@ -147,19 +148,20 @@
 									}).open();
 						}
 					</script>
-
+					<br>
+					<br>
 					<li class="title">생년월일</li>
 					<br>
 					<br>
 					<li><input type="date" name="birthday" value=${user.birthday }></li>
 
-<%-- 					<li class="title">성별</li>
+					<%-- 					<li class="title">성별</li>
 					<br>
 					<br>
 					<li><input type="radio" name="gender" value="M"
 						<%if ("M".equals("M")) {%> checked <%}%>> 남 <!-- 테스트 후 될 시 checkbox 테스트-->
 						<input type="radio" name="gender" value="F"
-						<%if ("F".equals("F")) {%> checked <%}%>> 여</li>  단축키 ctrl+shift+/ --%> 
+						<%if ("F".equals("F")) {%> checked <%}%>> 여</li>  단축키 ctrl+shift+/ --%>
 				</ul>
 
 				<div class="find-btn">

@@ -59,8 +59,8 @@ public class HospitalServiceImpl implements HospitalService {
 		// hospital.setH_lunch_time_start(multi.getParameter(""));
 		// hospital.setH_lunch_time_end(multi.getParameter(""));
 		// hospital.setH_interval_time(multi.getParameter(""));
+		
 		System.out.println(hospital);
-
 		hospitalDao.insertHospital(hospital);
 
 	}
@@ -94,10 +94,8 @@ public class HospitalServiceImpl implements HospitalService {
 		// hospital.setH_lunch_time_start(multi.getParameter(""));
 		// hospital.setH_lunch_time_end(multi.getParameter(""));
 		// hospital.setH_interval_time(multi.getParameter(""));
-		System.out.println(hospital);
-
-		hospitalDao.insertHospital(hospital);
-
+		System.out.println("set hospital:"+hospital);
+		
 		// 파일 수정
 		if (multi.getFile("file") != null) {
 			hospital.setH_license(multi.getFilesystemName("file"));

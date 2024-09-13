@@ -43,6 +43,7 @@
     <p><strong>예약자 이름:</strong> <span id="reserverName"></span></p>
     <p><strong>동물:</strong> <span id="animalType"></span></p>
     <p><strong>종:</strong> <span id="animalBreed"></span></p>
+    <p><strong>펫이름:</strong> <span id="animalName"></span></p>
 
     <label for="vetNote"></label><textarea id="vetNote" placeholder="메모를 입력하세요..."></textarea>
     <button id="saveNoteButton" onclick="saveNote()">메모 저장</button>
@@ -53,7 +54,8 @@
     // Add event listener to the button
     document.getElementById('reservationTimeButton').addEventListener('click', function() {
 
-        window.location.href = './hmyManagerReservationTime';
+        window.location.href = '${pageContext.request.contextPath}/hmyManagerReservationTime';
+
     });
 </script>
 
@@ -240,6 +242,7 @@
         $('#reserverName').text(data.userName);
         $('#animalType').text(data.petSpecies);
         $('#animalBreed').text(data.petBreed);
+        $('#animalName').text(data.petName);
     }
 </script>
 

@@ -45,7 +45,7 @@ public class HmyNewHospital extends HttpServlet {
 		HospitalService service = new HospitalServiceImpl();
 		try {
 			service.insertHospital(request);
-			response.sendRedirect("success");
+			response.sendRedirect("hmyNewHospitalSuccess");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "등록 오류");
