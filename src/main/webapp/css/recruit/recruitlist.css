@@ -21,7 +21,8 @@ select {
 }
 
 /* 리스트 설정 */
-table { border-top: 2px solid; }
+.table { border-top: 2px solid #D1D1D1; }
+.search_table { border-top: none; border-radius: 10px; }
 .list-header { display:flex; justify-content: space-between; }
 .list-count { align-self: flex-end; }
 .list-btn { align-self:flex-end; }
