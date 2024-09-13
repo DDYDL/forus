@@ -39,6 +39,7 @@ public class MyPetModify extends HttpServlet {
 			Pet pet = service.petDetail(pet_id);
 			request.setAttribute("pet", pet);
 			request.getRequestDispatcher("/my/myPetModify.jsp").forward(request, response);
+		
 		} catch(Exception e) {
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("err.jsp").forward(request, response);
@@ -47,7 +48,7 @@ public class MyPetModify extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			System.out.println("ss");
+			System.out.println("펫 정보 수정");
 			PetService service = new PetServiceImpl();
 			Integer pet_id = service.petModify(request);
 			System.out.println(pet_id);

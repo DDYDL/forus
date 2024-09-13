@@ -1,6 +1,7 @@
 package service.hmy;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,8 +11,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dao.hmy.HospitalDao;
 import dao.hmy.HospitalDaoImpl;
 import dto.Hospital;
-import dto.Pet;
-import dto.Reservation;
+import dto.Hospital_time;
 import dto.User;
 
 public class HospitalServiceImpl implements HospitalService {
@@ -59,7 +59,8 @@ public class HospitalServiceImpl implements HospitalService {
 		// hospital.setH_lunch_time_start(multi.getParameter(""));
 		// hospital.setH_lunch_time_end(multi.getParameter(""));
 		// hospital.setH_interval_time(multi.getParameter(""));
-		System.out.println(hospital);;
+		System.out.println(hospital);
+
 		hospitalDao.insertHospital(hospital);
 
 	}
@@ -73,8 +74,29 @@ public class HospitalServiceImpl implements HospitalService {
 
 		Hospital hospital = new Hospital();
 		hospital.setH_id(Integer.parseInt(multi.getParameter("h_id")));
-		
+
+		hospital.setH_exponent_name(multi.getParameter("h_exponent_name"));
 		hospital.setH_num(Integer.parseInt(multi.getParameter("h_num")));
+		hospital.setH_license(multi.getParameter("h_license"));
+		hospital.setH_name(multi.getParameter("h_name"));
+		hospital.setH_manager_name(multi.getParameter("h_manager_name"));
+		hospital.setH_phone(multi.getParameter("h_phone"));
+		hospital.setH_address(multi.getParameter("h_address"));
+		// hospital.setH_longitude(multi.getParameter(""));
+		// hospital.setH_latitude(multi.getParameter(""));
+		hospital.setH_animal_type(multi.getParameter("h_animal_type"));
+		hospital.setH_picture(multi.getParameter("h_picture"));
+		hospital.setH_memo(multi.getParameter("h_memo"));
+		hospital.setH_memo_road(multi.getParameter("h_memo_road"));
+		hospital.setH_pay(multi.getParameter("h_pay"));
+		hospital.setH_sns(multi.getParameter("h_sns"));
+		// hospital.(Boolean)setH_parking(multi.getParameter(""));
+		// hospital.setH_lunch_time_start(multi.getParameter(""));
+		// hospital.setH_lunch_time_end(multi.getParameter(""));
+		// hospital.setH_interval_time(multi.getParameter(""));
+		System.out.println(hospital);
+
+		hospitalDao.insertHospital(hospital);
 
 		// 파일 수정
 		if (multi.getFile("file") != null) {
@@ -93,12 +115,30 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public List<Reservation> getHospitalByUserid(Integer user_id) throws Exception {
+	public Hospital HospitalDetail(Integer h_id) throws Exception {
+		Hospital hospital = hospitalDao.selectHospital(h_id);
+		if (hospital == null)
+			throw new Exception("병원 정보 오류");
+		return hospital;
+	}
 
-		List<Reservation> reservList = hospitalDao.selectReservationList(user_id);
-		if (reservList == null)
-			throw new Exception("예약 없음");
-		return reservList;
+	@Override
+	public List<Map> selectReservationList(Integer h_id) throws Exception {
+		System.out.println(h_id);
+
+		return hospitalDao.selectReservationList(h_id);
+
+	}
+
+	@Override
+	public Hospital getHospitalByUserId(Integer user_id) throws Exception {
+		return hospitalDao.selectHospitalByUserId(user_id);
+	}
+
+	@Override
+	public Hospital_time htimetable(Integer h_id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -30,6 +30,7 @@
 	}
 </script>
 
+
 </head>
 
 
@@ -39,7 +40,8 @@
 	<div class="mypage-content">
 
 		<div class="bodybox">
-			<form action="hmyNewHospital" method="post" enctype="multipart/form-data">
+			<form action="hmyNewHospital" method="post"
+				enctype="multipart/form-data">
 				<div class="containerbox">
 
 					<div>
@@ -76,6 +78,8 @@
 									$(".upload-name").val(fileName);
 								});
 							</script>
+
+
 							<tr>
 								<td><label for="name">병원 이름</label></td>
 								<td class="tdinput"><input type="text" id="input"
@@ -183,24 +187,12 @@
 									type="time" id="input" name="h_lunch_time_end"></td>
 							</tr>
 							<tr>
-								<td><label for="name">진료 가능 동물 목록</label></td>
-								<td class="tdinput"><form action="http://httpbin.org/post"
-										method="post">
-										<select data-placeholder="Begin typing a name to filter..."
-											multiple class="chosen-select" name="animal">
-											<option selected disabled>진료 가능한 동물을 선택해주세요.</option>
-											<option value="dog">개</option>
-											<option value="cat">고양이</option>
-											<option value="bird">조류</option>
-											<option value="Reptiles">파충류</option>
-										</select>
-									</form> <script type="text/javascript">
-										$(".chosen-select")
-												.chosen(
-														{
-															no_results_text : "해당하는 종류가 없습니다."
-														})
-									</script></td>
+								<td>진료 가능 동물 목록</td>
+								<td>
+								
+								<!-- 체크박스 동물 목록 만들기 -->
+								
+								</td>
 							</tr>
 
 						</tbody>
@@ -228,11 +220,15 @@
 						<tbody>
 							<tr>
 								<td><label for="name">상세 설명</label></td>
-								<td><textarea class="tdinput" id="input_box" rows="4" cols="30" name="h_memo" placeholder="방문자들의 편의를 위해 진료 가능한 동물 종류 다양하게 또는 가능한 업무(진료, 미용, 엑스레이, 수술) 등을 작성해주세요"></textarea></td>
+								<td><textarea class="tdinput" id="input_box" rows="4"
+										cols="30" name="h_memo"
+										placeholder="방문자들의 편의를 위해 진료 가능한 동물 종류 다양하게 또는 가능한 업무(진료, 미용, 엑스레이, 수술) 등을 작성해주세요"></textarea></td>
 							</tr>
 							<tr>
 								<td><label for="name">찾아오는 길</label></td>
-								<td><textarea class="tdinput" id="input_box" rows="4" cols="30" name="h_memo_road" placeholder="골목 또는 2층 이상의 찾기 어려운 위치일 경우 상세 입력 부탁합니다."></textarea></td>
+								<td><textarea class="tdinput" id="input_box" rows="4"
+										cols="30" name="h_memo_road"
+										placeholder="골목 또는 2층 이상의 찾기 어려운 위치일 경우 상세 입력 부탁합니다."></textarea></td>
 							</tr>
 
 							<tr>
@@ -279,8 +275,7 @@
 					<div class="row">
 						<div class="find-btn">
 							<input type="submit" title="Button push blue/green"
-								class=" btn btnPush btnBlueGreen find-btn1"
-								 value="병원 등록">
+								class=" btn btnPush btnBlueGreen find-btn1" value="병원 등록">
 
 						</div>
 					</div>

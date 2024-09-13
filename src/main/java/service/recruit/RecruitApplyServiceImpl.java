@@ -3,6 +3,7 @@ package service.recruit;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -74,5 +75,15 @@ public class RecruitApplyServiceImpl implements RecruitApplyService {
 	@Override
 	public void updateRecruit_post_status(Recruit_post post) throws Exception {
 		recruitDao.updateRecruit_post_status(post);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectApplyListByUserId(Integer user_id) throws Exception {
+		return recruitApplyDao.selectApplyListByUserId(user_id);
+	}
+
+	@Override
+	public void deleteApplyByApplyId(Integer apply_id) throws Exception {
+		recruitApplyDao.deleteApplyByApplyId(apply_id);
 	}
 }

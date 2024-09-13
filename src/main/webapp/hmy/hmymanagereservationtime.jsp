@@ -30,11 +30,6 @@
 				<h3 align="left" text-align="left">예약 일정 관리</h3>
 			</div>
 
-			<td>점심시간
-			<td><input type="time" id="input"> ~ <input type="time"
-				id="input"></td>
-
-
 			<td>예약간격 <select>
 					<option value="30">30분</option>
 					<option value="60">60분</option>
@@ -54,105 +49,112 @@
 									</div>
 								</td>
 								<td>영업시간
-								<td><input type="time" id="input"> ~ <input
-									type="time" id="input"></td>
+								<td><input type="time" id="input" name="htime_opening_mon"
+									value="htime_opening"> ~ <input type="time" id="input"
+									name="htime_closing_mon" value="htime_closing"></td>
 
-<td>	</td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>
 									<div class="check">
-										<label> <input type="checkbox" id="mon" name="mon"
+										<label> <input type="checkbox" id="mon" name="tue"
 											value="화"> <span>화</span>
 										</label>
 									</div>
 								</td>
 								<td>영업시간
-								<td><input type="time" id="input"> ~ <input
-									type="time" id="input"></td>
+								<td><input type="time" id="input" name="htime_opening_tue"
+									value="htime_opening"> ~ <input type="time" id="input"
+									name="htime_closing_tue" value="htime_closing"></td>
 								</td>
 
 							</tr>
 							<tr>
 								<td>
 									<div class="check">
-										<label> <input type="checkbox" id="mon" name="mon"
-											value="월"> <span>수</span>
+										<label> <input type="checkbox" id="mon" name="wed"
+											value="수"> <span>수</span>
 										</label>
 									</div>
 								</td>
 								<td>영업시간
-								<td><input type="time" id="input"> ~ <input
-									type="time" id="input"></td>
+								<td><input type="time" id="input" name="htime_opening_wed"
+									value="htime_opening"> ~ <input type="time" id="input"
+									name="htime_closing_wed" value="htime_closing"></td>
 
 
 							</tr>
 							<tr>
 								<td>
 									<div class="check">
-										<label> <input type="checkbox" id="mon" name="mon"
-											value="월"> <span>목</span>
+										<label> <input type="checkbox" id="mon" name="thur"
+											value="목"> <span>목</span>
 										</label>
 									</div>
 								</td>
 								<td>영업시간
-								<td><input type="time" id="input"> ~ <input
-									type="time" id="input"></td>
+								<td><input type="time" id="input" name="htime_opening_thr"
+									value="htime_opening"> ~ <input type="time" id="input"
+									name="htime_closing_thr" value="htime_closing"></td>
 								</td>
 
 							</tr>
 							<tr>
 								<td>
 									<div class="check">
-										<label> <input type="checkbox" id="mon" name="mon"
-											value="월"> <span>금</span>
+										<label> <input type="checkbox" id="mon" name="fri"
+											value="금"> <span>금</span>
 										</label>
 									</div>
 								</td>
 								<td>영업시간
-								<td><input type="time" id="input"> ~ <input
-									type="time" id="input"></td>
+								<td><input type="time" id="input" name="htime_opening_fri"
+									value="htime_opening"> ~ <input type="time" id="input"
+									name="htime_closing_fri" value="htime_closing"></td>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<div class="check">
-										<label> <input type="checkbox" id="mon" name="mon"
-											value="월"> <span>토</span>
+										<label> <input type="checkbox" id="mon" name="sat"
+											value="토"> <span>토</span>
 										</label>
 									</div>
 								</td>
 								<td>영업시간
-								<td><input type="time" id="input"> ~ <input
-									type="time" id="input"></td>
+								<td><input type="time" id="input" name="htime_opening_sat"
+									value="htime_opening"> ~ <input type="time" id="input"
+									name="htime_closing_sat" value="htime_closing"></td>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<div class="check">
-										<label> <input type="checkbox" id="mon" name="mon"
-											value="월"> <span>일</span>
+										<label> <input type="checkbox" id="mon" name="sun"
+											value="일"> <span>일</span>
 										</label>
 									</div>
 								</td>
 								<td>영업시간
-								<td><input type="time" id="input"> ~ <input
-									type="time" id="input"></td>
+								<td><input type="time" id="input" name="htime_opening_sun"
+									value="htime_opening"> ~ <input type="time" id="input"
+									name="htime_closing_sun" value="htime_closing"></td>
 								</td>
-								
+
 							</tr>
 
 						</tbody>
 					</table>
 				</div>
-			
+
 				<div>
-					<br> <br> <br> 
+					<br> <br> <br>
 					<button type="button" title="Button fade blue/green"
 						class=" btn btnFade btnBlueGreen find-btn1"
 						onclick="location.href='#.jsp'">수정</button>

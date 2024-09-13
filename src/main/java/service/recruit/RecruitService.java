@@ -1,6 +1,7 @@
 package service.recruit;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,4 +22,9 @@ public interface RecruitService {
 	List<Pet> getPetList(Integer user_id) throws Exception;
 	// user id로 해당하는 user 가져오기
 	User selectUserId(Integer user_id) throws Exception;
+	
+	// user_id에 해당하는 Recruit_post 리스트 가져오기
+	List<Map<String,Object>> selectPostListByUserId(Integer user_id) throws Exception;
+	// post_id에 해당하는 Recruit_post 삭제
+	void deletePostByPostId(String post_id) throws Exception;
 }

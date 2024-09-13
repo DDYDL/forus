@@ -94,8 +94,14 @@
 		WHERE
 		ht.h_id = #{h_id}
 		ORDER BY
-		FIELD(ht.htime_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+		FIELD(ht.htime_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+		'Friday', 'Saturday',
 		'Sunday');
+	</select>
+
+	<select id="selectHospitalByUserId" parameterType="Integer" resultType="Hospital">
+		Select * From
+		Hospital Where user_id=#{user_id}
 	</select>
 
 </mapper>

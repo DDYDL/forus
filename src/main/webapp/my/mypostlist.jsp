@@ -10,8 +10,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<link href="../css/my/mycommon.css" rel="stylesheet" type="text/css">
-<link href="../css/my/mycommon.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/my/mycommon.css" rel="stylesheet" type="text/css">
+
+<script>
+function submitForm() {
+    document.getElementById('postform').submit();
+}
+</script>
 </head>
 <body>
 	<%@ include file="../mainmypage.jsp" %>
@@ -20,7 +25,7 @@
 		<p>게시글 관리</p>
 	</div>
 	<div class="listcnt">
-		<p>총 2건</p>
+		<p>총 ${myPostList.size() }건</p>
 	</div>
 	<table class="table table-hover mytable">
 		<thead>
@@ -33,24 +38,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td><input type="checkbox"></td>
-				<td>2024.8.19</td>
-				<td>강아지 산책시켜주실 분!!(견주만)</td>
-				<td>게재중</td>
-				<td>1명</td>
+			<form action="myPostList" method="POST" style="display:inline;" id="postform">
+			<c:forEach items="${myPostList }" var="post">
+			<tr onclick="location.href='./recruitDetailpage?post_id=${post.post_id}'">
+				<td><input type="checkbox" value="${post.post_id}" name="post_id"></td>
+				<td>${post.post_date }</td>
+				<td>${post.post_title }</td>
+				<td class="textalign_left">${post.post_status }</td>
+				<td>${post.applycnt }명</td>
 			</tr>
-			<tr>
-				<td><input type="checkbox"></td>
-				<td>2024.8.19</td>
-				<td>강아지 2마리 집에 같이 있어주세요</td>
-				<td>지원마감</td>
-				<td>2명</td>
-			</tr>
+			</c:forEach>
+			</form>
 		</tbody>
 	</table>
 	<div>
-		<button type="submit" class="minibtn">삭제하기</button>
+		<button type="button" onclick="submitForm()" class="minibtn">삭제하기</button>
 	</div>
 	</div>
 </body>

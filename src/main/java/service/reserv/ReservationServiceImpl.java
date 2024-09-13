@@ -143,11 +143,6 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<Reservation> myAfterReserv() throws Exception {
-		return null;
-	}
-
-	@Override
 	public User getUserInfo(Integer userId) {
 		return reservationDao.findUserInfoByUserId(userId);
 	}
@@ -178,5 +173,10 @@ public class ReservationServiceImpl implements ReservationService {
 	public Reservation reservDetail(Integer reserv_id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Integer deleteReservation(int reserv_id) throws Exception {
+		return reservationDao.deleteReserv(reserv_id);
 	}
 }
