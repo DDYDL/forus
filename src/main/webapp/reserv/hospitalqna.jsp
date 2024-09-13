@@ -166,8 +166,8 @@
                     $('#qna-list').append(qnaRow);
                 });
 
-                if (data.items.length < pageSize || currentPage * pageSize >= data.total) {
-
+                // if (data.items.length < pageSize || currentPage * pageSize >= data.total) {
+                if (data.length < pageSize) {
                     $('#load-more-btn').hide();
                 } else {
                     $('#load-more-btn').show();

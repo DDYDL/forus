@@ -78,8 +78,7 @@ public class MyPostList extends HttpServlet {
 					aservice.updateRecruit_apply_status(apply);
 				}
 			} else { System.out.println("선택된 글이 없습니다."); }
-			response.getWriter().write(String.valueOf("삭제완료"));
-			response.sendRedirect("myPostList");
+			response.sendRedirect("myPostList?user_id=");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

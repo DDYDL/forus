@@ -45,7 +45,7 @@ function submitForm() {
 				<td>${post.post_date }</td>
 				<td>${post.post_title }</td>
 				<td class="textalign_left">${post.post_status }</td>
-				<td>${post.applycnt }명</td>
+				<td><a href="${pageContext.request.contextPath}/recruitApplyList?post_id=${post.post_id}">${post.applycnt }명</a></td>
 			</tr>
 			</c:forEach>
 			</form>
