@@ -16,8 +16,8 @@ public class Reservation {
 	private String reservMemo;
 
 	public Reservation() {
+		super();
 	}
-
 
 	// 생성자에서 자동 생성 또는 외부에서 가져오는 필드 제거
 	public Reservation(LocalDate reservDate, LocalTime reservTime, String reservApplyTime,

@@ -1,7 +1,6 @@
 package dto;
 
 public class Pet {
-
 	private Integer pet_id;
 	private Integer user_id;
 	private String pet_name;

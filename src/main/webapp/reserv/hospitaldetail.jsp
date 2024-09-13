@@ -1,0 +1,137 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashMap" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<html>
+
+<head>
+
+    <link href="css/reserv/hospital.css" rel="stylesheet">
+    <link href="css/reserv/hospitalModal.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- SweetAlert2 라이브러리 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <!-- flatpickr 라이브러리 추가 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</head>
+
+<body>
+<%@ include file="../header.jsp" %>
+
+<div id="hospital-detail-content-container">
+    <!-- 병원 메인 이미지 섹션 -->
+    <section id="hospital-gallery-section">
+        <div id="hospital-gallery-container">
+            <div id="hospital-gallery">
+                <button id="prev-gallery-image" class="gallery-carousel-button">‹</button>
+                <div id="main-gallery-image-container">
+                    <img id="main-gallery-image" src="../../img/kosta1.png" alt="병원 이미지 메인"
+                         class="gallery-image active">
+                </div>
+                <button id="next-gallery-image" class="gallery-carousel-button">›</button>
+            </div>
+            <div id="thumbnail-gallery-container">
+                <img src="img/hospital/kosta1.png" alt="병원 이미지 1" class="thumbnail-gallery-image active" data-index="0">
+                <img src="img/hospital/kosta2.png" alt="병원 이미지 2" class="thumbnail-gallery-image" data-index="1">
+                <img src="img/hospital/kosta3.png" alt="병원 이미지 3" class="thumbnail-gallery-image" data-index="2">
+            </div>
+        </div>
+    </section>
+
+    <!-- 병원 정보 섹션 -->
+    <section id="hospital-info-section">
+        <div id="hospital-detail-container">
+            <h4>${hospital.h_name}</h4>
+
+            <!-- 예약하기 버튼 -->
+            <button id="hospital-detail-reserve-button" class="btn btn-primary" onclick="initializeReservationModal()">
+                예약하기
+            </button>
+            <!-- 모달 섹션  -->
+            <%@ include file="hospitalmodal.jsp" %>
+
+            <div id="hospital-detail-info">
+                <p><i class="fas fa-info-circle"></i><strong> 소개:</strong> ${hospital.h_memo}</p>
+                <p><i class="fas fa-user-md"></i><strong> 수의사 이름:</strong> ${hospital.h_manager_name}</p>
+                <p><i class="fas fa-phone-alt"></i><strong> 전화번호:</strong> ${hospital.h_phone}</p>
+                <p><i class="fas fa-map-marker-alt"></i><strong> 주소:</strong> ${hospital.h_address}</p>
+                <p><i class="fas fa-directions"></i><strong> 길찾기 메모:</strong> ${hospital.h_memo_road}</p>
+                <p><i class="fas fa-credit-card"></i><strong> 결제 방법:</strong> ${hospital.h_pay}</p>
+                <p><i class="fas fa-parking"></i><strong> 주차 가능 여부:</strong> ${hospital.h_parking}</p>
+                <p><i class="fas fa-clock"></i><strong> 운영 시간</strong>
+                    <c:forEach var="hospitalTime" items="${hospitalTimes}">
+                <p>
+                    <c:choose>
+                        <c:when test="${hospitalTime.htime_opening !=null && hospitalTime.htime_closing != null}">
+                            ${hospitalTime.htime_week}: ${hospitalTime.htime_opening} ~ ${hospitalTime.htime_closing}
+                        </c:when>
+                        <c:otherwise>
+                            ${hospitalTime.htime_week}: 휴무
+                        </c:otherwise>
+                    </c:choose>
+                </p>
+                </c:forEach>
+
+
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr id="hospital-detail-divider">
+
+    <!-- QnA 섹션  -->
+    <%@ include file="hospitalqna.jsp" %>
+
+
+</div>
+
+<!-- 이미지 갤러리 관련 스크립트 -->
+<script>
+    $(document).ready(function () {
+        const $mainImage = $("#main-gallery-image");
+        const $thumbnails = $(".thumbnail-gallery-image");
+        const $prevButton = $("#prev-gallery-image");
+        const $nextButton = $("#next-gallery-image");
+        let currentIndex = 0;
+
+        function updateMainImage(index) {
+            const $selectedThumbnail = $thumbnails.eq(index);
+            $mainImage.attr("src", $selectedThumbnail.attr("src"));
+            $thumbnails.removeClass("active").eq(index).addClass("active");
+        }
+
+        $thumbnails.each(function (index) {
+            $(this).on("click", function () {
+                currentIndex = index;
+                updateMainImage(index);
+            });
+        });
+
+        $prevButton.on("click", function () {
+            currentIndex = (currentIndex === 0) ? $thumbnails.length - 1 : currentIndex - 1;
+            updateMainImage(currentIndex);
+        });
+
+        $nextButton.on("click", function () {
+            currentIndex = (currentIndex === $thumbnails.length - 1) ? 0 : currentIndex + 1;
+            updateMainImage(currentIndex);
+        });
+
+        // 초기 설정
+        updateMainImage(0);
+    });
+</script>
+
+</body>
+</html>

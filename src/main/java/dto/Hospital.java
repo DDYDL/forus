@@ -20,7 +20,7 @@ public class Hospital {
 	private String h_picture;
 	private String h_memo;
 	private String h_memo_road;
-	private String h_pay;
+	private String h_pay; //checkbox 전부 분리 
 	private String h_sns;
 	private Boolean h_parking;
 	private Boolean h_isopen;

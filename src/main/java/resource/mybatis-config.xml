@@ -15,14 +15,15 @@
 		<typeAlias type="dto.Reservation" alias="reservation"/>
 		<typeAlias type="dto.Search" alias="search"/>
 	</typeAliases>
+
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC"/>
 			<dataSource type="POOLED">
-				<property name="driver" value="org.mariadb.jdbc.Driver"/>
-				<property name="url" value="jdbc:mariadb://192.168.0.11:3306/forusDB"/>
-				<property name="username" value="forusDB"/>
-				<property name="password" value="forusDB"/>
+				<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://192.168.0.248:3306/forUsDB"/>
+				<property name="username" value="forUsDB"/>
+				<property name="password" value="forUsDB"/>
 			</dataSource>
 		</environment>
 	</environments>
@@ -34,8 +35,9 @@
 		<mapper resource="mapper/hospital_qna.xml"/>
 		<mapper resource="mapper/hospital_time.xml"/>
 		<mapper resource="mapper/recruit_post.xml"/>
-		<mapper resource="mapper/recruit_apply.xml"/> 
+		<mapper resource="mapper/recruit_apply.xml"/>
 		<mapper resource="mapper/reservation.xml"/>
 		<mapper resource="mapper/search.xml"/>
+		<mapper resource="mapper/doctorCalendar.xml"/>
 	</mappers>
 </configuration>
