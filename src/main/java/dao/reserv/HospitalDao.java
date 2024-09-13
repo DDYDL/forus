@@ -8,7 +8,9 @@ import dto.Hospital_time;
 
 public interface HospitalDao {
 
-	List<Hospital> findHospitalByLocation(Map<String, Double> map);
+	List<Hospital> findHospitalByLocation(Map<String, Object> map);
+
+	public List<Hospital> findHospitalByKeyword(Map<String, Object> params) ;
 
 	Hospital findHospitalDetailByHospitalId(int hospitalId);
 

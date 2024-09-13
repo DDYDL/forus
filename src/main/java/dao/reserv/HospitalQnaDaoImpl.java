@@ -32,8 +32,12 @@ public class HospitalQnaDaoImpl implements HospitalQnaDao {
 	}
 
 	@Override
-	public List<Hospital_qna> findHospitalQnaListByHospitalId(Integer hospitalId) {
-		return sqlSession.selectList("mapper.hospital_qna.findHospitalQnaListByHospitalId", hospitalId);
+	public List<Hospital_qna> findHospitalQnaListByHospitalId(Integer hospitalId, int limit, int offset) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("hospitalId", hospitalId);
+		params.put("limit", limit);
+		params.put("offset", offset);
+		return sqlSession.selectList("mapper.hospital_qna.findHospitalQnaListByHospitalId", params);
 	}
 
 	@Override
@@ -45,8 +49,8 @@ public class HospitalQnaDaoImpl implements HospitalQnaDao {
 			params.put("hospitalQna", hospitalQna);
 
 			sqlSession.update("mapper.hospital_qna.insertAnswer", params);
-
 			sqlSession.commit();
+
 		} catch (Exception e) {
 			sqlSession.rollback();
 			e.printStackTrace();

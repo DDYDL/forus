@@ -30,7 +30,7 @@ public class DoctorCalendar extends HttpServlet {
 		ServletException,
 		IOException {
 		try {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/hmy/calendar.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/hmy/hmyscheduledcalendar.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (ServletException e) {
