@@ -18,6 +18,17 @@
 		]]>
 	</select>
 	
+	<select id="selectPostListByUserId" parameterType="Integer" resultType="Map">
+		<![CDATA[
+			SELECT p.post_id, p.post_date, p.post_title, p.post_status, COUNT(a.post_id) AS applycnt
+		      FROM recruit_post p
+			  JOIN recruit_apply a ON p.post_id=a.post_id
+			 WHERE p.user_id = #{user_id}
+			 GROUP BY p.post_id, p.post_date, p.post_title, p.post_status
+			 ORDER BY p.post_date DESC
+		]]>
+	</select>
+	
 	<update id="updateRecruit_post" parameterType="Recruit_post">
 		<![CDATA[
 			update recruit_post set pet_id=#{pet_id},post_title=#{post_title},post_content=#{post_content},post_address=#{post_address},post_form=#{post_form},
@@ -31,4 +42,11 @@
 			update recruit_post set post_status=#{post_status} where post_id=#{post_id}
 		]]>
 	</update>
+
+	<delete id="deletePostByPostId" parameterType="String">
+		<![CDATA[
+			delete from recruit_post where post_id=#{post_id}
+		]]>
+	</delete>
+
 </mapper>

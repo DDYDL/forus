@@ -2,37 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.reservation">
 
-    <select id="findHospitalTimeByHospitalId" parameterType="map" resultType="dto.Hospital_time">
-        SELECT
-        h_id,
-        htime_week,
-        htime_opening,
-        htime_closing,
-        htime_isable
-        FROM
-        hospital_time
-        WHERE
-        h_id = #{hospitalId}
-        AND htime_week = DATE_FORMAT(#{date}, '%W');
-    </select>
+	<select id="findHospitalTimeByHospitalId" parameterType="map"
+		resultType="dto.Hospital_time">
+		SELECT
+		h_id,
+		htime_week,
+		htime_opening,
+		htime_closing,
+		htime_isable
+		FROM
+		hospital_time
+		WHERE
+		h_id = #{hospitalId}
+		AND htime_week = DATE_FORMAT(#{date}, '%W');
+	</select>
 
 
-    <select id="findHospitalLunchTimeAndIntervalByHospitalId" parameterType="int" resultType="dto.Hospital">
-        SELECT h_lunch_time_start,
-               h_lunch_time_end,
-               h_interval_time
-        FROM hospital
-        WHERE h_id = #{hospitalId}
-    </select>
+	<select id="findHospitalLunchTimeAndIntervalByHospitalId"
+		parameterType="int" resultType="dto.Hospital">
+		SELECT h_lunch_time_start,
+		h_lunch_time_end,
+		h_interval_time
+		FROM hospital
+		WHERE h_id = #{hospitalId}
+	</select>
 
-    <!-- 해당 병원과 날짜에 예약된 시간들을 조회하는 쿼리 -->
-    <select id="findReservedTimesByDate" parameterType="map" resultType="java.time.LocalTime">
-        SELECT reserv_time
-        FROM reservation
-        WHERE h_id = #{hospitalId}
-          AND reserv_date = #{date}
-    </select>
-	<select id="selectMyAfterReserv" parameterType="Integer" resultType="Map">
+	<!-- 해당 병원과 날짜에 예약된 시간들을 조회하는 쿼리 -->
+	<select id="findReservedTimesByDate" parameterType="map"
+		resultType="java.time.LocalTime">
+		SELECT reserv_time
+		FROM reservation
+		WHERE h_id = #{hospitalId}
+		AND reserv_date = #{date}
+	</select>
+	<select id="selectMyAfterReserv" parameterType="Integer"
+		resultType="Map">
 		<![CDATA[
             SELECT r.reserv_id, r.reserv_date, TIME_FORMAT(r.reserv_time, '%H:%i') AS reserv_time, p.pet_picture,  p.pet_name,  h.h_name
             FROM  reservation r
@@ -42,56 +46,61 @@
             ON r.h_id = h.h_id
             WHERE r.user_id = #{id}
             AND DATE(r.reserv_date) >= CURDATE()
+            order by reserv_date
         ]]>
-    </select>
-
-    <select id="findUserInfoByUserId" parameterType="Integer" resultType="user">
-        SELECT id, email, name, phone
-        FROM user
-        WHERE id = #{userId}
-    </select>
-
-    <select id="findPetInfoByUserId" parameterType="Integer" resultType="pet">
-        SELECT pet_id, pet_name, pet_picture
-        FROM pet
-        WHERE user_id = #{userId}
-    </select>
-
-
-    <insert id="insertReservation" parameterType="dto.Reservation">
-        INSERT INTO reservation (h_id, user_id, pet_id, reserv_date, reserv_time, reserv_apply_time, reserv_content)
-        VALUES (#{hId}, #{userId}, #{petId}, #{reservDate}, #{reservTime}, NOW(), #{reservContent})
-    </insert>
-
-
-
-	<select id="selectMyBeforeReserv" parameterType="Map" resultType="Map">
-		    SELECT r.reserv_id, r.reserv_date, p.pet_picture, p.pet_name, h.h_name, r.reserv_status
-		    FROM reservation r
-		    JOIN pet p ON r.pet_id = p.pet_id
-		    JOIN hospital h ON r.h_id = h.h_id
-		    WHERE r.user_id = #{id}
-		    AND DATE(r.reserv_date) &lt; CURDATE()
-
-			<if test="pet_id != null and pet_id != ''">
-		        AND p.pet_id = #{pet_id}
-		    </if>
-
-			<if test="startDate != null and startDate != ''">
-		        AND r.reserv_date &gt;= #{startDate}
-		    </if>
-
-			<if test="endDate != null and endDate != ''">
-		        AND r.reserv_date &lt;= #{endDate}
-		    </if>
-
-		    <if test="isConsult == true">
-		        AND r.reserv_status = '진료완료'
-		    </if>
 	</select>
-	
-	
-	<select id="reservList" parameterType="Integer" resultType="Map">
+
+	<select id="findUserInfoByUserId" parameterType="Integer"
+		resultType="user">
+		SELECT id, email, name, phone
+		FROM user
+		WHERE id = #{userId}
+	</select>
+
+	<select id="findPetInfoByUserId" parameterType="Integer"
+		resultType="pet">
+		SELECT pet_id, pet_name, pet_picture
+		FROM pet
+		WHERE user_id = #{userId}
+	</select>
+
+
+	<insert id="insertReservation" parameterType="dto.Reservation">
+		INSERT INTO reservation (h_id, user_id, pet_id, reserv_date, reserv_time,
+		reserv_apply_time, reserv_content)
+		VALUES (#{hId}, #{userId}, #{petId}, #{reservDate}, #{reservTime}, NOW(),
+		#{reservContent})
+	</insert>
+
+	<select id="selectMyBeforeReserv" parameterType="Map"
+		resultType="Map">
+		SELECT r.reserv_id, r.reserv_date, p.pet_picture, p.pet_name,
+		h.h_name, r.reserv_status
+		FROM reservation r
+		JOIN pet p ON r.pet_id = p.pet_id
+		JOIN hospital h ON r.h_id = h.h_id
+		WHERE DATE(r.reserv_date) &lt; CURDATE()
+		AND r.user_id = #{id}
+
+		<if test="pet_id != null and pet_id != ''">
+			AND p.pet_id = #{pet_id}
+		</if>
+		<if test="startDate != null and startDate != ''">
+			AND r.reserv_date &gt;= #{startDate}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			AND r.reserv_date &lt;= #{endDate}
+		</if>
+		<if test="isConsult == true">
+			AND r.reserv_status = '진료완료'
+		</if>
+
+		order by reserv_date desc
+	</select>
+
+
+	<select id="reservList" parameterType="String" resultType="Map">
+
 		<![CDATA[
 			SELECT
 		r.reserv_id, u.name, u.phone,
@@ -106,10 +115,10 @@
 		JOIN pet p ON r.pet_id = p.pet_id
 		Where r.h_id=#{h_id}
 		AND reserv_date=CURDATE()
-		]]> 
+		]]>
 	</select>
-	
-	
+
+
 	<delete id="deleteReservation" parameterType="Reservation">
 		<![CDATA[
 			delete from pet where reserv_id = #{reserv_id}]]>
