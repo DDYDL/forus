@@ -59,8 +59,8 @@ public class HospitalServiceImpl implements HospitalService {
 		// hospital.setH_lunch_time_start(multi.getParameter(""));
 		// hospital.setH_lunch_time_end(multi.getParameter(""));
 		// hospital.setH_interval_time(multi.getParameter(""));
+		
 		System.out.println(hospital);
-
 		hospitalDao.insertHospital(hospital);
 
 	}

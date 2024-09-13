@@ -17,9 +17,14 @@ public class HospitalDaoImpl implements HospitalDao {
 	}
 
 	@Override
-	public List<Hospital> findHospitalByLocation(Map<String, Double> map) {
+	public List<Hospital> findHospitalByLocation(Map<String, Object> map) {
 		return sqlSession.selectList("mapper.hospital.findHospitalByLocation", map);
 
+	}
+
+	@Override
+	public List<Hospital> findHospitalByKeyword(Map<String, Object> params) {
+		return sqlSession.selectList("mapper.hospital.findHospitalByKeyword", params);
 	}
 
 	@Override

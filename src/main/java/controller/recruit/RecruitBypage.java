@@ -68,8 +68,13 @@ public class RecruitBypage extends HttpServlet {
 			// 현재 조건의 recruit post 리스트 가져오기
 			List<Recruit_post> posts = service.getRecruit_postList(areas, species, page.intValue());
 			System.out.println("posts:"+posts);
+			
+			List<Integer> count = service.getMaxPage(areas, species);
 			// 최대 페이지 수 가져오기
-			Integer maxPage = service.getMaxPage(areas, species);
+			Integer maxPage = count.get(0);
+			// 전체 post 수 가져오기
+			Integer postCount = count.get(1);
+			System.out.println("cnt" + postCount);
 			
 			// jsp response로 recruit_post 자바 객체를 전달하기 위해 JSON타입 스트링 만들기
 			JSONObject resJson = new JSONObject();
@@ -95,7 +100,9 @@ public class RecruitBypage extends HttpServlet {
 				jsonPosts.add(jsonPost);
 			}
 			resJson.put("recruit_postList", jsonPosts);
+			resJson.put("postCount", postCount);
 			System.out.println(resJson.toJSONString());
+			
 			response.getWriter().write(resJson.toJSONString()); // response에 recruit_post 리스트 담기
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -66,7 +66,7 @@ public class Reservation extends HttpServlet {
 			String customContent = request.getParameter("customContent");
 			String reservationContent = request.getParameter("reservationContent");
 			String userId = request.getParameter("userId");
-			String petId = request.getParameter("petId");
+			String petId = request.getParameter("selectedPetId");
 			String hospitalId = request.getParameter("hospitalId");
 
 			ReservationService reservationService = new ReservationServiceImpl();

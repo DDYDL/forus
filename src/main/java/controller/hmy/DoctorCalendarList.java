@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import dto.Reservation;
+import dto.UserPetInfo;
 import service.hmy.DoctorCalendarService;
 import service.hmy.DoctorCalendarServiceImpl;
 
@@ -29,6 +30,7 @@ public class DoctorCalendarList extends HttpServlet {
 
 			String startDate = request.getParameter("startDate");
 			String endDate = request.getParameter("endDate");
+			
 			int userId = Integer.parseInt(request.getParameter("userId"));
 
 			DoctorCalendarService doctorCalendarService = new DoctorCalendarServiceImpl();

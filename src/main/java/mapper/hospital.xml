@@ -5,17 +5,17 @@
 <mapper namespace="mapper.hospital">
 	<insert id="insertHospital" parameterType="Hospital">
 		<![CDATA[
-			insert into Hospital (h_id, user_id, h_exponent_name, h_num,
+			insert into hospital (user_id, h_exponent_name, h_num,
 			h_license, h_name, h_manager_name, h_phone, h_address,
-			h_longitude, _latitude, h_animal_type, h_picture, h_memo,
+			h_longitude, h_latitude, h_animal_type, h_picture, h_memo,
 			h_memo_road , h_pay, h_sns, h_parking, h_isopen,
-			h_lunch_time_start, _lunch_time_end, h_interval_time)
+			h_lunch_time_start, h_lunch_time_end, h_interval_time)
 			
-			values (#{user_id},#{h_exponent_name},#{h_num},
-			#{h_license},#{h_name},#{h_manager_name},#{h_phone},#{h_address},
-			#{h_longitude},#{_latitude},#{h_animal_type},#{h_picture},#{h_memo},
-			#{h_memo_road},#{h_pay},#{h_sns},#{h_parking},#{h_isopen},
-			#{h_lunch_time_start},#{_lunch_time_end},#{h_interval_time})
+			values (#{user_id}, #{h_exponent_name}, #{h_num},
+			#{h_license}, #{h_name}, #{h_manager_name}, #{h_phone}, #{h_address},
+			#{h_longitude}, #{h_latitude}, #{h_animal_type}, #{h_picture},#{h_memo},
+			#{h_memo_road}, #{h_pay}, #{h_sns}, #{h_parking}, #{h_isopen},
+			#{h_lunch_time_start}, #{h_lunch_time_end}, #{h_interval_time})
 		]]>
 	</insert>
 
@@ -43,7 +43,6 @@
 
 	<select id="findHospitalByLocation" parameterType="map"
 		resultType="dto.Hospital">
-
         <![CDATA[
 		SELECT
 			h.h_id,
@@ -68,9 +67,32 @@
 						) / 1000
 					) <= #{radius}
 		ORDER BY
-			distance ASC;
+			distance ASC
+		LIMIT #{offset}, #{limit}
 		]]>
 	</select>
+
+	<select id="findHospitalByKeyword" parameterType="map" resultType="dto.Hospital">
+    <![CDATA[
+		SELECT
+			h.h_id,
+			h.h_name,
+			h.h_address,
+			h.h_latitude,
+			h.h_longitude,
+			h.h_animal_type
+		FROM
+			hospital h
+		WHERE
+			h.h_name LIKE CONCAT('%', #{keyword}, '%')
+		   OR h.h_address LIKE CONCAT('%', #{keyword}, '%')
+		   OR h.h_name LIKE CONCAT('%', REPLACE(#{keyword}, '역', ''), '%')
+		   OR h.h_address LIKE CONCAT('%', REPLACE(#{keyword}, '역', ''), '%')
+		ORDER BY
+			h.h_name ASC
+			LIMIT #{offset}, #{limit}
+		]]>
+</select>
 
 
 
