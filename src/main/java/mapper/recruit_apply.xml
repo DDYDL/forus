@@ -28,9 +28,27 @@
 		]]>
 	</select>
 	
+	<select id="selectApplyListByUserId" parameterType="Integer" resultType="Map">
+		<![CDATA[
+			SELECT a.apply_id, DATE(a.apply_time) as apply_date, a.apply_title, p.post_status, a.apply_status
+		      FROM recruit_apply a
+			  JOIN recruit_post p ON a.post_id=p.post_id
+			 WHERE a.user_id = #{user_id}
+			 order by a.apply_time desc
+		]]>
+	</select>
+	
 	<update id="updateRecruit_apply_status" parameterType="Recruit_apply">
 		<![CDATA[
 			update recruit_apply set apply_status=#{apply_status} where apply_id=#{apply_id}
 		]]>
 	</update>
+	
+	<delete id="deleteApplyByApplyId" parameterType="Integer">
+		<![CDATA[
+			delete from recruit_apply where apply_id=#{apply_id}
+		]]>
+	</delete>
+	
+	
  </mapper>

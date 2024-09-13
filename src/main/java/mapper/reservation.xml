@@ -42,6 +42,7 @@
             ON r.h_id = h.h_id
             WHERE r.user_id = #{id}
             AND DATE(r.reserv_date) >= CURDATE()
+            order by reserv_date
         ]]>
     </select>
 
@@ -63,33 +64,29 @@
         VALUES (#{hId}, #{userId}, #{petId}, #{reservDate}, #{reservTime}, NOW(), #{reservContent})
     </insert>
 
-
-
 	<select id="selectMyBeforeReserv" parameterType="Map" resultType="Map">
 		    SELECT r.reserv_id, r.reserv_date, p.pet_picture, p.pet_name, h.h_name, r.reserv_status
 		    FROM reservation r
 		    JOIN pet p ON r.pet_id = p.pet_id
 		    JOIN hospital h ON r.h_id = h.h_id
-		    WHERE r.user_id = #{id}
-		    AND DATE(r.reserv_date) &lt; CURDATE()
+		    WHERE DATE(r.reserv_date) &lt; CURDATE()
+		    AND r.user_id = #{id}
 
 			<if test="pet_id != null and pet_id != ''">
 		        AND p.pet_id = #{pet_id}
 		    </if>
-
 			<if test="startDate != null and startDate != ''">
 		        AND r.reserv_date &gt;= #{startDate}
 		    </if>
-
 			<if test="endDate != null and endDate != ''">
 		        AND r.reserv_date &lt;= #{endDate}
 		    </if>
-
 		    <if test="isConsult == true">
 		        AND r.reserv_status = '진료완료'
 		    </if>
+		    
+		    order by reserv_date desc
 	</select>
-	
 	
 	<select id="reservList" parameterType="String" resultType="Reservation">
 		<![CDATA[

@@ -42,12 +42,18 @@ $(document).ready(function() {
             async:true,
             data : {param:JSON.stringify(param)},
             success: function(data) {
-                console.log(data);
+            	const result = data.result;
+            	const iRow = data.iRow;
+            	const pageInfo = data.pageInfo;
+            	
                 const resultBody = $('#resultBody');
                 resultBody.empty(); // 기존 결과 삭제
 
-                data.forEach(function(reserv) {
-                    console.log("도착2");
+                let cnt = 0;
+                let fcnt = 10;
+                if (result.length < 10) cnt = result.length;
+                for (let i = iRow; cnt < fcnt; i++) {
+                    const reserv = result[i];
                     const row = $('<tr></tr>');
                     row.click(function() {
                         window.location.href = `./reservDetail?reserv_id=${reserv.reserv_id}`;
@@ -58,10 +64,26 @@ $(document).ready(function() {
                         <td><img src="image?file=${reserv.pet_picture}" width="80px"></td>
                         <td class="textalign_left">\${reserv.pet_name}</td>
                         <td>\${reserv.h_name}</td>
-                        <td>\${reserv.reserv_status}</td>
+                        <td\>${reserv.reserv_status}</td>
                     `);
                     resultBody.append(row);
-                });
+                    cnt++;
+                }
+                 const paging = $('#paging');
+                 paging.empty();
+                 
+                 if (pageInfo.curPage>1) { paging.append(`<a href="myBeforeReserv?page=${pageInfo.curPage-1 }">&lt;</a>&nbsp;`);}
+                 else { paging.append(`<a>&lt;</a>&nbsp;`); }
+                 
+//                  paging.append(`\${pageInfo.curPage }`);
+                 
+                 for (var i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
+                	 if(i === pageInfo.curPage ){paging.append(`<a href="myBeforeReserv?page=${i}" class="select">\${i }</a>`);}
+                	 else {paging.append(`<a href="myBeforeReserv?page=${i}" class="btn">\${i }</a>`);}
+                 }
+                 if(pageInfo.curPage < pageInfo.allPage){paging.append(`<a href="#" onclick="loadPage(${pageInfo.curPage + 1})">&gt;</a>`);}
+                 else{paging.append(`<a>&gt;</a>`);}
+                 
             },
             error: (function(xhr, status, error) {
                 console.error('Error:', error);
@@ -72,6 +94,9 @@ $(document).ready(function() {
     submitForm();
 
 });
+function loadPage(pageNumber) {
+    submitForm(); // 폼을 제출하여 데이터를 로드
+}
 </script>
 
 </head>
@@ -121,10 +146,8 @@ $(document).ready(function() {
 			</tbody>
 		</table>
 		<br>
-		<div id="paging">
-			<a href="#">&lt;</a> &nbsp;<a href="#">1</a>&nbsp;<a href="#">2</a>&nbsp;<a
-				href="#">3</a>&nbsp;<a href="#">4</a>&nbsp; <a href="#">&gt;</a>
-		</div>
+<div id="paging">
+</div>
 		<br>
 		<br>
 	</div>
