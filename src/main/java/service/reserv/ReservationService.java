@@ -21,7 +21,8 @@ public interface ReservationService {
 
 	List<Map<String, Object>> myAfterReservList(Integer id) throws Exception;
 	List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception;
-	Reservation reservDetail(Integer reserv_id) throws Exception;
+	// reserv_id에 해당하는 reservation 정보 select (h_name 등도 있어 Map으로 받음)
+	Map<String, Object> selectReservByReservId(Integer reserv_id) throws  Exception;
 	
 	Integer deleteReservation(int reserv_id)throws Exception;
 }

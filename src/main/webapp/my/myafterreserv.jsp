@@ -28,7 +28,7 @@
 				<th id="hospitalname">병원</th>
 			</tr>
 			<c:forEach items="${afterReservList }" var="reserv">
-			<tr onclick="location.href='./reservdetail?reserv_id=\${reserv.reserv_id}'">
+			<tr onclick="location.href='./reservDetail?reserv_id=${reserv.reserv_id}'">
 				<td>${reserv.reserv_date }</td>
 				<td>${reserv.reserv_time }</td>
 				<td><img src="image?file=${reserv.pet_picture}" width="80px"></td>

@@ -157,8 +157,6 @@ public class ReservationServiceImpl implements ReservationService {
 		reservationDao.insertReservation(reservation);
 	}
 
-
-
 	@Override
 	public List<Map<String, Object>> myAfterReservList(Integer id) throws Exception {
 		return reservationDao.selectMyAfterReservList(id);
@@ -168,15 +166,15 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception {
 		 return reservationDao.selectMyBeforeReservList(id, pet_id, startDate, endDate, isConsult);
 	}
-
+	
 	@Override
-	public Reservation reservDetail(Integer reserv_id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> selectReservByReservId(Integer reserv_id) throws Exception {
+		return reservationDao.selectReservByReservId(reserv_id);
 	}
 
 	@Override
 	public Integer deleteReservation(int reserv_id) throws Exception {
 		return reservationDao.deleteReserv(reserv_id);
 	}
+
 }

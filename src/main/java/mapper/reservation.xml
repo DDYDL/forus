@@ -96,13 +96,19 @@
 
 		order by reserv_date desc
 	</select>
-
+	
+	<select id="selectReservByReservId" parameterType="Integer"
+		resultType="Map">
+		SELECT r.reserv_id, r.pet_id, r.h_id, r.reserv_date, r.reserv_time, r.reserv_content, r.reserv_status, h.h_name, p.pet_name
+		FROM reservation r
+		JOIN hospital h ON r.h_id = h.h_id
+		JOIN pet p ON r.pet_id = p.pet_id
+		WHERE r.reserv_id = #{reserv_id}
+	</select>
 
 	<select id="reservList" parameterType="Integer" resultType="Map">
 		<![CDATA[
-			SELECT
-		r.reserv_id, u.name, u.phone,
-		r.reserv_date,
+			SELECT r.reserv_id, u.name, u.phone, r.reserv_date,
 		time_format(r.reserv_time,'%H:%i') as reserv_time,
 		p.pet_name,
 		date(r.reserv_apply_time) AS reserv_apply_time,
@@ -115,8 +121,7 @@
 		AND reserv_date=CURDATE()
 		]]>
 	</select>
-
-
+	
 	<delete id="deleteReservation" parameterType="Reservation">
 		<![CDATA[
 			delete from pet where reserv_id = #{reserv_id}]]>
