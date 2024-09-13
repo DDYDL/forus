@@ -11,7 +11,7 @@ public interface HospitalQnaService {
 
 
 
-	public List<Hospital_qna> getHospitalQnaList(Integer hospitalId);
+	public List<Hospital_qna> getHospitalQnaList(Integer hospitalId, int limit, int offset);
 
 	Hospital_qna createHospitalQna(String hospitalId, Integer userId, String userEmail, String questionContent);
 

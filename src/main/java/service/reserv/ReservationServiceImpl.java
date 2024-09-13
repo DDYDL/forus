@@ -148,8 +148,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public Pet getPetInfo(Integer userId) {
-		return reservationDao.findPetInfByPetId(userId);
+	public List<Pet> getPetsInfo(Integer userId) {
+		return reservationDao.findPetsByUserId(userId);
 	}
 
 	@Override

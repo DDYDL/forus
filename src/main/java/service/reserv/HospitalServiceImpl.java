@@ -1,5 +1,6 @@
 package service.reserv;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,13 +17,24 @@ public class HospitalServiceImpl implements HospitalListService, HospitalDetailS
 	}
 
 	@Override
-	public List<Hospital> getHospitalsByLocation(double latitude, double longitude, double radius) {
-		Map<String, Double> map = new java.util.HashMap<>();
+	public List<Hospital> getHospitalsByLocation(double latitude, double longitude, double radius, int offset, int limit) {
+		Map<String, Object> map = new java.util.HashMap<>();
 		map.put("latitude", latitude);
 		map.put("longitude", longitude);
 		map.put("radius", radius);
 
+		map.put("offset", offset);
+		map.put("limit", limit);
+
 		return hospitalDao.findHospitalByLocation(map);
+	}
+
+	public List<Hospital> getHospitalsByKeyword(String keyword, int offset, int limit) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("keyword", keyword);
+		params.put("offset", offset);
+		params.put("limit", limit);
+		return hospitalDao.findHospitalByKeyword(params);
 	}
 
 	@Override

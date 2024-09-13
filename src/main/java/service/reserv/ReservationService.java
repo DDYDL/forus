@@ -12,7 +12,7 @@ public interface ReservationService {
 	Map<String,Object> getAvailableTimeSlots(int hospitalId, String date);
 
 	User getUserInfo(Integer userId);
-	Pet getPetInfo(Integer petId);
+	List<Pet> getPetsInfo(Integer petId);
 
 	void insertReservation(Reservation reservation);
 

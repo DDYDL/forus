@@ -8,7 +8,7 @@ public interface HospitalQnaDao {
 
 	public void insertHospitalQna(Hospital_qna hospitalQna);
 
-	public List<Hospital_qna> findHospitalQnaListByHospitalId(Integer hospitalId);
+	public List<Hospital_qna> findHospitalQnaListByHospitalId(Integer hospitalId, int limit, int offset);
 
 	public void insertHospitalAnswer(int qnaId, Hospital_qna hospitalQna);
 

@@ -57,12 +57,11 @@
 		WHERE id = #{userId}
 	</select>
 
-	<select id="findPetInfoByUserId" parameterType="Integer"
-		resultType="pet">
-		SELECT pet_id, pet_name, pet_picture
-		FROM pet
-		WHERE user_id = #{userId}
-	</select>
+    <select id="findPetInfoByUserId" parameterType="Integer" resultType="dto.Pet">
+        SELECT pet_id, pet_name, pet_picture
+        FROM pet
+        WHERE user_id = #{userId}
+    </select>
 
 
 	<insert id="insertReservation" parameterType="dto.Reservation">
@@ -99,15 +98,14 @@
 	</select>
 
 
-	<select id="reservList" parameterType="String" resultType="Map">
-
+	<select id="reservList" parameterType="Integer" resultType="Map">
 		<![CDATA[
 			SELECT
 		r.reserv_id, u.name, u.phone,
-		r.reserv_date, 
+		r.reserv_date,
 		time_format(r.reserv_time,'%H:%i') as reserv_time,
 		p.pet_name,
-		date(r.reserv_apply_time) AS reserv_apply_time, 
+		date(r.reserv_apply_time) AS reserv_apply_time,
 		r.reserv_content
 		FROM reservation r
 		JOIN user u ON
