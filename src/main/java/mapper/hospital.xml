@@ -67,11 +67,12 @@
 						) / 1000
 					) <= #{radius}
 		ORDER BY
-			distance ASC;
+			distance ASC
+		LIMIT #{offset}, #{limit}
 		]]>
 	</select>
 
-	<select id="findHospitalByKeyword" parameterType="String" resultType="dto.Hospital">
+	<select id="findHospitalByKeyword" parameterType="map" resultType="dto.Hospital">
     <![CDATA[
 		SELECT
 			h.h_id,
@@ -88,7 +89,8 @@
 		   OR h.h_name LIKE CONCAT('%', REPLACE(#{keyword}, '역', ''), '%')
 		   OR h.h_address LIKE CONCAT('%', REPLACE(#{keyword}, '역', ''), '%')
 		ORDER BY
-			h.h_name ASC;
+			h.h_name ASC
+			LIMIT #{offset}, #{limit}
 		]]>
 </select>
 

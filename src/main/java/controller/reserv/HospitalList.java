@@ -25,6 +25,7 @@ public class HospitalList extends HttpServlet {
 	private static final double DEFAULT_LATITUDE = 33.450701;
 	private static final double DEFAULT_LONGITUDE = 126.570667;
 	private static final double DEFAULT_RADIUS = 5.0;
+	private static final int DEFAULT_LIMIT = 5;
 
 	public HospitalList() {
 		super();
@@ -33,47 +34,60 @@ public class HospitalList extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HospitalListService hospitalService = new HospitalServiceImpl();
-		String latStr = request.getParameter("latitude");
-		String lonStr = request.getParameter("longitude");
-		String keyword = request.getParameter("keyword");
+		try {
+			HospitalListService hospitalService = new HospitalServiceImpl();
+			String latStr = request.getParameter("latitude");
+			String lonStr = request.getParameter("longitude");
+			String keyword = request.getParameter("keyword");
+			String pageStr = request.getParameter("page");
 
-		// 초기값 설정
-		double latitude = DEFAULT_LATITUDE;
-		double longitude = DEFAULT_LONGITUDE;
-		double radius = DEFAULT_RADIUS;
+			int page = pageStr != null ? Integer.parseInt(pageStr) : 1;
+			int offset = (page - 1) * DEFAULT_LIMIT;
 
-		List<Hospital> hospitals = new ArrayList<>();
+			double latitude = DEFAULT_LATITUDE;
+			double longitude = DEFAULT_LONGITUDE;
+			double radius = DEFAULT_RADIUS;
 
-		if(StringNullCheck.isNotEmpty(keyword)) {
-			hospitals = hospitalService.getHospitalsByKeyword(keyword);
 
-		}else if (StringNullCheck.isNotEmpty(latStr) && StringNullCheck.isNotEmpty(lonStr)) {
+			System.out.println("요청 페이지: " + page);
+			System.out.println("계산된 OFFSET: " + offset);
+			System.out.println("요청 위도: " + latStr);
+			System.out.println("요청 경도: " + lonStr);
 
-			try {
+
+			List<Hospital> hospitals = new ArrayList<>();
+
+			if (StringNullCheck.isNotEmpty(keyword)) {
+				System.out.println("키워드로 검색 - OFFSET: " + offset + ", LIMIT: " + DEFAULT_LIMIT);
+				hospitals = hospitalService.getHospitalsByKeyword(keyword, offset, DEFAULT_LIMIT);
+
+			} else if (StringNullCheck.isNotEmpty(latStr) && StringNullCheck.isNotEmpty(lonStr)) {
 				latitude = Double.parseDouble(latStr);
 				longitude = Double.parseDouble(lonStr);
 
-				// 병원 데이터 조회
-				hospitals = hospitalService.getHospitalsByLocation(latitude, longitude, radius);
+				System.out.println("쿼리 실행 전 - 위도: " + latitude + ", 경도: " + longitude + ", 반경: " + radius + ", OFFSET: " + offset + ", LIMIT: " + DEFAULT_LIMIT);
 
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
+				hospitals = hospitalService.getHospitalsByLocation(latitude, longitude, radius, offset, DEFAULT_LIMIT);
+
+				System.out.println("쿼리 결과 개수: " + hospitals.size());
+
 			}
-		}
 
-		String isAjax = request.getParameter("ajax");
-		if ("true".equals(isAjax)) {
-			// JSON 응답 설정
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			Gson gson = new Gson();
-			String json = gson.toJson(hospitals);
-			response.getWriter().write(json);
-		} else {
-			// 일반적인 페이지 로드로 JSP로 포워딩
-			request.setAttribute("hospitals", hospitals);
-			request.getRequestDispatcher("/reserv/hospitallist.jsp").forward(request, response);
+			String isAjax = request.getParameter("ajax");
+			if ("true".equals(isAjax)) {
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				Gson gson = new Gson();
+				String json = gson.toJson(hospitals);
+				response.getWriter().write(json);
+			} else {
+				request.setAttribute("hospitals", hospitals);
+				request.getRequestDispatcher("/reserv/hospitallist.jsp").forward(request, response);
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); // 서버 로그에 예외를 기록합니다.
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("서버 내부 오류가 발생했습니다: " + e.getMessage());
 		}
 	}
 

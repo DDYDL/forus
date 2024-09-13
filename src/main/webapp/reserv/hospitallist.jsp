@@ -35,6 +35,9 @@
     <div id="hospitals-container">
         <%-- 비동기로 받아온 병원 목록이 여기에 추가됨 --%>
     </div>
+    <button id="load-more" style="display: none;">더보기</button>
+
+
 </div>
 </body>
 </html>
@@ -44,8 +47,12 @@
     var userMarker;
     var searchMarker;
     var markers = [];
-    // Kakao Places 객체 생성
-    var ps = new kakao.maps.services.Places();
+    let currentLat, currentLon;
+    let currentPage = 1;
+    let currentKeyword = '';
+    let isSearchingByKeyword = false;
+    let isLoadMore = false;
+
 </script>
 
 
@@ -142,23 +149,29 @@
 </script>
 
 <script>
+    let isInitialLoad = true;
     function getUserLocationAndAddMarker(updateHospitals = false) {
+        console.log('getUserLocationAndAddMarker 호출, updateHospitals:', updateHospitals); // 로그 추가
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 function (position) {
-                    var lat = position.coords.latitude; // 위도
-                    var lon = position.coords.longitude; // 경도
 
-                    // 새로운 중심 위치 설정
-                    var locPosition = new kakao.maps.LatLng(lat, lon);
-                    map.setCenter(locPosition); // 지도 중심을 사용자 위치로 이동
 
-                    // 사용자의 현재 위치에 마커 생성
-                    addUserMarker(lat, lon);
+                    if (!currentLat || !currentLon) { // 처음 설정된 경우에만 설정
+                        currentLat = position.coords.latitude;
+                        currentLon = position.coords.longitude;
 
-                    // 초기 로딩 시 병원 목록 업데이트 옵션
-                    if (updateHospitals) {
-                        updateHospitalList(lat, lon);
+                        var locPosition = new kakao.maps.LatLng(currentLat, currentLon);
+
+                        map.setCenter(locPosition); // 지도 중심을 사용자 위치로 이동
+
+                        // 사용자의 현재 위치에 마커 생성
+                        addUserMarker(currentLat, currentLon);
+                    }
+                    if (updateHospitals && currentPage === 1 && isInitialLoad) { // 플래그를 사용하여 첫 호출만 허용
+                        $('#hospitals-container').empty(); // 병원 목록 초기화
+                        updateHospitalList(currentLat, currentLon);
+                        isInitialLoad = false; // 이후 중복 호출 방지
                     }
                 },
                 function (error) {
@@ -180,57 +193,13 @@
 
 </script>
 
-
 <script>
-    // 검색 입력 필드에 이벤트 리스너 추가
-    $('#search-input').on('input', function () {
-        var query = $(this).val();
-        if (query.trim() !== '') {
-            ps.keywordSearch(query, placesSearchCB);
-        } else {
-            $('#suggestions').hide();
-        }
-    });
+    const loadMoreButton = document.getElementById('load-more');
 
-    // 장소 검색 콜백 함수
-    function placesSearchCB(data, status, pagination) {
-        if (status === kakao.maps.services.Status.OK) {
-            var suggestions = generateSuggestionsHTML(data);
-            $('#suggestions').html(suggestions).show(); // 리스트 보여줌
-        } else {
-            $('#suggestions').hide();
-        }
-    }
+    function updateHospitalList(lat, lon, page = 1) {
 
-    //자동완성  제안 항목
-    $(document).on('click', '.suggestion-item', function () {
-        var placeName = $(this).data('place-name');
-        var addressName = $(this).data('address-name');
-        var placeLat = $(this).data('place-lat'); // 위도
-        var placeLng = $(this).data('place-lng'); // 경도
+        console.log(`요청 보내기: 페이지 번호 ${"${page}"}, 위도: ${"${lat}"}, 경도: ${"${lon}"}`);
 
-
-        $('#search-input').val(placeName); // 선택한 이름을 검색창에 입력
-        $('#suggestions').hide();
-
-        resetMarkers();
-
-        var newLocation = new kakao.maps.LatLng(placeLat, placeLng);
-        map.setCenter(newLocation);
-
-        addSearchUserMarker(placeLat, placeLng);
-
-        updateHospitalList(placeLat, placeLng);
-
-        if (userMarker) {
-            addUserMarker(userMarker.getPosition().getLat(), userMarker.getPosition().getLng());
-        }
-
-    });
-</script>
-
-<script>
-    function updateHospitalList(lat, lon) {
         $.ajax({
             url: 'hospitalList',
             type: 'GET',
@@ -238,16 +207,27 @@
             data: {
                 latitude: lat,
                 longitude: lon,
+                page: page,
                 ajax: 'true'
             },
             success: function (data) {
+                console.log(`요청 성공: ${"${data.length}"}개의 데이터 받음`);
                 if (Array.isArray(data)) {
                     let hospitalListHTML = '';
                     data.forEach(function (hospital) {
                         addHospitalMarker(hospital);
                         hospitalListHTML += generateHospitalHTML(hospital);
                     });
-                    $('#hospitals-container').html(hospitalListHTML);
+                    // $('#hospitals-container').html(hospitalListHTML);
+
+                    $('#hospitals-container').append(hospitalListHTML);
+                    // 다음 페이지가 존재할 가능성 체크
+                    if (data.length === 5) {
+                        loadMoreButton.style.display = 'block';
+                    } else {
+                        loadMoreButton.style.display = 'none';
+                    }
+
                 } else {
                     console.error("서버로부터 받은 데이터가 배열이 아닙니다:", data);
                 }
@@ -257,7 +237,19 @@
             }
         });
     }
+    loadMoreButton.addEventListener('click', function () {
+        currentPage++;
+        isLoadMore = true;
+        if (isSearchingByKeyword) {
+            searchHospitalsByKeyword(currentKeyword, currentPage); // 키워드로 검색 시
+        } else {
+            updateHospitalList(currentLat, currentLon, currentPage); // 위치로 검색 시
+        }
+        isLoadMore = false;
+    });
 
+    // 초기 병원 목록 로드
+    getUserLocationAndAddMarker(true);
 </script>
 
 
@@ -274,69 +266,59 @@
 
     var markers = [];
 
-
     // HTML5의 Geolocation API를 사용하여 사용자 위치를 가져오기
     getUserLocationAndAddMarker(true);
 
-    // if (navigator.geolocation) {
-    //     navigator.geolocation.getCurrentPosition(
-    //         function (position) {
-    //             // 사용자의 현재 위치(위도, 경도) 가져오기
-    //             var lat = position.coords.latitude; // 위도
-    //             var lon = position.coords.longitude; // 경도
-    //
-    //             // 새로운 중심 위치 설정
-    //             var locPosition = new kakao.maps.LatLng(lat, lon);
-    //
-    //             // 지도 중심을 사용자의 현재 위치로 이동
-    //             map.setCenter(locPosition);
-    //
-    //             // 사용자의 현재 위치에 마커 생성
-    //             addUserMarker(lat, lon);
-    //             updateHospitalList(lat, lon);
-    //         },
-    //         function (error) {
-    //             alert('위치를 가져올 수 없습니다: ' + error.message);
-    //             map.setCenter(new kakao.maps.LatLng(33.450701, 126.570667));
-    //         },
-    //         {
-    //             enableHighAccuracy: true, // 높은 정확도 사용 시도
-    //             timeout: 5000,
-    //             maximumAge: 0
-    //         }
-    //     );
-    // } else {
-    //     alert('이 브라우저에서는 위치 정보가 지원되지 않습니다.');
-    // }
 </script>
 
 <script>
     $('#search-button').on('click', function (){
         var keyword = $('#search-input').val().trim();
         if (keyword !== '') {
-
+            isSearchingByKeyword = true;
+            currentKeyword = keyword; // 검색 키워드 저장
+            currentPage = 1; // 페이지 초기화
+            $('#hospitals-container').html('');
             searchHospitalsByKeyword(keyword);
     }
     });
-   function searchHospitalsByKeyword(keyword) {
+    function searchHospitalsByKeyword(keyword, page) {
+        if (page === 1 && !isLoadMore) {
+            resetMarkers();  // 더보기 시에는 호출되지 않도록 플래그를 사용
+            addUserMarker(currentLat, currentLon); // 사용자 마커를 다시 추가
+        }
+
+
     $.ajax({
         url: 'hospitalList',
         type: 'GET',
         dataType: 'json',
         data: {
             keyword: keyword,
+            page: page,
             ajax: 'true'
         },
         success: function (data) {
             if (Array.isArray(data)) {
                 let hospitalListHTML = '';
                 resetMarkers();
+
+                addUserMarker(currentLat, currentLon);
                 getUserLocationAndAddMarker(false);
                 data.forEach(function (hospital) {
                     addHospitalMarker(hospital);
                     hospitalListHTML += generateHospitalHTML(hospital);
                 });
-                $('#hospitals-container').html(hospitalListHTML);
+                // $('#hospitals-container').html(hospitalListHTML);
+                $('#hospitals-container').append(hospitalListHTML);
+
+                if (data.length === 5) {
+                    loadMoreButton.style.display = 'block';
+                } else {
+                    loadMoreButton.style.display = 'none';
+                }
+
+
                 map.setLevel(10);
             } else {
                 console.error("서버로부터 받은 데이터가 배열이 아닙니다:", data);
@@ -352,15 +334,6 @@
 </script>
 
 <script>
-    // 검색 자동완성 제안 목록 HTML 생성 함수
-    function generateSuggestionsHTML(data) {
-        return data
-            .map(
-                (place) =>
-                    `<div class="suggestion-item" data-place-name="${"${place.place_name}"}" data-address-name="${"${place.address_name}"}" data-place-lat="${"${place.y}"}" data-place-lng="${"${place.x}"}">${"${place.place_name}"} (${"${place.address_name}"})</div>`
-            )
-            .join('');
-    }
 
     // 병원 목록 HTML 생성 함수
     function generateHospitalHTML(hospital) {
@@ -375,6 +348,4 @@
             </a>
         </div>`;
     }
-
-
 </script>
