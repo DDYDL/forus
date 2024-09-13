@@ -62,8 +62,7 @@ public class RecruitApplyHire extends HttpServlet {
 			post.setPost_status("마감");
 			service.updateRecruit_post_status(post);
 			
-			request.setAttribute("post_id", post_id);
-			response.sendRedirect("recruitApplyList");
+			request.getRequestDispatcher("recruitApplyList").forward(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());

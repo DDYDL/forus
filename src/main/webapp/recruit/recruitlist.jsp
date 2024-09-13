@@ -23,12 +23,12 @@
     <!-- 검색 기능 -->
     <div class="container mt-3">
         <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#demo1">지역</button>
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#demo2">동물</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" onclick="hideText()" data-bs-toggle="collapse" data-bs-target="#demo1">지역</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" onclick="hideText()" data-bs-toggle="collapse" data-bs-target="#demo2">동물</button>
             <div class="searchbox">
             	<input id="init_text" type="text" style="border:none;text-align:center;" placeholder="검색 조건을 선택하세요"/>
                 <div id="demo1" class="collapse">
-                    <table class="table">
+                    <table class="table search_table">
                         <thead><tr><th>시·도</th><th>시·구·군</th><th>동·읍·면</th></tr></thead>
                         <tbody>
                         	<tr id="addressSearch">
@@ -40,7 +40,7 @@
                     </table>
                 </div>
                 <div id="demo2" class="collapse">
-                    <table class="table">
+                    <table class="table search_table">
                         <thead><tr><th>종</th><th>동물종</th></tr></thead>
                         <tbody>
                         	<tr>
@@ -228,16 +228,21 @@
     	var maxPage=0;
     	var areas=new Array();
     	var species=new Array();
+    	var clickCnt = 0;
+    	
+    	// 지역, 동물 버튼 클릭시 안내 문구 삭제하는 함수
+    	function hideText() {
+    		document.getElementById("init_text").style.display = 'none';
+    	}
     	
     	// recruit_post 리스트를 가져와서 페이지 수에 맞게 보여주는 함수
     	function requestData() {
     		if(areas.length > 0 || species.length > 0) {
     			// 하나라도 조건이 선택되어 있으면 초기화 버튼 보이게 함
     			document.getElementById("init_btn").style.visibility = 'visible';
-    			document.getElementById("init_text").style.visibility = 'hidden';
     		} else {
     			document.getElementById("init_btn").style.visibility = 'hidden';
-    			document.getElementById("init_text").style.visibility = 'visible';
+    			document.getElementById("init_text").style.display = 'block';
     		}
     		
     		console.log(areas);
