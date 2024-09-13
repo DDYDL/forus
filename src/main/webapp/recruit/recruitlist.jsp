@@ -70,7 +70,7 @@
                 </div>
                 
                 <div id="search_btn"></div>
-                <input id="init_btn" type="button" onclick="delete_selectall()" value="초기화">
+                <div class="minibtndiv"><input id="init_btn" class="minibutton minibtnFade minibtnBlueGreen" type="button" onclick="delete_selectall()" value="초기화"></div>
             </div>
         </div>
     </div>
@@ -97,7 +97,6 @@
          		success:function(data){																									
          			errCnt = 0;																									
          			accessToken = data.result.accessToken;
-         			alert(accessToken);
          			addressGeo();
          		},																													
          		error:function(data) {}																														
@@ -221,7 +220,7 @@
         </thead>
         <tbody id="recruitlist_body"></tbody>
     </table>
-    <div><button id="moreBtn">더보기</button></div>
+    <div class="btndiv"><button id="moreBtn" class="minibutton minibtnFade minibtnBlueGreen"><img src="./img/plus.png" style="width:20px"></button></div>
     </div>
     
     <script>
@@ -294,14 +293,14 @@
     		var area = document.getElementById("areas").value; // 선택한 지역 이름
     		areas.push(area);
     		
-    		$('#search_btn').append(`<button class="make_btn" onclick="deleteBtn_area(this)">\${area}</button>`); // 버튼 생성
+    		$('#search_btn').append(`<button class="make_btn minibutton minibtnFade minibtnBlueGreen" onclick="deleteBtn_area(this)">\${area}</button>`); // 버튼 생성
     		btn_click();
     	}
     	function selectSearch_specie() {
     		var specie = document.getElementById("species").value; // 선택한 동물 이름
     		species.push(specie);
     		
-    		$('#search_btn').append(`<button class="make_btn" onclick="deleteBtn_species(this)">\${specie}</button>`);
+    		$('#search_btn').append(`<button class="make_btn minibutton minibtnFade minibtnBlueGreen" onclick="deleteBtn_species(this)">\${specie}</button>`);
     		btn_click();
     	}
     	function deleteBtn_area(btn) { // 버튼 클릭시 삭제
