@@ -170,12 +170,11 @@
 									value="${hospital.h_lunch_time_end }"></td>
 							</tr>
 							<tr>
-								<td>진료 가능 동물 목록</td>
-								<td>
-								
-								<!-- 체크박스 동물 목록 만들기 -->
-								
-								</td>
+								<td><label for="name"> 진료가능 목록 </label></td>
+								<td class="tdinput"><input type="checkbox" name="h_pay"
+									value="1"> 현금 <input type="checkbox" name="h_pay"
+									value="2"> 카드 <input type="checkbox" name="h_pay"
+									value="3"> 제로페이</td>
 							</tr>
 
 						</tbody>

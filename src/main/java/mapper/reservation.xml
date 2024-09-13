@@ -99,7 +99,7 @@
 	</select>
 
 
-	<select id="reservList" parameterType="String" resultType="Map">
+	<select id="reservList" parameterType="Integer" resultType="Map">
 
 		<![CDATA[
 			SELECT

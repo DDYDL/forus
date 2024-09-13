@@ -148,7 +148,7 @@
 						<tr>
 							<td><label for="name"> 결제수단 </label></td>
 							<td class="tdinput"><input type="checkbox" name="h_pay"
-								value="1"> 현금 <input type="checkbox" name="h_pay"
+								value="1" disabled> 현금 <input type="checkbox" name="h_pay"
 								value="2"> 카드 <input type="checkbox" name="h_pay"
 								value="3"> 제로페이</td>
 						</tr>
