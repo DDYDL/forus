@@ -231,7 +231,7 @@
     	// 지역, 동물 버튼 클릭시 안내 문구 삭제하는 함수
     	function hideTextArea() {
     		// 드롭다운 버튼 화살표 방향 바꾸기
-    		var dropbtnA = document.getElementById("dropbtnArea");dropbtnArea
+    		var dropbtnA = document.getElementById("dropbtnArea");
     		if(dropbtnA.className == "dropdown") {
     			dropbtnA.className = "dropup";
     			document.getElementById("init_text").style.display = 'none'; // 버튼 누르면 화살표 위로 올리고, 안내 문구 안 보이게 한다.

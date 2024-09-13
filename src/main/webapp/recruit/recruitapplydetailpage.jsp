@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>recruit apply detail page</title>
-<link href="./css/recruitapplydetailpage.css" rel="stylesheet" type="text/css">
+<link href="./css/recruit/recruitapplydetailpage.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="../mainmypage.jsp" %>
@@ -14,51 +14,51 @@
 		<p class="mypage-content-title">지원자</p>
     
     <!-- user 프로필 가져오기 -->
-    <div class="box">
+    <div class="box profile">
     	<p class="content-inner-title">${recruit_apply.apply_title}</p>
     	<div class="list-header">
-    	<img src="../img/users2.png">
-    	<table>
+    	<img class="user_img" src="../img/users2.png">
+    	<table class="user_table">
     		<tr>
-    			<td>${apply_user.name}(${apply_user.birthday}, ${apply_user.gender})</td>
-    			<td></td>
+    			<td class="user_td1" colspan="2">${apply_user.name}(${apply_user.birthday}, ${apply_user.gender})</td>
     		</tr>
     		<tr>
-    			<td>주소</td>
-    			<td>${apply_user.address}</td>
+    			<td class="user_td1">주소</td>
+    			<td class="user_td2">${apply_user.address}</td>
     		</tr>
     		<tr>
-    			<td>휴대폰</td>
-    			<td>${apply_user.phone}</td>
+    			<td class="user_td1">휴대폰</td>
+    			<td class="user_td2">${apply_user.phone}</td>
     		</tr>
     		<tr>
-    			<td>이메일</td>
-    			<td>${apply_user.email}</td>
+    			<td class="user_td1">이메일</td>
+    			<td class="user_td2">${apply_user.email}</td>
     		</tr>
     	</table>
     	</div>
     </div>
     <br>
     <!-- pet 프로필 가져오기 -->
-    <div class="box">
+    <div class="box profile">
     	<p class="content-inner-title">반려동물</p>
         <table>
         	<c:forEach items="${petList}" var="pet">
     		<tr>
-    			<td><img src="${pet.pet_picture}"></td>
-    			<td>${pet.pet_name}</td>
-    			<td>(${pet.pet_age}, ${pet.pet_gender})</td>
-    			<td>${pet.pet_memo}</td>
+    			<td class="pet_td1"><img src="${pet.pet_picture}"></td>
+    			<td class="pet_td2">${pet.pet_name}</td>
+    			<td class="pet_td3">(${pet.pet_age},&nbsp;${pet.pet_gender})</td>
+    			<td class="pet_td4">${pet.pet_memo}</td>
     		</tr>
     		</c:forEach>
     	</table>
     </div>
     
     <br>
-    <div class="box">
+    <div class="box profile">
     	<p class="content-inner-title">전달 메시지</p>
     	<p class="content-document">${recruit_apply.apply_content}</p>
     </div>
+    <br>
     <div class="btndiv">
     	<c:choose>
 	    	<c:when test="${recruit_post.post_status eq '마감'}">

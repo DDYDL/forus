@@ -8,7 +8,7 @@
 <title>recruit apply list</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<link href="./css/recruitapplylist.css" rel="stylesheet" type="text/css">
+<link href="./css/recruit/recruitapplylist.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="../mainmypage.jsp" %>
@@ -29,12 +29,12 @@
 		            <tr onclick="location.href='./recruitApplyDetailpage?apply_id=${recruit_apply.apply_id}'">
 		            	<c:if test="${recruit_apply.user_id eq userAp.id}">
 		            		<c:choose>
-		            			<c:when test="${recruit_apply.apply_status eq '채용'}"><td>${recruit_apply.apply_status}</td></c:when>
+		            			<c:when test="${recruit_apply.apply_status eq '채용'}"><td class="apply_td"><p>${recruit_apply.apply_status}</p></td></c:when>
 		            			<c:otherwise><td></td></c:otherwise>
 		            		</c:choose>
 		            	<td><img src="${userAp.picture}"></td>
 		                <td><div>
-		    			<p class="content-inner-title">${userAp.name}(${userAp.birthday}, ${userAp.gender})</p>
+		    			<p class="content-inner-title">${userAp.name}&nbsp;(${userAp.birthday},&nbsp;${userAp.gender})</p>
 		    			<p class="content-document">${recruit_apply.apply_title}</p>
 		    			</div></td>
 		    			<td>${recruit_apply.apply_time}</td>
