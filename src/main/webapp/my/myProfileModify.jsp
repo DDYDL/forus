@@ -41,7 +41,7 @@
          <div>
             <ul>
                <li>프로필 사진</li>
-               <li><img src="image?file=${user.picture eq null? 'default.png': user.picture}&type=user&id=${user_id}" class="img-icon"
+               <li><img src="image?file=${user.picture eq null? 'default.png': user.picture}&type=user" class="img-icon"
                   alt="이미지 선택" id="preview" width="100px"
                   onclick="document.getElementById('file').click();"> <input
                   type="file" name="file" id="file" accept="image/*"

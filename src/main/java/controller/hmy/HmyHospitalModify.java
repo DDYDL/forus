@@ -33,8 +33,7 @@ public class HmyHospitalModify extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		User user = (User) request.getSession().getAttribute("user"); // user 세션 가져오기
-
+		User user = (User)request.getSession().getAttribute("user"); // user 세션 가져오기
 		int user_id = user.getId();
 
 		try {
