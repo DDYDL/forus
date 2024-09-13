@@ -1,9 +1,11 @@
 @charset "UTF-8";
 
 /* 드랍버튼 스타일 설정 */
-.btn { background-color:#69E92E; border:1px solid #D1D1D1; }
+.btn { background-color:#69E92ECC; border:1px solid #D1D1D1; margin-right:6px; }
 .btn:hover { background-color:#6CBE46; border:1px solid #D1D1D1; }
 .btn:active { background-color:#6CBE46; border:1px solid #D1D1D1; }
+#dropbtnArea { display: inline-block; }
+#dropbtnSpecies { display: inline-block; }
 
 /* 검색 박스 설정 */
 .searchbox {
@@ -11,7 +13,15 @@
 	height: auto;
 	min-height: 50px;
 	border-radius: 10px;
+	margin-top: 15px;
 }
+#demo1 { margin: 10px 20px 5px 20px;}
+#demo2 { margin: 10px 20px 5px 20px;}
+.table { border-top: 2px solid #D1D1D1; border-radius: 10px;}
+.search_table { border-top: none; border-collapse: collapse; border-style: hidden; }
+#search_btnArea { margin: 10px 10px 10px 15px; }
+#search_btnSpecies { margin: 10px 10px 10px 15px; }
+#init_text { border-radius: 10px; padding: 15px; text-align: center; }
 .tabletd { border-style: none; margin: 0px; padding: 0px; }
 select {
 	width: 200px;
@@ -21,8 +31,6 @@ select {
 }
 
 /* 리스트 설정 */
-.table { border-top: 2px solid #D1D1D1; }
-.search_table { border-top: none; border-radius: 10px; }
 .list-header { display:flex; justify-content: space-between; }
 .list-count { align-self: flex-end; }
 .list-btn { align-self:flex-end; }
