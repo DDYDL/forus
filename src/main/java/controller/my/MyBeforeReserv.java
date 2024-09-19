@@ -50,7 +50,15 @@ public class MyBeforeReserv extends HttpServlet {
 			PetService service = new PetServiceImpl();
 			List<Pet> petList = service.selectPetList(id);
 			request.setAttribute("petList", petList);
-
+			
+			// 페이징
+			String paramPage = request.getParameter("page");
+			System.out.println("getpage: " + paramPage);
+			Integer page = 1;
+			if (paramPage != null) {
+				page = Integer.parseInt(paramPage);
+			}
+			
 			request.getRequestDispatcher("my/mybeforereserv.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,12 +79,6 @@ public class MyBeforeReserv extends HttpServlet {
 		String endDate = null;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		
-		// 페이징
-		String paramPage = request.getParameter("page");
-		Integer page = 1;
-		if (paramPage != null) {
-			page = Integer.parseInt(paramPage);
-		}
 		
         try {
         	JSONParser parser = new JSONParser();
@@ -106,6 +108,15 @@ public class MyBeforeReserv extends HttpServlet {
             List<Map<String, Object>> beforeReservList = service.selectMyBeforeReservList(id, pet_id, startDate, endDate, isConsult);
             
             // 페이징처리
+            Integer page = 1;
+            if (jsonObj.get("page") != null) {
+            	Long lPage = (Long)jsonObj.get("page");
+            	System.out.println("postparampage: "+lPage);
+            	String sPage = lPage.toString();
+            	page = Integer.parseInt(sPage);
+            }
+            System.out.println("postpage: "+page);
+            
             Integer reservCnt = beforeReservList.size();
             System.out.println(reservCnt);
             
@@ -138,7 +149,7 @@ public class MyBeforeReserv extends HttpServlet {
 			pageJson.put("endPage", pageInfo.getEndPage());
 			responseJson.put("pageInfo", pageJson);
             
-            Integer row = (pageInfo.getCurPage()-1)*10+1;
+            Integer row = (page-1)*10+1;
             responseJson.put("iRow", row);
     		
             System.out.println(responseJson.toJSONString());
