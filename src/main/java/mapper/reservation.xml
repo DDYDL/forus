@@ -127,4 +127,12 @@
 		<![CDATA[
 			delete from pet where reserv_id = #{reserv_id}]]>
 	</delete>
+
+	<update id="updateReservationStatusToCancelledByPetId">
+		UPDATE reservation
+		SET reserv_status = '예약취소'
+		WHERE pet_id = #{petId}
+		AND reserv_status != '예약취소';  <!-- 이미 취소된 예약은 제외 -->
+	</update>
+
 </mapper>

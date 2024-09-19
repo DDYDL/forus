@@ -17,4 +17,6 @@ public interface PetDao {
 	List<Pet> selectPetList(Integer user_id) throws Exception;
 	
 	Integer deletePet(Integer pet_Id)throws Exception;
+
+	int updateReservationStatusToCancelledByPetId(int petId);
 }

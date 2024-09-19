@@ -35,8 +35,13 @@
     <div id="hospitals-container">
         <%-- 비동기로 받아온 병원 목록이 여기에 추가됨 --%>
     </div>
-    <button id="load-more" style="display: none;">더보기</button>
+    <div class="btndiv">
+<%--    <button id="load-more" style="display: none;">더보기</button>--%>
+    <button id="load-more" style="display: none;" class="minibutton minibtnFade minibtnBlueGreen">
+        <img src="./img/plus.png" style="width:20px">
+    </button>
 
+    </div>
 
 </div>
 </body>

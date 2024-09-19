@@ -523,3 +523,70 @@
     color: #333;
     cursor: pointer;
 }
+
+/*hospitalList 더보기 버튼 */
+#load-more{
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #D1D1D1;
+    border-radius: 30px;
+    transition: all 0.2s;
+    margin: 10px 20px 10px 48%;
+}
+
+/*qna 더보기 버튼 */
+#load-more-btn{
+
+    position: relative;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #D1D1D1;
+    border-radius: 30px;
+    transition: all 0.2s;
+    margin: 10px 20px 10px ;
+
+}
+
+
+
+#hospital-detail-container {
+    margin-top: 3%;
+
+}
+
+.hospital-info,
+.operation-time {
+
+
+}
+
+.hospital-info {
+
+}
+
+.operation-time {
+    position: relative;
+    top: -357px;
+    margin-left: 50%;
+    margin-bottom: -31%;
+}
+
+#hospital-detail-hospitalName{
+    margin-top: 5%;
+
+}
+
+#hospital-detail-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
