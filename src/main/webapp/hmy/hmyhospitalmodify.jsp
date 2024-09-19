@@ -44,7 +44,7 @@
 				<div class="containerbox">
 
 					<div>
-						<h3>내 병원 수정하기</h3>
+						<h2>내 병원 수정하기</h2>
 					</div>
 
 					<h4>기본 정보</h4>

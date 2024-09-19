@@ -35,8 +35,9 @@
 			<div>
 				<ul>
 					<li>프로필 사진</li>
-					<li><img src="../img/dog1.png" class="img-icon" alt="이미지 선택"
-						id="preview" width="100px"
+					<li><img
+						src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&type=pet"
+						class="img-icon" alt="이미지 선택" id="preview" width="100px"
 						onclick="document.getElementById('file').click();"> <input
 						type="file" name="file" id="file" accept="image/*"
 						onchange="readURL(this);" style="display: none"></li>

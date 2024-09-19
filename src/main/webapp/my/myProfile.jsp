@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,10 @@
 <link rel="stylesheet" href="css/my/profile.css" />
 <link rel="stylesheet" href="css/my/input.css" />
 <link rel="stylesheet" href="css/my/button.css" />
+<!-- 캘린더 라이브러리 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
 <style>
 .my {
 	font-weight: bold;
@@ -22,44 +26,53 @@
 	<%@ include file="../mainmypage.jsp"%>
 
 	<div class="mypage-content">
-	
-	<span id="authentication">병원관계자라면?&nbsp;
-         <a href="./hmyNewHospital"><img src="./img/play.png" width="16px">&nbsp;병원인증하기</a>
-      </span>
+		<c:if test="${user.ishospital eq 0 }">
+			<span id="authentication">병원관계자라면?&nbsp; <a
+				href="./hmyNewHospital"><img src="./img/play.png" width="16px">&nbsp;병원인증하기</a>
+			</span>
+		</c:if>
 		<div>
 			<h3>내 프로필</h3>
 		</div>
 		<div>
 			<ul>
 				<li>프로필 사진</li>
-				<li><img src="image?file=${user.picture eq null? 'default.png': user.picture}&id=${user_id}&type=user" class="img-icon"></li>
+				<li><img
+					src="image?file=${user.picture eq null? 'default.png': user.picture}&id=${user_id}&type=user"
+					class="img-icon"></li>
 
 				<li class="title">이름</li>
 				<li class="line"><span>${user.name }</span></li>
-				
+
 				<li class="title">닉네임</li>
 				<li class="line"><span>${user.nickname }</span></li>
-				
+
 				<li class="title">이메일</li>
 				<li class="line"><span>${user.email }</span></li>
-					
-				<li class="title">비밀번호</li><br>
+
+				<li class="title">비밀번호</li>
+				<br>
 				<li class="line"><span>수정 페이지에서 변경가능</span></li>
-				
+
 				<li class="title">휴대전화번호</li>
 				<li class="line"><span>${user.phone }</span></li>
-				
-				<li class="title">주소</li><br><br>
-				<li><span>${user.address }</span></li>
-				
-				<li class="title">생년월일</li><br><br>
-				<li><span>${user.birthday }</span></li>
-				
-				<li class="title">성별</li><br><br>
-				<li><span>${user.gender }</span>
-				</li>
-				
-				
+
+				<li class="title">주소</li>
+				<br>
+				<br>
+				<li class="line"><span>${user.address }</span></li>
+
+				<li class="title">생년월일</li>
+				<br>
+				<br>
+				<li class="line"><span>${user.birthday }</span></li>
+
+				<li class="title">성별</li>
+				<br>
+				<br>
+				<li class="line"><span>${user.gender }</span></li>
+
+
 			</ul>
 
 			<div class="find-btn">
