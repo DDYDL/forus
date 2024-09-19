@@ -36,8 +36,12 @@
     border: 1px solid #e0e0e0;
     padding: 9px;
     background-color: #fff;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    /*transition: background-color 0.3s ease, box-shadow 0.3s ease;*/
+    min-width: 120px; /* 셀의 최소 너비를 지정 */
+    width: 100%;
 }
+
+
 
 .fc-daygrid-day:hover {
     background-color: #f0f0f0;
@@ -96,12 +100,11 @@
 }
 
 .fc-timegrid-event {
-    max-width: 15%;
+    max-width: 45%;
 
 }
 
 /*일 별 */
-
 .fc-timegrid-event .fc-event-main {
     padding: 1px 1px 0;
     color: black;
@@ -138,8 +141,8 @@
 
     /* 상태별 스타일 */
     .status-reservation {
-        background-color: rgb(238, 242, 246) !important;
-        border: 1px solid rgb(211, 228, 243) !important;
+        background-color: rgb(216 238 252) !important;
+        border: 1px solid rgb(216 238 252) !important;
     }
 
     .status-complete {
@@ -295,7 +298,13 @@
         border-color: #28a745;
     }
 
-    #reservationTimeButton:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    /*#reservationTimeButton:focus {*/
+    /*    outline: none;*/
+    /*    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);*/
+    /*}*/
+
+    .fc .fc-daygrid-day.fc-day-today{
+        background-color: rgb(249 180 237 / 15%);
+
     }
+

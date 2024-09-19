@@ -56,13 +56,16 @@
 </script>
 
 
-
-
 <script>
     $(document).ready(function () {
         // QnA 등록 버튼 클릭 시
         $('#qna-submit-btn').on('click', function () {
             var qnaInput = $('#qna-input').val();
+
+            if(!isLongedIn){
+                alert('로그인 후 이용해주세요.');
+                return;
+            }
 
             if (qnaInput === '') {
                 alert('질문을 입력해주세요.');
