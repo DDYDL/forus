@@ -1,6 +1,5 @@
 package service.hmy;
 
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -67,7 +66,7 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public Integer hospitalModify(HttpServletRequest request) throws Exception {
+	public Hospital hospitalModify(HttpServletRequest request) throws Exception {
 		String path = request.getServletContext().getRealPath("upload");
 		int size = 10 * 1024 * 1024;
 
@@ -89,9 +88,14 @@ public class HospitalServiceImpl implements HospitalService {
 		hospital.setH_picture(multi.getParameter("h_picture"));
 		hospital.setH_memo(multi.getParameter("h_memo"));
 		hospital.setH_memo_road(multi.getParameter("h_memo_road"));
-		hospital.setH_pay(multi.getParameter("h_pay"));
+		
+		String[] h_pays = multi.getParameterValues("h_pay");
+		String h_pay = String.join(",", h_pays);
+		
+		hospital.setH_pay(h_pay);
 		hospital.setH_sns(multi.getParameter("h_sns"));
-		// hospital.(Boolean)setH_parking(multi.getParameter(""));
+		hospital.setH_parking(Boolean.parseBoolean(multi.getParameter("h_parking")));
+		System.out.println("h_parking:" + Boolean.parseBoolean(multi.getParameter("h_parking")));
 		// hospital.setH_lunch_time_start(multi.getParameter(""));
 		// hospital.setH_lunch_time_end(multi.getParameter(""));
 		// hospital.setH_interval_time(multi.getParameter(""));
@@ -103,7 +107,7 @@ public class HospitalServiceImpl implements HospitalService {
 		}
 
 		hospitalDao.updateHospital(hospital);
-		return hospital.getH_num();
+		return hospital;
 	}
 
 	@Override

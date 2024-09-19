@@ -15,7 +15,7 @@ public interface HospitalService {
 
 	Hospital hmyHospital(Integer h_id) throws Exception;
 
-	Integer hospitalModify(HttpServletRequest request) throws Exception;
+	Hospital hospitalModify(HttpServletRequest request) throws Exception;
 
 	List<Map> selectReservationList(Integer h_id) throws Exception;
 
