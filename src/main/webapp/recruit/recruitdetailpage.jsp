@@ -31,14 +31,14 @@
     <p class="content-inner-title">작성자</p>
     <div class="box">
     	<div class="profile">
-    	<div><img src="${post_user.picture}"><p class="content-document">${post_user.name}</p></div>
+    	<div><img src="image?file=${post_user.picture eq null? 'default.png': post_user.picture}&id=${user_id}&type=user" class="img-icon user_img"><p class="content-document">${post_user.name}</p></div>
     	<p class="content-document">${post_user.email}</p>
     	</div>
     </div>
 
 	<!-- pet 프로필 가져오기 -->
     <p class="content-inner-title">이번에 맡길 동물은요</p>
-    <div class="box"><table id="post_pet_profile" class="pet_profile"></table></div>
+    <div class="box" id="pet_box"><table id="post_pet_profile" class="pet_profile"></table></div>
     
     <script>
     	// post user의 pet 리스트 가져오기
@@ -48,14 +48,19 @@
 			async:true,
 			data:{post_user:${post_user.id}},
 			success:function(result) {
-				console.log(result);
 				var res = JSON.parse(result);
 				var pet_id = document.getElementById('post_pet_id').value;
 				res.post_petList.forEach(function(pet) {
 					if(pet_id == pet.pet_id) {
-						$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,&nbsp;\${pet.pet_gender})</td><td class="pet_td4">\${pet.pet_species}</td><td class="pet_td5">\${pet.pet_breed}</td><td class="pet_td6">\${pet.pet_memo}</td></tr>`);
+						$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'default.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,&nbsp;\${pet.pet_gender})</td><td class="pet_td4">\${pet.pet_species}</td><td class="pet_td5">\${pet.pet_breed}</td><td class="pet_td6">\${pet.pet_memo}</td></tr>`);
 					}
 				})
+				if(document.getElementById("post_pet_profile").childNodes.length === 0) {
+					var pet_box = document.getElementById("pet_box");
+					pet_box.innerHTML = "동물이 없습니다";
+					pet_box.style.padding = "15px";
+					return;
+				}
 			}
 		})
     </script>

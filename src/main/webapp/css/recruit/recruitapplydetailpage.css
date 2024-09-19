@@ -18,16 +18,27 @@ input.title {
 	border-radius: 10px;
 }
 
+/* 소제목 설정 */
+.content-inner-title { padding-left:15px; }
+
+/* 이미지 설정 */
+img { object-fit: cover; }
+
+/* recruitapplydetailpage.jsp의 전달메시지 설정 */
+.content_p { padding-left:15px; }
+
 /* 사용자 프로필 설정 */
-.profile { padding-top:10px; padding-left:15px; padding-bottom:15px; padding-right:15px; }
+.profile { padding-top:15px; padding-left:15px; padding-bottom:15px; padding-right:15px; }
+.user_img_div { padding-left:15px; border-radius: 70%; }
 .user_img { width:100px; height:100px; }
 .user_table { width:800px; margin-left:20px; }
-.user_td1 { padding-top:15px; }
+.user_td1 { padding-left:15px; padding-top:15px; }
 .user_td2 { padding-top:15px; }
 
 /* 펫 프로필 설정 */
 .pet_profile { width: 800px; }
-.pet_td1 { width:80px; padding-left:35px; padding-top:10px; padding-bottom:10px; }
+.pet_img { width:70px; height:70px; border-radius: 70%; overflow: hidden; }
+.pet_td1 { width:80px; padding-left:10px; padding-top:10px; padding-bottom:10px; }
 .pet_td2 { width:70px; }
 .pet_td3 { width:70px; }
 .pet_td4 { width:70px; }
