@@ -91,10 +91,30 @@ public class PetServiceImpl implements PetService {
 		return petDao.selectPetList(user_id);
 	}
 
+	// @Override
+	// public Integer petDelete(int pet_Id) throws Exception {
+	// 	return petDao.deletePet(pet_Id);
+	//
+	// }
+
 	@Override
 	public Integer petDelete(int pet_Id) throws Exception {
-		return petDao.deletePet(pet_Id);
-		
+		// 해당 펫의 예약 상태를 "예약취소"로 업데이트
+
+
+		int updatedReservations = petDao.updateReservationStatusToCancelledByPetId(pet_Id);
+
+		if(updatedReservations == 0) {
+			throw new Exception("예약 취소 중 오류가 발생했습니다.");
+		}
+		// 펫 삭제
+		int deleteCount = petDao.deletePet(pet_Id);
+
+
+		// 로그 기록 (선택)
+		System.out.println("예약 상태 취소된 수: " + updatedReservations);
+
+		return deleteCount;
 	}
 
 }

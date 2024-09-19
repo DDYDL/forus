@@ -5,39 +5,39 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="dto.User" alias="user"/>
-		<typeAlias type="dto.Pet" alias="pet"/>
-		<typeAlias type="dto.Hospital" alias="hospital"/>
-		<typeAlias type="dto.Hospital_qna" alias="hospital_qna"/>
-		<typeAlias type="dto.Hospital_time" alias="hospital_time"/>
-		<typeAlias type="dto.Recruit_post" alias="recruit_post"/>
-		<typeAlias type="dto.Recruit_apply" alias="recruit_apply"/>
-		<typeAlias type="dto.Reservation" alias="reservation"/>
-		<typeAlias type="dto.Search" alias="search"/>
+		<typeAlias type="dto.User" alias="user" />
+		<typeAlias type="dto.Pet" alias="pet" />
+		<typeAlias type="dto.Hospital" alias="hospital" />
+		<typeAlias type="dto.Hospital_qna" alias="hospital_qna" />
+		<typeAlias type="dto.Hospital_time" alias="hospital_time" />
+		<typeAlias type="dto.Recruit_post" alias="recruit_post" />
+		<typeAlias type="dto.Recruit_apply" alias="recruit_apply" />
+		<typeAlias type="dto.Reservation" alias="reservation" />
+		<typeAlias type="dto.Search" alias="search" />
 	</typeAliases>
-
-		<environments default="development">
-			<environment id="development">
-				<transactionManager type="JDBC"/>
-				<dataSource type="POOLED">
-					<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-					<property name="url" value="jdbc:mysql://192.168.0.248:3306/forUsDB"/>
-					<property name="username" value="forUsDB"/>
-					<property name="password" value="forUsDB"/>
-				</dataSource>
-			</environment>
-		</environments>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://192.168.0.248:3306/forUsDB"/>
+				<property name="username" value="forUsDB"/>
+				<property name="password" value="forUsDB"/>
+			</dataSource>
+		</environment>
+	</environments>
 
 	<mappers>
-		<mapper resource="mapper/user.xml"/>
-		<mapper resource="mapper/pet.xml"/>
-		<mapper resource="mapper/hospital.xml"/>
-		<mapper resource="mapper/hospital_qna.xml"/>
-		<mapper resource="mapper/hospital_time.xml"/>
-		<mapper resource="mapper/recruit_post.xml"/>
-		<mapper resource="mapper/recruit_apply.xml"/>
-		<mapper resource="mapper/reservation.xml"/>
-		<mapper resource="mapper/search.xml"/>
-		<mapper resource="mapper/doctorCalendar.xml"/>
+		<mapper resource="mapper/user.xml" />
+		<mapper resource="mapper/pet.xml" />
+		<mapper resource="mapper/hospital.xml" />
+		<mapper resource="mapper/hospital_qna.xml" />
+		<mapper resource="mapper/hospital_time.xml" />
+		<mapper resource="mapper/recruit_post.xml" />
+		<mapper resource="mapper/recruit_apply.xml" />
+		<mapper resource="mapper/reservation.xml" />
+		<mapper resource="mapper/search.xml" />
+		<mapper resource="mapper/doctorCalendar.xml" />
 	</mappers>
 </configuration>

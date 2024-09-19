@@ -25,10 +25,10 @@
 		<table class="table table-hover mytable">
 			<thead>
 				<tr>
-					<th id="apply_time">지원일</th>
-					<th id="post_title">제목</th>
-					<th id="post_status">게재상태</th>
-					<th id="apply_status">지원상태</th>
+					<th class="center">지원일</th>
+					<th class="center">제목</th>
+					<th class="center">게재상태</th>
+					<th class="center">지원상태</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -41,7 +41,7 @@
 					<c:when test="${apply.apply_status eq '지원완료'}">
 							<form action="myApplyList" method="POST" style="display:inline;">
 								<input type="hidden" name="apply_id" value="${apply.apply_id}" />
-								<td><button class="minibtn" type="submit">취소하기</button></td>
+								<td><button class="minibtn center" type="submit">취소하기</button></td>
 							</form>
 					</c:when>
 					<c:otherwise>
