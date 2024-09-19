@@ -205,7 +205,7 @@
     	<div class="list-count"><p id="count"></p></div>
     	<div class="list-btn btndiv">
     		<c:if test="${user ne null}">
-    			<a href="recruitWriting" class="minibutton minibtnFade minibtnBlueGreen">구인등록</a>
+    			<a href="recruitWriting" class="minibutton minibtnFade minibtnBlueGreen a_btn">구인등록</a>
     		</c:if>
     	</div>
     </div>

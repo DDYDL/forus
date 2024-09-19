@@ -10,8 +10,8 @@
 .setting { width: 100%; text-align: left; padding-top:10px; }
 .setting_td1 { padding-left:30px; padding-top:15px; padding-bottom:10px; width:100px; vertical-align: center; }
 .setting_td2 { padding-top:15px; padding-bottom:10px; width:300px; }
-#paytype { border: 1px solid #D1D1D1; border-radius:5px; width:250px; height:35px; padding-left:15px; }
-#pay { border: 1px solid #D1D1D1; border-radius:5px; width:250px; height:35px; }
+#paytype { border: 1px solid #D1D1D1; border-radius:5px; width:250px; height:35px; padding-left:13px; }
+#pay { border: 1px solid #D1D1D1; border-radius:5px; width:250px; height:35px; padding-left:15px; }
 .time_start { border: 1px solid #D1D1D1; border-radius:5px; width:115px; height:35px; padding-left:15px; }
 .time_end { border: 1px solid #D1D1D1; border-radius:5px; width:115px; height:35px; padding-left:15px; }
 	/* 캘린더 */

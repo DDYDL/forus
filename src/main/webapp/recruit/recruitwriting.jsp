@@ -47,7 +47,7 @@
 			    		<td class="setting_td2"><input type="text" name="post_pay" id="pay">&nbsp;원</td>
 			    		
 			    		<td class="setting_td1"><label for="time">시간</label></td>
-			    		<td class="setting_td2"><input type="time" class="time_start" id="timepicker" name="post_start_time" type="text">&nbsp;~&nbsp;<input type="time" class="time_end" id="timepicker" name="post_end_time" type="text"></td>
+			    		<td class="setting_td2"><input type="time" class="time_start" id="timepicker" name="post_start_time">&nbsp;~&nbsp;<input type="time" class="time_end" id="timepicker" name="post_end_time"></td>
 			    	</tr>
 		    	</table>
 		    </div>

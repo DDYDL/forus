@@ -29,7 +29,7 @@
 
 /* 내용 제목 폰트 사이즈 설정 */
 .content-title { font-size:25px; font-weight:bold; }
-.content-inner-title { font-size:18px; font-weight:bold; }
+.content-inner-title { font-size:20px; font-weight:bold; }
 .content-document { font-size:16px; }
 /* 마이페이지 내용 제목 폰트 사이즈 설정 */
 .mypage-content-title { font-size:25px; font-weight:bold; text-align: center; }

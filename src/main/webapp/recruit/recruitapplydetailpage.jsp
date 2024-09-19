@@ -15,7 +15,7 @@
     
     <!-- user 프로필 가져오기 -->
     <div class="box profile">
-    	<p class="content-inner-title">${recruit_apply.apply_title}</p>
+    	<p class="content-inner-title inner_title">${recruit_apply.apply_title}</p>
     	<div class="list-header">
     	<div class="user_img_div"><img src="image?file=${apply_user.picture eq null? 'default.png': apply_user.picture}&id=${user_id}&type=user" class="img-icon user_img"></div>
     	<table class="user_table">
@@ -40,7 +40,7 @@
     <br>
     <!-- pet 프로필 가져오기 -->
     <div class="box profile">
-    	<p class="content-inner-title">반려동물</p>
+    	<p class="content-inner-title inner_title">반려동물</p>
         <table>
         	<c:forEach items="${petList}" var="pet">
     		<tr>
@@ -55,7 +55,7 @@
     
     <br>
     <div class="box profile">
-    	<p class="content-inner-title">전달 메시지</p>
+    	<p class="content-inner-title inner_title">전달 메시지</p>
     	<p class="content-document content_p">${recruit_apply.apply_content}</p>
     </div>
     <br>
