@@ -35,11 +35,12 @@
 		WHERE h_id = #{hospitalId}
 		AND reserv_date = #{date}
 	</select>
-	<select id="selectMyAfterReserv" parameterType="Integer"
-		resultType="Map">
+	
+	<!-- 이후 예약 목록 조회 -->
+	<select id="selectMyAfterReserv" parameterType="Integer" resultType="Map">
 		<![CDATA[
-            SELECT r.reserv_id, r.reserv_date, TIME_FORMAT(r.reserv_time, '%H:%i') AS reserv_time, p.pet_picture,  p.pet_name,  h.h_name
-            FROM  reservation r
+            SELECT r.reserv_id, r.reserv_date, TIME_FORMAT(r.reserv_time, '%H:%i') AS reserv_time, p.pet_picture, p.pet_name, h.h_name
+            FROM reservation r
             JOIN pet p
             ON r.pet_id = p.pet_id
             JOIN hospital h
@@ -63,7 +64,6 @@
         WHERE user_id = #{userId}
     </select>
 
-
 	<insert id="insertReservation" parameterType="dto.Reservation">
 		INSERT INTO reservation (h_id, user_id, pet_id, reserv_date, reserv_time,
 		reserv_apply_time, reserv_content, reserv_status)
@@ -71,12 +71,13 @@
 		#{reservContent},#{reservStatus})
 	</insert>
 
-	<select id="selectMyBeforeReserv" parameterType="Map"
-		resultType="Map">
+	<!-- 지난 예약 목록 조회 -->
+	<select id="selectMyBeforeReserv" parameterType="Map" resultType="Map">
 		SELECT r.reserv_id, r.reserv_date, p.pet_picture, p.pet_name,
 		h.h_name, r.reserv_status
 		FROM reservation r
-		JOIN pet p ON r.pet_id = p.pet_id
+		JOIN pet p
+		ON r.pet_id = p.pet_id
 		JOIN hospital h ON r.h_id = h.h_id
 		WHERE DATE(r.reserv_date) &lt; CURDATE()
 		AND r.user_id = #{id}

@@ -29,10 +29,11 @@
 		            <tr onclick="location.href='./recruitApplyDetailpage?apply_id=${recruit_apply.apply_id}'">
 		            	<c:if test="${recruit_apply.user_id eq userAp.id}">
 		            		<c:choose>
-		            			<c:when test="${recruit_apply.apply_status eq '채용'}"><td class="apply_td"><p>${recruit_apply.apply_status}</p></td></c:when>
+		            			<c:when test="${recruit_apply.apply_status eq '채용'}">
+		            				<td class="apply_td"><p>${recruit_apply.apply_status}&nbsp;<img src="img/recruit.png" class="icon" ></p></td>
+		            			</c:when>
 		            			<c:otherwise><td></td></c:otherwise>
 		            		</c:choose>
-		            	<td><img src="${userAp.picture}"></td>
 		                <td><div>
 		    			<p class="content-inner-title">${userAp.name}&nbsp;(${userAp.birthday},&nbsp;${userAp.gender})</p>
 		    			<p class="content-document">${recruit_apply.apply_title}</p>

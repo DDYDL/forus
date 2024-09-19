@@ -19,7 +19,12 @@
         <div class="menu_box">
             <a href="${pageContext.request.contextPath}/hospitalList">병원예약</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="${pageContext.request.contextPath}/recruitList">Help Us</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="${pageContext.request.contextPath}/myAfterReserv">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;
+   	        <c:choose>
+				<c:when test="${user eq null}"></c:when>
+				<c:otherwise>
+		            <a href="${pageContext.request.contextPath}/myAfterReserv">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				</c:otherwise>
+			</c:choose>
             <a href="${pageContext.request.contextPath}/hmyTodaysReservation">마이병원</a>
         </div>
         <div class="login">

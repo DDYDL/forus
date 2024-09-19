@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+/* mybeforereserv 드롭다운 */
+.petSelect { float: right; text-align: center; }
+
+/* mybeforereserv 기간 설정 버튼 */
+.dateSelect { float:right; }
+
+/* mybeforereserv hover 캘린더 */
+.list { display: none; position:absolute; }
+.hoverdate { display:none; 
+       position:absolute; 
+       background: white;
+       list-style:none;
+       text-align:center; 
+       }
+li:hover> .hoverdate { display : flex; }
+li:hover> .choose-date { display : flex; }
+
+/* mybeforereserv hover input */
+.datecalendar { width:300px; }
+
+/* mybeforereserv 페이징 */
+#paging { text-align: center; }
+#page {display: inline-block;}

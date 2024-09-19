@@ -41,7 +41,7 @@ function submitForm() {
 			<form action="myPostList" method="POST" style="display:inline;" id="postform">
 			<c:forEach items="${myPostList }" var="post">
 			<tr onclick="location.href='./recruitDetailpage?post_id=${post.post_id}'">
-				<td><input type="checkbox" value="${post.post_id}" name="post_id"></td>
+				<td><input type="checkbox" value="${post.post_id}" name="post_id" class="chkbox-style"></td>
 				<td>${post.post_date }</td>
 				<td>${post.post_title }</td>
 				<td class="textalign_left">${post.post_status }</td>
