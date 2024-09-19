@@ -34,7 +34,7 @@
 
 
 <body>
-	<%@ include file="../mainmypage.jsp"%>
+	<%@ include file="../mainhmypage.jsp"%>
 
 	<div class="mypage-content">
 
@@ -173,9 +173,15 @@
 							<tr>
 								<td><label for="name"> 진료가능 목록 </label></td>
 								<td class="tdinput"><input type="checkbox" name="h_pay"
-									value="1"> 현금 <input type="checkbox" name="h_pay"
-									value="2"> 카드 <input type="checkbox" name="h_pay"
-									value="3"> 제로페이</td>
+									value="강아지"> 강아지 <input type="checkbox" name="h_pay"
+									value="고양이"> 고양이 <input type="checkbox" name="h_pay"
+									value="파충류"> 파충류
+									<input type="checkbox" name="h_pay"
+									value="파충류"> 포유류
+									<input type="checkbox" name="h_pay"
+									value="파충류"> 조류
+									<input type="checkbox" name="h_pay"
+									value="파충류"> 곤충류</td>
 							</tr>
 
 						</tbody>
@@ -225,16 +231,16 @@
 							<tr>
 								<td><label for="name"> 결제수단 </label></td>
 								<td class="tdinput"><input type="checkbox" name="h_pay"
-									value="1"> 현금 <input type="checkbox" name="h_pay"
-									value="2"> 카드 <input type="checkbox" name="h_pay"
-									value="3"> 제로페이</td>
+								value="현금"checked> 현금 <input type="checkbox" name="h_pay"
+								value="카드" checked> 카드 <input type="checkbox" name="h_pay"
+								value="제로페이"> 제로페이</td>
 							</tr>
 
 							<tr>
 								<td><label for="name"> 주차 가능 여부 </label></td>
 								<td class="tdinput"><input type="radio" name="h_parking"
-									value="T"> 가능 <input type="radio" name="h_parking"
-									value="F"> 불가능</td>
+								value="가능"> 가능 <input type="radio" name="h_parking"
+								value="불가능"> 불가능</td>
 							</tr>
 
 						</tbody>

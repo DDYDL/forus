@@ -55,7 +55,7 @@
 			<div class="containerbox">
 
 				<div>
-					<h3>내 병원 정보 보기</h3>
+					<h3>내 병원 정보</h3>
 				</div>
 
 				<h4>기본 정보</h4>
@@ -91,14 +91,12 @@
 
 						</tr>
 						<tr>
-							<td class="time"><label for="name">점심 시간</label></td>
-							<td class="tdinput time">
-							
-							시작<input type="time" id="h_lunch_time_start" name="h_lunch_time_start"
-								value="${hospital.h_lunch_time_start }"> &nbsp; &nbsp;
-								
-								종료 <input type="time" id="h_lunch_time_end" name="h_lunch_time_end"
-								value="${hospital.h_lunch_time_end }"></td>
+							<td><label for="name">점심 시간</label></td>
+							<td><span>${hospital.h_lunch_time_start }  ~  ${hospital.h_lunch_time_end } </span></td>
+						</tr>
+						<tr>
+						<td><label for="name">진료 시간</td>
+							<span>${hospital_time.hopening_time }</span>
 						</tr>
 						<tr>
 							<td><label for="name">진료 가능 동물 목록</label></td>
@@ -109,16 +107,13 @@
 				</table>
 
 
-				<h4>병원 대표 사진 등록</h4>
+				<h4>병원 대표 사진</h4>
 				<table class="container">
 					<tbody>
 						<tr>
-							<td><label for="name">대표 사진 등록</label></td>
-							<td class=" tdinput filebox"><input class="upload-name"
-								value="첨부파일"> <label for="file">파일찾기</label> <input
-								type="file" name="file" id="file" accept="image/*"
-								onchange="readURL(this);" style="display: none" name="h_picture"></td>
-
+							<td><label for="name">등록된 대표 사진</label></td>
+							<td><img src="<%=request.getContextPath() %>/files/${hospital.h_picture}" style="width:500px; height:300px;"></td>
+							
 						</tr>
 					</tbody>
 				</table>
@@ -147,17 +142,14 @@
 
 						<tr>
 							<td><label for="name"> 결제수단 </label></td>
-							<td class="tdinput"><input type="checkbox" name="h_pay"
-								value="1" disabled checked> 현금 <input type="checkbox" name="h_pay"
-								value="2" disabled checked> 카드 <input type="checkbox" name="h_pay"
-								value="3" disabled> 제로페이</td>
+							<td><span>${hospital.h_pay }</span></td>
+							
 						</tr>
 
 						<tr>
 							<td><label for="name"> 주차 가능 여부 </label></td>
-							<td class="tdinput"><input type="radio" name="h_parking"
-								value="T"> 가능 <input type="radio" name="h_parking"
-								value="F"> 불가능</td>
+							<td> ${hospital.h_parking }</td>
+						
 						</tr>
 
 					</tbody>

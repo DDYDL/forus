@@ -193,13 +193,19 @@
 									type="time" id="input" name="h_lunch_time_end"></td>
 							</tr>
 							<tr>
-								<td>진료 가능 동물 목록</td>
-								<td>
-								
-								<!-- 체크박스 동물 목록 만들기 -->
-								
-								</td>
+								<td><label for="name"> 진료가능 목록 </label></td>
+								<td class="tdinput"><input type="checkbox" name="h_pay"
+									value="강아지"> 강아지 <input type="checkbox" name="h_pay"
+									value="고양이"> 고양이 <input type="checkbox" name="h_pay"
+									value="파충류"> 파충류
+									<input type="checkbox" name="h_pay"
+									value="파충류"> 포유류
+									<input type="checkbox" name="h_pay"
+									value="파충류"> 조류
+									<input type="checkbox" name="h_pay"
+									value="파충류"> 곤충류</td>
 							</tr>
+
 
 						</tbody>
 					</table>
@@ -243,7 +249,7 @@
 							<tr>
 								<td><label for="name"> SNS / Blog </label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_sns" required></td>
+									name="h_sns"></td>
 
 							</tr>
 

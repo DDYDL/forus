@@ -1,6 +1,9 @@
 package controller.hmy;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,21 +38,20 @@ public class HmyManagerReservationTime extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		User user = (User) request.getSession().getAttribute("user"); // user 세션 가져오기
 
-		int user_id = user.getId();
 		try {
+			Hospital hospital = (Hospital)request.getSession().getAttribute("hospital");
 			// HospitalService 인스턴스 생성
 			HospitalService service = new HospitalServiceImpl();
-
-
-			request.getRequestDispatcher("/hmy/hmymanagereservationtime.jsp").forward(request, response);
+			List<Hospital_time> hospitalTimeList = service.selectHospitalTimeList(hospital.getH_id());
+			System.out.println(hospitalTimeList);
+			request.setAttribute("hospitalTimeList", hospitalTimeList);
+			request.getRequestDispatcher("/hmy/hmymanagereservationtime.jsp").forward(request, response);			
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "병원 정보 오류");
+			request.setAttribute("err", "정보 조회 오류");
 			request.getRequestDispatcher("err.jsp").forward(request, response);
 		}
-
 	}
 
 	/**
@@ -60,11 +62,11 @@ public class HmyManagerReservationTime extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			System.out.println("영업 정보 수정");
+			System.out.println("진료시간 정보 수정");
 			request.getRequestDispatcher("/hmy/hmyManagerReservation").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "펫 수정 오류");
+			request.setAttribute("err", "진료시간 수정 오류");
 			request.getRequestDispatcher("err.jsp").forward(request, response);
 		}
 	}

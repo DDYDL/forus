@@ -1,5 +1,6 @@
 package service.hmy;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -24,4 +25,7 @@ public interface HospitalService {
 
 	Hospital_time htimetable(Integer h_id) throws Exception;
 
+	List<Hospital_time> selectHospitalTimeList(Integer h_id) throws Exception;
+
+	void modifyHospitalTime(Integer h_id, Integer h_interval_time, List<Hospital_time> htList) throws Exception;
 }

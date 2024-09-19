@@ -1,0 +1,42 @@
+.styled-table {
+	border-style: solid none;
+	border-collapse: collapse;
+	margin: 0 auto;
+	min-width: 400px;
+	text-align: middle;
+	
+}
+
+.styled-table thead tr {
+	border-top: 2px solid #000;
+	border-bottom: 1px solid #dddddd;
+	text-align: center;
+	cursor: pointer;
+}
+
+.styled-table th, .styled-table td {
+	padding: 10px 20px;
+}
+
+.styled-table tbody tr {
+	border-bottom: 1px solid #dddddd;
+}
+
+ul {
+  line-height: 1.8;
+}
+
+
+th, td{
+	padding:20px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.btnright{
+	text-align: right;
+}
+
+.center{
+	text-align: ceneter;
+}
