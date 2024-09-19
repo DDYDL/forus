@@ -21,6 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title></title>
 
 
 </head>
