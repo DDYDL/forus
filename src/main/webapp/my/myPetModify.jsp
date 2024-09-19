@@ -61,22 +61,17 @@
 					<br>
 					<br>
 					<li>
-							<input type="radio" name="pet_gender" value="M"
-								<%if ("M".equals("M")) {%> checked <%}%>> 남
-							<input type="radio" name="pet_gender" value="F"
-								<%if ("F".equals("F")) {%> checked <%}%>> 여
+						<input type="radio" name="pet_gender" value="M" <c:if test="${pet.pet_gender eq 'M'}">checked</c:if>> 남
+						<input type="radio" name="pet_gender" value="F" <c:if test="${pet.pet_gender eq 'F'}">checked</c:if>> 여
 								
-								
-							<input type="checkbox" name="pet_neutering" value="0"
-								<%if ("1".equals("1")) {%> checked <%}%>> 중성화 여부
-
-								
+						<input type="checkbox" name="pet_neutering" value="0" <c:if test="${pet.pet_neutering eq 'true'}">checked</c:if>> 중성화 여부
+	
 						</li>
 
 					<li class="title">나이</li>
 					<br>
 					<br>
-					<li><select name="age">
+					<li><select name="age" id="pet_age">
 							<option value="0">0살</option>
 							<option value="1">1살</option>
 							<option value="2">2살</option>
@@ -100,6 +95,13 @@
 							<option value="20">20살</option>
 							<option value="20+">20살 이상</option>
 					</select></li>
+					<input id="post_form" type="hidden" value="${pet.pet_age}">
+					<script>
+						var post_form = document.getElementById('post_form').value;
+						console.log(post_form);
+						$('#pet_age').val(post_form).prop("selected", true);
+					</script>
+					
 					<li class="title">특이사항</li>
 					<br>
 					<br>
