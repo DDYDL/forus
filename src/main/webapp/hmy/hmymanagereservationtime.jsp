@@ -22,148 +22,192 @@
 </head>
 <body>
 	<%@ include file="../mainhmypage.jsp"%>
+	<form action="modifyHospitalTime" method="post">
+		<div class="mypage-content">
+			<div class="divtable">
+				<div>
+					<h3 align="left" text-align="left">병원 진료시간 관리</h3>
+				</div>
+				<div style="padding-left: 50px; padding-bottom: 20px;">
+					예약간격 <select name="intervalTime">
+						<option value="10"
+							<c:if test='${hospital.h_interval_time eq "10"}'>selected="selected"</c:if>>10분</option>
+						<option value="20"
+							<c:if test='${hospital.h_interval_time eq "20"}'>selected="selected"</c:if>>20분</option>
+						<option value="30"
+							<c:if test='${hospital.h_interval_time eq "30"}'>selected="selected"</c:if>>30분</option>
+						<option value="40"
+							<c:if test='${hospital.h_interval_time eq "40"}'>selected="selected"</c:if>>40분</option>
+						<option value="50"
+							<c:if test='${hospital.h_interval_time eq "50"}'>selected="selected"</c:if>>50분</option>
+						<option value="60"
+							<c:if test='${hospital.h_interval_time eq "60"}'>selected="selected"</c:if>>60분</option>
+					</select>
 
-	<div class="mypage-content">
+				</div>
 
-		<div class="bodybox">
-			<div>
-				<h3 align="left" text-align="left">예약 일정 관리</h3>
-			</div>
 
-			<td>예약간격 <select>
-					<option value="30">30분</option>
-					<option value="60">60분</option>
-			</select>
-			</td>
-
-			<div>
 				<div>
 					<table class="styled-table">
-						<thead>
-							<tr>
-								<td>
-									<div class="check">
-										<label> <input type="checkbox" id="mon" name="mon"
-											value="월"> <span>월</span>
-										</label>
-									</div>
-								</td>
-								<td>영업시간
-								<td><input type="time" id="input" name="htime_opening_mon"
-									value="htime_opening"> ~ <input type="time" id="input"
-									name="htime_closing_mon" value="htime_closing"></td>
-
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<div class="check">
-										<label> <input type="checkbox" id="mon" name="tue"
-											value="화"> <span>화</span>
-										</label>
-									</div>
-								</td>
-								<td>영업시간
-								<td><input type="time" id="input" name="htime_opening_tue"
-									value="htime_opening"> ~ <input type="time" id="input"
-									name="htime_closing_tue" value="htime_closing"></td>
-								</td>
-
-							</tr>
-							<tr>
-								<td>
-									<div class="check">
-										<label> <input type="checkbox" id="mon" name="wed"
-											value="수"> <span>수</span>
-										</label>
-									</div>
-								</td>
-								<td>영업시간
-								<td><input type="time" id="input" name="htime_opening_wed"
-									value="htime_opening"> ~ <input type="time" id="input"
-									name="htime_closing_wed" value="htime_closing"></td>
+							<c:forEach items="${hospitalTimeList}" var="hospitalTime">
+								<c:if test="${hospitalTime.htime_week eq 'Monday'}">
+									<tr>
+										<td>
+											<div class="check">
+												<label> <input type="checkbox" id="mon" name="mon"
+													value="월"
+													<c:if test='${hospitalTime.htime_isable eq "true"}'>checked="checked"</c:if>>
+													<span>월</span>
+												</label>
+											</div>
+										</td>
+										<td>영업시간
+										<td><input type="time" id="input"
+											name="htime_opening_mon"
+											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
+											~ <input type="time" id="input" name="htime_closing_mon"
+											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}">
+										</td>
+									</tr>
+								</c:if>
 
 
-							</tr>
-							<tr>
-								<td>
-									<div class="check">
-										<label> <input type="checkbox" id="mon" name="thur"
-											value="목"> <span>목</span>
-										</label>
-									</div>
-								</td>
-								<td>영업시간
-								<td><input type="time" id="input" name="htime_opening_thr"
-									value="htime_opening"> ~ <input type="time" id="input"
-									name="htime_closing_thr" value="htime_closing"></td>
-								</td>
+								<c:if test="${hospitalTime.htime_week eq 'Tuesday'}">
+									<tr>
+										<td>
+											<div class="check">
+												<label> <input type="checkbox" id="tue" name="tue"
+													value="화"
+													<c:if test='${hospitalTime.htime_isable eq true}'>checked="checked"</c:if>>
+													<span>화</span>
+												</label>
+											</div>
+										</td>
+										<td>영업시간
+										<td><input type="time" id="input"
+											name="htime_opening_tue"
+											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
+											~ <input type="time" id="input" name="htime_closing_tue"
+											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}">
+										</td>
 
-							</tr>
-							<tr>
-								<td>
-									<div class="check">
-										<label> <input type="checkbox" id="mon" name="fri"
-											value="금"> <span>금</span>
-										</label>
-									</div>
-								</td>
-								<td>영업시간
-								<td><input type="time" id="input" name="htime_opening_fri"
-									value="htime_opening"> ~ <input type="time" id="input"
-									name="htime_closing_fri" value="htime_closing"></td>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="check">
-										<label> <input type="checkbox" id="mon" name="sat"
-											value="토"> <span>토</span>
-										</label>
-									</div>
-								</td>
-								<td>영업시간
-								<td><input type="time" id="input" name="htime_opening_sat"
-									value="htime_opening"> ~ <input type="time" id="input"
-									name="htime_closing_sat" value="htime_closing"></td>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="check">
-										<label> <input type="checkbox" id="mon" name="sun"
-											value="일"> <span>일</span>
-										</label>
-									</div>
-								</td>
-								<td>영업시간
-								<td><input type="time" id="input" name="htime_opening_sun"
-									value="htime_opening"> ~ <input type="time" id="input"
-									name="htime_closing_sun" value="htime_closing"></td>
-								</td>
+									</tr>
+								</c:if>
+								<c:if test="${hospitalTime.htime_week eq 'Wednesday'}">
+									<tr>
+										<td>
+											<div class="check">
+												<label> <input type="checkbox" id="wed" name="wed"
+													value="수"
+													<c:if test='${hospitalTime.htime_isable eq true}'>checked="checked"</c:if>>
+													<span>수</span>
+												</label>
+											</div>
+										</td>
+										<td>영업시간
+										<td><input type="time" id="input"
+											name="htime_opening_wed"
+											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
+											~ <input type="time" id="input" name="htime_closing_wed"
+											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
+									</tr>
+								</c:if>
+								<c:if test="${hospitalTime.htime_week eq 'Thursday'}">
+									<tr>
+										<td>
+											<div class="check">
+												<label> <input type="checkbox" id="thur" name="thur"
+													value="목"
+													<c:if test='${hospitalTime.htime_isable eq true}'>checked="checked"</c:if>>
+													<span>목</span>
+												</label>
+											</div>
+										</td>
+										<td>영업시간
+										<td><input type="time" id="input"
+											name="htime_opening_thur"
+											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
+											~ <input type="time" id="input" name="htime_closing_thur"
+											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
 
-							</tr>
-
+									</tr>
+								</c:if>
+								<c:if test="${hospitalTime.htime_week eq 'Friday'}">
+									<tr>
+										<td>
+											<div class="check">
+												<label> <input type="checkbox" id="fri" name="fri"
+													value="금"
+													<c:if test='${hospitalTime.htime_isable eq true}'>checked="checked"</c:if>>
+													<span>금</span>
+												</label>
+											</div>
+										</td>
+										<td>영업시간
+										<td><input type="time" id="input"
+											name="htime_opening_fri"
+											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
+											~ <input type="time" id="input" name="htime_closing_fri"
+											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
+									</tr>
+								</c:if>
+								<c:if test="${hospitalTime.htime_week eq 'Saturday'}">
+									<tr>
+										<td>
+											<div class="check">
+												<label> <input type="checkbox" id="sat" name="sat"
+													value="토"
+													<c:if test='${hospitalTime.htime_isable eq true}'>checked="checked"</c:if>>
+													<span>토</span>
+												</label>
+											</div>
+										</td>
+										<td>영업시간
+										<td><input type="time" id="input"
+											name="htime_opening_sat"
+											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
+											~ <input type="time" id="input" name="htime_closing_sat"
+											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
+									</tr>
+								</c:if>
+								<c:if test="${hospitalTime.htime_week eq 'Sunday'}">
+									<tr>
+										<td>
+											<div class="check">
+												<label> <input type="checkbox" id="sun" name="sun"
+													value="일"
+													<c:if test='${hospitalTime.htime_isable eq true}'>checked="checked"</c:if>>
+													<span>일</span>
+												</label>
+											</div>
+										</td>
+										<td>영업시간
+										<td><input type="time" id="input"
+											name="htime_opening_sun"
+											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
+											~ <input type="time" id="input" name="htime_closing_sun"
+											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}">
+									</tr>
+								</c:if>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 
 				<div>
 					<br> <br> <br>
-					<button type="button" title="Button fade blue/green"
-						class=" btn btnFade btnBlueGreen find-btn1"
-						onclick="location.href='#.jsp'">수정</button>
+					<div class="find-btn">
+						<input type="submit" title="Button push blue/green"
+							class=" btn btnPush btnBlueGreen find-btn1" value="수정">
+
+					</div>
 
 				</div>
 
 
 			</div>
 		</div>
-	</div>
+	</form>
 </body>
 </html>

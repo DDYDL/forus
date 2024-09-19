@@ -53,11 +53,11 @@ public class DoctorCalendarDetail extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 
 		if (isUpdated) {
-			response.setStatus(HttpServletResponse.SC_OK); // 명시적으로 상태 코드를 200으로 설정
-			response.getWriter().write("{\"message\": \"메모가 수정되었습니다.\"}"); // JSON 형식으로 응답
+			response.setStatus(HttpServletResponse.SC_OK);
+			response.getWriter().write("{\"message\": \"메모가 수정되었습니다.\"}");
 		} else {
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // 에러 상태 코드 설정
-			response.getWriter().write("{\"message\": \"메모 수정에 실패했습니다.\"}"); // JSON 형식으로 응답
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("{\"message\": \"메모 수정에 실패했습니다.\"}");
 		}
 	}
 }

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import service.hmy.HospitalService;
 import service.hmy.HospitalServiceImpl;
 
@@ -41,6 +43,12 @@ public class HmyNewHospital extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+
+		String latitude = request.getParameter("latitude");
+		String longitude = request.getParameter("longitude");
+
+		System.out.println("latitude = " + latitude);
+		System.out.println("longitude = " + longitude);
 
 		HospitalService service = new HospitalServiceImpl();
 		try {

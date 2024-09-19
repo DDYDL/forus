@@ -11,17 +11,24 @@
 .todays {
 	font-weight: bold;
 	color: rgba(105, 233, 46);
+
+
+
 }
 </style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/hmy/doctorCalendar.css">
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-	
+
+
+
 	
 <script>
     function deleteSelectedPets() {
@@ -45,6 +52,23 @@
 </head>
 <body>
 	<%@ include file="../mainhmypage.jsp"%>
+
+
+	<div id="overlay" onclick="closeSidebar()"></div>
+	<div id="sidebar">
+		<h3>예약 상세 정보</h3>
+		<p><strong>예약자 이름:</strong> <span id="reserverName"></span></p>
+		<p><strong>동물:</strong> <span id="animalType"></span></p>
+		<p><strong>종:</strong> <span id="animalBreed"></span></p>
+		<p><strong>펫이름:</strong> <span id="animalName"></span></p>
+		<p id="eventContent"></p>
+
+		<label for="vetNote"></label>
+		<textarea id="vetNote" placeholder="메모를 입력하세요..."></textarea>
+		<button id="saveNoteButton" onclick="saveNote()">메모 저장</button>
+		<button id="closeSidebarButton" onclick="closeSidebar()">닫기</button>
+	</div>
+
 
 	<div class="mypage-content-list">
 		<div>
@@ -73,8 +97,13 @@
 					</thead>
 					<c:forEach items="${reservList }" var="reservation">
 					<c:set var="i" value="${i+1 }" />
-						<tr>
-							<td><input type="checkbox" name="reservIds" value="${reservation.reserv_id}"/></td>
+						<tr onclick="getReservationDetails(this)"
+							data-reservation-id="${reservation.reserv_id}"
+							data-reservation-memo="${reservation.reserv_memo}"
+							data-reservation-content="${reservation.reserv_content}"
+							data-reservation-time="${reservation.reserv_time}">
+
+						<td><input type="checkbox" name="reservIds" value="${reservation.reserv_id}"/></td>
 							<td>${i }</td>
 							<td>${reservation.reserv_id }</td>
 							<td>${reservation.name }</td>
@@ -92,3 +121,96 @@
 	</div>
 </body>
 </html>
+
+<script>
+	function openSidebar() {
+		document.getElementById('sidebar').style.display = 'block';
+		document.getElementById('overlay').style.display = 'block';
+	}
+
+	function closeSidebar() {
+		document.getElementById('sidebar').style.display = 'none';
+		document.getElementById('overlay').style.display = 'none';
+	}
+
+	function getReservationDetails(row) {
+
+		var reservationId = $(row).data('reservation-id');
+		var reservationMemo = $(row).data('reservation-memo');
+		var reservationContent = $(row).data('reservation-content');
+		var reservationTime = $(row).data('reservation-time');
+
+
+		$.ajax({
+			url: 'doctorCalendarDetail',
+			type: 'get',
+			dataType: 'json',
+			data: {
+				reservationId: reservationId
+			},
+			success: function (data) {
+				generateReservationDetails(data, reservationId, reservationMemo, reservationContent, reservationTime);
+				openSidebar();
+			},
+			error: function () {
+				alert('예약 상세 정보를 불러오는데 실패했습니다.');
+			}
+		});
+	}
+
+	function generateReservationDetails(data, reservationId, reservationMemo, reservationContent, reservationTime) {
+		$('#eventContent').empty();
+		document.getElementById('reserverName').textContent = data.userName;
+		document.getElementById('animalType').textContent = data.petSpecies;
+		document.getElementById('animalBreed').textContent = data.petBreed;
+		document.getElementById('animalName').textContent = data.petName;
+
+		$('#vetNote').val(reservationMemo || '');
+
+		$('#eventContent').append('<p><strong>내용:</strong> ' + reservationContent + '</p>');
+		$('#eventContent').append('<p><strong>시간:</strong> ' + reservationTime + '</p>');
+
+
+		$('#eventContent').data('reservationId', reservationId);
+
+	}
+
+
+
+</script>
+
+
+<script>
+	function saveNote() {
+		var reservationId = $('#eventContent').data('reservationId');
+
+		if (!reservationId) {
+			alert('Reservation ID가 올바르지 않습니다.');
+			return;
+		}
+		var memo = $('#vetNote').val();
+
+		$.ajax({
+			url: 'doctorCalendarDetail',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				reservationId: reservationId,
+				memo: memo
+			},
+			success: function (response) {
+				alert('메모가 저장되었습니다.');
+
+				// 메모 입력창에 입력한 메모를 표시
+				$('#vetNote').val(memo);
+
+				// 메모를 저장한 row의 메모 데이터를 업데이트
+				$('tr[data-reservation-id="' + reservationId + '"]').data('reservation-memo', memo);
+			},
+			error: function (xhr, status, error) {
+				console.error(xhr.responseText);
+				alert('메모 저장에 실패했습니다.');
+			}
+		});
+	}
+</script>

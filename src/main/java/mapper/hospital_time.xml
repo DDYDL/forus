@@ -3,5 +3,27 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.hospital_time">
+	<select id="selectHospitalTime" parameterType="Integer" resultType="Hospital_time">
+		select * from hospital_time where h_id=#{h_id}
+		order by week_no
+	</select>
+
+	<select id="selectHospitalTimeByWeek" parameterType="Integer" resultType="Hospital_time">
+		select * from hospital_time where h_id=#{h_id} and week_no=#{week_no}
+		order by week_no
+	</select>	
+	
+	<update id="updateHospitalTime" parameterType="Hospital_time">
+		update hospital_time set 
+			htime_opening=#{htime_opening},
+			htime_closing=#{htime_closing},
+			htime_isable=#{htime_isable}
+		where h_id=#{h_id} and week_no=#{week_no}
+	</update>
+	
+	<insert id="insertHospitalTime" parameterType="Hospital_time">
+		insert into hospital_time (htime_week,htime_opening,htime_closing,htime_isable,week_no)
+		values (#{htime_week},#{htime_opening},#{htime_closing},#{htime_isable},#{week_no})
+	</insert>
 
 </mapper>

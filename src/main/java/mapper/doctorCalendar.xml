@@ -68,7 +68,10 @@
         WHERE
         r.reserv_id = #{reservationId};
     </select>
-    
-    
 
+    <update id="updateReservationStatus" parameterType="map">
+        UPDATE reservation
+        SET reserv_status = #{reservationStatus}
+        WHERE reserv_id = #{reservationId}
+    </update>
 </mapper>

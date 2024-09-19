@@ -143,4 +143,9 @@
 		Hospital Where user_id=#{user_id}
 	</select>
 
+	<update id="updateHospitalIntevalTime" parameterType="Map">
+		update hospital set h_interval_time=#{h_interval_time}
+		where h_id=#{h_id}
+		
+	</update>
 </mapper>

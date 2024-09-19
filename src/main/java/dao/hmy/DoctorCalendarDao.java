@@ -15,4 +15,6 @@ public interface DoctorCalendarDao {
 
 	void updateReservationMemo(int reservationId, String memo);
 
+	void updateReservationStatus(Integer reservationId, String reservationStatus) throws Exception;
+
 }

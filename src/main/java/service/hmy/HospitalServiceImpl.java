@@ -1,5 +1,6 @@
 package service.hmy;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -122,7 +123,6 @@ public class HospitalServiceImpl implements HospitalService {
 
 	@Override
 	public List<Map> selectReservationList(Integer h_id) throws Exception {
-		System.out.println(h_id);
 
 		return hospitalDao.selectReservationList(h_id);
 
@@ -139,4 +139,25 @@ public class HospitalServiceImpl implements HospitalService {
 		return null;
 	}
 
+	@Override
+	public List<Hospital_time> selectHospitalTimeList(Integer h_id) throws Exception {
+		System.out.println(h_id);
+
+		return hospitalDao.selectHospitalTime(h_id);
+	}
+
+	@Override
+	public void modifyHospitalTime(Integer h_id, Integer h_interval_time, List<Hospital_time> htList) throws Exception {
+		hospitalDao.updateHospitalIntevalTime(h_id, h_interval_time);
+		
+		for(Hospital_time ht : htList) {
+			Hospital_time isHt = hospitalDao.selectHospitalTimeByWeek(h_id, ht.getWeek_no());
+			if(isHt==null) {
+				hospitalDao.insertHospitalTime(ht);
+			} else {
+				System.out.println(ht);
+				hospitalDao.updateHospitalTime(ht);
+			}
+		}	
+	}
 }

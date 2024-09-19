@@ -97,10 +97,12 @@
                                 start: startDateTime,
                                 end: startDateTime,
                                 extendedProps: {
+                                    reservationStatus: reservation.reservStatus,
                                     reservationId: reservation.reservId,
                                     reservationContent: reservation.reservContent,
                                     reservationMemo: reservation.reservMemo
-                                }
+                                },
+                                classNames: [getStatusClassName(reservation.reservStatus)]
                             }
                         });
                         successCallback(events);
@@ -225,8 +227,22 @@
 </script>
 
 <script>
+    $(document).ready(function() {
+        $('#eventContent').on('change', '#reservationStatus', function() {
+            updateReservationStatus($(this));
+        });
+    });
+
     function generateEventContent(event) {
         $('#eventContent').html(
+            '<strong>예약상태</strong>: ' +
+            '<select id="reservationStatus">' +
+            '<option value="예약"' + (event.extendedProps.reservationStatus === '예약' ? ' selected' : '') + '>예약</option>' +
+            '<option value="진료완료"' + (event.extendedProps.reservationStatus === '진료완료' ? ' selected' : '') + '>진료완료</option>' +
+            '<option value="예약취소"' + (event.extendedProps.reservationStatus === '예약취소' ? ' selected' : '') + '>예약취소</option>' +
+            '<option value="미방문"' + (event.extendedProps.reservationStatus === '미방문' ? ' selected' : '') + '>미방문</option>' +
+            '</select>' +
+            '<br><br>' +
             '<strong>예약 번호</strong>: ' + event.extendedProps.reservationId + '<br><br>' +
             '<strong>예약 시간</strong>: ' + event.start.toLocaleString() + '<br><br>' +
             '<strong>예약 항목</strong>: ' + event.extendedProps.reservationContent
@@ -234,6 +250,8 @@
             .data('reservationId', event.extendedProps.reservationId);
 
         $('#vetNote').val(event.extendedProps.reservationMemo || '');
+
+        $('#reservationStatus').data('originalStatus', event.extendedProps.reservationStatus);
 
     }
 </script>
@@ -246,7 +264,66 @@
     }
 </script>
 
+<script>
+function updateReservationStatus($element) {
+     var newStatus = $element.val();// 선택한 새로운 상태 값 가져오는코드
+     var originalStatus = $element.data('originalStatus');
+     var reservationId = $('#eventContent').data('reservationId');
 
+    if (confirm(newStatus + " 상태로 변경하시겠습니까")) {
+        $.ajax({
+            url: 'updateReservationStatus',
+            type: 'POST',
+            data: {
+                reservationId:reservationId,
+                reservationStatus: newStatus
+            },
+            success: function (response) {
+                alert('예약 상태가 변경되었습니다.');
+
+                updateEventStatus(reservationId, newStatus);
+            },
+            error: function () {
+                alert('예약 상태 변경에 실패했습니다.');
+                $element.val(originalStatus);
+            }
+        });
+    } else {
+        $element.val(originalStatus);
+    }
+}
+
+function updateEventStatus(reservationId, newStatus) {
+    var events = calendar.getEvents();
+    var event = events.find(function (e) {
+        return e.extendedProps.reservationId == reservationId;
+    });
+
+    if (event) {
+        event.setExtendedProp('reservationStatus', newStatus);
+        var classNames = getStatusClassName(newStatus);
+
+        // 클래스 추가
+        event.setProp('classNames', [classNames]);
+    }
+}
+
+// 예약 상태에 따른 클래스 이름을 반환하는 함수
+function getStatusClassName(status) {
+    switch (status) {
+        case '예약':
+            return 'status-reservation';
+        case '진료완료':
+            return 'status-complete';
+        case '미방문':
+            return 'status-no-show';
+        case '예약취소':
+            return 'status-cancelled';
+        default:
+            return 'status-default';
+    }
+}
+</script>
 
 </body>
 </html>

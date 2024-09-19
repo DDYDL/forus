@@ -47,4 +47,15 @@ public class DoctorCalendarServiceImpl implements DoctorCalendarService{
 			return false;
 		}
 	}
+
+	@Override
+	public boolean updateReservationStatus(Integer reservationId, String reservationStatus) {
+		try {
+			doctorCalendarDao.updateReservationStatus(reservationId, reservationStatus);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
