@@ -125,14 +125,29 @@ public class ReservationServiceImpl implements ReservationService {
 			reservationContent = customContent;
 		}
 
+		if(StringNullCheck.isEmpty(hospitalId)) {
+			throw new IllegalArgumentException("병원 ID가 없습니다.");
+		}
+
+		if(StringNullCheck.isEmpty(userId)) {
+			throw new IllegalArgumentException("사용자 ID가 없습니다.");
+		}
+
+		if(StringNullCheck.isEmpty(petId)) {
+			throw new IllegalArgumentException("펫 ID가 없습니다.");
+		}
+
+		Integer parsedHospitalId = IntegerNullCheck.parseInteger(hospitalId);
+		Integer parsedUserId = IntegerNullCheck.parseInteger(userId);
 		Integer parsedPetId = IntegerNullCheck.parseInteger(petId);
+
 
 		LocalDate reservationDate = LocalDate.parse(selectedDate);
 		LocalTime reservationTime = LocalTime.parse(selectedTime);
 
 		Reservation reservation = new Reservation();
-		reservation.sethId(Integer.parseInt(hospitalId));
-		reservation.setUserId(Integer.parseInt(userId));
+		reservation.sethId(parsedHospitalId);
+		reservation.setUserId(parsedUserId);
 		reservation.setPetId(parsedPetId);
 		reservation.setReservDate(reservationDate);
 		reservation.setReservTime(reservationTime);

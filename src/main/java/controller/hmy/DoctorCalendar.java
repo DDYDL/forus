@@ -10,10 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
 import dto.Reservation;
+import dto.User;
 import service.hmy.DoctorCalendarService;
 import service.hmy.DoctorCalendarServiceImpl;
 
@@ -30,6 +32,18 @@ public class DoctorCalendar extends HttpServlet {
 		ServletException,
 		IOException {
 		try {
+			HttpSession session = request.getSession(false);
+			if(session == null || session.getAttribute("user") == null) {
+				response.sendRedirect("/login");
+				return;
+			}
+
+			User sessionUser = (User) session.getAttribute("user");
+			if (sessionUser.getIshospital() != 1) {
+				response.sendError(HttpServletResponse.SC_FORBIDDEN, "이 페이지에 접근할 권한이 없습니다.");
+				return;
+			}
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/hmy/hmyscheduledcalendar.jsp");
 			dispatcher.forward(request, response);
 

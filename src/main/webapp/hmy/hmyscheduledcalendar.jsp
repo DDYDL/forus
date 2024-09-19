@@ -24,11 +24,11 @@
 <%@ include file="../hmymenu.jsp" %>
 <c:set var="sessionUser" value="${sessionScope.user}"/>
 
-<section>
-    <div>
-        <button id="reservationTimeButton">예약 시간 관리</button>
-    </div>
-</section>
+<%--<section>--%>
+<%--    <div>--%>
+<%--        <button id="reservationTimeButton">예약 시간 관리</button>--%>
+<%--    </div>--%>
+<%--</section>--%>
 
 <section>
     <div id="calendar"></div>

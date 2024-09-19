@@ -33,11 +33,13 @@
         </tr>
         </thead>
         <tbody id="qna-list">
-        <!-- 비동기적으로 QnA 항목들이 추가됩니다 -->
+        <!-- 비동기적으로 QnA 항목들이 추가 -->
         </tbody>
     </table>
     <div id="load-more-container" style="text-align: center;">
-        <button id="load-more-btn" class="btn btn-primary">더보기</button>
+        <button id="load-more-btn" class="minibutton minibtnFade minibtnBlueGreen">
+            <img src="./img/plus.png" style="width:20px">
+        </button>
     </div>
 
 
@@ -54,13 +56,16 @@
 </script>
 
 
-
-
 <script>
     $(document).ready(function () {
         // QnA 등록 버튼 클릭 시
         $('#qna-submit-btn').on('click', function () {
             var qnaInput = $('#qna-input').val();
+
+            if(!isLongedIn){
+                alert('로그인 후 이용해주세요.');
+                return;
+            }
 
             if (qnaInput === '') {
                 alert('질문을 입력해주세요.');
