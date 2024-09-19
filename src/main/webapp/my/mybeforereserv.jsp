@@ -61,7 +61,7 @@ $(document).ready(function() {
 
                     row.html(`
                         <td>\${reserv.reserv_date}</td>
-                        <td><img src="image?file=${reserv.pet_picture}" width="80px"></td>
+                        <td><img src="image?file=${reserv.pet.picture eq null? 'default.png': reserv.pet.picture}&id=${pet_id}&type=pet"" style="width:50px;"></td>
                         <td class="textalign_left">\${reserv.pet_name}</td>
                         <td>\${reserv.h_name}</td>
                         <td\>${reserv.reserv_status}</td>

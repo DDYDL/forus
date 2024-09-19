@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,23 +21,31 @@
 			<div class="listcnt">
 				<p>총 ${afterReservList.size() }건</p>
 			</div>
-	<table class="table table-hover mytable">
-			<tr>
-				<th id="date">날짜</th>
-				<th id="time">시간</th>
-				<th id="petname" colspan="2">반려동물</th>
-				<th id="hospitalname">병원</th>
-			</tr>
-			<c:forEach items="${afterReservList }" var="reserv">
-			<tr onclick="location.href='./reservDetail?reserv_id=${reserv.reserv_id}'">
-				<td onclick="event.cancelbubble = true;">${reserv.reserv_date }</td>
-				<td>${reserv.reserv_time }</td>
-				<td><img src="image?file=${reserv.pet.picture eq null? 'default.png': reserv.pet.picture}&id=${pet_id}&type=pet"" width="80px"></td>
-				<td class="textalign_left">${reserv.pet_name }</td>
-				<td>${reserv.h_name }</td>
-			</tr>
-			</c:forEach>
-	</table>
+			<c:choose>
+				<c:when test="${afterReservList eq null}"><br><br><p class="center">남은 예약이 없습니다.</p></c:when>
+				<c:otherwise>
+				<table class="table table-hover mytable">
+						<tr>
+							<th id="date">날짜</th>
+							<th id="time">시간</th>
+							<th id="petname" colspan="2">반려동물</th>
+							<th id="hospitalname">병원</th>
+						</tr>
+						<c:forEach items="${afterReservList }" var="reserv">
+						<tr onclick="location.href='./reservDetail?reserv_id=${reserv.reserv_id}'">
+							<td onclick="event.cancelbubble = true;">${reserv.reserv_date }</td>
+							<td>${reserv.reserv_time }</td>
+							<td><img src="image?file=${reserv.pet.picture eq null? 'default.png': reserv.pet.picture}&id=${pet_id}&type=pet"" style="width:50px;"></td>
+							<c:choose>
+								<c:when test="${reserv.pet_name eq null}"><td>삭제된 펫입니다!</td></c:when>
+								<c:otherwise><td class="textalign_left">${reserv.pet_name }</td></c:otherwise>
+							</c:choose>
+							<td>${reserv.h_name }</td>
+						</tr>
+						</c:forEach>
+				</table>
+				</c:otherwise>
+				</c:choose>
 </div>
 </body>
 </html>
