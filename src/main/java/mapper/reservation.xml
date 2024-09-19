@@ -106,7 +106,8 @@
 		time_format(r.reserv_time,'%H:%i') as reserv_time,
 		p.pet_name,
 		date(r.reserv_apply_time) AS reserv_apply_time,
-		r.reserv_content
+		r.reserv_content,
+		r.reserv_memo
 		FROM reservation r
 		JOIN user u ON
 		r.user_id = u.id

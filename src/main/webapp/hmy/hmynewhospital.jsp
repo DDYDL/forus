@@ -10,6 +10,10 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+
+<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=94ab9074f87bbed0edf5b0d9cb32cdbd&libraries=services"></script>
+
 <link
 	href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css"
 	rel="stylesheet" />
@@ -18,7 +22,15 @@
 <link rel="stylesheet" href="css/hmy/font.css" />
 <link rel="stylesheet" href="css/hmy/time.css" />
 <link rel="stylesheet" href="css/hmy/button.css" />
-<script>
+
+
+	<script
+			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
+
+	</script>
+
+
+	<script>
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
@@ -112,63 +124,8 @@
 
 							</tr>
 
-							<script
-								src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
-								
-							</script>
-							<script>
-								function sample6_execDaumPostcode() {
-									new daum.Postcode(
-											{
-												oncomplete : function(data) {
 
-													var addr = ''; // 주소 변수
-													var extraAddr = ''; // 참고항목 변수
 
-													if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-														addr = data.roadAddress;
-													} else { // 사용자가 지번 주소를 선택했을 경우(J)
-														addr = data.jibunAddress;
-													}
-
-													if (data.userSelectedType === 'R') {
-														if (data.bname !== ''
-																&& /[동|로|가]$/g
-																		.test(data.bname)) {
-															extraAddr += data.bname;
-														}
-														if (data.buildingName !== ''
-																&& data.apartment === 'Y') {
-															extraAddr += (extraAddr !== '' ? ', '
-																	+ data.buildingName
-																	: data.buildingName);
-														}
-														if (extraAddr !== '') {
-															extraAddr = ' ('
-																	+ extraAddr
-																	+ ')';
-														}
-														document
-																.getElementById("sample6_detailAddress").value = extraAddr;
-													} else {
-														document
-																.getElementById("sample6_detailAddress").value = '';
-													}
-
-													// 우편번호와 주소 정보를 해당 필드에 넣는다.
-													document
-															.getElementById('sample6_postcode').value = data.zonecode;
-													document
-															.getElementById("sample6_address").value = addr;
-													// 커서를 상세주소 필드로 이동한다.
-													document
-															.getElementById(
-																	"sample6_detailAddress")
-															.focus();
-												}
-											}).open();
-								}
-							</script>
 
 							<tr>
 								<td></td>
@@ -177,7 +134,6 @@
 									&nbsp; &nbsp;<input class="tdinput" type="address"
 									id="sample6_detailAddress" placeholder="상세주소"></td>
 							</tr>
-
 
 
 							<tr>
@@ -278,12 +234,14 @@
 						<input type="checkbox" required> 위 사항에 동의합니다.<br>
 					</div>
 
+					<input type="hidden" id="hospital_latitude" name="latitude">
+					<input type="hidden" id="hospital_longitudeH" name="longitude">
+
+
 					<br> <br> <br>
 					<div class="row">
 						<div class="find-btn">
-							<input type="submit" title="Button push blue/green"
-								class=" btn btnPush btnBlueGreen find-btn1" value="병원 등록">
-
+							<input type="submit" title="Button push blue/green" class="btn btnPush btnBlueGreen find-btn1" value="병원 등록" onclick="submitForm(event);">
 						</div>
 					</div>
 				</div>
@@ -294,3 +252,94 @@
 </body>
 </html>
 
+
+<script>
+	function sample6_execDaumPostcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+
+						var addr = ''; // 주소 변수
+						var extraAddr = ''; // 참고항목 변수
+
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							addr = data.roadAddress;
+						} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							addr = data.jibunAddress;
+						}
+
+						if (data.userSelectedType === 'R') {
+							if (data.bname !== ''
+									&& /[동|로|가]$/g
+											.test(data.bname)) {
+								extraAddr += data.bname;
+							}
+							if (data.buildingName !== ''
+									&& data.apartment === 'Y') {
+								extraAddr += (extraAddr !== '' ? ', '
+										+ data.buildingName
+										: data.buildingName);
+							}
+							if (extraAddr !== '') {
+								extraAddr = ' ('
+										+ extraAddr
+										+ ')';
+							}
+							document
+									.getElementById("sample6_detailAddress").value = extraAddr;
+						} else {
+							document
+									.getElementById("sample6_detailAddress").value = '';
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document
+								.getElementById('sample6_postcode').value = data.zonecode;
+						document
+								.getElementById("sample6_address").value = addr;
+
+						getLatLngFromAddress(addr);
+
+						// 커서를 상세주소 필드로 이동한다.
+						document
+								.getElementById(
+										"sample6_detailAddress")
+								.focus();
+					}
+				}).open();
+	}
+</script>
+
+<script>
+	//위도 경도 코드
+	function getLatLngFromAddress(address) {
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		geocoder.addressSearch(address, function(result, status) {
+			if (status === kakao.maps.services.Status.OK) {
+				var coords = result[0];
+				var latitude = coords.y; // 위도
+				var longitude = coords.x; // 경도
+
+
+				console.log('Latitude:', latitude, 'Longitude:', longitude);
+
+				// 예시: 위도와 경도를 숨겨진 input에 저장
+				document.getElementById('hospital_latitude').value = latitude;
+				document.getElementById('hospital_longitudeH').value = longitude;
+
+				console.log('Hidden Field Values:',
+						'Latitude:', document.getElementById('hospital_latitude').value,
+						'Longitude:', document.getElementById('hospital_longitudeH').value);
+
+
+
+			} else {
+				alert('주소로 위도와 경도를 찾을 수 없습니다.');
+			}
+		});
+	}
+
+
+
+</script>
