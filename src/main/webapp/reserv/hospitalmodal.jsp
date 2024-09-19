@@ -92,7 +92,19 @@
                         }
 
                         if (form) {
-                            form.submit();
+                           $.ajax({
+                               url:form.action,
+                                 method:form.method,
+                                    data:$(form).serialize(),
+                                    success:function(response){
+                                    Swal.close();
+                                        alert('예약이 완료되었습니다.');
+                                    },
+                               erro: function () {
+                                   alert('예약을 완료하는 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                               },
+                           });
+                            return false;  // 폼의 기본 제출 동작 방지
                         }else {
                             Swal.showValidationMessage('예약 정보를 찾을 수 없습니다. 다시 시도해 주세요.');
                         }

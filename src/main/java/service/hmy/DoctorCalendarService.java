@@ -12,4 +12,5 @@ public interface DoctorCalendarService {
 
 	boolean updateReservationMemo(int reservationId, String memo);
 
+	boolean updateReservationStatus(Integer reservationId, String reservationStatus);
 }

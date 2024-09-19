@@ -137,6 +137,7 @@ public class ReservationServiceImpl implements ReservationService {
 		reservation.setReservDate(reservationDate);
 		reservation.setReservTime(reservationTime);
 		reservation.setReservContent(reservationContent);
+		reservation.setReservStatus("예약");
 
 
 		return reservation;

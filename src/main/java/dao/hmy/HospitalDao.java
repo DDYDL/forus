@@ -19,9 +19,11 @@ public interface HospitalDao {
 	Hospital selectHospitalByUserId(Integer user_id)throws Exception;
 
 	List<Hospital_time> selectHospitalTime(Integer h_id) throws Exception;
-	
+
 	void updateHospitalIntevalTime(Integer h_id, Integer h_interval_time) throws Exception;
 	Hospital_time selectHospitalTimeByWeek(Integer h_id, Integer week_no) throws Exception;
 	void updateHospitalTime(Hospital_time hospital_time) throws Exception;
 	void insertHospitalTime(Hospital_time hospital_time) throws Exception;
+
+
 }

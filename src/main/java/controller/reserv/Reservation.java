@@ -76,8 +76,9 @@ public class Reservation extends HttpServlet {
 
 			reservationService.insertReservation(reservation);
 
-			response.setContentType("text/html; charset=UTF-8");
-			response.getWriter().write("예약완료.");
+			// response.setContentType("text/html; charset=UTF-8");
+			// response.getWriter().write("예약완료.");
+			response.setStatus(HttpServletResponse.SC_OK);
 
 		} catch (NumberFormatException e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

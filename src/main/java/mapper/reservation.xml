@@ -66,9 +66,9 @@
 
 	<insert id="insertReservation" parameterType="dto.Reservation">
 		INSERT INTO reservation (h_id, user_id, pet_id, reserv_date, reserv_time,
-		reserv_apply_time, reserv_content)
+		reserv_apply_time, reserv_content, reserv_status)
 		VALUES (#{hId}, #{userId}, #{petId}, #{reservDate}, #{reservTime}, NOW(),
-		#{reservContent})
+		#{reservContent},#{reservStatus})
 	</insert>
 
 	<select id="selectMyBeforeReserv" parameterType="Map"
@@ -106,7 +106,8 @@
 		time_format(r.reserv_time,'%H:%i') as reserv_time,
 		p.pet_name,
 		date(r.reserv_apply_time) AS reserv_apply_time,
-		r.reserv_content
+		r.reserv_content,
+		r.reserv_memo
 		FROM reservation r
 		JOIN user u ON
 		r.user_id = u.id

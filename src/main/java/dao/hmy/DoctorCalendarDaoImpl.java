@@ -55,4 +55,26 @@ public class DoctorCalendarDaoImpl implements DoctorCalendarDao{
 		}
 
 	}
+
+	@Override
+	public void updateReservationStatus(Integer reservationId, String reservationStatus) throws Exception {
+		try {
+			Map<String, Object> params = new HashMap<>();
+			params.put("reservationId", reservationId);
+			params.put("reservationStatus", reservationStatus);
+
+			int updated = sqlSession.update("mapper.doctorCalendar.updateReservationStatus", params);
+
+			if (updated == 0) {
+				throw new RuntimeException("예약 상태 수정에 실패했습니다.");
+			}
+			sqlSession.commit();
+		} catch (Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+		}
+		finally {
+			sqlSession.close();
+		}
+	}
 }
