@@ -29,9 +29,9 @@
 			</tr>
 			<c:forEach items="${afterReservList }" var="reserv">
 			<tr onclick="location.href='./reservDetail?reserv_id=${reserv.reserv_id}'">
-				<td>${reserv.reserv_date }</td>
+				<td onclick="event.cancelbubble = true;">${reserv.reserv_date }</td>
 				<td>${reserv.reserv_time }</td>
-				<td><img src="image?file=${reserv.pet_picture}" width="80px"></td>
+				<td><img src="image?file=${reserv.pet.picture eq null? 'default.png': reserv.pet.picture}&id=${pet_id}&type=pet"" width="80px"></td>
 				<td class="textalign_left">${reserv.pet_name }</td>
 				<td>${reserv.h_name }</td>
 			</tr>
