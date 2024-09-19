@@ -55,10 +55,8 @@
 							<tr>
 								<td><label for="name">대표자 이름</label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_exponent_name" value="${hospital.h_exponent_name  }"
-									required></td>
-								<td></td>
-							</tr>
+									name="h_exponent_name" value="${hospital.h_exponent_name  }" required></td>
+						</tr>
 
 							<tr>
 								<td><label for="name">사업자 등록번호</label></td>

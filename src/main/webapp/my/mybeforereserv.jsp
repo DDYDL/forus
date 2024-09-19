@@ -15,6 +15,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <link href="${pageContext.request.contextPath}/css/my/mycommon.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/my/mybeforereserv.css" rel="stylesheet" type="text/css">
 
 <script>
 $(document).ready(function() {
@@ -23,6 +24,7 @@ $(document).ready(function() {
      $('#pet_id').on('change', submitForm);
      $('#isConsult').on('change', submitForm);
      $('#dateRange').on('change', submitForm);
+     $('ul#paging li').on('click', submitForm);
 
     function submitForm() {
     	const isChecked = $('#isConsult').is(':checked'); // 체크박스 상태 가져오기
@@ -33,8 +35,12 @@ $(document).ready(function() {
           } else {
             vIsChecked = 'false';
           }
-    	
- 		var param = {pet_id:$("#pet_id").val(), isConsult:vIsChecked, dateRange:$("#dateRange").val()};
+        
+        var page = $("ul#paging li").val();
+        console.log('page:', page);
+        if(page==0) page = 1;
+        
+ 		var param = {pet_id:$("#pet_id").val(), isConsult:vIsChecked, dateRange:$("#dateRange").val(), page:page};
 		console.log(param)
         $.ajax({
             url: 'myBeforeReserv',
@@ -59,30 +65,32 @@ $(document).ready(function() {
                         window.location.href = `./reservDetail?reserv_id=${reserv.reserv_id}`;
                     });
 
-                    row.html(`
-                        <td>\${reserv.reserv_date}</td>
-                        <td><img src="image?file=${reserv.pet_picture}" width="80px"></td>
-                        <td class="textalign_left">\${reserv.pet_name}</td>
-                        <td>\${reserv.h_name}</td>
-                        <td\>${reserv.reserv_status}</td>
-                    `);
+                    row.html(`<td>\${reserv.reserv_date}</td>`)
+                    if (reserv.pet_picture == null) { row.append(`<td><img src="img/pet_default.png" style="width:50px;"></td>`);}
+                    else { row.append(`<td><img src="image?file=${reserv.pet_picture}&id=${pet_id}&type=pet" style="width:50px;"></td>`);}
+                    row.append(`<td class="textalign_left">\${reserv.pet_name}</td>
+                        		<td>\${reserv.h_name}</td>
+                        		<td\>${reserv.reserv_status}</td>
+                    			`);
                     resultBody.append(row);
                     cnt++;
                 }
                  const paging = $('#paging');
                  paging.empty();
                  
-                 if (pageInfo.curPage>1) { paging.append(`<a href="myBeforeReserv?page=${pageInfo.curPage-1 }">&lt;</a>&nbsp;`);}
-                 else { paging.append(`<a>&lt;</a>&nbsp;`); }
+                 if (pageInfo.curPage>1) { paging.html(`<li id="page" name="page" value="\${pageInfo.curPage - 1}">&lt;</li>&nbsp;`);}
+                 else { paging.html(`<li id="page">&lt;</li>&nbsp;`); }
                  
 //                  paging.append(`\${pageInfo.curPage }`);
                  
                  for (var i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
-                	 if(i === pageInfo.curPage ){paging.append(`<a href="myBeforeReserv?page=${i}" class="select">\${i }</a>`);}
-                	 else {paging.append(`<a href="myBeforeReserv?page=${i}" class="btn">\${i }</a>`);}
+                	 console.log(pageInfo.curPage);
+                	 if(i === pageInfo.curPage ){paging.append(`<li id="page" name="page" value="\${i}" class="select">\${i }</li>`);}
+                	 else {paging.append(`<li id="page" name="page" value="\${i}" class="btn">\${i }</li>`);}
+//                 	 else {paging.append(`<p name="page" value="${i}" class="btn">\${i }</p>`);}
                  }
-                 if(pageInfo.curPage < pageInfo.allPage){paging.append(`<a href="#" onclick="loadPage(${pageInfo.curPage + 1})">&gt;</a>`);}
-                 else{paging.append(`<a>&gt;</a>`);}
+                 if(pageInfo.curPage < pageInfo.allPage){paging.append(`<li id="page" name="page" value="\${pageInfo.curPage + 1}" class="btn">&gt;</li>`);}
+                 else{paging.append(`<li id="page">&gt;</li>`);}
                  
             },
             error: (function(xhr, status, error) {
@@ -94,8 +102,22 @@ $(document).ready(function() {
     submitForm();
 
 });
-function loadPage(pageNumber) {
-    submitForm(); // 폼을 제출하여 데이터를 로드
+function loadPage(pageNum) {
+	let f = document.searchform;
+	    
+	    let obj;
+	    obj = document.createElement('input');
+	    obj.setAttribute('type', 'hidden');
+	    obj.setAttribute('name', 'page');
+	    obj.setAttribute('value', pageNum);
+	
+		
+	    
+	    f.appendChild(obj);
+	    f.setAttribute('method', 'post');
+	    f.setAttribute('action', 'myBeforeReserv');
+	    document.body.appendChild(f);
+	    f.submit();
 }
 </script>
 
@@ -146,7 +168,9 @@ function loadPage(pageNumber) {
 			</tbody>
 		</table>
 		<br>
-<div id="paging">
+<div>
+<ul id="paging">
+</ul>
 </div>
 		<br>
 		<br>
