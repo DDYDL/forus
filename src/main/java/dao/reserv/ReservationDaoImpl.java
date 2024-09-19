@@ -66,31 +66,6 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	}
 
-
-	@Override
-	public void insertReserv(Reservation reserv) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateReserv(Reservation reservation) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteReserv(Reservation reservation) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Reservation selectReserv(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public List<Map<String, Object>> selectMyAfterReservList(Integer id) throws Exception {
 		List<Map<String, Object>> afterReservList = sqlSession.selectList("mapper.reservation.selectMyAfterReserv",id);
@@ -108,23 +83,10 @@ public class ReservationDaoImpl implements ReservationDao {
 
         return sqlSession.selectList("mapper.reservation.selectMyBeforeReserv", params);
 	}
-
+	
 	@Override
-	public List<Map<String, Object>> selectPetReservList(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Map<String, Object>> selectCompleteReservList(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Map<String, Object>> selectPeriodReservList(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> selectReservByReservId(Integer reserv_id) throws Exception {
+		return sqlSession.selectOne("mapper.reservation.selectReservByReservId", reserv_id);
 	}
 
 	@Override

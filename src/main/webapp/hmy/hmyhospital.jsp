@@ -160,7 +160,7 @@
 					<div class="find-btn">
 						<button type="button" title="Button push blue/green"
 							class=" btn btnPush btnBlueGreen find-btn1"
-							onclick="location.href='/forus/hmyHospitalModify'">수정</button>
+							onclick="location.href='./hmyHospitalModify'">수정</button>
 
 					</div>
 				</div>

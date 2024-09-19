@@ -93,9 +93,7 @@
 							</tr>
 
 							<script
-								src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
-								
-							</script>
+								src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 							<script>
 								function sample6_execDaumPostcode() {
 									new daum.Postcode(
@@ -193,16 +191,18 @@
 						<tbody>
 							<tr>
 								<td><label for="name">대표 사진 등록</label></td>
-								<td class=" tdinput filebox"><input class="upload-name"
-									value="첨부파일"> <label for="file">파일찾기</label> <input
-									type="file" name="file" id="file" accept="image/*"
+								<td class="tdinput filebox">
+								<input class="upload-name" value="첨부파일">
+								<img src="image?file=${hospital.h_picture eq null? 'default.png': hospital.h_picture}&type=hospital" class="img-icon"
+                 					 alt="이미지 선택" id="preview" width="100px">
+								<label for="file">파일찾기</label>
+								<input type="file" name="file" id="file" accept="image/*"
 									onchange="readURL(this);" style="display: none"
 									name="h_picture"></td>
 
 							</tr>
 						</tbody>
 					</table>
-
 
 					<h4>추가 사항</h4>
 					<table class="container">

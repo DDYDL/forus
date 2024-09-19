@@ -20,7 +20,7 @@ function submitForm() {
 </head>
 <body>
 	<%@ include file="../mainmypage.jsp" %>
-		<div class = "mypage-content-list">
+	<div class = "mypage-content-list">
 	<div class="mytitle">
 		<p>게시글 관리</p>
 	</div>
