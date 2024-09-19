@@ -33,14 +33,14 @@
 						</tr>
 						<c:forEach items="${afterReservList }" var="reserv">
 						<tr onclick="location.href='./reservDetail?reserv_id=${reserv.reserv_id}'">
-							<td onclick="event.cancelbubble = true;">${reserv.reserv_date }</td>
-							<td>${reserv.reserv_time }</td>
-							<td><img src="image?file=${reserv.pet.picture eq null? 'default.png': reserv.pet.picture}&id=${pet_id}&type=pet"" style="width:50px;"></td>
+							<td onclick="event.cancelbubble = true;" class="center">${reserv.reserv_date }</td>
+							<td class="center">${reserv.reserv_time }</td>
+							<td class="center"><img src="image?file=${reserv.pet.picture eq null? 'default.png': reserv.pet.picture}&id=${pet_id}&type=pet"" style="width:50px;"></td>
 							<c:choose>
 								<c:when test="${reserv.pet_name eq null}"><td>삭제된 펫입니다!</td></c:when>
 								<c:otherwise><td class="textalign_left">${reserv.pet_name }</td></c:otherwise>
 							</c:choose>
-							<td>${reserv.h_name }</td>
+							<td class="center">${reserv.h_name }</td>
 						</tr>
 						</c:forEach>
 				</table>
