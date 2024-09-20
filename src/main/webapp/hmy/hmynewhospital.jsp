@@ -8,15 +8,17 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script
-	src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+
 
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=94ab9074f87bbed0edf5b0d9cb32cdbd&libraries=services"></script>
 
-<link
-	href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css"
-	rel="stylesheet" />
+<!-- 캘린더 라이브러리 -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
 <link rel="stylesheet" href="css/hmy/containerbox.css" />
 <link rel="stylesheet" href="css/hmy/input.css" />
 <link rel="stylesheet" href="css/hmy/font.css" />
@@ -136,10 +138,13 @@
 							</tr>
 
 							<tr>
-								<td class="time"><label for="name">점심 시간</label></td>
-								<td class="tdinput time">시작<input type="time" id="input"
-									name="h_lunch_time_start"> &nbsp; &nbsp; 종료 <input
-									type="time" id="input" name="h_lunch_time_end"></td>
+
+								<td class="setting_td1"><label for="time">점심시간</label></td>
+								<td class="setting_td2"><input type="time"
+									class="time_start" id="timepicker" name="h_lunch_time_start">
+									~ <input type="time" class="time_end" id="timepicker"
+									name="h_lunch_time_end"></td>
+
 							</tr>
 							<tr>
 								<td><label for="name"> 진료가능 목록 </label></td>
@@ -248,6 +253,17 @@
 	</div>
 
 </body>
+<script>
+	flatpickr("#timepicker", {
+		noCalendar : true,
+		allowInput : true, // 직접 입력 허용
+		enableTime : true, // 시간 사용
+		dateFormat : "H:i",
+		time_24hr : true,
+		defaultHour : 12,
+		defaultMinute : 0,
+	});
+</script>
 </html>
 
 
