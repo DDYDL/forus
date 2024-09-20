@@ -23,13 +23,6 @@ public class HospitalDaoImpl implements HospitalDao {
 
 	}
 	
-	@Override
-	public void updatestatus(User user) throws Exception {
-		sqlSession.update("mapper.user.updatestatus", user);
-		sqlSession.commit();
-		
-	}
-	
 
 	@Override
 	public Hospital selectHospital(Integer h_id) throws Exception {

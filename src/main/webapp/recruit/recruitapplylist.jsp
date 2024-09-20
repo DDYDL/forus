@@ -34,6 +34,7 @@
 		            			</c:when>
 		            			<c:otherwise><td></td></c:otherwise>
 		            		</c:choose>
+		            	<td class="user_img_div"><img src="image?file=${userAp.picture eq null? 'default.png': userAp.picture}&id=${user_id}&type=user" class="img-icon user_img"></td>
 		                <td><div>
 		    			<p class="content-inner-title">${userAp.name}&nbsp;(${userAp.birthday},&nbsp;${userAp.gender})</p>
 		    			<p class="content-document">${recruit_apply.apply_title}</p>

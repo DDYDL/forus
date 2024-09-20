@@ -1,6 +1,7 @@
 package controller.hmy;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,14 +34,16 @@ public class HmyHospitalModify extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		User user = (User)request.getSession().getAttribute("user"); // user 세션 가져오기
+		User user = (User) request.getSession().getAttribute("user"); // user 세션 가져오기
 		int user_id = user.getId();
 
 		try {
 			HospitalService service = new HospitalServiceImpl();
 			Hospital hospital = service.getHospitalByUserId(user_id);
 			request.getSession().setAttribute("hospital", hospital);
+			String[] h_pays = hospital.getH_pay().split(",");
 
+			request.setAttribute("h_pays", h_pays);
 			request.setAttribute("hospital", hospital);
 
 			request.getRequestDispatcher("hmy/hmyhospitalmodify.jsp").forward(request, response);
@@ -67,9 +70,13 @@ public class HmyHospitalModify extends HttpServlet {
 		try {
 			System.out.println("병원 정보 수정");
 			HospitalService service = new HospitalServiceImpl();
-			Integer hospital = service.hospitalModify(request);
-			System.out.println("ss");
+
+			String hid = request.getParameter("h_id");
+			String newfilename = "hospital" + hid;
+
+			Hospital hospital = service.hospitalModify(request, newfilename);
 			request.setAttribute("hospital", hospital);
+			System.out.println("hospital:" + hospital);
 
 			// 수정 완료 후 다시 수정 폼으로 리디렉션
 			response.sendRedirect("./hmyHospital");

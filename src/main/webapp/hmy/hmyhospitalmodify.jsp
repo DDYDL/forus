@@ -228,17 +228,24 @@
 
 							<tr>
 								<td><label for="name"> 결제수단 </label></td>
-								<td class="tdinput"><input type="checkbox" name="h_pay"
-								value="현금"checked> 현금 <input type="checkbox" name="h_pay"
-								value="카드" checked> 카드 <input type="checkbox" name="h_pay"
-								value="제로페이"> 제로페이</td>
+								<td class="tdinput">
+								<input id="현금" type="checkbox" name="h_pay" value="현금"> 현금
+								<input id="카드" type="checkbox" name="h_pay" value="카드"> 카드
+								<input id="제로페이" type="checkbox" name="h_pay" value="제로페이"> 제로페이
+								<c:forEach items="${h_pays}" var="h_pays">
+									<c:if test="${h_pays eq '현금'}"><script>$("input[id='현금']").prop("checked", true);</script></c:if>
+									<c:if test="${h_pays eq '카드'}"><script>$("input[id='카드']").prop("checked", true);</script></c:if>
+									<c:if test="${h_pays eq '제로페이'}"><script>$("input[id='제로페이']").prop("checked", true);</script></c:if>
+								</c:forEach>
+								</td>
 							</tr>
 
 							<tr>
 								<td><label for="name"> 주차 가능 여부 </label></td>
-								<td class="tdinput"><input type="radio" name="h_parking"
-								value="가능"> 가능 <input type="radio" name="h_parking"
-								value="불가능"> 불가능</td>
+								<td class="tdinput">
+									<input type="radio" name="h_parking" value="true" <c:if test="${hospital.h_parking eq true}">checked</c:if>> 가능
+									<input type="radio" name="h_parking" value="false" <c:if test="${hospital.h_parking eq false}">checked</c:if>> 불가능
+								</td>
 							</tr>
 
 						</tbody>

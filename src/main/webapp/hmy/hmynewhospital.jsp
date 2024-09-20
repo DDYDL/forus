@@ -202,16 +202,16 @@
 							<tr>
 								<td><label for="name"> 결제수단 </label></td>
 								<td class="tdinput"><input type="checkbox" name="h_pay"
-									value="1"> 현금 <input type="checkbox" name="h_pay"
-									value="2"> 카드 <input type="checkbox" name="h_pay"
-									value="3"> 제로페이</td>
+									value="현금"> 현금 <input type="checkbox" name="h_pay"
+									value="카드"> 카드 <input type="checkbox" name="h_pay"
+									value="제로페이"> 제로페이</td>
 							</tr>
 
 							<tr>
 								<td><label for="name"> 주차 가능 여부 </label></td>
 								<td class="tdinput"><input type="radio" name="h_parking"
-									value="T"> 가능 <input type="radio" name="h_parking"
-									value="F"> 불가능</td>
+									value="true"> 가능 <input type="radio" name="h_parking"
+									value="false"> 불가능</td>
 							</tr>
 
 						</tbody>

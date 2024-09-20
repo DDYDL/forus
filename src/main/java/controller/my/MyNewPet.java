@@ -47,7 +47,11 @@ public class MyNewPet extends HttpServlet {
 
 		PetService service = new PetServiceImpl();
 		try {
-			service.insertPet(request);
+			String petid = request.getParameter("pet_id");
+			String newfilename = "pet_" + petid;
+
+			service.insertPet(request, newfilename);
+
 			response.sendRedirect("myPetList");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -32,7 +32,8 @@
 
 	<update id="ishospitalstatus" parameterType="Integer">
 		UPDATE user set
-		ishospital = 1 WHERE id = #{id};
+		ishospital = 1
+		WHERE id = #{id};
 	</update>
 
 	<select id="selectUserId" parameterType="Integer"

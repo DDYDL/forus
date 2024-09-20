@@ -47,12 +47,14 @@ public class HmyNewHospital extends HttpServlet {
 		String latitude = request.getParameter("latitude");
 		String longitude = request.getParameter("longitude");
 
-		System.out.println("latitude = " + latitude);
-		System.out.println("longitude = " + longitude);
 
 		HospitalService service = new HospitalServiceImpl();
 		try {
-			service.insertHospital(request);
+
+			String hid = request.getParameter("h_id");
+			String newfilename = "hospital_" + hid;
+
+			service.insertHospital(request, newfilename);
 			response.sendRedirect("hmyNewHospitalSuccess");
 		} catch (Exception e) {
 			e.printStackTrace();

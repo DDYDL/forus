@@ -47,7 +47,7 @@
 			    		<td class="setting_td2"><input type="text" name="post_pay" id="pay">&nbsp;원</td>
 			    		
 			    		<td class="setting_td1"><label for="time">시간</label></td>
-			    		<td class="setting_td2"><input type="time" class="time_start" id="timepicker" name="post_start_time" type="text">&nbsp;~&nbsp;<input type="time" class="time_end" id="timepicker" name="post_end_time" type="text"></td>
+			    		<td class="setting_td2"><input type="time" class="time_start" id="timepicker" name="post_start_time">&nbsp;~&nbsp;<input type="time" class="time_end" id="timepicker" name="post_end_time"></td>
 			    	</tr>
 		    	</table>
 		    </div>
@@ -139,7 +139,7 @@
     			console.log(result);
     			var res = JSON.parse(result);
     			res.petList.forEach(function(pet) {
-    				$('#pet_profile').append(`<tr><td class="pet_td1"><img src="\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3"><input type="radio" name="pet_name" value="\${pet.pet_name}"></td></tr>`);
+    				$('#pet_profile').append(`<tr><td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'default.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3"><input type="radio" name="pet_name" value="\${pet.pet_name}"></td></tr>`);
     			})
     		}
     	})

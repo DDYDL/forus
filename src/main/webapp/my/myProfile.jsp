@@ -6,12 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/my/containerbox.css" />
+<link rel="stylesheet" href="css/my/containerprofile.css" />
 <link rel="stylesheet" href="css/my/profile.css" />
 <link rel="stylesheet" href="css/my/input.css" />
 <link rel="stylesheet" href="css/my/button.css" />
 <!-- 캘린더 라이브러리 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
 <style>
@@ -31,10 +32,10 @@
 				href="./hmyNewHospital"><img src="./img/play.png" width="16px">&nbsp;병원인증하기</a>
 			</span>
 		</c:if>
-		<div >
+		<div>
 			<h2 align="center">내 프로필</h2>
 		</div>
-		<div class = "containerprofile">
+		<div class="containerprofile">
 			<ul>
 				<li>프로필 사진</li>
 				<li><img
@@ -70,18 +71,26 @@
 				<li class="title">성별</li>
 				<br>
 				<br>
-				<li class="line"><span>${user.gender }</span></li>
+				<li class="line"><span> <c:choose>
+							<c:when test="${user.gender eq 'M' }"> 남자</c:when>
+							<c:when test="${user.gender eq 'F' }"> 여자</c:when>
+						</c:choose>
+
+				</span></li>
 
 
 			</ul>
-
-			<div class="find-btn">
-				<button type="button" title="Button push blue/green"
-					class=" btn btnPush btnBlueGreen find-btn1"
-					onclick="location.href='./myProfileModify?id=${user.id}'">수정</button>
-
-			</div>
 		</div>
+
+		<br>
+		<br> <br>
+		<div class="find-btn">
+			<button type="button" title="Button push blue/green"
+				class=" btn btnPush btnBlueGreen find-btn1"
+				onclick="location.href='./myProfileModify?id=${user.id}'">수정</button>
+
+		</div>
+		<br> <br>
 
 	</div>
 </body>

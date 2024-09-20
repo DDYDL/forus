@@ -33,4 +33,4 @@ select {
 /* 리스트 설정 */
 .list-header { display:flex; justify-content: space-between; }
 .list-count { align-self: flex-end; }
-.list-btn { align-self:flex-end; }
+.list-btn { align-self: flex-end; }

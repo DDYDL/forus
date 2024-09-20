@@ -27,9 +27,16 @@ input[type=address] {
 	border: 1px solid rgb(201, 201, 201);
 	white-space:nowrap;
 	word-break:normal;
+	resize:none;
 }
 
-textarea{
+.text{
+	width: 300px;
+	height: 150px;
+	border-radius: 5px;
+	border: 1px solid rgb(201, 201, 201);
+	white-space:nowrap;
+	word-break:normal;
 	resize:none;
 }
 

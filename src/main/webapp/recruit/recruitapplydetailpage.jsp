@@ -15,9 +15,9 @@
     
     <!-- user 프로필 가져오기 -->
     <div class="box profile">
-    	<p class="content-inner-title">${recruit_apply.apply_title}</p>
+    	<p class="content-inner-title inner_title">${recruit_apply.apply_title}</p>
     	<div class="list-header">
-    	<img class="user_img" src="../img/users2.png">
+    	<div class="user_img_div"><img src="image?file=${apply_user.picture eq null? 'default.png': apply_user.picture}&id=${user_id}&type=user" class="img-icon user_img"></div>
     	<table class="user_table">
     		<tr>
     			<td class="user_td1" colspan="2">${apply_user.name}(${apply_user.birthday}, ${apply_user.gender})</td>
@@ -40,11 +40,11 @@
     <br>
     <!-- pet 프로필 가져오기 -->
     <div class="box profile">
-    	<p class="content-inner-title">반려동물</p>
+    	<p class="content-inner-title inner_title">반려동물</p>
         <table>
         	<c:forEach items="${petList}" var="pet">
     		<tr>
-    			<td class="pet_td1"><img src="${pet.pet_picture}"></td>
+    			<td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'default.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon pet_img"></td>
     			<td class="pet_td2">${pet.pet_name}</td>
     			<td class="pet_td3">(${pet.pet_age},&nbsp;${pet.pet_gender})</td>
     			<td class="pet_td4">${pet.pet_memo}</td>
@@ -55,8 +55,8 @@
     
     <br>
     <div class="box profile">
-    	<p class="content-inner-title">전달 메시지</p>
-    	<p class="content-document">${recruit_apply.apply_content}</p>
+    	<p class="content-inner-title inner_title">전달 메시지</p>
+    	<p class="content-document content_p">${recruit_apply.apply_content}</p>
     </div>
     <br>
     <div class="btndiv">

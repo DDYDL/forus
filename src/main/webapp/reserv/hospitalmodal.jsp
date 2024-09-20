@@ -75,7 +75,18 @@
                     success: function (response) {
                        const user = response.user;
                        const pet = response.pet;
-                Swal.fire({
+
+                        if (!pet || pet.length === 0) {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '예약 불가',
+                                text: '등록된 펫이 없습니다. 펫을 먼저 등록한 후 예약을 진행해주세요.',
+                                confirmButtonText: '확인'
+                            });
+                            return;
+                        }
+
+                        Swal.fire({
                     title: '예약 정보 확인',
                     html: generateReservationHtml(result.value, user, pet),
                     confirmButtonText: '예약 완료',
@@ -85,6 +96,13 @@
                     preConfirm:()=>{
                         const form = document.getElementById('reservationForm');
                         const reservationContent = document.querySelector('input[name="reservationContent"]:checked');
+                        const selectedPet = document.querySelector('input[name="selectedPetId"]:checked');
+
+                        if (!selectedPet) {
+                            alert('펫을 선택하세요.');
+                            return false;
+                        }
+
 
                         if (!reservationContent) {
                             alert('예약 항목을 선택하세요.');
@@ -100,7 +118,7 @@
                                     Swal.close();
                                         alert('예약이 완료되었습니다.');
                                     },
-                               erro: function () {
+                               error: function () {
                                    alert('예약을 완료하는 중 오류가 발생했습니다. 다시 시도해 주세요.');
                                },
                            });
@@ -221,8 +239,10 @@
 
 
     function generatePetHtml(pets) {
-        if (!pets || !pets.length) {
-            return `<p><strong>등록된 펫이 없습니다.</strong></p>`;
+        // if (!pets || !pets.length) {
+        //     return `<p><strong>등록된 펫이 없습니다.</strong></p>`;
+        if (!pets || pets.length === 0) {
+            return `<p><strong>등록된 펫이 없습니다. 등록 후 예약해주세요.</strong></p>`;
         } else {
             return pets.map(pet => `
               <div class="pet-selection">

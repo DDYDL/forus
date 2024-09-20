@@ -21,12 +21,17 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title></title>
 
 
 </head>
 
 <body>
 <%@ include file="../header.jsp" %>
+
+<script>
+    const isLongedIn = ${not empty sessionScope.user};
+</script>
 
 <div id="hospital-detail-content-container">
     <!-- 병원 메인 이미지 섹션 -->
@@ -50,17 +55,17 @@
 
     <!-- 병원 정보 섹션 -->
     <section id="hospital-info-section">
-        <div id="hospital-detail-container">
-            <h4>${hospital.h_name}</h4>
+        <div id="hospital-detail-container" class="flex-container">
+            <h3 id="hospital-detail-hospitalName">${hospital.h_name}</h3>
 
             <!-- 예약하기 버튼 -->
-            <button id="hospital-detail-reserve-button" class="btn btn-primary" onclick="initializeReservationModal()">
+            <button id="hospital-detail-reserve-button" class="btn btn-primary" onclick="handleReservationClick()">
                 예약하기
             </button>
             <!-- 모달 섹션  -->
             <%@ include file="hospitalmodal.jsp" %>
 
-            <div id="hospital-detail-info">
+            <div id="hospital-detail-info" class="hospital-info">
                 <p><i class="fas fa-info-circle"></i><strong> 소개:</strong> ${hospital.h_memo}</p>
                 <p><i class="fas fa-user-md"></i><strong> 수의사 이름:</strong> ${hospital.h_manager_name}</p>
                 <p><i class="fas fa-phone-alt"></i><strong> 전화번호:</strong> ${hospital.h_phone}</p>
@@ -68,23 +73,38 @@
                 <p><i class="fas fa-directions"></i><strong> 길찾기 메모:</strong> ${hospital.h_memo_road}</p>
                 <p><i class="fas fa-credit-card"></i><strong> 결제 방법:</strong> ${hospital.h_pay}</p>
                 <p><i class="fas fa-parking"></i><strong> 주차 가능 여부:</strong> ${hospital.h_parking}</p>
-                <p><i class="fas fa-clock"></i><strong> 운영 시간</strong>
-                    <c:forEach var="hospitalTime" items="${hospitalTimes}">
-                <p>
-                    <c:choose>
-                        <c:when test="${hospitalTime.htime_opening !=null && hospitalTime.htime_closing != null}">
-                            ${hospitalTime.htime_week}: ${hospitalTime.htime_opening} ~ ${hospitalTime.htime_closing}
-                        </c:when>
-                        <c:otherwise>
-                            ${hospitalTime.htime_week}: 휴무
-                        </c:otherwise>
-                    </c:choose>
-                </p>
-                </c:forEach>
+<%--                <p><i class="fas fa-clock"></i><strong> 운영 시간</strong>--%>
+<%--                    <c:forEach var="hospitalTime" items="${hospitalTimes}">--%>
+<%--                <p>--%>
+<%--                    <c:choose>--%>
+<%--                        <c:when test="${hospitalTime.htime_opening !=null && hospitalTime.htime_closing != null}">--%>
+<%--                            ${hospitalTime.htime_week}: ${hospitalTime.htime_opening} ~ ${hospitalTime.htime_closing}--%>
+<%--                        </c:when>--%>
+<%--                        <c:otherwise>--%>
+<%--                            ${hospitalTime.htime_week}: 휴무--%>
+<%--                        </c:otherwise>--%>
+<%--                    </c:choose>--%>
+<%--                </p>--%>
+<%--                </c:forEach>--%>
 
-
-                </p>
             </div>
+
+            <div id="hospital-operation-time" class="operation-time">
+                <p><i class="fas fa-clock"></i><strong> 운영 시간</strong></p>
+                <c:forEach var="hospitalTime" items="${hospitalTimes}">
+                    <p>
+                        <c:choose>
+                            <c:when test="${hospitalTime.htime_opening != null && hospitalTime.htime_closing != null}">
+                                ${hospitalTime.htime_week}: ${hospitalTime.htime_opening} ~ ${hospitalTime.htime_closing}
+                            </c:when>
+                            <c:otherwise>
+                                ${hospitalTime.htime_week}: 휴무
+                            </c:otherwise>
+                        </c:choose>
+                    </p>
+                </c:forEach>
+            </div>
+
         </div>
     </section>
 
@@ -95,6 +115,21 @@
 
 
 </div>
+
+
+<script>
+    function handleReservationClick() {
+        if (!isLongedIn) {
+            // 로그인하지 않은 경우 알림을 표시
+            alert('로그인 후 이용해주세요.');
+        } else {
+            // 로그인된 경우 예약 모달 열기
+            initializeReservationModal();
+        }
+    }
+</script>
+
+
 
 <!-- 이미지 갤러리 관련 스크립트 -->
 <script>

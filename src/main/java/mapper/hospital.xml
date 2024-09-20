@@ -69,6 +69,7 @@
 			h.h_address,
 			h.h_latitude,
 			h.h_longitude,
+			h.h_picture,
 			h.h_animal_type,
 			(
 					ST_Distance_Sphere(
@@ -100,6 +101,7 @@
 			h.h_address,
 			h.h_latitude,
 			h.h_longitude,
+			h.h_picture,
 			h.h_animal_type
 		FROM
 			hospital h
@@ -114,8 +116,6 @@
 		]]>
 	</select>
 
-
-
 	<select id="findHospitalDetailByHospitalId" parameterType="int"
 		resultType="dto.Hospital">
 		SELECT
@@ -125,7 +125,6 @@
 		WHERE
 		h.h_id = #{h_id}
 	</select>
-
 
 	<select id="findHospitalTimeByHospitalId" parameterType="int"
 		resultType="dto.Hospital_time">
@@ -153,4 +152,7 @@
 		where h_id=#{h_id}
 
 	</update>
+
+
+
 </mapper>
