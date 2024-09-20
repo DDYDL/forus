@@ -1,15 +1,18 @@
 @charset "UTF-8";
 
 /* mybeforereserv 드롭다운 */
-.petSelect { float: right; text-align: center; }
+.petSelect {  }
 
 /* mybeforereserv 기간 설정 버튼 */
-.dateSelect { float:right; }
-.datecalendar { float:right; width:250px;}
+.dateSelect { }
+.datecalendar { width:200px;}
 
-.list { display: none; position:absolute; }
+.floatright { float: rigtht;}
 
 /* mybeforereserv 페이징 */
 #paging { text-align: center; }
 .pagenum { cursor: pointer;} 
 
+.overflow::after {  content: "";
+  clear: both;
+  display: block;}

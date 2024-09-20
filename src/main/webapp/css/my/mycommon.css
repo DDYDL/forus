@@ -84,12 +84,13 @@ border-width: 0 0 1px;
 .join-input { width: 400px; }
 .join-input-short { width: 250px; }
 
+.center { text-align: center; }
+
 /* login, join content */
 .user-content{ text-align: center; }
-.center { text-align: center; }
 
 /*postlist 체크박스*/
 .chkbox-style { accent-color: #69E92E; zoom:1.5;}
 
 /*input 커서 여백*/
-.cursorpadding { padding-left:10px; }
+.cursorpadding { padding-left:15px; }

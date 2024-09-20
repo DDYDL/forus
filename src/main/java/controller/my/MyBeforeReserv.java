@@ -123,10 +123,15 @@ public class MyBeforeReserv extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			
+			
 			JSONObject responseJson = new JSONObject();
 			System.out.println(pageInfo);
 			responseJson.put("result", jsonArray);
 
+			Integer listcnt = service.selectMyBeforeReservCount(id, pet_id, startDate, endDate, isConsult);
+			System.out.println(listcnt);
+			responseJson.put("listcnt", listcnt.toString());
+			
 			JSONObject pageJson = new JSONObject();
 			pageJson.put("curPage", pageInfo.getCurPage());
 			pageJson.put("allPage", pageInfo.getAllPage());

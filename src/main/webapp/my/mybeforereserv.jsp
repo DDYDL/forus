@@ -28,22 +28,23 @@
 			<a href="${pageContext.request.contextPath}/myAfterReserv">이후 예약</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 			<a href="${pageContext.request.contextPath}/myBeforeReserv">지난 예약</a>
 		</div>
-		<div class="listcnt"></div>
-		<div class="isConsult">
+		<div class="overflow">
+		<div class="listcnt" id="listcnt"></div>
+		<div class="isConsult floatright">
 			<input type="checkbox" id="isConsult" name="isConsult" class="btn-check" autocomplete="off"> <label for="isConsult" class="btn btn-outline-success">진료완료만 보기</label>
 		</div>
-		<div class="petSelect">
+		<div class="petSelect floatright">
 			<select id="pet_id" name = "pet_id">
-				<option value="" selected>반려동물별</option>
+				<option value=""  class="center" selected>반려동물별</option>
 				<c:forEach items="${petList }" var="pet">
-					<option value="${pet.pet_id}">${pet.pet_name}</option>
+					<option value="${pet.pet_id}" class="center">${pet.pet_name}</option>
 				</c:forEach>
 			</select>
 		</div>
-		<div class="dateSelect">
+		<div class="dateSelect floatright">
 					<input class="datecalendar cursorpadding" id="dateRange" name="dateRange" type="text" placeholder=" 기간 입력">
 		</div>
-
+	</div>
 		<table class="table table-hover mytable">
 			<thead>
 				<tr>
@@ -106,6 +107,10 @@
             success: function(data) {
             	const result = data.result;
             	const pageInfo = data.pageInfo;
+            	
+            	const listcnt = $('#listcnt');
+            	listcnt.empty();
+            	listcnt.html(`<p>총 \${data.listcnt }건</p>`);
             	
                 const resultBody = $('#resultBody');
                 resultBody.empty(); // 기존 결과 삭제

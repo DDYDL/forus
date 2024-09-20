@@ -79,34 +79,34 @@
 				<tr>
 					<td class="columnsize-title">이메일<br></td>
 					<td class="columnsize">
-					<input type="text" placeholder=" 이메일을 입력해주세요" name="email" id="email"
-						class="user-input join-input-short">&nbsp;
+					<input type="text" placeholder="이메일을 입력해주세요" name="email" id="email"
+						class="user-input join-input-short cursorpadding">&nbsp;
 					<button type="button" id="doubleEmail" class="minibtn">중복 확인</button></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" placeholder=" 비밀번호 입력해주세요" name="password"
-					class="user-input join-input"></td>
+					<td><input type="password" placeholder="비밀번호 입력해주세요" name="password"
+					class="user-input join-input cursorpadding"></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type="text" placeholder=" 이름을 입력해주세요" name="name" 
-					class="user-input join-input"></td>
+					<td><input type="text" placeholder="이름을 입력해주세요" name="name" 
+					class="user-input join-input cursorpadding"></td>
 				</tr>
 				<tr>
 					<td>닉네임</td>
-					<td><input type="text" placeholder=" 닉네임을 입력해주세요" name="nickname"
-					class="user-input join-input"></td>
+					<td><input type="text" placeholder="닉네임을 입력해주세요" name="nickname"
+					class="user-input join-input cursorpadding"></td>
 				</tr>
 				<tr>
 					<td>휴대전화번호</td>
-					<td><input type="text" placeholder=" 휴대전화번호를 입력해주세요" name="phone"
-					class="user-input join-input">
+					<td><input type="text" placeholder="휴대전화번호를 입력해주세요" name="phone"
+					class="user-input join-input cursorpadding">
 				</tr>
 				<tr>
 					<td>생년월일</td>
-					<td><input id="justDate" type="text" placeholder=" 날짜를 선택해주세요" name="birthday"
-					class="user-input join-input"></td>
+					<td><input id="justDate" type="text" placeholder="날짜를 선택해주세요" name="birthday"
+					class="user-input join-input cursorpadding"></td>
 				</tr>
 				<tr>
 					<td>성별</td>
@@ -114,9 +114,9 @@
 				</tr>
 				<tr>
 					<td>주소</td>
-					<td><input type="text" id="postcode" placeholder=" 우편번호" class="user-input join-input-short">&nbsp;
+					<td><input type="text" id="postcode" placeholder="우편번호" class="user-input join-input-short cursorpadding">&nbsp;
 						<input onclick="daumPostcode()" class="minibtn" value="주소 검색">
-						<input type="text" id="address" placeholder=" 주소" class="user-input join-input" name="address">
+						<input type="text" id="address" placeholder="주소" class="user-input join-input cursorpadding" name="address">
 					</td>
 				</tr>
 			</table>

@@ -126,6 +126,7 @@
     background-color: #00bfff;
     color: #ffffff;
     border-color: #00bfff;
+    cursor: pointer;
 }
 
 #otherText {

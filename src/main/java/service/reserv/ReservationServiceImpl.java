@@ -178,7 +178,13 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<Map<String, Object>> myAfterReservList(Integer id) throws Exception {
 		return reservationDao.selectMyAfterReservList(id);
 	}
-
+	
+	@Override
+	public Integer selectMyBeforeReservCount(Integer id, Integer pet_id, String startDate, String endDate,
+			boolean isConsult) throws Exception {
+		return reservationDao.selectMyBeforeReservCount(id, pet_id, startDate, endDate, isConsult);
+	}
+	
 	@Override
 	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult, PageInfo pageInfo) throws Exception {
 		Integer allCount = reservationDao.selectMyBeforeReservCount(id, pet_id, startDate, endDate, isConsult);
@@ -206,5 +212,6 @@ public class ReservationServiceImpl implements ReservationService {
 	public Integer deleteReservation(int reserv_id) throws Exception {
 		return reservationDao.deleteReserv(reserv_id);
 	}
+
 
 }
