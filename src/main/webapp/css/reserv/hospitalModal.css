@@ -72,17 +72,14 @@
 
 .pet-selection img {
     width: 60px;
-
-    .pet-name {
-        font-size: 18px;
-        font-weight: bold;
-        margin-top: 10px;
-    }
-
     border-radius: 50%;
     object-fit: cover;
-
     margin-bottom: -15%;
+}
+
+.pet-selection .pet-name {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 
