@@ -26,12 +26,12 @@ public class HmyNewHospitalSuccess extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try{request.getRequestDispatcher("/hmy/hmynewhospitalsuccess.jsp").forward(request, response);
-	}
-		catch(Exception e) {
-		e.printStackTrace();
-	}
-		
+		try {
+			request.getRequestDispatcher("/hmy/hmynewhospitalsuccess.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+	}
 
 }

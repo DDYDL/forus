@@ -43,10 +43,10 @@ input[type="date"]::before {
 
 .line {
 	margin: 5px 10px;
-	padding: 15px 30px 10px 5px;
+	padding: 15px 30px 10px 10px;
 	border-bottom-style: solid;
 	border-bottom-color: rgb(201, 201, 201);
-	border-bottom-width: 5px;
+	border-bottom-width: 2px;
 	width: fit-content;
 }
 

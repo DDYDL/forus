@@ -30,6 +30,8 @@
 			<div class="menu_box">
 				<a href="${pageContext.request.contextPath}/hospitalList">병원예약</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="${pageContext.request.contextPath}/recruitList">Help Us</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				
+				
 				<c:choose>
 					<c:when test="${user eq null}"></c:when>
 					<c:otherwise>

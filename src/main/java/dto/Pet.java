@@ -11,14 +11,14 @@ public class Pet {
 	private boolean pet_neutering;
 	private String pet_picture;
 	private String pet_memo;
-	private Integer pet_num;
+	private String pet_num;
 
 	public Pet() {
 		super();
 	}
 
 	public Pet(String pet_name, String pet_species, String pet_breed, String pet_gender,
-			Integer pet_age, boolean pet_neutering, String pet_picture, String pet_memo, Integer pet_num) {
+			Integer pet_age, boolean pet_neutering, String pet_picture, String pet_memo, String pet_num) {
 		super();
 		this.pet_name = pet_name;
 		this.pet_species = pet_species;
@@ -111,11 +111,11 @@ public class Pet {
 		this.pet_memo = pet_memo;
 	}
 
-	public Integer getPet_num() {
+	public String getPet_num() {
 		return pet_num;
 	}
 
-	public void setPet_num(Integer pet_num) {
+	public void setPet_num(String pet_num) {
 		this.pet_num = pet_num;
 	}
 

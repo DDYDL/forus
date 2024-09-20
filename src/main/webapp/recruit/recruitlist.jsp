@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,24 +46,14 @@
                     <tr>
                         <td class="tabletd">
                         <select size="5">
-					    <option value="mammalia" data-bs-toggle="collapse" data-bs-target="#mammalia">포유류</option>
-					    <option value="reptile" data-bs-toggle="collapse" data-bs-target="#reptile">파충류</option>
-					    <option value="bird" data-bs-toggle="collapse" data-bs-target="#bird">조류</option>
-					    <option value="pisces" data-bs-toggle="collapse" data-bs-target="#pisces">어류</option>
-					    <option value="amphibian" data-bs-toggle="collapse" data-bs-target="#amphibian">양서류</option>
+					    <option value="mammalia" data-bs-toggle="collapse" data-bs-target="#mammalia" onclick="speciesClick(mammalia)">포유류</option>
+					    <option value="bird" data-bs-toggle="collapse" data-bs-target="#bird" onclick="speciesClick(bird)">조류</option>
+					    <option value="reptile" data-bs-toggle="collapse" data-bs-target="#reptile" onclick="speciesClick(reptile)">파충류</option>
+					    <option value="amphibian" data-bs-toggle="collapse" data-bs-target="#amphibian" onclick="speciesClick(amphibian)">양서류</option>
+					    <option value="pisces" data-bs-toggle="collapse" data-bs-target="#pisces" onclick="speciesClick(pisces)">어류</option>
 	                	</select>
 	                    </td>
-	                    <td class="tabletd">
-	                    <div id="mammalia" class="collapse">
-		                <select id="species" onclick="selectSearch_specie()" size="5">
-					    <option class="species" value="강아지">강아지</option>
-					    <option class="species" value="고양이">고양이</option>
-					    <option class="species" value="햄스터">햄스터</option>
-					    <option class="species" value="토끼">토끼</option>
-					    <option class="species" value="다람쥐">다람쥐</option>
-		                </select>
-		                </div>
-	                    </td>
+	                    <td id="speciestd" class="tabletd"><div id="mammalia" class="collapse"></div></td>
                     </tr>
                     </tbody>
                 </table>
@@ -182,7 +173,7 @@
         }
         
         function thirdSelect(dong) {
-        	// 두번째 요소 선택시 세번째 요소 초기화 후 생성);
+        	// 두번째 요소 선택시 세번째 요소 초기화 후 생성;
         	var td3 = $('#addressdongeummaen');
         	td3.empty();
         	
@@ -199,6 +190,28 @@
         }
     </script>
     
+    <script>
+    	var mammalia = ['강아지','고양이','햄스터','토끼','페럿','다람쥐','기니피그','카피바라','양','염소','알파카','돼지','소','말','당나귀','노새','고슴도치'];
+    	var bird = ['거위','공작','닭','비둘기','앵무새','오리','타조'];
+    	var reptile = ['거북이','도마뱀','뱀','악어'];
+    	var amphibian = ['도롱뇽','개구리'];
+    	var pisces = ['어류'];
+    	
+    	// 동물 선택시 실행되는 함수
+    	function speciesClick(animal) {
+    		var td = $('#speciestd');
+    		td.empty();
+    		td.append(`<select id="species" onclick="selectSearch_specie()" size="5">`);
+			var select = $('#species');
+        	
+        	console.log(animal);
+        	for(var i=0; i<animal.length; i++) {
+        		select.append(`<option class="species" value="\${animal[i]}">\${animal[i]}</option>`);
+        	}
+    		
+    	}
+    </script>
+    
     <!-- 글 목록 -->
     <br>
     <div class="list-header">
@@ -212,7 +225,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>지역</th><th>제목</th><th>급여(원)</th><th>근무시간</th><th>등록일</th>
+                <th class="recruit_th1">지역</th><th class="recruit_th2">제목</th><th class="recruit_th3">급여(원)</th><th class="recruit_th4">근무시간</th><th class="recruit_th5">등록일</th>
             </tr>
         </thead>
         <tbody id="recruitlist_body"></tbody>
@@ -287,8 +300,16 @@
     					var post_time = recruit_post.post_time.slice(0,16);
     					var start_time = recruit_post.post_start_time.slice(0,5);
     					var end_time = recruit_post.post_end_time.slice(0,5);
+    					
+    					// 숫자 3자리마다 ,찍기
+    					var pay = Number(recruit_post.post_pay).toLocaleString('ko-KR');
+    					
     					// 테이블 안에 recruit_post 한 행을 추가
-    					$('#recruitlist_body').append(`<tr onclick="location.href='./recruitDetailpage?post_id=\${recruit_post.post_id}'"><td>\${recruit_post.post_address}</td><td>\${recruit_post.post_title}</td><td>\${recruit_post.post_pay}</td><td>\${start_time}~\${end_time}</td><td>\${post_time}</td></tr>`);
+    					$('#recruitlist_body').append(`<tr onclick="location.href='./recruitDetailpage?post_id=\${recruit_post.post_id}'"><td class="recruit_td1">\${recruit_post.post_address}</td>
+    												   <td class="recruit_td2">\${recruit_post.post_title}</td>
+    												   <td class="recruit_td3">\${pay}원&nbsp;&nbsp;<button class="form_btn" <c:set var="form" value="${recruit_post.post_form}"/><c:if test="${fn:contains(form,'일급')}">style="border:1px solid #58ACFA;"</c:if> disabled>\${recruit_post.post_form}</button></td>
+    												   <td class="recruit_td4">\${start_time}~\${end_time}</td><td class="recruit_td5">\${post_time}</td></tr>`);
+    					
     				})
     				maxPage = res.maxPage; // 넘어온 페이지로 설정
     				page = res.page;
@@ -301,6 +322,7 @@
     				} else {
     					document.getElementById("moreBtn").style.visibility = 'visible';
     				}
+    				
     			}
     		})
     	}

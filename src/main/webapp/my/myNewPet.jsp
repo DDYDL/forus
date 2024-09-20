@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/my/containerbox.css" />
+<link rel="stylesheet" href="css/my/containerprofile.css" />
 <link rel="stylesheet" href="css/my/profile.css" />
 <link rel="stylesheet" href="css/my/input.css" />
 <link rel="stylesheet" href="css/my/button.css" />
@@ -25,12 +25,12 @@
 </script>
 <body>
 	<%@ include file="../mainmypage.jsp"%>
-	<form  action="myNewPet" method="post"  enctype="multipart/form-data">
+	<form action="myNewPet" method="post" enctype="multipart/form-data">
 		<div class="mypage-content">
 			<div>
 				<h3>반려동물 프로필 등록</h3>
 			</div>
-			<div>
+			<div class="containerprofile">
 				<ul>
 					<li>프로필 사진</li>
 					<li><img src="../img/profileicon.png" class="img-icon"
@@ -49,7 +49,7 @@
 					<li><input type="text" class="underline" name="pet_breed"></li>
 
 					<li>동물등록번호</li>
-					<li><input type="text" class="underline"  name="pet_num"></li>
+					<li><input type="text" class="underline" name="pet_num"></li>
 
 					<li class="title">성별</li>
 					<br>
@@ -94,17 +94,24 @@
 					<br>
 					<br>
 					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+
+
 
 				</ul>
-				<br> <br> <br> <br> <br> <br>
-				<div class="find-btn">
-					<input type="submit" title="Button push blue/green"
-						class=" btn btnPush btnBlueGreen find-btn1"
-						onclick="location.href='/forus/myPetList'" value="프로필 등록하기">
-
-				</div>
 			</div>
 
+			<br> <br> <br>
+			<div class="find-btn">
+				<input type="submit" title="Button push blue/green"
+					class=" btn btnPush btnBlueGreen find-btn1"
+					onclick="location.href='/forus/myPetList'" value="프로필 등록하기">
+
+
+			</div>
 		</div>
 	</form>
 </body>

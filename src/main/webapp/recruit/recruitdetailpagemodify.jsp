@@ -165,7 +165,7 @@
     			console.log(result);
     			var res = JSON.parse(result);
     			res.petList.forEach(function(pet) {
-    				$('#pet_profile').append(`<tr><td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'default.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3"><input type="radio" name="pet_name" value="\${pet.pet_name}"></td></tr>`);
+    				$('#pet_profile').append(`<tr><td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon pet_img"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3"><input type="radio" name="pet_name" value="\${pet.pet_name}"></td></tr>`);
     				var pet_id = document.getElementById('post_pet_id').value;
     				if(pet_id == pet.pet_id) {
     					console.log(pet.pet_name);

@@ -34,7 +34,7 @@ public class HmyHospitalModify extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		User user = (User)request.getSession().getAttribute("user"); // user 세션 가져오기
+		User user = (User) request.getSession().getAttribute("user"); // user 세션 가져오기
 		int user_id = user.getId();
 
 		try {
@@ -70,7 +70,11 @@ public class HmyHospitalModify extends HttpServlet {
 		try {
 			System.out.println("병원 정보 수정");
 			HospitalService service = new HospitalServiceImpl();
-			Hospital hospital = service.hospitalModify(request);
+
+			String hid = request.getParameter("h_id");
+			String newfilename = "hospital" + hid;
+
+			Hospital hospital = service.hospitalModify(request, newfilename);
 			request.setAttribute("hospital", hospital);
 			System.out.println("hospital:" + hospital);
 
