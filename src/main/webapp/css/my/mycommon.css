@@ -75,6 +75,7 @@ font-size: 16px;
 border: #ccc 1px solid;
 border-width: 0 0 1px;
   font-family: 'KCC-Hanbit';
+  
 }
 ::placeholder {
   color: #d9d9d9;
@@ -86,4 +87,9 @@ border-width: 0 0 1px;
 /* login, join content */
 .user-content{ text-align: center; }
 .center { text-align: center; }
-.chkbox-style{}
+
+/*postlist 체크박스*/
+.chkbox-style { accent-color: #69E92E; zoom:1.5;}
+
+/*input 커서 여백*/
+.cursorpadding { padding-left:10px; }

@@ -17,7 +17,6 @@
 		AND htime_week = DATE_FORMAT(#{date}, '%W');
 	</select>
 
-
 	<select id="findHospitalLunchTimeAndIntervalByHospitalId"
 		parameterType="int" resultType="dto.Hospital">
 		SELECT h_lunch_time_start,
@@ -96,7 +95,31 @@
 		</if>
 
 		order by reserv_date desc
+		limit #{row}, 10
 	</select>
+	
+	<select id="selectMyBeforeReservCount" parameterType="Map" resultType="Integer">
+		SELECT count(*)
+		FROM reservation r
+		JOIN pet p
+		ON r.pet_id = p.pet_id
+		JOIN hospital h ON r.h_id = h.h_id
+		WHERE DATE(r.reserv_date) &lt; CURDATE()
+		AND r.user_id = #{id}
+
+		<if test="pet_id != null and pet_id != ''">
+			AND p.pet_id = #{pet_id}
+		</if>
+		<if test="startDate != null and startDate != ''">
+			AND r.reserv_date &gt;= #{startDate}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			AND r.reserv_date &lt;= #{endDate}
+		</if>
+		<if test="isConsult == true">
+			AND r.reserv_status = '진료완료'
+		</if>
+	</select>	
 	
 	<select id="selectReservByReservId" parameterType="Integer"
 		resultType="Map">

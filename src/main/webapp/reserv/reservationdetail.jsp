@@ -19,7 +19,14 @@
   <div class="pet-selection">
     <h3>반려동물</h3>
     <ul>
-      <li><input type="radio" name="pet_id" value="${reserv.pet_id}" disabled> <img src="https://via.placeholder.com/40"/> ${reserv.pet_name}</li>
+      <li>
+<%--       <input type="radio" name="pet_id" value="${reserv.pet_id}" disabled>  --%>
+		<c:choose>			
+			<c:when test="${reserv.pet_picture eq null}">
+			<img src="upload/pet/petdefault.png" style="width:50px;"></c:when>
+			<c:otherwise><img src="image?file=${reserv.pet_picture}&type=pet" style="width:50px;"></c:otherwise>
+		</c:choose>
+		${reserv.pet_name}</li>
     </ul>
   </div>
 

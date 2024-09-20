@@ -66,9 +66,11 @@
 						<td><input type="checkbox" name="petIds"
 							value="${pet.pet_id}" /></td>
 						<td><div class="profilebox">
-								<img
-									src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&id=${pet_id}&type=pet"
-									class="img-icon">
+								<c:choose>			
+									<c:when test="${pet.pet_picture eq null}">
+									<img src="upload/pet/petdefault.png" style="width:50px;"></c:when>
+									<c:otherwise><img src="image?file=${pet.pet_picture}&type=pet" style="width:50px;"></c:otherwise>
+								</c:choose>
 							</div></td>
 						<td><a href="./myPetModify?pet_id=${pet.pet_id}">${pet.pet_name }</a></td>
 						<td>${pet.pet_species }</td>
