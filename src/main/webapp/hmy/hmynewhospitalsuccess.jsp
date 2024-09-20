@@ -23,7 +23,7 @@
 		<div class="find-btn">
 			<button type="button" title="Button push blue/green"
 				class="btn btnPush btnBlueGreen find-btn1"
-				onclick="location.href='../my/myProfile.jsp'">홈으로</button>
+				onclick="location.href='./hospitalList'">홈으로</button>
 
 		</div>
 

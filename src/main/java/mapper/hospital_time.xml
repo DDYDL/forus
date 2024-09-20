@@ -25,5 +25,7 @@
 		insert into hospital_time (htime_week,htime_opening,htime_closing,htime_isable,week_no)
 		values (#{htime_week},#{htime_opening},#{htime_closing},#{htime_isable},#{week_no})
 	</insert>
+	
+	
 
 </mapper>

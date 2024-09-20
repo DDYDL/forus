@@ -7,6 +7,8 @@
 <%--<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>--%>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 
+
+
 <style>
     #loading-spinner {
         position: fixed;
@@ -26,8 +28,12 @@
     }
 
     @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 </style>
 
@@ -36,23 +42,33 @@
 </div>
 
 
-
 <!-- 예약 모달 초기화 및 Swalfire 처리 -->
 <script>
     function initializeReservationModal() {
         Swal.fire({
             title: `병원 예약 - ${hospital.h_name}`,
             html: `
-                <div id="reservation-modal-content">
-                    <input type="text" id="reservation-date-picker" placeholder="예약 날짜를 선택하세요">
+<!--                <div id="reservation-modal-content">-->
+<!--                    <input type="text" id="reservation-date-picker" placeholder="예약 날짜를 선택하세요">-->
+<!--                    <div id="time-slots-container"></div>-->
+<!--                </div>-->
+                 <div id="reservation-modal-content">
+                    <div id="date-picker-container">
+                        <div id="reservation-date-picker"></div>  <!-- 달력 위치 -->
+                    </div>
+<!--                    <input type="text" id="reservation-input" placeholder="예약 날짜를 선택하세요" >  &lt;!&ndash; 텍스트 박스를 달력 아래에 &ndash;&gt;-->
+                      <div id="reservation-date-badge" class="badge-date" style="display: none;">예약 날짜를 선택하세요</div>
                     <div id="time-slots-container"></div>
                 </div>
+
             `,
             showCancelButton: true,
             confirmButtonText: '다음',
             cancelButtonText: '취소',
             preConfirm: () => {
-                const selectedDate = $('#reservation-date-picker').val();
+                // const selectedDate = $('#reservation-date-picker').val();
+                // const selectedDate = $('#reservation-date-badge').val(); // 텍스트 박스에서 선택된 날짜 가져오기
+                const selectedDate = $('#reservation-date-badge').text();
                 const selectedTime = $('input[name="timeSlot"]:checked').val();
 
                 if (!selectedDate) {
@@ -64,7 +80,7 @@
                     return false;
                 }
 
-                return { selectedDate, selectedTime };
+                return {selectedDate, selectedTime};
             }
         }).then((result) => {
             if (result.isConfirmed) {
@@ -73,8 +89,8 @@
                     dataType: 'json',
                     method: 'GET',
                     success: function (response) {
-                       const user = response.user;
-                       const pet = response.pet;
+                        const user = response.user;
+                        const pet = response.pet;
 
                         if (!pet || pet.length === 0) {
                             Swal.fire({
@@ -87,49 +103,56 @@
                         }
 
                         Swal.fire({
-                    title: '예약 정보 확인',
-                    html: generateReservationHtml(result.value, user, pet),
-                    confirmButtonText: '예약 완료',
-                    cancelButtonText: '취소',
-                    showCancelButton: true,
+                            title: '예약 정보 확인',
+                            html: generateReservationHtml(result.value, user, pet),
+                            confirmButtonText: '예약 완료',
+                            cancelButtonText: '취소',
+                            showCancelButton: true,
 
-                    preConfirm:()=>{
-                        const form = document.getElementById('reservationForm');
-                        const reservationContent = document.querySelector('input[name="reservationContent"]:checked');
-                        const selectedPet = document.querySelector('input[name="selectedPetId"]:checked');
+                            preConfirm: () => {
+                                const form = document.getElementById('reservationForm');
+                                const reservationContent = document.querySelector('input[name="reservationContent"]:checked');
+                                const selectedPet = document.querySelector('input[name="selectedPetId"]:checked');
+                                const otherText = document.getElementById('otherText');
+                                const otherRadio = document.getElementById('radioOther');
 
-                        if (!selectedPet) {
-                            alert('펫을 선택하세요.');
-                            return false;
-                        }
+                                if (!selectedPet) {
+                                    alert('펫을 선택하세요.');
+                                    return false;
+                                }
 
 
-                        if (!reservationContent) {
-                            alert('예약 항목을 선택하세요.');
-                            return false;
-                        }
+                                if (!reservationContent) {
+                                    alert('예약 항목을 선택하세요.');
+                                    return false;
+                                }
 
-                        if (form) {
-                           $.ajax({
-                               url:form.action,
-                                 method:form.method,
-                                    data:$(form).serialize(),
-                                    success:function(response){
-                                    Swal.close();
-                                        alert('예약이 완료되었습니다.');
-                                    },
-                               error: function () {
-                                   alert('예약을 완료하는 중 오류가 발생했습니다. 다시 시도해 주세요.');
-                               },
-                           });
-                            return false;  // 폼의 기본 제출 동작 방지
-                        }else {
-                            Swal.showValidationMessage('예약 정보를 찾을 수 없습니다. 다시 시도해 주세요.');
-                        }
-                    }
+                                if(otherRadio.checked && otherText.value.trim() === '') {
+                                    alert('기타 항목을 입력하세요.');
+                                    return false;
+                                }
 
-                });
-            }, error: function (jqXHR, textStatus, errorThrown) {
+                                if (form) {
+                                    $.ajax({
+                                        url: form.action,
+                                        method: form.method,
+                                        data: $(form).serialize(),
+                                        success: function (response) {
+                                            Swal.close();
+                                            alert('예약이 완료되었습니다.');
+                                        },
+                                        error: function () {
+                                            alert('예약을 완료하는 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                                        },
+                                    });
+                                    return false;  // 폼의 기본 제출 동작 방지
+                                } else {
+                                    Swal.showValidationMessage('예약 정보를 찾을 수 없습니다. 다시 시도해 주세요.');
+                                }
+                            }
+
+                        });
+                    }, error: function (jqXHR, textStatus, errorThrown) {
                         // 요청이 실패할 경우 오류 메시지 표시
                         Swal.fire({
                             icon: 'error',
@@ -154,7 +177,7 @@
         $('#loading-spinner').hide();
     }
 
-    const debouncedFetch = _.debounce(function(dateStr) {
+    const debouncedFetch = _.debounce(function (dateStr) {
         showLoadingSpinner();
         getAvailableTimeSlots(dateStr);
     }, 300);
@@ -168,10 +191,15 @@
             maxDate: new Date().fp_incr(7),
             onChange: function (selectedDates, dateStr) {
                 // updateAvailableTimeSlots(dateStr);
+                // $('#reservation-input').val(dateStr);
+                const badge = document.getElementById('reservation-date-badge');
+                badge.textContent = dateStr;
+                badge.style.display = "inline-block"; // 배지를 보이게 설정
                 debouncedFetch(dateStr);
             }
         });
     }
+
 </script>
 
 <!-- 예약 가능한 시간 슬롯 요청 -->
@@ -182,7 +210,7 @@
             url: 'reservation',
             dataType: 'json',
             type: 'GET',
-            data: { hospitalId, dateStr },
+            data: {hospitalId, dateStr},
             success: function (response) {
 
                 const availableTimes = response.availableTimeSlots;
@@ -192,6 +220,7 @@
             }
         });
     }
+
     function updateAvailableTimeSlots(dateStr) {
         getAvailableTimeSlots(dateStr);
     }
@@ -215,6 +244,7 @@
             </label>
         `;
     }
+
     function getDisabledAttribute(isAvailable) {
         return !isAvailable ? 'disabled' : '';
     }
@@ -222,18 +252,32 @@
 
 
 <script>
+    // function initializeCheckboxHandler() {
+    //     $(document).on('change', '.reservation-check', function () {
+    //         if ($('#radioOther').is(':checked')) {  // 기타 옵션 체크
+    //             $('#otherText').prop('disabled', false);  // 입력 필드 활성화
+    //         } else {
+    //             $('#otherText').prop('disabled', true).val('');  // 다른 옵션 선택 시 비활성화 및 초기화
+    //         }
+    //     });
+    //
+    //     // 폼이 제출될 때 텍스트 입력이 비활성화되지 않도록 설정
+    //     $(document).on('submit', '#reservationForm', function () {
+    //         $('#otherText').prop('disabled', false);  // 폼 제출 시 입력 필드를 활성화 상태로 유지
+    //     });
+    // }
     function initializeCheckboxHandler() {
-        $(document).on('change', '.single-select-radio', function() {
-            if ($('#otherRadio').is(':checked')) {
-                $('#otherText').prop('disabled', false);
+        $(document).on('change', '.reservation-check', function () {
+            if ($('#radioOther').is(':checked')) {
+                $('#otherText').show();  // 기타 선택 시 텍스트 입력 필드 보이기
             } else {
-                $('#otherText').prop('disabled', true).val('');
+                $('#otherText').hide().val('');  // 다른 옵션 선택 시 텍스트 입력 필드 숨기기 및 초기화
             }
         });
 
         // 폼이 제출될 때 텍스트 입력이 비활성화되지 않도록 설정
-        $(document).on('submit', '#reservationForm', function() {
-            $('#otherText').prop('disabled', false);
+        $(document).on('submit', '#reservationForm', function () {
+            $('#otherText').prop('disabled', false);  // 폼 제출 시 입력 필드를 활성화 상태로 유지
         });
     }
 
@@ -245,18 +289,33 @@
             return `<p><strong>등록된 펫이 없습니다. 등록 후 예약해주세요.</strong></p>`;
         } else {
             return pets.map(pet => `
-              <div class="pet-selection">
-              <label>
-                    <input type="radio" name="selectedPetId" value="${"${pet.pet_id}"}">
-                    <img src="${"${pet.pet_picture}"}" alt="${"${pet.pet_name}"}">
+            <%--  <div class="pet-selection">--%>
+            <%--  <label>--%>
+            <%--        <input type="radio" name="selectedPetId" value="${"${pet.pet_id}"}">--%>
+            <%--        &lt;%&ndash;<img src="${"${pet.pet_picture}"}" alt="${"${pet.pet_name}"}">&ndash;%&gt;--%>
+            <%--          <img src="image?file=${"${pet.pet_picture}" == null ? 'petdefault.png' : "${pet.pet_picture}"}&type=pet" alt="${"${pet.pet_name}"}">--%>
 
-                </label>
-            </div>
+            <%--    </label>--%>
+            <%--</div>--%>
+        <%--<div class="pet-selection">--%>
+        <%--  <label>--%>
+        <%--      <img src="image?file=${"${pet.pet_picture}" == null ? 'petdefault.png' : "${pet.pet_picture}"}&type=pet" alt="${"${pet.pet_name}" == null ? '펫' : "${pet.pet_name}"}">--%>
+        <%--      <input type="radio" name="selectedPetId" value="${"${pet.pet_id}"}">--%>
+        <%--       <span class="pet-name">${"${pet.pet_name}"}</span>--%>
+        <%--  </label>--%>
+        <%--</div>--%>
+     <div class="pet-selection">
+        <img src="image?file=${"${pet.pet_picture}" == null ? 'petdefault.png' : "${pet.pet_picture}"}&type=pet" alt="${"${pet.pet_name}" == null ? '펫' : "${pet.pet_name}"}">
+    <input type="radio" class="pet-radio-btn" name="selectedPetId" id="pet-${"${pet.pet_id}"}" value="${"${pet.pet_id}"}" autocomplete="off">
+    <label class="pet-selection-button" for="pet-${"${pet.pet_id}"}">
+        <span class="pet-name">${"${pet.pet_name}"}</span>
+    </label>
+</div>
+
         `).join('');
 
         }
     }
-
 
 
     function generateReservationHtml(result, user, pets) {
@@ -269,44 +328,55 @@
                   <h3>펫 선택</h3>
                  ${"${petHtml}"}
 
-               <div class="reservation-items">
-                    <h3>예약 항목</h3>
-                    <label><input type="radio" class="single-select-radio" name="reservationContent" value="진료"> 진료</label>
-                    <label><input type="radio" class="single-select-radio" name="reservationContent" value="상담"> 상담</label>
-                    <label><input type="radio" class="single-select-radio" name="reservationContent" value="미용"> 미용</label>
-                    <label>
-                        <input type="radio" class="single-select-radio" name="reservationContent" value="기타" id="otherRadio"> 기타
-                        <input type="text" id="otherText" name="customContent" placeholder="직접 입력하기" disabled>
-                    </label>
-                </div>
-                <br>
+            <div class="reservation-items">
+                <h3>예약 항목</h3>
+                <div class="btn-group" role="group" aria-label="Reservation options">
+                    <input type="radio" class="reservation-check" name="reservationContent" id="radioMedical" value="진료" autocomplete="off">
+                    <label class="reservation-button" for="radioMedical">진료</label>
 
-                <div class="reservation-date">
-                  <h3>예약 정보 </h3>
-                  <p>예약 날짜: ${"${result.selectedDate}"}</p>
-                  <input type="hidden" name="selectedDate" value="${"${result.selectedDate}"}">
-                  <p>예약 시간:${"${result.selectedTime}"}</p>
-                  <input type="hidden" name="selectedTime" value="${"${result.selectedTime}"}">
+                    <input type="radio" class="reservation-check" name="reservationContent" id="radioConsulting" value="상담" autocomplete="off">
+                    <label class="reservation-button" for="radioConsulting">상담</label>
+
+                    <input type="radio" class="reservation-check" name="reservationContent" id="radioBeauty" value="미용" autocomplete="off">
+                    <label class="reservation-button" for="radioBeauty">미용</label>
+
+                    <input type="radio" class="reservation-check" name="reservationContent" id="radioOther" value="기타" autocomplete="off">
+                    <label class="reservation-button" for="radioOther">기타</label>
                 </div>
 
-                <br>
-
-                <div class="guardian-info">
-                    <h3>보호자 정보</h4>
-                    <p>예약자 이름: ${"${user.name}"}</p>
-                    <p>예약자 번호 : ${"${user.phone}"}</p>
-                    <p>예약자 메일: ${"${user.email}"}</p>
-                    <input type="hidden" name="userName" value="${"${user.name}"}">
-                    <input type="hidden" name="userId" value="${"${user.id}"}">
-                </div>
-                  <input type="hidden" name="hospitalId" value="${hospital.h_id}">
+                <!-- '기타' 선택 시 활성화되는 입력 필드 -->
+            <input type="text" id="otherText" name="customContent" placeholder="직접 입력하기" class="form-control mt-2" style="display: none;">
             </div>
+
+                <br>
+
+            <div class="reservation-date">
+              <h3>예약 정보 </h3>
+              <p>예약 날짜: ${"${result.selectedDate}"}</p>
+              <input type="hidden" name="selectedDate" value="${"${result.selectedDate}"}">
+              <p>예약 시간:${"${result.selectedTime}"}</p>
+              <input type="hidden" name="selectedTime" value="${"${result.selectedTime}"}">
+            </div>
+
+            <br>
+
+            <div class="guardian-info">
+                <h3>보호자 정보</h4>
+                <p>예약자 이름: ${"${user.name}"}</p>
+                <p>예약자 번호 : ${"${user.phone}"}</p>
+                <p>예약자 메일: ${"${user.email}"}</p>
+                <input type="hidden" name="userName" value="${"${user.name}"}">
+                <input type="hidden" name="userId" value="${"${user.id}"}">
+            </div>
+              <input type="hidden" name="hospitalId" value="${hospital.h_id}">
+        </div>
         </form>
 
         `;
     }
 
-    $(document).ready(function() {
+
+    $(document).ready(function () {
         initializeCheckboxHandler();
     });
 </script>

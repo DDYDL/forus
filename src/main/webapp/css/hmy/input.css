@@ -4,6 +4,7 @@ input[type=text] {
 	height: 40px;
 	border-radius: 5px;
 	border: 1px solid rgb(201, 201, 201);
+	padding: 0 5px;
 }
 
 input[type=tel] {
@@ -11,10 +12,19 @@ input[type=tel] {
 	height: 40px;
 	border-radius: 5px;
 	border: 1px solid rgb(201, 201, 201);
+	padding: 0 5px;
 }
 
 input[type=address] {
 	width: 200px;
+	height: 40px;
+	border-radius: 5px;
+	border: 1px solid rgb(201, 201, 201);
+}
+
+
+input[type=texttime] {
+	width: 100px;
 	height: 40px;
 	border-radius: 5px;
 	border: 1px solid rgb(201, 201, 201);
@@ -27,9 +37,16 @@ input[type=address] {
 	border: 1px solid rgb(201, 201, 201);
 	white-space:nowrap;
 	word-break:normal;
+	resize:none;
 }
 
-textarea{
+.text{
+	width: 300px;
+	height: 150px;
+	border-radius: 5px;
+	border: 1px solid rgb(201, 201, 201);
+	white-space:nowrap;
+	word-break:normal;
 	resize:none;
 }
 

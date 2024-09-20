@@ -1,4 +1,4 @@
-package controller.my;
+package controller.hmy;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,23 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import dto.Pet;
-import service.my.PetService;
-import service.my.PetServiceImpl;
 
 /**
- * Servlet implementation class MyNewPet
+ * Servlet implementation class HmyNewHospitalTime
  */
-@WebServlet("/myNewPet")
-public class MyNewPet extends HttpServlet {
+@WebServlet("/hmyNewHospitalTime")
+public class HmyNewHospitalTime extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public MyNewPet() {
+	public HmyNewHospitalTime() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,7 +28,11 @@ public class MyNewPet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/my/myNewPet.jsp").forward(request, response);
+		try {
+			request.getRequestDispatcher("/hmy/hmymanagetimenew.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -43,21 +42,8 @@ public class MyNewPet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-
-		PetService service = new PetServiceImpl();
-		try {
-			String petid = request.getParameter("pet_id");
-			String newfilename = "pet_" + petid;
-
-			service.insertPet(request, newfilename);
-
-			response.sendRedirect("myPetList");
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("err", "등록 오류");
-			request.getRequestDispatcher("err.jsp").forward(request, response);
-
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
+
 }

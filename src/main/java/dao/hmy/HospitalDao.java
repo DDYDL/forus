@@ -6,9 +6,11 @@ import java.util.Map;
 
 import dto.Hospital;
 import dto.Hospital_time;
+import dto.User;
 
 public interface HospitalDao {
 	void insertHospital(Hospital hospital) throws Exception;
+
 
 	void updateHospital(Hospital hospital) throws Exception;
 
