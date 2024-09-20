@@ -34,7 +34,7 @@
     <p class="content-inner-title">작성자</p>
     <div class="box">
     	<div class="user_profile">
-    	<div><img src="image?file=${post_user.picture eq null? 'default.png': post_user.picture}&id=${user_id}&type=user" class="img-icon user_img"><p class="content-document">${post_user.name}</p></div>
+    	<div><img src="image?file=${post_user.picture eq null? 'userdefault.png': post_user.picture}&id=${user_id}&type=user" class="img-icon user_img"><p class="content-document">${post_user.name}</p></div>
     	<p class="content-document">${post_user.email}</p>
     	</div>
     </div>
@@ -61,7 +61,7 @@
 				var pet_id = document.getElementById('post_pet_id').value;
 				res.post_petList.forEach(function(pet) {
 					if(pet_id == pet.pet_id) {
-						$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'default.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,&nbsp;\${pet.pet_gender})</td><td class="pet_td4">\${pet.pet_species}</td><td class="pet_td5">\${pet.pet_breed}</td><td class="pet_td6">${pet.pet_memo ne null? pet.pet_memo:""}</td></tr>`);
+						$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon pet_img"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,&nbsp;${pet.pet_gender eq "M"? "남":"여"})</td><td class="pet_td4">\${pet.pet_species}</td><td class="pet_td5">\${pet.pet_breed}</td><td class="pet_td6">${pet.pet_memo ne null? pet.pet_memo:""}</td></tr>`);
 					}
 				})
 				// post의 pet이 null일 경우

@@ -53,9 +53,9 @@ td .content-document { margin:0px; }
 /* 펫 프로필 설정 */
 .pet_profile { width: 1000px; }
 .pet_img { width:70px; height:70px; border-radius: 70%; overflow: hidden; object-fit: cover; }
-.pet_td1 { width:80px; padding-left:25px; padding-top:10px; padding-bottom:10px; }
-.pet_td2 { width:70px; }
-.pet_td3 { width:70px; }
+.pet_td1 { width:50px; padding-left:25px; padding-top:10px; padding-bottom:10px; }
+.pet_td2 { width:60px; }
+.pet_td3 { width:60px; }
 .pet_td4 { width:70px; }
 .pet_td5 { width:150px; }
 .pet_td6 { width:300px; }

@@ -17,7 +17,7 @@
     <div class="box profile">
     	<p class="content-inner-title inner_title">${recruit_apply.apply_title}</p>
     	<div class="list-header">
-    	<div class="user_img_div"><img src="image?file=${apply_user.picture eq null? 'default.png': apply_user.picture}&id=${user_id}&type=user" class="img-icon user_img"></div>
+    	<div class="user_img_div"><img src="image?file=${apply_user.picture eq null? 'userdefault.png': apply_user.picture}&id=${user_id}&type=user" class="img-icon user_img"></div>
     	<table class="user_table">
     		<tr>
     			<td class="user_td1" colspan="2">${apply_user.name}(${apply_user.birthday}, ${apply_user.gender})</td>
@@ -44,10 +44,12 @@
         <table>
         	<c:forEach items="${petList}" var="pet">
     		<tr>
-    			<td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'default.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon pet_img"></td>
+    			<td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon pet_img"></td>
     			<td class="pet_td2">${pet.pet_name}</td>
-    			<td class="pet_td3">(${pet.pet_age},&nbsp;${pet.pet_gender})</td>
-    			<td class="pet_td4">${pet.pet_memo}</td>
+    			<td class="pet_td3">(${pet.pet_age},&nbsp;${pet.pet_gender eq 'M'? '남':'여'})</td>
+    			<td class="pet_td4">${pet.pet_species}</td>
+    			<td class="pet_td5">${pet.pet_breed}</td>
+    			<td class="pet_td6">${pet.pet_memo}</td>
     		</tr>
     		</c:forEach>
     	</table>
