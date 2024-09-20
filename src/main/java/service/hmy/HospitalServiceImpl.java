@@ -57,11 +57,12 @@ public class HospitalServiceImpl implements HospitalService {
 		hospital.setH_pay(multi.getParameter("h_pay"));
 		hospital.setH_sns(multi.getParameter("h_sns"));
 		// hospital.(Boolean)setH_parking(multi.getParameter(""));
-		hospital.setH_lunch_time_start(LocalTime.parse(multi.getParameter("")));
-		hospital.setH_lunch_time_end(LocalTime.parse(multi.getParameter("")));
+		hospital.setH_lunch_time_start(LocalTime.parse(multi.getParameter("h_lunch_time_start")));
+		hospital.setH_lunch_time_end(LocalTime.parse(multi.getParameter("h_lunch_time_end")));
 
 		System.out.println(hospital);
 		hospitalDao.insertHospital(hospital);
+		hospitalDao.updatestatus(user);
 
 	}
 
@@ -91,8 +92,8 @@ public class HospitalServiceImpl implements HospitalService {
 		hospital.setH_pay(multi.getParameter("h_pay"));
 		hospital.setH_sns(multi.getParameter("h_sns"));
 		// hospital.(Boolean)setH_parking(multi.getParameter(""));
-		hospital.setH_lunch_time_start(LocalTime.parse(multi.getParameter("")));
-		hospital.setH_lunch_time_end(LocalTime.parse(multi.getParameter("")));
+		hospital.setH_lunch_time_start(LocalTime.parse(multi.getParameter("h_lunch_time_start")));
+		hospital.setH_lunch_time_end(LocalTime.parse(multi.getParameter("h_lunch_time_end")));
 
 		System.out.println("set hospital:" + hospital);
 
@@ -158,5 +159,17 @@ public class HospitalServiceImpl implements HospitalService {
 				hospitalDao.updateHospitalTime(ht);
 			}
 		}
+	}
+
+	@Override
+	public void insertHospitalTime(Integer h_id, Integer h_interval_time, List<Hospital_time> htList) throws Exception {
+		
+
+	}
+
+	@Override
+	public Integer updatestatus(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

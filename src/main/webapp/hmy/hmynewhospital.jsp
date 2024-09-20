@@ -12,7 +12,7 @@
 	src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
 
 <script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=94ab9074f87bbed0edf5b0d9cb32cdbd&libraries=services"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=94ab9074f87bbed0edf5b0d9cb32cdbd&libraries=services"></script>
 
 <link
 	href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css"
@@ -24,13 +24,13 @@
 <link rel="stylesheet" href="css/hmy/button.css" />
 
 
-	<script
-			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
 
 	</script>
 
 
-	<script>
+<script>
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
@@ -63,10 +63,10 @@
 				<div class="containerbox">
 
 					<div>
-						<h3>신규 병원 등록</h3>
+						<h2 align="center">신규 병원 등록</h2>
 					</div>
 
-					<h4>기본 정보</h4>
+					<h3>기본 정보</h3>
 
 					<table class="container">
 
@@ -119,8 +119,8 @@
 								<td><input class="tdinput" type="address"
 									id="sample6_postcode" placeholder="우편번호" name="h_address">
 
-									<button type="button" class="btn" onclick="sample6_execDaumPostcode()">주소찾기</button>
-								</td>
+									<button type="button" class="btn"
+										onclick="sample6_execDaumPostcode()">주소찾기</button></td>
 
 							</tr>
 
@@ -135,13 +135,6 @@
 									id="sample6_detailAddress" placeholder="상세주소"></td>
 							</tr>
 
-
-							<tr>
-								<td class="time"><label for="name">진료 시간</label></td>
-								<td class="tdinput time">시작<input type="time" id="input"
-									name="h_longitude"> &nbsp; &nbsp; 종료<input type="time"
-									id="input" name="h_latitude"></td>
-							</tr>
 							<tr>
 								<td class="time"><label for="name">점심 시간</label></td>
 								<td class="tdinput time">시작<input type="time" id="input"
@@ -153,12 +146,9 @@
 								<td class="tdinput"><input type="checkbox" name="h_pay"
 									value="강아지"> 강아지 <input type="checkbox" name="h_pay"
 									value="고양이"> 고양이 <input type="checkbox" name="h_pay"
-									value="파충류"> 파충류
-									<input type="checkbox" name="h_pay"
-									value="파충류"> 포유류
-									<input type="checkbox" name="h_pay"
-									value="파충류"> 조류
-									<input type="checkbox" name="h_pay"
+									value="파충류"> 파충류 <input type="checkbox" name="h_pay"
+									value="파충류"> 포유류 <input type="checkbox" name="h_pay"
+									value="파충류"> 조류 <input type="checkbox" name="h_pay"
 									value="파충류"> 곤충류</td>
 							</tr>
 
@@ -167,7 +157,7 @@
 					</table>
 
 
-					<h4>병원 대표 사진 등록</h4>
+					<h3>병원 대표 사진 등록</h3>
 					<table class="container">
 						<tbody>
 							<tr>
@@ -183,29 +173,29 @@
 					</table>
 
 
-					<h4>추가 사항</h4>
+					<h3>추가 사항</h3>
 					<table class="container">
 						<tbody>
 							<tr>
 								<td><label for="name">상세 설명</label></td>
-								<td><textarea id="input_box" rows="4"
-										cols="30" name="h_memo"
+								<td><textarea id="input_box" cols="30" rows="4"
+										name="h_memo"
 										placeholder="방문자들의 편의를 위해 진료 가능한 동물 종류 다양하게 또는 가능한 업무(진료, 미용, 엑스레이, 수술) 등을 작성해주세요"></textarea></td>
 							</tr>
 							<tr>
 								<td><label for="name">찾아오는 길</label></td>
-								<td><textarea id="input_box" rows="4"
-										cols="30" name="h_memo_road"
+								<td><textarea id="input_box" cols="30" rows="4"
+										name="h_memo_road"
 										placeholder="골목 또는 2층 이상의 찾기 어려운 위치일 경우 상세 입력 부탁합니다."></textarea></td>
 							</tr>
 
 							<tr>
-								<td><h3>편의사항</h3></td>
+								<td><h4>편의사항</h4></td>
 							</tr>
 							<tr>
 								<td><label for="name"> SNS / Blog </label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_sns"></td>
+									name="h_sns" value="https://"></td>
 
 							</tr>
 
@@ -247,7 +237,9 @@
 					<br> <br> <br>
 					<div class="row">
 						<div class="find-btn">
-							<input type="submit" title="Button push blue/green" class="btn btnPush btnBlueGreen find-btn1" value="병원 등록" onclick="submitForm(event);">
+							<input type="submit" title="Button push blue/green"
+								class="btn btnPush btnBlueGreen find-btn1" value="병원 등록"
+								onclick="submitForm(event);">
 						</div>
 					</div>
 				</div>

@@ -44,10 +44,10 @@
 				<div class="containerbox">
 
 					<div>
-						<h2>내 병원 수정하기</h2>
+						<h2 align="center">내 병원 정보 수정</h2>
 					</div>
 
-					<h4>기본 정보</h4>
+					<h3>기본 정보</h3>
 
 					<table class="container">
 
@@ -184,13 +184,13 @@
 					</table>
 
 
-					<h4>병원 대표 사진 등록</h4>
+					<h3>병원 대표 사진 등록</h3>
 					<table class="container">
 						<tbody>
 							<tr>
 								<td><label for="name">대표 사진 등록</label></td>
 								<td class="tdinput filebox">
-								<input class="upload-name" value="첨부파일">
+								
 								<img src="image?file=${hospital.h_picture eq null? 'default.png': hospital.h_picture}&type=hospital" class="img-icon"
                  					 alt="이미지 선택" id="preview" width="100px">
 								<label for="file">파일찾기</label>
@@ -202,7 +202,7 @@
 						</tbody>
 					</table>
 
-					<h4>추가 사항</h4>
+					<h3>추가 사항</h3>
 					<table class="container">
 						<tbody>
 							<tr>
@@ -217,7 +217,7 @@
 							</tr>
 
 							<tr>
-								<td><h3>편의사항</h3></td>
+								<td><h4>편의사항</h4></td>
 							</tr>
 							<tr>
 								<td><label for="name"> SNS / Blog </label></td>

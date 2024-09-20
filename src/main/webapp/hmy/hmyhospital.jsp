@@ -55,10 +55,10 @@
 			<div class="containerbox">
 
 				<div>
-					<h2>내 병원 정보</h2>
+					<h2 align="center">내 병원 정보</h2>
 				</div>
 
-				<h4>기본 정보</h4>
+				<h3>기본 정보</h3>
 
 				<table class="container">
 					<tbody>
@@ -92,10 +92,11 @@
 						</tr>
 						<tr>
 							<td><label for="name">점심 시간</label></td>
-							<td><span>${hospital.h_lunch_time_start }  ~  ${hospital.h_lunch_time_end } </span></td>
+							<td><span>${hospital.h_lunch_time_start } ~
+									${hospital.h_lunch_time_end } </span></td>
 						</tr>
 						<tr>
-						<td><label for="name">진료 시간</td>
+							<td><label for="name">진료 시간</td>
 							<span>${hospital_time.hopening_time }</span>
 						</tr>
 						<tr>
@@ -107,19 +108,22 @@
 				</table>
 
 
-				<h4>병원 대표 사진</h4>
+				<h3>병원 대표 사진</h3>
 				<table class="container">
 					<tbody>
 						<tr>
 							<td><label for="name">등록된 대표 사진</label></td>
-							<td><img src="<%=request.getContextPath() %>/files/${hospital.h_picture}" style="width:500px; height:300px;"></td>
-							
+							<td><img
+								src="image?file=${hospital.h_picture eq null? 'h_default.png': hospital.h_picture}
+								&id=${h_id}&type=hospital"
+								style="width: 500px; height: 300px;"></td>
+
 						</tr>
 					</tbody>
 				</table>
 
 
-				<h4>추가 사항</h4>
+				<h3>추가 사항</h3>
 				<table class="container">
 					<tbody>
 						<tr>
@@ -132,7 +136,7 @@
 						</tr>
 
 						<tr>
-							<td><h3>편의사항</h3></td>
+							<td><h4>편의사항</h4></td>
 						</tr>
 						<tr>
 							<td><label for="name"> SNS / Blog </label></td>
@@ -143,13 +147,13 @@
 						<tr>
 							<td><label for="name"> 결제수단 </label></td>
 							<td><span>${hospital.h_pay }</span></td>
-							
+
 						</tr>
 
 						<tr>
 							<td><label for="name"> 주차 가능 여부 </label></td>
-							<td> ${hospital.h_parking }</td>
-						
+							<td><c:if test='${hospital.h_parking eq true }'> 가능</c:if></td>
+
 						</tr>
 
 					</tbody>

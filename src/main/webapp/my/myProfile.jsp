@@ -31,10 +31,10 @@
 				href="./hmyNewHospital"><img src="./img/play.png" width="16px">&nbsp;병원인증하기</a>
 			</span>
 		</c:if>
-		<div>
-			<h3>내 프로필</h3>
+		<div >
+			<h2 align="center">내 프로필</h2>
 		</div>
-		<div>
+		<div class = "containerprofile">
 			<ul>
 				<li>프로필 사진</li>
 				<li><img

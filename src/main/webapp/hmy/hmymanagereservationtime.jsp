@@ -14,6 +14,13 @@
 	color: rgba(105, 233, 46);
 }
 </style>
+
+<!-- 캘린더 라이브러리 -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
 <link rel="stylesheet" href="css/hmy/request.css" />
 <link rel="stylesheet" href="css/hmy/list.css" />
 <link rel="stylesheet" href="css/hmy/containerbox.css" />
@@ -62,13 +69,17 @@
 												</label>
 											</div>
 										</td>
-										<td>영업시간
-										<td><input type="time" id="input"
+										<td>영업시간</td>
+										<!-- 시간 고치기 -->
+										<td><input type="time" class="time_start" id="timepicker"
 											name="htime_opening_mon"
 											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
 											~ <input type="time" id="input" name="htime_closing_mon"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}">
+
+
 										</td>
+
 									</tr>
 								</c:if>
 
