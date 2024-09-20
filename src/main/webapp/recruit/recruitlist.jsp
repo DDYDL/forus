@@ -45,24 +45,14 @@
                     <tr>
                         <td class="tabletd">
                         <select size="5">
-					    <option value="mammalia" data-bs-toggle="collapse" data-bs-target="#mammalia">포유류</option>
-					    <option value="reptile" data-bs-toggle="collapse" data-bs-target="#reptile">파충류</option>
-					    <option value="bird" data-bs-toggle="collapse" data-bs-target="#bird">조류</option>
-					    <option value="pisces" data-bs-toggle="collapse" data-bs-target="#pisces">어류</option>
-					    <option value="amphibian" data-bs-toggle="collapse" data-bs-target="#amphibian">양서류</option>
+					    <option value="mammalia" data-bs-toggle="collapse" data-bs-target="#mammalia" onclick="speciesClick(mammalia)">포유류</option>
+					    <option value="bird" data-bs-toggle="collapse" data-bs-target="#bird" onclick="speciesClick(bird)">조류</option>
+					    <option value="reptile" data-bs-toggle="collapse" data-bs-target="#reptile" onclick="speciesClick(reptile)">파충류</option>
+					    <option value="amphibian" data-bs-toggle="collapse" data-bs-target="#amphibian" onclick="speciesClick(amphibian)">양서류</option>
+					    <option value="pisces" data-bs-toggle="collapse" data-bs-target="#pisces" onclick="speciesClick(pisces)">어류</option>
 	                	</select>
 	                    </td>
-	                    <td class="tabletd">
-	                    <div id="mammalia" class="collapse">
-		                <select id="species" onclick="selectSearch_specie()" size="5">
-					    <option class="species" value="강아지">강아지</option>
-					    <option class="species" value="고양이">고양이</option>
-					    <option class="species" value="햄스터">햄스터</option>
-					    <option class="species" value="토끼">토끼</option>
-					    <option class="species" value="다람쥐">다람쥐</option>
-		                </select>
-		                </div>
-	                    </td>
+	                    <td id="speciestd" class="tabletd"><div id="mammalia" class="collapse"></div></td>
                     </tr>
                     </tbody>
                 </table>
@@ -182,7 +172,7 @@
         }
         
         function thirdSelect(dong) {
-        	// 두번째 요소 선택시 세번째 요소 초기화 후 생성);
+        	// 두번째 요소 선택시 세번째 요소 초기화 후 생성;
         	var td3 = $('#addressdongeummaen');
         	td3.empty();
         	
@@ -197,6 +187,28 @@
         		select3.append(`<option class="areas" value="\${list[k]}">\${list[k]}</option>`);
         	}
         }
+    </script>
+    
+    <script>
+    	var mammalia = ['강아지','고양이','햄스터','토끼','페럿','다람쥐','기니피그','카피바라','양','염소','알파카','돼지','소','말','당나귀','노새','고슴도치'];
+    	var bird = ['거위','공작','닭','비둘기','앵무새','오리','타조'];
+    	var reptile = ['거북이','도마뱀','뱀','악어'];
+    	var amphibian = ['도롱뇽','개구리'];
+    	var pisces = ['어류'];
+    	
+    	// 동물 선택시 실행되는 함수
+    	function speciesClick(animal) {
+    		var td = $('#speciestd');
+    		td.empty();
+    		td.append(`<select id="species" onclick="selectSearch_specie()" size="5">`);
+			var select = $('#species');
+        	
+        	console.log(animal);
+        	for(var i=0; i<animal.length; i++) {
+        		select.append(`<option class="species" value="\${animal[i]}">\${animal[i]}</option>`);
+        	}
+    		
+    	}
     </script>
     
     <!-- 글 목록 -->
