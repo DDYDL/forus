@@ -67,6 +67,7 @@
 			h.h_address,
 			h.h_latitude,
 			h.h_longitude,
+			h.h_picture,
 			h.h_animal_type,
 			(
 					ST_Distance_Sphere(
@@ -97,6 +98,7 @@
 			h.h_address,
 			h.h_latitude,
 			h.h_longitude,
+			h.h_picture,
 			h.h_animal_type
 		FROM
 			hospital h

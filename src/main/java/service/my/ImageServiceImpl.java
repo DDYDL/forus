@@ -13,7 +13,10 @@ public class ImageServiceImpl implements ImageService {
 
 	public void imageView(HttpServletRequest request, OutputStream out, String filename, String type) throws Exception {
 		FileInputStream fis = null;
-		String path = request.getServletContext().getRealPath("upload" + "\\" + type);
+		// String path = request.getServletContext().getRealPath("upload" + "\\" + type);
+		String path = request.getServletContext().getRealPath("upload" + File.separator + type);
+		System.out.println("Image Path: " + path);
+
 		try {
 			fis = new FileInputStream(new File(path, filename));
 			byte[] buff = new byte[4096];

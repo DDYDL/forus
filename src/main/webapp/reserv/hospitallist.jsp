@@ -352,7 +352,8 @@
         return `
         <div class="hospital-item">
             <a href="hospitalDetail?hospitalId=${"${hospital.h_id}"}" class="hospital-link">
-                <img src="img/hospital/kosta3.png" alt="${"${hospital.h_name}"}">
+                <%--<img src="img/hospital/kosta3.png" alt="${"${hospital.h_name}"}">--%>
+               <img src="image?file=${"${hospital.h_picture}" == null ? 'default.png' : "${hospital.h_picture}"}&type=hospital" alt="${"${hospital.h_name}"}">
                 <div class="hospital-info">
                     <strong>${"${hospital.h_name}"}</strong>
                     <p>${"${hospital.h_address}"}<br>진료동물: ${"${hospital.h_animal_type}"}</p>

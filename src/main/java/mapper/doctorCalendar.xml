@@ -74,4 +74,7 @@
         SET reserv_status = #{reservationStatus}
         WHERE reserv_id = #{reservationId}
     </update>
+
+
+
 </mapper>
