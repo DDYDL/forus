@@ -8,16 +8,20 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script
-	src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
-<link
-	href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css"
-	rel="stylesheet" />
+
+
+<!-- 캘린더 라이브러리 -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
 <link rel="stylesheet" href="css/hmy/containerbox.css" />
 <link rel="stylesheet" href="css/hmy/input.css" />
 <link rel="stylesheet" href="css/hmy/font.css" />
 <link rel="stylesheet" href="css/hmy/time.css" />
 <link rel="stylesheet" href="css/hmy/button.css" />
+<link href="./css/recruit/calendar.css?after" rel="stylesheet" type="text/css">
 <script>
 	function readURL(input) {
 		if (input.files && input.files[0]) {
@@ -39,7 +43,8 @@
 	<div class="mypage-content">
 
 		<div class="bodybox">
-			<form action="./hmyHospitalModify" method="post" enctype="multipart/form-data">
+			<form action="./hmyHospitalModify" method="post"
+				enctype="multipart/form-data">
 				<input type="hidden" name="h_id" value="${hospital.h_id }">
 				<div class="containerbox">
 
@@ -47,7 +52,7 @@
 						<h2 align="center">내 병원 정보 수정</h2>
 					</div>
 
-					<h3>기본 정보</h3>
+					<h3  style="text-align: left">기본 정보</h3>
 
 					<table class="container">
 
@@ -55,8 +60,9 @@
 							<tr>
 								<td><label for="name">대표자 이름</label></td>
 								<td class="tdinput"><input type="text" id="input"
-									name="h_exponent_name" value="${hospital.h_exponent_name  }" required></td>
-						</tr>
+									name="h_exponent_name" value="${hospital.h_exponent_name  }"
+									required></td>
+							</tr>
 
 							<tr>
 								<td><label for="name">사업자 등록번호</label></td>
@@ -85,8 +91,8 @@
 								<td><input class="tdinput" type="address"
 									id="sample6_postcode" placeholder="우편번호" name="h_address">
 
-									<button class="btn" onclick="sample6_execDaumPostcode()">주소찾기</button>
-								</td>
+									<button class="btn" type="button"
+										onclick="sample6_execDaumPostcode()">주소찾기</button></td>
 
 							</tr>
 
@@ -158,51 +164,54 @@
 
 
 							<tr>
-								<td class="time"><label for="name">점심 시간</label></td>
-								<td class="tdinput time">시작<input type="time" id="input"
+								<%-- <td class="time"><label for="name">점심 시간</label></td>
+								<td class="tdinput time"><input type="time" id="input"
 									name="h_lunch_time_start"
-									value="${hospital.h_lunch_time_start }"> &nbsp; &nbsp;
+									value="${hospital.h_lunch_time_start }"> ~ <input
+									type="time" id="input" name="h_lunch_time_end"
+									value="${hospital.h_lunch_time_end }"></td> --%>
 
-									종료 <input type="time" id="input" name="h_lunch_time_end"
-									value="${hospital.h_lunch_time_end }"></td>
+								<td class="setting_td1"><label for="time">점심시간</label></td>
+								<td class="setting_td2"><input type="time"
+									class="time_start" id="timepicker"name="h_lunch_time_start"
+									value="${hospital.h_lunch_time_start }">
+									~
+									<input type="time" class="time_end" id="timepicker"
+									name="h_lunch_time_end" value="${hospital.h_lunch_time_end }"></td>
+
 							</tr>
 							<tr>
 								<td><label for="name"> 진료가능 목록 </label></td>
-								<td class="tdinput"><input type="checkbox" name="h_pay"
-									value="강아지"> 강아지 <input type="checkbox" name="h_pay"
-									value="고양이"> 고양이 <input type="checkbox" name="h_pay"
-									value="파충류"> 파충류
-									<input type="checkbox" name="h_pay"
-									value="파충류"> 포유류
-									<input type="checkbox" name="h_pay"
-									value="파충류"> 조류
-									<input type="checkbox" name="h_pay"
-									value="파충류"> 곤충류</td>
+								<td class="tdinput"><input type="checkbox"
+									name="h_animal_type" value="강아지"> 강아지 <input
+									type="checkbox" name="h_animal_type" value="고양이"> 고양이 <input
+									type="checkbox" name="h_animal_type" value="파충류"> 파충류 <input
+									type="checkbox" name="h_animal_type" value="파충류"> 포유류 <input
+									type="checkbox" name="h_animal_type" value="파충류"> 조류 <input
+									type="checkbox" name="h_animal_type" value="파충류"> 곤충류</td>
 							</tr>
 
 						</tbody>
 					</table>
 
 
-					<h3>병원 대표 사진 등록</h3>
+					<h3 style="text-align: left">병원 대표 사진 등록</h3>
 					<table class="container">
 						<tbody>
 							<tr>
 								<td><label for="name">대표 사진 등록</label></td>
-								<td class="tdinput filebox">
-								
-								<img src="image?file=${hospital.h_picture eq null? 'default.png': hospital.h_picture}&type=hospital" class="img-icon"
-                 					 alt="이미지 선택" id="preview" width="100px">
-								<label for="file">파일찾기</label>
-								<input type="file" name="file" id="file" accept="image/*"
-									onchange="readURL(this);" style="display: none"
-									name="h_picture"></td>
+								<td class="tdinput filebox"><img
+									src="image?file=${hospital.h_picture eq null? 'default.png': hospital.h_picture}&type=hospital"
+									class="img-icon" alt="이미지 선택" id="preview" width="100px">
+									<label for="file">파일찾기</label> <input type="file" name="file"
+									id="file" accept="image/*" onchange="readURL(this);"
+									style="display: none" name="h_picture"></td>
 
 							</tr>
 						</tbody>
 					</table>
 
-					<h3>추가 사항</h3>
+					<h3 style="text-align: left">추가 사항</h3>
 					<table class="container">
 						<tbody>
 							<tr>
@@ -228,24 +237,40 @@
 
 							<tr>
 								<td><label for="name"> 결제수단 </label></td>
-								<td class="tdinput">
-								<input id="현금" type="checkbox" name="h_pay" value="현금"> 현금
-								<input id="카드" type="checkbox" name="h_pay" value="카드"> 카드
-								<input id="제로페이" type="checkbox" name="h_pay" value="제로페이"> 제로페이
-								<c:forEach items="${h_pays}" var="h_pays">
-									<c:if test="${h_pays eq '현금'}"><script>$("input[id='현금']").prop("checked", true);</script></c:if>
-									<c:if test="${h_pays eq '카드'}"><script>$("input[id='카드']").prop("checked", true);</script></c:if>
-									<c:if test="${h_pays eq '제로페이'}"><script>$("input[id='제로페이']").prop("checked", true);</script></c:if>
-								</c:forEach>
-								</td>
+								<td class="tdinput"><input id="현금" type="checkbox"
+									name="h_pay" value="현금"> 현금 <input id="카드"
+									type="checkbox" name="h_pay" value="카드"> 카드 <input
+									id="제로페이" type="checkbox" name="h_pay" value="제로페이">
+									제로페이 <c:forEach items="${h_pays}" var="h_pays">
+										<c:if test="${h_pays eq '현금'}">
+											<script>
+												$("input[id='현금']").prop(
+														"checked", true);
+											</script>
+										</c:if>
+										<c:if test="${h_pays eq '카드'}">
+											<script>
+												$("input[id='카드']").prop(
+														"checked", true);
+											</script>
+										</c:if>
+										<c:if test="${h_pays eq '제로페이'}">
+											<script>
+												$("input[id='제로페이']").prop(
+														"checked", true);
+											</script>
+										</c:if>
+									</c:forEach></td>
 							</tr>
 
 							<tr>
 								<td><label for="name"> 주차 가능 여부 </label></td>
-								<td class="tdinput">
-									<input type="radio" name="h_parking" value="true" <c:if test="${hospital.h_parking eq true}">checked</c:if>> 가능
-									<input type="radio" name="h_parking" value="false" <c:if test="${hospital.h_parking eq false}">checked</c:if>> 불가능
-								</td>
+								<td class="tdinput"><input type="radio" name="h_parking"
+									value="true"
+									<c:if test="${hospital.h_parking eq true}">checked</c:if>>
+									가능 <input type="radio" name="h_parking" value="false"
+									<c:if test="${hospital.h_parking eq false}">checked</c:if>>
+									불가능</td>
 							</tr>
 
 						</tbody>
@@ -266,5 +291,17 @@
 	</div>
 
 </body>
+
+<script>
+	flatpickr("#timepicker", {
+		noCalendar : true,
+		allowInput : true, // 직접 입력 허용
+		enableTime : true, // 시간 사용
+		dateFormat : "H:i",
+		time_24hr : true,
+		defaultHour : 12,
+		defaultMinute : 0,
+	});
+</script>
 </html>
 

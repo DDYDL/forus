@@ -26,20 +26,22 @@
 <body>
 	<%@ include file="../mainmypage.jsp"%>
 
-	<div class="mypage-content">
-		<c:if test="${user.ishospital eq 0 }">
-			<span id="authentication">병원관계자라면?&nbsp; <a
-				href="./hmyNewHospital"><img src="./img/play.png" width="16px">&nbsp;병원인증하기</a>
-			</span>
-		</c:if>
+	<div class="mypage-content" >
+		
 		<div>
 			<h2 align="center">내 프로필</h2>
 		</div>
+		
+		<div style="text-align:right; padding-right: 90px"><c:if test="${user.ishospital eq 0 }">
+			<span id="authentication">병원관계자라면?&nbsp; <a
+				href="./hmyNewHospital"><img src="./img/play.png" width="16px">&nbsp;병원인증하기</a>
+			</span>
+		</c:if></div>
 		<div class="containerprofile">
 			<ul>
 				<li>프로필 사진</li>
 				<li><img
-					src="image?file=${user.picture eq null? 'default.png': user.picture}&id=${user_id}&type=user"
+					src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&id=${user_id}&type=user"
 					class="img-icon"></li>
 
 				<li class="title">이름</li>

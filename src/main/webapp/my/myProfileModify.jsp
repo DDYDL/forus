@@ -46,7 +46,7 @@
 				<ul>
 					<li>프로필 사진</li>
 					<li><img
-						src="image?file=${user.picture eq null? 'default.png': user.picture}&type=user"
+						src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&type=user"
 						class="img-icon" alt="이미지 선택" id="preview" width="100px"
 						onclick="document.getElementById('file').click();"> <input
 						type="file" name="file" id="file" accept="image/*"
@@ -85,7 +85,8 @@
 					<li><input class="tdinput" type="address"
 						id="sample6_postcode" placeholder="우편번호" name="h_address">
 
-						<button class="btn" onclick="sample6_execDaumPostcode()">주소찾기</button></li>
+						<button class="btn" type="button"
+							onclick="sample6_execDaumPostcode()">주소찾기</button></li>
 					<li><input class="tdinput" type="address" id="sample6_address"
 						placeholder="주소" name="h_address"> &nbsp; &nbsp;<input
 						class="tdinput" type="address" id="sample6_detailAddress"
@@ -181,16 +182,6 @@
 		"inline" : false
 	// 페이지 로드 시 자동으로 표시 안 함
 
-	});
-
-	flatpickr("#timepicker", {
-		noCalendar : true,
-		allowInput : true, // 직접 입력 허용
-		enableTime : true, // 시간 사용
-		dateFormat : "H:i",
-		time_24hr : true,
-		defaultHour : 12,
-		defaultMinute : 0,
 	});
 </script>
 </html>

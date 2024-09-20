@@ -180,7 +180,7 @@
 								<td><label for="name">상세 설명</label></td>
 								<td><textarea id="input_box" cols="30" rows="4"
 										name="h_memo"
-										placeholder="방문자들의 편의를 위해 진료 가능한 동물 종류 다양하게 또는 가능한 업무(진료, 미용, 엑스레이, 수술) 등을 작성해주세요"></textarea></td>
+										placeholder="방문자들의 편의를 위해 진료 가능한 동물 종류를 &#10;다양하게 또는 가능한 업무(진료, 미용, 엑스레이, 수술) 등을 작성해주세요"></textarea></td>
 							</tr>
 							<tr>
 								<td><label for="name">찾아오는 길</label></td>

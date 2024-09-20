@@ -57,7 +57,7 @@
 				<h2 align="center">내 병원 정보</h2>
 			</div>
 
-			<h3  style="text-align:left">기본 정보</h3>
+			<h3 style="text-align: left">기본 정보</h3>
 
 			<table class="container">
 				<tbody>
@@ -94,10 +94,7 @@
 						<td><span>${hospital.h_lunch_time_start } ~
 								${hospital.h_lunch_time_end } </span></td>
 					</tr>
-					<tr>
-						<td><label for="name">진료 시간</td>
-						<span>${hospital_time.hopening_time }</span>
-					</tr>
+
 					<tr>
 						<td><label for="name">진료 가능 동물 목록</label></td>
 						<td class="tdinput"><span>${hospital.h_animal_type }</span>
@@ -107,7 +104,7 @@
 			</table>
 
 
-			<h3 style="text-align:left">병원 대표 사진</h3>
+			<h3 style="text-align: left">병원 대표 사진</h3>
 			<table class="container">
 				<tbody>
 					<tr>
@@ -122,7 +119,7 @@
 			</table>
 
 
-			<h3 style="text-align:left">추가 사항</h3>
+			<h3 style="text-align: left">추가 사항</h3>
 			<table class="container">
 				<tbody>
 					<tr>
@@ -151,13 +148,10 @@
 
 					<tr>
 						<td><label for="name"> 주차 가능 여부 </label></td>
-						<td>
-						<c:choose>
-						<c:when test='${hospital.h_parking eq true }'> 가능</c:when>
-						<c:when test='${hospital.h_parking eq false }'> 불가능</c:when>
-						</c:choose>
-						
-						</td>
+						<td><c:choose>
+								<c:when test='${hospital.h_parking eq true }'> 가능</c:when>
+								<c:when test='${hospital.h_parking eq false }'> 불가능</c:when>
+							</c:choose></td>
 
 					</tr>
 

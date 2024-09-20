@@ -77,10 +77,7 @@
 							중성화 여부</li>
 
 
-						<input type="radio" class="btn-check" name="pet_gender"
-							id="success-outlined" autocomplete="off" value="M"
-							<c:if test="${pet.pet_gender eq 'M'}">checked</c:if>>
-						<label class="btn btn-outline-success" for="success-outlined">남</label>
+						
 
 						<li class="title">나이</li>
 						<br>
