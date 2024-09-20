@@ -134,12 +134,12 @@
 }
 
 
-.hospital-item img {
-    width: 62%;
-    height: 98%;
+/*.hospital-item img {*/
+/*    width: 62%;*/
+/*    height: 98%;*/
 
 
-}
+/*}*/
 
 
 .hospital-info {
@@ -364,8 +364,9 @@
 }
 
 #main-gallery-image-container {
-    width: 800px;
-    height: 450px;
+
+    /*width: 800px;*/
+    /*height: 450px;*/
     position: relative;
 }
 
@@ -383,7 +384,6 @@
 }
 
 .thumbnail-gallery-image {
-    width: 100px;
     height: 56px;
     cursor: pointer;
     opacity: 0.6;
@@ -588,5 +588,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+}
+
+
+.hospital-item img {
+    max-width: 27%;
+    max-height: 7%;
+    width: 70%;
+    height: 100%;
+
 
 }

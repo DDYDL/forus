@@ -13,8 +13,8 @@
 <body>
 <%@ include file="../header.jsp" %>
 
-<div id="content-container">
-<%--<div class="content">--%>
+<%--<div id="content-container">--%>
+<div class="content">
     <div id="filter-container">
         <div id="search-bar-container">
             <input type="text" placeholder="주소로 검색" id="search-input">
@@ -46,6 +46,8 @@
 </div>
 </body>
 </html>
+
+
 
 <script>
     var map;
@@ -226,7 +228,7 @@
 
                     $('#hospitals-container').append(hospitalListHTML);
                     // 다음 페이지가 존재할 가능성 체크
-                    if (data.length === 5) {
+                    if (data.length < 5) {
                         loadMoreButton.style.display = 'block';
                     } else {
                         loadMoreButton.style.display = 'none';
@@ -324,7 +326,6 @@
                     loadMoreButton.style.display = 'none';
                 }
 
-
                 map.setLevel(10);
             } else {
                 console.error("서버로부터 받은 데이터가 배열이 아닙니다:", data);
@@ -353,7 +354,7 @@
         <div class="hospital-item">
             <a href="hospitalDetail?hospitalId=${"${hospital.h_id}"}" class="hospital-link">
                 <%--<img src="img/hospital/kosta3.png" alt="${"${hospital.h_name}"}">--%>
-               <img src="image?file=${"${hospital.h_picture}" == null ? 'default.png' : "${hospital.h_picture}"}&type=hospital" alt="${"${hospital.h_name}"}">
+               <img src="image?file=${"${hospital.h_picture}" == null ? 'hospitaldefault.png' : "${hospital.h_picture}"}&type=hospital" alt="${"${hospital.h_name}"}">
                 <div class="hospital-info">
                     <strong>${"${hospital.h_name}"}</strong>
                     <p>${"${hospital.h_address}"}<br>진료동물: ${"${hospital.h_animal_type}"}</p>

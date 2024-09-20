@@ -24,6 +24,7 @@
     <title></title>
 
 
+
 </head>
 
 <body>
@@ -40,15 +41,19 @@
             <div id="hospital-gallery">
                 <button id="prev-gallery-image" class="gallery-carousel-button">‹</button>
                 <div id="main-gallery-image-container">
-                    <img id="main-gallery-image" src="../../img/kosta1.png" alt="병원 이미지 메인"
+                    <img id="main-gallery-image" src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}"
                          class="gallery-image active">
                 </div>
                 <button id="next-gallery-image" class="gallery-carousel-button">›</button>
             </div>
             <div id="thumbnail-gallery-container">
-                <img src="img/hospital/kosta1.png" alt="병원 이미지 1" class="thumbnail-gallery-image active" data-index="0">
-                <img src="img/hospital/kosta2.png" alt="병원 이미지 2" class="thumbnail-gallery-image" data-index="1">
-                <img src="img/hospital/kosta3.png" alt="병원 이미지 3" class="thumbnail-gallery-image" data-index="2">
+<%--                <img src="img/hospital/kosta1.png" alt="병원 이미지 1" class="thumbnail-gallery-image active" data-index="0">--%>
+<%--                <img src="img/hospital/kosta2.png" alt="병원 이미지 2" class="thumbnail-gallery-image" data-index="1">--%>
+<%--                <img src="img/hospital/kosta3.png" alt="병원 이미지 3" class="thumbnail-gallery-image" data-index="2">--%>
+    <img src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}" class="thumbnail-gallery-image active" data-index="0">
+    <img src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}" class="thumbnail-gallery-image" data-index="1">
+    <img src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}" class="thumbnail-gallery-image" data-index="2">
+
             </div>
         </div>
     </section>
