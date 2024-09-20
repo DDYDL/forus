@@ -20,7 +20,7 @@
     	<div class="user_img_div"><img src="image?file=${apply_user.picture eq null? 'userdefault.png': apply_user.picture}&id=${user_id}&type=user" class="img-icon user_img"></div>
     	<table class="user_table">
     		<tr>
-    			<td class="user_td1" colspan="2">${apply_user.name}(${apply_user.birthday}, ${apply_user.gender})</td>
+    			<td class="user_td1" colspan="2">${apply_user.name}(${apply_user.birthday}, ${apply_user.gender eq 'M'? '남':'여'})</td>
     		</tr>
     		<tr>
     			<td class="user_td1">주소</td>

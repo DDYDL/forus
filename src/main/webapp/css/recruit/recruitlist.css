@@ -31,6 +31,23 @@ select {
 }
 
 /* 리스트 설정 */
-.list-header { display:flex; justify-content: space-between; }
+.list-header { display:flex; justify-content:space-between; }
 .list-count { align-self: flex-end; }
 .list-btn { align-self: flex-end; }
+th { text-align:center; }
+
+.recruit_td1 { width:150px; padding-left:20px; white-space:pre-line; word-break:keep-all; vertical-align:middle; }
+.recruit_th1 { width:150px; padding-left:20px; }
+/* 제목 */
+.recruit_td2 { width:170px; padding-left:50px; white-space:nowrap; overflow:hidden; vertical-align:middle; }
+.recruit_th2 { width:170px; padding-left:50px; }
+/* 급여 */
+.recruit_td3 { width:150px; padding-left:30px; text-align:right; vertical-align:middle; }
+.recruit_th3 { width:150px; padding-left:30px; }
+.form_btn { border:1px solid #69E92E; background:white; border-radius:20px; font-size:12px; }
+/* 근무시간 */
+.recruit_td4 { width:70px; padding-left:30px; text-align:center; vertical-align:middle; }
+.recruit_th4 { width:70px; padding-left:30px; }
+/* 등록일 */
+.recruit_td5 { width:100px; padding-left:30px; word-break:keep-all; text-align:right; vertical-align:middle; }
+.recruit_th5 { width:100px; padding-left:30px; }

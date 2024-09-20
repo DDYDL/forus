@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -224,7 +225,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>지역</th><th>제목</th><th>급여(원)</th><th>근무시간</th><th>등록일</th>
+                <th class="recruit_th1">지역</th><th class="recruit_th2">제목</th><th class="recruit_th3">급여(원)</th><th class="recruit_th4">근무시간</th><th class="recruit_th5">등록일</th>
             </tr>
         </thead>
         <tbody id="recruitlist_body"></tbody>
@@ -299,8 +300,16 @@
     					var post_time = recruit_post.post_time.slice(0,16);
     					var start_time = recruit_post.post_start_time.slice(0,5);
     					var end_time = recruit_post.post_end_time.slice(0,5);
+    					
+    					// 숫자 3자리마다 ,찍기
+    					var pay = Number(recruit_post.post_pay).toLocaleString('ko-KR');
+    					
     					// 테이블 안에 recruit_post 한 행을 추가
-    					$('#recruitlist_body').append(`<tr onclick="location.href='./recruitDetailpage?post_id=\${recruit_post.post_id}'"><td>\${recruit_post.post_address}</td><td>\${recruit_post.post_title}</td><td>\${recruit_post.post_pay}</td><td>\${start_time}~\${end_time}</td><td>\${post_time}</td></tr>`);
+    					$('#recruitlist_body').append(`<tr onclick="location.href='./recruitDetailpage?post_id=\${recruit_post.post_id}'"><td class="recruit_td1">\${recruit_post.post_address}</td>
+    												   <td class="recruit_td2">\${recruit_post.post_title}</td>
+    												   <td class="recruit_td3">\${pay}원&nbsp;&nbsp;<button class="form_btn" <c:set var="form" value="${recruit_post.post_form}"/><c:if test="${fn:contains(form,'일급')}">style="border:1px solid #58ACFA;"</c:if> disabled>\${recruit_post.post_form}</button></td>
+    												   <td class="recruit_td4">\${start_time}~\${end_time}</td><td class="recruit_td5">\${post_time}</td></tr>`);
+    					
     				})
     				maxPage = res.maxPage; // 넘어온 페이지로 설정
     				page = res.page;
@@ -313,6 +322,7 @@
     				} else {
     					document.getElementById("moreBtn").style.visibility = 'visible';
     				}
+    				
     			}
     		})
     	}
