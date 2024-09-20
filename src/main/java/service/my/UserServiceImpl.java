@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Integer userModify(HttpServletRequest request, String newfilename) throws Exception {
-		String path = request.getServletContext().getRealPath("upload" + "\\" + "user");
+		String path = request.getServletContext().getRealPath("upload" + File.separator + "user");
 		int size = 10 * 1024 * 1024;
 		
 		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new FileUploadRename(newfilename));

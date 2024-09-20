@@ -48,16 +48,27 @@
         Swal.fire({
             title: `병원 예약 - ${hospital.h_name}`,
             html: `
-                <div id="reservation-modal-content">
-                    <input type="text" id="reservation-date-picker" placeholder="예약 날짜를 선택하세요">
+<!--                <div id="reservation-modal-content">-->
+<!--                    <input type="text" id="reservation-date-picker" placeholder="예약 날짜를 선택하세요">-->
+<!--                    <div id="time-slots-container"></div>-->
+<!--                </div>-->
+                 <div id="reservation-modal-content">
+                    <div id="date-picker-container">
+                        <div id="reservation-date-picker"></div>  <!-- 달력 위치 -->
+                    </div>
+<!--                    <input type="text" id="reservation-input" placeholder="예약 날짜를 선택하세요" >  &lt;!&ndash; 텍스트 박스를 달력 아래에 &ndash;&gt;-->
+                      <div id="reservation-date-badge" class="badge-date" style="display: none;">예약 날짜를 선택하세요</div>
                     <div id="time-slots-container"></div>
                 </div>
+
             `,
             showCancelButton: true,
             confirmButtonText: '다음',
             cancelButtonText: '취소',
             preConfirm: () => {
-                const selectedDate = $('#reservation-date-picker').val();
+                // const selectedDate = $('#reservation-date-picker').val();
+                // const selectedDate = $('#reservation-date-badge').val(); // 텍스트 박스에서 선택된 날짜 가져오기
+                const selectedDate = $('#reservation-date-badge').text();
                 const selectedTime = $('input[name="timeSlot"]:checked').val();
 
                 if (!selectedDate) {
@@ -180,10 +191,15 @@
             maxDate: new Date().fp_incr(7),
             onChange: function (selectedDates, dateStr) {
                 // updateAvailableTimeSlots(dateStr);
+                // $('#reservation-input').val(dateStr);
+                const badge = document.getElementById('reservation-date-badge');
+                badge.textContent = dateStr;
+                badge.style.display = "inline-block"; // 배지를 보이게 설정
                 debouncedFetch(dateStr);
             }
         });
     }
+
 </script>
 
 <!-- 예약 가능한 시간 슬롯 요청 -->
