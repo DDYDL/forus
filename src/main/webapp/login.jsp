@@ -15,8 +15,8 @@
 			<br> <br>
 			<div>
 				<input type="text" placeholder="이메일 아이디" name="email"
-					class="user-input cursorpadding"><br> <br> <input type="password"
-					placeholder="비밀번호" name="password" class="user-input cursorpadding"><br>
+					class="input user-input cursorpadding"><br> <br> <input type="password"
+					placeholder="비밀번호" name="password" class="input user-input cursorpadding"><br>
 				<br> <br> <br>
 			</div>
 			<div>

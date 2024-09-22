@@ -29,22 +29,23 @@
 			<a href="${pageContext.request.contextPath}/myBeforeReserv">지난 예약</a>
 		</div>
 		<div class="overflow">
-		<div class="listcnt" id="listcnt"></div>
-		<div class="isConsult floatright">
-			<input type="checkbox" id="isConsult" name="isConsult" class="btn-check" autocomplete="off"> <label for="isConsult" class="btn btn-outline-success">진료완료만 보기</label>
-		</div>
-		<div class="petSelect floatright">
-			<select id="pet_id" name = "pet_id">
-				<option value=""  class="center" selected>반려동물별</option>
+			<div class="listcnt" id="listcnt"></div>
+			<div class="isConsult floatright">
+				<input type="checkbox" id="isConsult" name="isConsult" class="radio-hidden" autocomplete="off">
+				<label for="isConsult" class="label-btnstyle">진료완료만 보기</label>
+			</div>
+			<div class="petSelect floatright">
+				<select id="pet_id" name = "pet_id">
+					<option value=""  class="center" selected>반려동물별</option>
 				<c:forEach items="${petList }" var="pet">
 					<option value="${pet.pet_id}" class="center">${pet.pet_name}</option>
 				</c:forEach>
 			</select>
-		</div>
-		<div class="dateSelect floatright">
+			</div>
+			<div class="dateSelect floatright">
 					<input class="datecalendar cursorpadding" id="dateRange" name="dateRange" type="text" placeholder=" 기간 입력">
+			</div>
 		</div>
-	</div>
 		<table class="table table-hover mytable">
 			<thead>
 				<tr>
@@ -59,12 +60,12 @@
 			</tbody>
 		</table>
 		<br>
-<div id="paging">
-</div>
-		<br>
-		<br>
+	<div id="paging">
 	</div>
-	</form>
+		<br>
+		<br>
+</div>
+</form>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     let datecalendar = document.querySelector('.datecalendar');
