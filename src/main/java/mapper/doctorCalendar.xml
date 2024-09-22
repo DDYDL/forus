@@ -58,7 +58,8 @@
         COALESCE(p.pet_breed, '펫 등록 x') AS petBreed,
         COALESCE(p.pet_gender, '펫 등록 x') AS petGender,
         COALESCE(p.pet_age, 0) AS petAge,
-        COALESCE(p.pet_picture, '이미지 없음') AS petPicture
+--         COALESCE(p.pet_picture, '이미지 없음') AS petPicture
+        COALESCE(p.pet_picture, 'petdefault.png') AS petPicture
         FROM
         reservation r
         JOIN
