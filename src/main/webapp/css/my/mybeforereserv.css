@@ -5,14 +5,26 @@
 
 /* mybeforereserv 기간 설정 버튼 */
 .dateSelect { }
-.datecalendar { width:200px;}
+.datecalendar { width:240px;}
 
-.floatright { float: rigtht;}
+/* .floatright { float: rigtht;} */
 
 /* mybeforereserv 페이징 */
 #paging { text-align: center; }
 .pagenum { cursor: pointer;} 
 
-.overflow::after {  content: "";
-  clear: both;
-  display: block;}
+/* .overflow::after {  content: ""; */
+/*   clear: both; */
+/*   display: block;} */
+.overflow {
+         display: flex;
+         align-items: center;
+          justify-content: space-between;
+         }
+.over{
+   width:150px;
+
+   margin-top: 20px;
+   float: right;
+   
+}

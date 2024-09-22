@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지-게시글관리</title>
+<title>마이페이지-Help 요청</title>
 <!-- table -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -22,7 +22,7 @@ function submitForm() {
 	<%@ include file="../mainmypage.jsp" %>
 	<div class = "mypage-content-list">
 	<div class="mytitle">
-		<p>게시글 관리</p>
+		<p>Help 요청</p>
 	</div>
 	<div class="listcnt">
 		<p>총 ${myPostList.size() }건</p>

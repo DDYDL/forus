@@ -28,24 +28,25 @@
 			<a href="${pageContext.request.contextPath}/myAfterReserv">이후 예약</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 			<a href="${pageContext.request.contextPath}/myBeforeReserv">지난 예약</a>
 		</div>
-		<div class="overflow">
-			<div class="listcnt" id="listcnt"></div>
-			<div class="isConsult floatright">
-				<input type="checkbox" id="isConsult" name="isConsult" class="radio-hidden" autocomplete="off">
-				<label for="isConsult" class="label-btnstyle">진료완료만 보기</label>
-			</div>
-			<div class="petSelect floatright">
-				<select id="pet_id" name = "pet_id">
-					<option value=""  class="center" selected>반려동물별</option>
-				<c:forEach items="${petList }" var="pet">
-					<option value="${pet.pet_id}" class="center">${pet.pet_name}</option>
-				</c:forEach>
-			</select>
-			</div>
-			<div class="dateSelect floatright">
-					<input class="datecalendar cursorpadding" id="dateRange" name="dateRange" type="text" placeholder=" 기간 입력">
-			</div>
-		</div>
+   <div class="overflow">
+         <div class="listcnt" id="listcnt" ></div>
+         <div class="over"></div>
+         <div class="isConsult floatright">
+            <input type="checkbox" id="isConsult" name="isConsult" class="radio-hidden" autocomplete="off">
+            <label for="isConsult" class="label-btnstyle">진료완료만 보기</label>
+         </div>
+         <div class="petSelect floatright">
+            <select id="pet_id" name = "pet_id">
+               <option value=""  class="center" selected>반려동물별</option>
+            <c:forEach items="${petList }" var="pet">
+               <option value="${pet.pet_id}" class="center">${pet.pet_name}</option>
+            </c:forEach>
+         </select>
+         </div>
+         <div class="dateSelect floatright">
+               <input class="datecalendar cursorpadding" id="dateRange" name="dateRange" type="text" placeholder=" 기간 입력">
+         </div>
+      </div>
 		<table class="table table-hover mytable">
 			<thead>
 				<tr>
