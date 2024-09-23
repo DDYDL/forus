@@ -44,7 +44,7 @@
                     <thead><tr><th>종</th><th>동물종</th></tr></thead>
                     <tbody>
                     <tr>
-                        <td class="tabletd tabletd1">
+                        <td class="tabletd tabletd1" style="padding:5px 0 0 0;">
                         <select size="5" style="width:100%;margin:0px;padding:0px;">
 					    <option value="mammalia" style="padding:5px 10px;" data-bs-toggle="collapse" data-bs-target="#mammalia" onclick="speciesClick(mammalia)">포유류</option>
 					    <option value="bird" style="padding:5px 10px;" data-bs-toggle="collapse" data-bs-target="#bird" onclick="speciesClick(bird)">조류</option>
@@ -53,7 +53,7 @@
 					    <option value="pisces" style="padding:5px 10px;" data-bs-toggle="collapse" data-bs-target="#pisces" onclick="speciesClick(pisces)">어류</option>
 	                	</select>
 	                    </td>
-	                    <td id="speciestd" class="tabletd"><div id="mammalia" class="collapse"></div></td>
+	                    <td id="speciestd" class="tabletd" style="padding:5px 0 0 0;"><div id="mammalia" class="collapse"></div></td>
                     </tr>
                     </tbody>
                 </table>
