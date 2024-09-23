@@ -207,7 +207,7 @@
     
     <div id="modal" class="modal">
     	<p class="content-title">지원하기</p>
-    	<p class="content-inner-title">강아지 산책시켜주실 분!!</p>
+    	<p class="content-inner-title">${post.post_title}</p>
 		<form action="recruitApply" method="post">
 			<!-- post_id를 위한 필드 -->
     		<input type="hidden" name="post_id" value="${post.post_id}">

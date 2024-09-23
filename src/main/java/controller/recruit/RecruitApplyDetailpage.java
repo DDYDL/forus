@@ -57,6 +57,7 @@ public class RecruitApplyDetailpage extends HttpServlet {
 			request.setAttribute("apply_user", apply_user);
 			request.setAttribute("petList", petList);
 			request.setAttribute("recruit_post", recruit_post);
+			request.setAttribute("post_id", recruit_apply.getPost_id());
 			// post로 보냄
 			request.getRequestDispatcher("./recruit/recruitapplydetailpage.jsp").forward(request, response);
 		} catch(Exception e) {

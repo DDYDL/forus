@@ -69,6 +69,13 @@ public class PetServiceImpl implements PetService {
 		pet.setPet_gender(multi.getParameter("pet_gender"));
 		pet.setPet_age(Integer.parseInt(multi.getParameter("pet_age")));
 		pet.setPet_memo(multi.getParameter("pet_memo"));
+		
+		System.out.println(multi.getParameterValues("pet_neutering"));
+		if(multi.getParameterValues("pet_neutering") !=null) {
+			pet.setPet_neutering(true);
+		} else {
+			pet.setPet_neutering(false);
+		}
 
 		// 파일 수정
 		if (multi.getFile("file") != null) {
