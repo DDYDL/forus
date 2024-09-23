@@ -81,7 +81,7 @@ public class HmyHospitalModify extends HttpServlet {
 			String hid = request.getParameter("h_id");
 			String newfilename = "hospital" + hid;
 
-			Hospital hospital = service.hospitalModify(request, newfilename);
+			Hospital hospital = service.hospitalModify(request);
 			request.setAttribute("hospital", hospital);
 			System.out.println("hospital:" + hospital);
 

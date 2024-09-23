@@ -12,7 +12,6 @@ import dao.my.PetDao;
 import dao.my.PetDaoImpl;
 import dto.Pet;
 import dto.User;
-import util.FileUploadRename;
 
 public class PetServiceImpl implements PetService {
 
@@ -23,13 +22,13 @@ public class PetServiceImpl implements PetService {
 	}
 
 	@Override
-	public void insertPet(HttpServletRequest request, String newfilename) throws Exception {
+	public void insertPet(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 
 		String path = request.getServletContext().getRealPath("upload" + File.separator + "pet");
 		int size = 10 * 1024 * 1024;
 
-		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new FileUploadRename(newfilename));
+		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
 
 		Pet pet = new Pet();
 		pet.setPet_id(pet.getPet_id());
@@ -55,11 +54,11 @@ public class PetServiceImpl implements PetService {
 
 	@Override
 
-	public Integer petModify(HttpServletRequest request, String newfilename) throws Exception {
+	public Integer petModify(HttpServletRequest request) throws Exception {
 		String path = request.getServletContext().getRealPath("upload" + File.separator + "pet");
 		int size = 10 * 1024 * 1024;
 
-		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new FileUploadRename(newfilename));
+		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8",new DefaultFileRenamePolicy());
 
 		Pet pet = new Pet();
 		pet.setPet_id(Integer.parseInt(multi.getParameter("pet_id")));

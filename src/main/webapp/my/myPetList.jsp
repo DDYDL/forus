@@ -68,7 +68,7 @@
 
 								
 								<img
-									src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&id=${pet_id}&type=pet"
+									src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&type=pet"
 									class="img-icon">
 
 							</div></td>

@@ -123,7 +123,8 @@
 	
 	<select id="selectReservByReservId" parameterType="Integer"
 		resultType="Map">
-		SELECT r.reserv_id, r.pet_id, r.h_id, r.reserv_date, r.reserv_time, r.reserv_content, r.reserv_status, h.h_name, p.pet_name
+		SELECT r.reserv_id, r.pet_id, r.h_id, r.reserv_date, DATE_FORMAT(r.reserv_time, '%H:%i') AS reserv_time, r.reserv_content, r.reserv_status, h.h_name,
+		p.pet_name, p.pet_age, p.pet_gender, p.pet_species, p.pet_breed
 		FROM reservation r
 		JOIN hospital h ON r.h_id = h.h_id
 		JOIN pet p ON r.pet_id = p.pet_id
