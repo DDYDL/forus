@@ -9,11 +9,11 @@
 
 <c:set var="sessionUser" value="${sessionScope.user}" />
 
-<html>
-<head>
-    <title></title>
+<%--<html>--%>
+<%--<head>--%>
+<%--    <title></title>--%>
 
-</head>
+<%--</head>--%>
 
 
 <div id="hospital-qna-section">
@@ -45,7 +45,7 @@
 
 </div>
 
-</html>
+<%--</html>--%>
 
 
 <script>

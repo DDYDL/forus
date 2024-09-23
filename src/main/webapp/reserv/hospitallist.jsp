@@ -44,8 +44,6 @@
     </div>
 
 </div>
-</body>
-</html>
 
 
 
@@ -157,6 +155,7 @@
 
 <script>
     let isInitialLoad = true;
+    // 사용자 위치 가져오기
     function getUserLocationAndAddMarker(updateHospitals = false) {
         console.log('getUserLocationAndAddMarker 호출, updateHospitals:', updateHospitals); // 로그 추가
         if (navigator.geolocation) {
@@ -174,11 +173,13 @@
                         // 사용자의 현재 위치에 마커 생성
                         addUserMarker(currentLat, currentLon);
                     }
-                    if (updateHospitals && currentPage === 1 && isInitialLoad) { // 플래그를 사용하여 첫 호출만 허용
+                    //  처음 로드 시에만 병원 목록 업데이트  , 안하면 목록이 중복 추가됨
+                    if (updateHospitals && currentPage === 1 && isInitialLoad) {
                         $('#hospitals-container').empty(); // 병원 목록 초기화
                         updateHospitalList(currentLat, currentLon);
                         isInitialLoad = false; // 이후 중복 호출 방지
                     }
+
                 },
                 function (error) {
                     alert('위치를 가져올 수 없습니다: ' + error.message);
@@ -194,9 +195,6 @@
             alert('이 브라우저에서는 위치 정보가 지원되지 않습니다.');
         }
     }
-
-
-
 </script>
 
 <script>
@@ -253,6 +251,7 @@
             }
         });
     }
+
     loadMoreButton.addEventListener('click', function () {
         currentPage++;
         isLoadMore = true;
@@ -395,3 +394,6 @@
     }
 
 </script>
+
+</body>
+</html>
