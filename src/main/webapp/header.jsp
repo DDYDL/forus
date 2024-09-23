@@ -56,7 +56,7 @@
 				</c:choose>
 			</div>
 		</div>
-		<hr>
+		<hr noshade="noshade" size="1">
 
 		<script>
 			$('a').click(function() {
