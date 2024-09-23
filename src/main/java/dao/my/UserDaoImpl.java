@@ -33,4 +33,11 @@ public class UserDaoImpl implements UserDao {
 		return sqlSession.selectOne("mapper.user.selectUserId", id);
 
 	}
+
+	@Override
+	public void ishospitalstatus(User user) throws Exception {
+		sqlSession.update("mapper.user.ishospitalstatus",user);
+		sqlSession.commit();
+		
+	}
 }

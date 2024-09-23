@@ -37,8 +37,16 @@ public class RecruitApplyList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		Integer post_id = Integer.parseInt(request.getParameter("post_id"));
+		
 		try {
+			Integer post_id = null;
+			
+			if(request.getParameter("post_id") == null) {
+				post_id = (Integer)request.getAttribute("post_id");
+				System.out.println(post_id);
+			} else {
+				post_id = Integer.parseInt(request.getParameter("post_id"));
+			}
 			RecruitApplyService service = new RecruitApplyServiceImpl();
 			RecruitService serviceRe = new RecruitServiceImpl();
 			// 해당하는 Recruit_post에 지원한 Recruit_apply 가져오기
@@ -60,5 +68,4 @@ public class RecruitApplyList extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }

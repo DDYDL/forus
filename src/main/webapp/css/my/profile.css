@@ -25,6 +25,7 @@ placeholder {
 }
 
 #input_box {
+	padding: 10px;
 	width: 300px;
 	height: 100px;
 	border-radius: 5px;
@@ -32,21 +33,36 @@ placeholder {
 	border: 1px solid rgb(201, 201, 201)
 }
 
+textarea {
+	resize: none;
+}
+
 input[type="date"]::before {
 	content: attr(data-placeholder);
 	width: 100%;
 }
 
+
+
+#pet_age {
+	border: 1px solid #D1D1D1;
+	border-radius: 5px;
+	width: 250px;
+	height: 35px;
+	padding-left: 13px;
+}
+
 .title {
 	padding-top: 10px;
+	font-weight: bold;
 }
 
 .line {
 	margin: 5px 10px;
-	padding: 15px 30px 10px 5px;
+	padding: 15px 30px 10px 10px;
 	border-bottom-style: solid;
 	border-bottom-color: rgb(201, 201, 201);
-	border-bottom-width: 5px;
+	border-bottom-width: 2px;
 	width: fit-content;
 }
 

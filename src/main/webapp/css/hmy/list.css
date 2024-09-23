@@ -1,5 +1,4 @@
 .styled-table {
-	border-style: solid none;
 	border-collapse: collapse;
 	margin: 0 auto;
 	min-width: 400px;
@@ -8,7 +7,7 @@
 }
 
 .styled-table thead tr {
-	border-top: 2px solid #000;
+	border-top: 1px solid #000;
 	border-bottom: 1px solid #dddddd;
 	text-align: center;
 	cursor: pointer;
@@ -19,11 +18,12 @@
 }
 
 .styled-table tbody tr {
+		border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
 }
 
 ul {
-  line-height: 1.8;
+  line-height: 1.5;
 }
 
 
@@ -42,4 +42,12 @@ th, td{
 
 .center{
 	text-align: ceneter;
+}
+
+input[type=text] {
+	width: 150px;
+	height: 40px;
+	border-radius: 5px;
+	border: 1px solid rgb(201, 201, 201);
+	padding: 0 5px;
 }

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import dto.Hospital;
 import dto.Hospital_time;
+import dto.User;
 import util.MybatisSqlSessionFactory;
 
 public class HospitalDaoImpl implements HospitalDao {
@@ -45,11 +46,10 @@ public class HospitalDaoImpl implements HospitalDao {
 		return sqlSession.selectOne("mapper.hospital.selectHospitalByUserId", user_id);
 	}
 
-
 	@Override
 	public List<Hospital_time> selectHospitalTime(Integer h_id) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("mapper.hospital_time.selectHospitalTime",h_id);
+		return sqlSession.selectList("mapper.hospital_time.selectHospitalTime", h_id);
 	}
 
 	@Override
@@ -78,6 +78,12 @@ public class HospitalDaoImpl implements HospitalDao {
 	@Override
 	public void insertHospitalTime(Hospital_time hospital_time) throws Exception {
 		sqlSession.insert("mapper.hospital_time.insertHospitalTime", hospital_time);
+		sqlSession.commit();
+	}
+
+	@Override
+	public void insertnewTime(Hospital_time hospital_time) throws Exception {
+		sqlSession.insert("mapper.hospital_time.insertnewTime", hospital_time);
 		sqlSession.commit();
 	}
 

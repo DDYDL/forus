@@ -25,5 +25,18 @@
 		insert into hospital_time (htime_week,htime_opening,htime_closing,htime_isable,week_no)
 		values (#{htime_week},#{htime_opening},#{htime_closing},#{htime_isable},#{week_no})
 	</insert>
+	
+	<insert id = "insertnewTime" parameterType="Hospital_time">
+		INSERT INTO  hospital_time  ( h_id ,  htime_week ,  htime_opening, htime_closing, htime_isable, week_no )
+		VALUES
+	(#{h_id}, 'Monday', '09:00:00', '18:00:00', 0, 1),
+	(#{h_id}, 'Tuesday', '09:00:00', '18:00:00', 0, 2),
+	(#{h_id}, 'Wednesday', '09:00:00', '18:00:00', 0, 3),
+	(#{h_id}, 'Thursday', '09:00:00', '18:00:00', 0, 4),
+	(#{h_id}, 'Friday', '09:00:00', '18:00:00', 0, 5),
+	(#{h_id}, 'Saturday', '09:00:00', '18:00:00', 0, 6),
+	(#{h_id}, 'Sunday', '09:00:00', '18:00:00', 0, 7);
+	</insert>
+	
 
 </mapper>

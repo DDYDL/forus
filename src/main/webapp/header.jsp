@@ -22,7 +22,7 @@
 </head>
 <body>
 
-		<div class="header">
+		<div id="header" class="header">
 			<div class="logo_box">
 				<a href="${pageContext.request.contextPath}/hospitalList"><img
 					src="${pageContext.request.contextPath}/img/logo2.png" title="logo" /></a>
@@ -30,6 +30,8 @@
 			<div class="menu_box">
 				<a href="${pageContext.request.contextPath}/hospitalList">병원예약</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="${pageContext.request.contextPath}/recruitList">Help Us</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				
+				
 				<c:choose>
 					<c:when test="${user eq null}"></c:when>
 					<c:otherwise>
@@ -54,7 +56,7 @@
 				</c:choose>
 			</div>
 		</div>
-		<hr>
+		<hr noshade="noshade" size="1">
 
 		<script>
 			$('a').click(function() {

@@ -33,7 +33,7 @@ public class HmyNewHospital extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/hmy/hmynewhospital.jsp").forward(request, response);
+		request.getRequestDispatcher("/hmy/hmynewhospital2.jsp").forward(request, response);
 	}
 
 	/**
@@ -47,11 +47,13 @@ public class HmyNewHospital extends HttpServlet {
 		String latitude = request.getParameter("latitude");
 		String longitude = request.getParameter("longitude");
 
-		System.out.println("latitude = " + latitude);
-		System.out.println("longitude = " + longitude);
 
 		HospitalService service = new HospitalServiceImpl();
 		try {
+
+			String hid = request.getParameter("h_id");
+			String newfilename = "hospital_" + hid;
+
 			service.insertHospital(request);
 			response.sendRedirect("hmyNewHospitalSuccess");
 		} catch (Exception e) {

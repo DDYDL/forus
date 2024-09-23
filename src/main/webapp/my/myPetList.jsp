@@ -22,7 +22,6 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<link rel="stylesheet" href="css/my/containerbox.css" />
 <link rel="stylesheet" href="css/hmy/list.css" />
 <script>
 	function delete_list(num) {
@@ -66,14 +65,22 @@
 						<td><input type="checkbox" name="petIds"
 							value="${pet.pet_id}" /></td>
 						<td><div class="profilebox">
+
+								
 								<img
-									src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&id=${pet_id}&type=pet"
+									src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&type=pet"
 									class="img-icon">
+
 							</div></td>
 						<td><a href="./myPetModify?pet_id=${pet.pet_id}">${pet.pet_name }</a></td>
 						<td>${pet.pet_species }</td>
 						<td>${pet.pet_breed }</td>
-						<td>${pet.pet_gender }</td>
+						<td>
+						 <c:choose>
+								<c:when test="${pet.pet_gender eq 'M' }"> 수컷</c:when>
+								<c:when test="${pet.pet_gender eq 'F' }"> 암컷</c:when>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 

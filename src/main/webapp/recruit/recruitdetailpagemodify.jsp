@@ -165,7 +165,10 @@
     			console.log(result);
     			var res = JSON.parse(result);
     			res.petList.forEach(function(pet) {
-    				$('#pet_profile').append(`<tr><td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'default.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3"><input type="radio" name="pet_name" value="\${pet.pet_name}"></td></tr>`);
+    				$('#pet_profile').append(`<tr onclick="touch_tr(event, '\${pet.pet_id}')" class="touch_tr"><td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon pet_img"></td>
+    										  <td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age},&nbsp;${pet.pet_gender eq 'M'? '남':'여'})</td>
+    										  <td class="pet_td4">\${pet.pet_species}</td><td class="pet_td5">\${pet.pet_breed}</td>
+    										  <td class="pet_td6"><label><input type="radio" name="pet_name" value="\${pet.pet_name}" class="radio_btn" id="\${pet.pet_id}" required="required"/></label></td></tr>`);
     				var pet_id = document.getElementById('post_pet_id').value;
     				if(pet_id == pet.pet_id) {
     					console.log(pet.pet_name);
@@ -174,6 +177,21 @@
     			})
     		}
     	})
+    	
+    	// pet 리스트의 한 행 클릭시 배경색 유지
+    	function touch_tr(e, pet_id) {
+			var trs = document.querySelectorAll(".touch_tr");
+			  trs.forEach(function (tr) {
+			    if (e.currentTarget == tr) {
+			    	// 선택한 행의 라디오 버튼 선택하기
+			    	$(`#\${pet_id}`).prop('checked', true);
+			      	tr.classList.add("active");
+			    } else {
+			      	tr.classList.remove("active");
+			    }
+			  });
+			  console.log(e.currentTarget);
+		}
 	</script>
 </body>
 </html>

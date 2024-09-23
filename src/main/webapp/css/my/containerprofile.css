@@ -18,12 +18,22 @@
 	border: none;
 }
 
-.container { /*내부 입력 모으는 용 회색선 박스*/
+.containerprofilem { /*내부 입력 모으는 용 회색선 박스*/
 	margin: 0 auto;
 	height: auto;
 	border: 1px solid;
-	width: 900px;
+	width: 600px;
 	padding: 10px 40px;
+	border-radius: 20px;
+	border: 1px solid rgb(201, 201, 201);
+}
+
+.containerprofile { /*내부 입력 모으는 용 회색선 박스*/
+	margin: 0 auto;
+	height: auto;
+	border: 1px solid;
+	width: 600px;
+	padding: 60px 30px;
 	border-radius: 20px;
 	border: 1px solid rgb(201, 201, 201);
 }
@@ -79,9 +89,4 @@ h4 {
 }
 
 tr{ padding: 10px;}
-.name{
-
-	border-buttom: 0 0 1px 0;
-	
-}
 

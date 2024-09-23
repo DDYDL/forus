@@ -20,6 +20,8 @@
 	</insert>
 
 
+
+
 	<select id="selectHospital" parameterType="Integer"
 		resultType="Hospital">
 	<![CDATA[
@@ -90,7 +92,8 @@
 		]]>
 	</select>
 
-	<select id="findHospitalByKeyword" parameterType="map" resultType="dto.Hospital">
+	<select id="findHospitalByKeyword" parameterType="map"
+		resultType="dto.Hospital">
     <![CDATA[
 		SELECT
 			h.h_id,
@@ -112,7 +115,7 @@
 			h.h_name ASC
 			LIMIT #{offset}, #{limit}
 		]]>
-</select>
+	</select>
 
 	<select id="findHospitalDetailByHospitalId" parameterType="int"
 		resultType="dto.Hospital">
@@ -138,15 +141,17 @@
 		'Sunday');
 	</select>
 
-	<select id="selectHospitalByUserId" parameterType="Integer" resultType="Hospital">
+	<select id="selectHospitalByUserId" parameterType="Integer"
+		resultType="Hospital">
 		Select * From
 		Hospital Where user_id=#{user_id}
 	</select>
 
 	<update id="updateHospitalIntevalTime" parameterType="Map">
-		update hospital set h_interval_time=#{h_interval_time}
+		update
+		hospital set h_interval_time=#{h_interval_time}
 		where h_id=#{h_id}
-		
+
 	</update>
 
 

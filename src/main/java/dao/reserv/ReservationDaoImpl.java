@@ -73,14 +73,25 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception {
+	public Integer selectMyBeforeReservCount(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception {
 		Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         params.put("pet_id", pet_id);
         params.put("startDate", startDate);
         params.put("endDate", endDate);
         params.put("isConsult", isConsult);
+		return sqlSession.selectOne("mapper.reservation.selectMyBeforeReservCount", params);
+	}
 
+	@Override
+	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult, Integer row) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("pet_id", pet_id);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+        params.put("isConsult", isConsult);
+        params.put("row", row);
         return sqlSession.selectList("mapper.reservation.selectMyBeforeReserv", params);
 	}
 	
@@ -95,5 +106,6 @@ public class ReservationDaoImpl implements ReservationDao {
 		sqlSession.commit();
 		return deleteReserv;
 	}
+
 
 }

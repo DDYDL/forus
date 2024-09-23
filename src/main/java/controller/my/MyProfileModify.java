@@ -42,7 +42,7 @@ public class MyProfileModify extends HttpServlet {
 			UserService service = new UserServiceImpl();
 			User user = service.userDetail(id);
 			request.setAttribute("user", user);
-			request.getRequestDispatcher("/my/myProfileModify.jsp").forward(request, response);
+			request.getRequestDispatcher("/my/myProfileModify2.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("err.jsp").forward(request, response);
@@ -57,16 +57,12 @@ public class MyProfileModify extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			HttpSession session = request.getSession();
-			User suser = (User)session.getAttribute("user");
-			String newfilename = "user_"+suser.getId();
-			
 			UserService service = new UserServiceImpl();
-			Integer num = service.userModify(request, newfilename);
+			Integer num = service.userModify(request);
 			User user = service.userDetail(num);
 			
 			request.setAttribute("user", user);
-			request.getRequestDispatcher("/my/myProfile.jsp").forward(request, response);
+			request.getRequestDispatcher("/my/myProfile2.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "프로필 수정 오류");
