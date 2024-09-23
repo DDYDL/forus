@@ -16,4 +16,6 @@ public interface HospitalQnaService {
 	Hospital_qna createHospitalQna(String hospitalId, Integer userId, String userEmail, String questionContent);
 
 	boolean insertHospitalAnswer(int qnaId, Hospital_qna hospitalQna);
+
+	Integer getManagerIdByHospitalId(Integer hospitalId);
 }

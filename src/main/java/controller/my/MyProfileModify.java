@@ -42,7 +42,7 @@ public class MyProfileModify extends HttpServlet {
 			UserService service = new UserServiceImpl();
 			User user = service.userDetail(id);
 			request.setAttribute("user", user);
-			request.getRequestDispatcher("/my/myProfileModify.jsp").forward(request, response);
+			request.getRequestDispatcher("/my/myProfileModify2.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("err.jsp").forward(request, response);
@@ -66,7 +66,7 @@ public class MyProfileModify extends HttpServlet {
 			User user = service.userDetail(num);
 			
 			request.setAttribute("user", user);
-			request.getRequestDispatcher("/my/myProfile.jsp").forward(request, response);
+			request.getRequestDispatcher("/my/myProfile2.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "프로필 수정 오류");

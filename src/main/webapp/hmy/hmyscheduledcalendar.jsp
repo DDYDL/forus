@@ -50,14 +50,7 @@
     <button id="closeSidebarButton" onclick="closeSidebar()">닫기</button>
 </div>
 
-<script>
-    // Add event listener to the button
-    document.getElementById('reservationTimeButton').addEventListener('click', function() {
 
-        window.location.href = '${pageContext.request.contextPath}/hmyManagerReservationTime';
-
-    });
-</script>
 
 <script>
     var userId = ${sessionUser.id};

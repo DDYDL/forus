@@ -42,8 +42,15 @@ public class HmyHospitalModify extends HttpServlet {
 			Hospital hospital = service.getHospitalByUserId(user_id);
 			request.getSession().setAttribute("hospital", hospital);
 			String[] h_pays = hospital.getH_pay().split(",");
+			String[] h_animal_types = hospital.getH_animal_type().split(",");
 
 			request.setAttribute("h_pays", h_pays);
+			request.setAttribute("h_animal_types", h_animal_types);
+
+			for (int i = 0; i < h_animal_types.length; i++) {
+				System.out.println(h_animal_types[i]);
+			}
+
 			request.setAttribute("hospital", hospital);
 
 			request.getRequestDispatcher("hmy/hmyhospitalmodify.jsp").forward(request, response);

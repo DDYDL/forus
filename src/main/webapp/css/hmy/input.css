@@ -1,5 +1,5 @@
-
 input[type=text] {
+	padding-left: 10px;
 	width: 300px;
 	height: 40px;
 	border-radius: 5px;
@@ -16,6 +16,7 @@ input[type=tel] {
 }
 
 input[type=address] {
+	padding-left: 10px;
 	width: 200px;
 	height: 40px;
 	border-radius: 5px;
@@ -23,31 +24,76 @@ input[type=address] {
 }
 
 
-input[type=texttime] {
+input[type="radio"] {
+	vertical-align: middle;
+	appearance: none;
+	border: max(1px, 0.1em) solid #D1D1D1;
+	border-radius: 50%;
+	width: 1.25em;
+	height: 1.25em;
+}
+
+input[type="radio"]:focus-visible {
+	outline-offset: max(2px, 0.1em);
+	outline: max(2px, 0.1em) dotted #69E92E;
+}
+
+input[type="radio"]:checked {
+	border: 0.4em solid #69E92E;
+}
+
+input[type="checkbox"] {
+	vertical-align: middle;
+	appearance: none; /* 기본 체크박스 모양을 없앰 */
+	width: 1.25em;
+	height: 1.25em;
+	border: 1px solid #D1D1D1;
+	border-radius: 20%;
+	background-color: white;
+	cursor: pointer;
+	transition: background-color 0.1s ease;
+}
+
+input[type="checkbox"]:checked {
+	background-color: #69E92E; /* 체크된 상태의 배경색 */
+	border-color: #69E92E;
+}
+
+input[type="checkbox"]:checked::after {
+	content: "✓";
+	font-size: 16px;
+	color: white;
+	display: block;
+	text-align: center;
+	line-height: 18px;
+}
+
+#postcode {
 	width: 100px;
-	height: 40px;
-	border-radius: 5px;
-	border: 1px solid rgb(201, 201, 201);
+}
+
+#timepicker {
+	width: 125px;
+	padding-left: 5px;
+	text-align: center;
 }
 
 #input_box {
+	padding-left: 10px;
 	width: 300px;
 	height: 150px;
 	border-radius: 5px;
 	border: 1px solid rgb(201, 201, 201);
-	white-space:nowrap;
-	word-break:normal;
-	resize:none;
 }
 
-.text{
+.text {
 	width: 300px;
 	height: 150px;
 	border-radius: 5px;
 	border: 1px solid rgb(201, 201, 201);
-	white-space:nowrap;
-	word-break:normal;
-	resize:none;
+	white-space: nowrap;
+	word-break: normal;
+	resize: none;
 }
 
 .tdinput {
@@ -58,7 +104,7 @@ input[type=texttime] {
 	display: inline;
 	height: 40px;
 	padding: 0 10px;
-	vertical-align:middle;
+	vertical-align: middle;
 	border: 1px solid rgb(201, 201, 201);
 	width: 50%;
 	color: #999999;
@@ -90,7 +136,7 @@ input[type=texttime] {
 	display: inline;
 	height: 40px;
 	padding: 0 10px;
-	vertical-align:middle;
+	vertical-align: middle;
 	border: 1px solid rgb(201, 201, 201);
 	width: 50%;
 	color: #999999;
@@ -99,7 +145,7 @@ input[type=texttime] {
 
 .btnaddress {
 	text-align: left;
-	padding : 10px 20px;
+	padding: 10px 20px;
 	color: #000000;
 	vertical-align: middle;
 	background-color: transparent;
@@ -108,5 +154,16 @@ input[type=texttime] {
 	margin-left: 10px;
 	border-radius: 10px;
 	border: 1px solid rgb(201, 201, 201);
+}
 
+.searchbox {
+	border: 1px solid #D1D1D1;
+	height: auto;
+	min-height: 50px;
+	border-radius: 10px;
+	margin-top: 15px;
+}
+
+#demo2 {
+	margin: 10px 20px 5px 20px;
 }
