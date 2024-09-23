@@ -22,7 +22,6 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<link rel="stylesheet" href="css/my/containerbox.css" />
 <link rel="stylesheet" href="css/hmy/list.css" />
 <script>
 	function delete_list(num) {
@@ -76,7 +75,12 @@
 						<td><a href="./myPetModify?pet_id=${pet.pet_id}">${pet.pet_name }</a></td>
 						<td>${pet.pet_species }</td>
 						<td>${pet.pet_breed }</td>
-						<td>${pet.pet_gender }</td>
+						<td>
+						 <c:choose>
+								<c:when test="${pet.pet_gender eq 'M' }"> 수컷</c:when>
+								<c:when test="${pet.pet_gender eq 'F' }"> 암컷</c:when>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 

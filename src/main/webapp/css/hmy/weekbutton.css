@@ -20,8 +20,10 @@
 }
  
 
-input[type=checkbox]{
+input[type="checkbox"]{
   display:none;
 }
 
-
+input [type="text"]{
+	text-align: center;
+}

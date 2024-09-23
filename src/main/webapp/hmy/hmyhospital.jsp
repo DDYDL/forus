@@ -131,9 +131,7 @@
 						<td><span>${hospital.h_memo_road }</span></td>
 					</tr>
 
-					<tr>
-						<td><h4>편의사항</h4></td>
-					</tr>
+					
 					<tr>
 						<td><label for="name"> SNS / Blog </label></td>
 						<td class="tdinput"><span>${hospital.h_sns }</span></td>

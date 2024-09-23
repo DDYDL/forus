@@ -54,13 +54,21 @@ public class HospitalServiceImpl implements HospitalService {
 		hospital.setH_manager_name(multi.getParameter("h_manager_name"));
 		hospital.setH_phone(multi.getParameter("h_phone"));
 		hospital.setH_address(multi.getParameter("h_address"));
-		hospital.setH_longitude(multi.getParameter("longitude"));
-		hospital.setH_latitude(multi.getParameter("latitude"));
-		hospital.setH_animal_type(multi.getParameter("h_animal_type"));
+		// hospital.setH_longitude(multi.getParameter("longitude"));
+		// hospital.setH_latitude(multi.getParameter("latitude"));
+
+		String[] h_animal_types = multi.getParameterValues("h_animal_type");
+		String h_animal_type = String.join(",", h_animal_types);
+		hospital.setH_animal_type(h_animal_type);
+
 		hospital.setH_picture(multi.getParameter("h_picture"));
 		hospital.setH_memo(multi.getParameter("h_memo"));
 		hospital.setH_memo_road(multi.getParameter("h_memo_road"));
-		hospital.setH_pay(multi.getParameter("h_pay"));
+
+		String[] h_pays = multi.getParameterValues("h_pay");
+		String h_pay = String.join(",", h_pays);
+		hospital.setH_pay(h_pay);
+
 		hospital.setH_sns(multi.getParameter("h_sns"));
 		hospital.setH_parking(Boolean.parseBoolean(multi.getParameter("h_parking")));
 		hospital.setH_lunch_time_start(LocalTime.parse(multi.getParameter("h_lunch_time_start")));
@@ -92,7 +100,11 @@ public class HospitalServiceImpl implements HospitalService {
 
 		hospital.setH_longitude(multi.getParameter("longitude"));
 		hospital.setH_latitude(multi.getParameter("latitude"));
-		hospital.setH_animal_type(multi.getParameter("h_animal_type"));
+
+		String[] h_animal_types = multi.getParameterValues("h_animal_type");
+		String h_animal_type = String.join(",", h_animal_types);
+		hospital.setH_animal_type(h_animal_type);
+
 		hospital.setH_picture(multi.getParameter("h_picture"));
 		hospital.setH_memo(multi.getParameter("h_memo"));
 		hospital.setH_memo_road(multi.getParameter("h_memo_road"));
@@ -101,6 +113,7 @@ public class HospitalServiceImpl implements HospitalService {
 		String h_pay = String.join(",", h_pays);
 
 		hospital.setH_pay(h_pay);
+
 		hospital.setH_sns(multi.getParameter("h_sns"));
 
 		hospital.setH_parking(Boolean.parseBoolean(multi.getParameter("h_parking")));

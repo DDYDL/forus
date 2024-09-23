@@ -22,7 +22,6 @@ public class HospitalDaoImpl implements HospitalDao {
 		sqlSession.commit();
 
 	}
-	
 
 	@Override
 	public Hospital selectHospital(Integer h_id) throws Exception {
@@ -47,11 +46,10 @@ public class HospitalDaoImpl implements HospitalDao {
 		return sqlSession.selectOne("mapper.hospital.selectHospitalByUserId", user_id);
 	}
 
-
 	@Override
 	public List<Hospital_time> selectHospitalTime(Integer h_id) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("mapper.hospital_time.selectHospitalTime",h_id);
+		return sqlSession.selectList("mapper.hospital_time.selectHospitalTime", h_id);
 	}
 
 	@Override
@@ -82,7 +80,5 @@ public class HospitalDaoImpl implements HospitalDao {
 		sqlSession.insert("mapper.hospital_time.insertHospitalTime", hospital_time);
 		sqlSession.commit();
 	}
-
-	
 
 }

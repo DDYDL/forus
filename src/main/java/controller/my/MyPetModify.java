@@ -42,7 +42,8 @@ public class MyPetModify extends HttpServlet {
 			PetService service = new PetServiceImpl();
 			Pet pet = service.petDetail(pet_id);
 			request.setAttribute("pet", pet);
-			request.getRequestDispatcher("/my/myPetModify.jsp").forward(request, response);
+			System.out.println("pet1" + pet.isPet_neutering());
+			request.getRequestDispatcher("/my/myPetModify2.jsp").forward(request, response);
 
 		} catch (Exception e) {
 			request.setAttribute("err", e.getMessage());
@@ -62,6 +63,8 @@ public class MyPetModify extends HttpServlet {
 			Integer pet_id = service.petModify(request, newfilename);
 			System.out.println(pet_id);
 			Pet pet = service.petDetail(pet_id);
+			
+			System.out.println("pet2" + pet.isPet_neutering());
 
 			request.setAttribute("pet", pet);
 			request.getRequestDispatcher("/myPetList").forward(request, response);

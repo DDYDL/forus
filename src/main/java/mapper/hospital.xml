@@ -39,8 +39,8 @@
 			<if test="h_manager_name != null">h_manager_name=#{h_manager_name},</if>
 			<if test="h_phone != null">h_phone=#{h_phone},</if>
 			<if test="h_address != null">h_address=#{h_address},</if>
-			<if test="h_longitude != null">h_longitude=#{h_longitude},</if>
-			<if test="h_latitude != null">h_latitude=#{h_latitude},</if>
+			<if test="h_longitude != null">h_longitude=#{longitude},</if>
+			<if test="h_latitude != null">h_latitude=#{latitude},</if>
 			<if test="h_animal_type != null">h_animal_type=#{h_animal_type},</if>
 			<if test="h_picture != null">h_picture=#{h_picture},</if>
 			<if test="h_memo != null">h_memo=#{h_memo},</if>

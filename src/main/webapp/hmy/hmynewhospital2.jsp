@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>신규 병원 등록</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -120,12 +120,13 @@
 						<td>병원 주소</td>
 						<td><input type="text" id="postcode" placeholder=" 우편번호"
 							class="user-input join-input-short">&nbsp; <input
-							onclick="daumPostcode()" class="minibtn" value="주소 검색">
+							onclick="daumPostcode()"
+							class="minibutton minibtnFade minibtnBlueGreen" value="주소 검색">
 					</tr>
 					<tr>
 						<td></td>
 						<td><input type="text" id="h_address" placeholder=" 주소"
-							class="user-input join-input" name="h_address"></td>
+							class="user-input join-input" name="h_address" required></td>
 
 					</tr>
 
@@ -139,46 +140,75 @@
 
 					</tr>
 
-
 				</tbody>
 			</table>
-
 			<h3 style="text-align: left">진료 가능한 동물 목록</h3>
 
 			<table class="container">
 
-				<div id="demo2" class="collapse">
-					<thead>
-						<tr>
-							<th>종</th>
-							<th>동물종</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="tabletd"><select size="5">
-									<option value="mammalia" data-bs-toggle="collapse"
-										data-bs-target="#mammalia" onclick="speciesClick(mammalia)">포유류</option>
-									<option value="bird" data-bs-toggle="collapse"
-										data-bs-target="#bird" onclick="speciesClick(bird)">조류</option>
-									<option value="reptile" data-bs-toggle="collapse"
-										data-bs-target="#reptile" onclick="speciesClick(reptile)">파충류</option>
-									<option value="amphibian" data-bs-toggle="collapse"
-										data-bs-target="#amphibian" onclick="speciesClick(amphibian)">양서류</option>
-									<option value="pisces" data-bs-toggle="collapse"
-										data-bs-target="#pisces" onclick="speciesClick(pisces)">어류</option>
-							</select></td>
-							<td id="speciestd" class="tabletd"><div id="mammalia"
-									class="collapse"></div></td>
+				<tbody>
+					<tr>
+						<td>포유류</td>
+						<td><input type="checkbox" name="h_animal_type" value="강아지">강아지</td>
+						<td><input type="checkbox" name="h_animal_type" value="고양이">고양이</td>
+						<td><input type="checkbox" name="h_animal_type" value="햄스터">햄스터</td>
+						<td><input type="checkbox" name="h_animal_type" value="토끼">토끼</td>
+						<td><input type="checkbox" name="h_animal_type" value="기니피그">기니피그</td>
+						<td><input type="checkbox" name="h_animal_type" value="고슴도치">고슴도치</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="checkbox" name="h_animal_type" value="페럿">페럿</td>
+						<td><input type="checkbox" name="h_animal_type" value="다람쥐">다람쥐</td>
+
+						<td><input type="checkbox" name="h_animal_type" value="카피바라">
+							카피바라</td>
+
+						<td><input type="checkbox" name="h_animal_type" value="양">
+							양</td>
+						<td><input type="checkbox" name="h_animal_type" value="염소">
+							염소</td>
+						<td><input type="checkbox" name="h_animal_type" value="알파카">알파카</td>
+					</tr>
+					<tr>
+						<td></td>
+
+						<td><input type="checkbox" name="h_animal_type" value="돼지">돼지</td>
+						<td><input type="checkbox" name="h_animal_type" value="소">소</td>
+						<td><input type="checkbox" name="h_animal_type" value="말">말</td>
+						<td><input type="checkbox" name="h_animal_type" value="당나귀">당나귀</td>
+						<td><input type="checkbox" name="h_animal_type" value="노새">노새</td>
+					</tr>
+					<tr>
+						<td>조류</td>
+						<td><input type="checkbox" name="h_animal_type" value="거위">거위</td>
+						<td><input type="checkbox" name="h_animal_type" value="공작">공작</td>
+						<td><input type="checkbox" name="h_animal_type" value="닭">닭</td>
+						<td><input type="checkbox" name="h_animal_type" value="비둘기">비둘기</td>
+						<td><input type="checkbox" name="h_animal_type" value="앵무새">앵무새</td>
+						<td><input type="checkbox" name="h_animal_type" value="오리">오리</td>
+						<td><input type="checkbox" name="h_animal_type" value="타조">타조</td>
+					</tr>
+					<tr>
+						<td>파충류</td>
+						<td><input type="checkbox" name="h_animal_type" value="거북이">거북이</td>
+						<td><input type="checkbox" name="h_animal_type" value="도마뱀">도마뱀</td>
+						<td><input type="checkbox" name="h_animal_type" value="뱀">뱀</td>
+						<td><input type="checkbox" name="h_animal_type" value="악어">악어</td>
+					</tr>
+					<tr>
+						<td>양서류</td>
+						<td><input type="checkbox" name="h_animal_type" value="도룡뇽">도룡뇽</td>
+						<td><input type="checkbox" name="h_animal_type" value="개구리">개구리</td>
+					</tr>
+					<tr>
+						<td>어류</td>
+						<td><input type="checkbox" name="h_animal_type" value="어류">어류</td>
+					</tr>
 
 
 
 
-						</tr>
-						<tr>
-							<div id="search_btnSpecies"></div>
-						</tr>
-				</div>
 				</tbody>
 			</table>
 
@@ -267,7 +297,6 @@
 						onclick="submitForm(event);">
 				</div>
 			</div>
-
 		</form>
 
 	</div>
@@ -357,68 +386,3 @@
 
 
 </script>
-<script>
-var species=new Array();
-
-function selectSearch_specie() {
-	var specie = document.getElementById("species").value; // 선택한 동물 이름
-	for(var i=0; i<species.length; i++) {
-		if(species[i] === specie) { return; } // 기존에 같은게 있으면 안 넣음
-	}
-	species.push(specie);
-	
-	$('#search_btnSpecies').append(`<button class="make_btn minibutton minibtnFade minibtnBlueGreen" onclick="deleteBtn_species(this)">\${specie}</button>`);
-	btn_click();
-}
-function deleteBtn_area(btn) { // 버튼 클릭시 삭제
-	for(let i=0; i<areas.length; i++) {
-		if(areas[i]===btn.innerHTML) {
-			areas.splice(i, 1); // 해당하는 버튼 배열에서 삭제
-		}
-	}
-	btn.remove(); // 버튼 요소 삭제
-	btn_click();
-}
-function deleteBtn_species(btn) {
-	for(let i=0; i<species.length; i++) {
-		if(species[i]===btn.innerHTML) {
-			species.splice(i, 1); // 해당하는 버튼 배열에서 삭제
-		}
-	}
-	btn.remove();
-	btn_click();
-}
-
-    	var mammalia = ['강아지','고양이','햄스터','토끼','페럿','다람쥐','','','양','염소','알파카','돼지','소','말','당나귀','노새','고슴도치'];
-    	var bird = ['거위','공작','닭','비둘기','앵무새','오리','타조'];
-    	var reptile = ['거북이','도마뱀','뱀','악어'];
-    	var amphibian = ['도롱뇽','개구리'];
-    	var pisces = ['어류'];
-    	
-    	
-    	// 동물 선택시 실행되는 함수
-    	function speciesClick(animal) {
-    		var td = $('#speciestd');
-    		td.empty();
-    		td.append(`<select id="species" onclick="selectSearch_specie()" size="5">`);
-			var select = $('#species');
-        	
-        	console.log(animal);
-        	for(var i=0; i<animal.length; i++) {
-        		select.append(`<option class="species" value="\${animal[i]}">\${animal[i]}</option>`);
-        	}
-    		
-    	}
-    	
-    	function selectSearch_specie() {
-    		var specie = document.getElementById("species").value; // 선택한 동물 이름
-    		for(var i=0; i<species.length; i++) {
-    			if(species[i] === specie) { return; } // 기존에 같은게 있으면 안 넣음
-    		}
-    		species.push(specie);
-    		
-    		$('#search_btnSpecies').append(`<button class="make_btn minibutton minibtnFade minibtnBlueGreen" onclick="deleteBtn_species(this)">\${specie}</button>`);
-    		btn_click();
-    	}
-    	
-    </script>

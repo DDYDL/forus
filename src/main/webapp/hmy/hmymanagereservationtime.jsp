@@ -6,8 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>병원 일정 관리하기</title>
-<link rel="stylesheet" href="css/button.css" />
+<title>병원 진료시간 관리하기</title>
 <style>
 .manage {
 	font-weight: bold;
@@ -30,10 +29,10 @@
 <body>
 	<%@ include file="../mainhmypage.jsp"%>
 	<form action="modifyHospitalTime" method="post">
-		<div class="mypage-content-list">
+		<div class="mypage-content">
 			<div class="divtable">
 				<div>
-					<h3 align="left" text-align="left">병원 진료시간 관리</h3>
+					<h2 align="center">병원 진료시간 관리</h2>
 				</div>
 				<div style="padding-left: 250px; padding-bottom: 20px;">
 					예약간격 <select name="intervalTime">
