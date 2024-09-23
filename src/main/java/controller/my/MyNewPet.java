@@ -50,7 +50,7 @@ public class MyNewPet extends HttpServlet {
 			String petid = request.getParameter("pet_id");
 			String newfilename = "pet_" + petid;
 
-			service.insertPet(request, newfilename);
+			service.insertPet(request);
 
 			response.sendRedirect("myPetList");
 		} catch (Exception e) {

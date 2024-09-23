@@ -17,7 +17,6 @@ import dao.my.UserDaoImpl;
 import dto.Hospital;
 import dto.Hospital_time;
 import dto.User;
-import util.FileUploadRename;
 
 public class HospitalServiceImpl implements HospitalService {
 
@@ -30,13 +29,13 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public void insertHospital(HttpServletRequest request, String newfilename) throws Exception {
+	public void insertHospital(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 
 		String path = request.getServletContext().getRealPath("upload" + File.separator + "hospital");
 		int size = 10 * 1024 * 1024;
 
-		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new FileUploadRename(newfilename));
+		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
 
 		Hospital hospital = new Hospital();
 		
@@ -83,11 +82,11 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public Hospital hospitalModify(HttpServletRequest request, String newfilename) throws Exception {
-		String path = request.getServletContext().getRealPath("upload");
+	public Hospital hospitalModify(HttpServletRequest request) throws Exception {
+		String path = request.getServletContext().getRealPath("upload" + File.separator + "hospital");
 		int size = 10 * 1024 * 1024;
 
-		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new FileUploadRename(newfilename));
+		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
 
 		Hospital hospital = new Hospital();
 		Hospital_time hospital_time = new Hospital_time();

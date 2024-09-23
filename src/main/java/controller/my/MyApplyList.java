@@ -64,7 +64,7 @@ public class MyApplyList extends HttpServlet {
 		RecruitApplyService service = new RecruitApplyServiceImpl();
 		try {
 			service.deleteApplyByApplyId(apply_id);
-			response.getWriter().write(String.valueOf("삭제완료"));
+			response.sendRedirect("myApplyList");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

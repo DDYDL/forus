@@ -3,6 +3,7 @@ package controller.recruit;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,6 +63,7 @@ public class RecruitApplyHire extends HttpServlet {
 			post.setPost_status("마감");
 			service.updateRecruit_post_status(post);
 			
+			request.setAttribute("post_id", post_id);
 			request.getRequestDispatcher("recruitApplyList").forward(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();

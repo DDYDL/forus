@@ -159,7 +159,7 @@
 				
 				// 인근 지하철역 가져오기
 				var places = new kakao.maps.services.Places(map);
-				places.categorySearch('SW8', searchs, {location: coords, radius: 1000});
+				places.categorySearch('SW8', searchs, {location: coords, radius: 2000});
 			}
 		});
 		
@@ -207,7 +207,7 @@
     
     <div id="modal" class="modal">
     	<p class="content-title">지원하기</p>
-    	<p class="content-inner-title">강아지 산책시켜주실 분!!</p>
+    	<p class="content-inner-title">${post.post_title}</p>
 		<form action="recruitApply" method="post">
 			<!-- post_id를 위한 필드 -->
     		<input type="hidden" name="post_id" value="${post.post_id}">
