@@ -8,12 +8,12 @@
 </head>
 <body>
 	<aside id="left">
-		<ul>
-			<li><a href="${pageContext.request.contextPath}/myAfterReserv">예약내역</a></li><br>
-			<li><a href="${pageContext.request.contextPath}/myPostList">게시글 관리</a></li><br>
-			<li><a href="${pageContext.request.contextPath}/myApplyList">지원현황</a></li><br>
-			<li><a href="${pageContext.request.contextPath}/myProfile" class="my">내 프로필</a></li><br>
-			<li><a href="${pageContext.request.contextPath}/myPetList" class="pet">반려동물 프로필</a></li>
+		<ul class="height">
+			<li><a href="myAfterReserv">예약내역</a></li><br>
+			<li><a href="myPostList">Help 요청</a></li><br>
+			<li><a href="myApplyList">Help 지원</a></li><br>
+			<li><a href="myProfile" class="my">내 프로필</a></li><br>
+			<li><a href="myPetList" class="pet">반려동물 프로필</a></li>
 		</ul>
 	</aside>
 </body>

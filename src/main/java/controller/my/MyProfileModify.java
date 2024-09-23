@@ -57,12 +57,8 @@ public class MyProfileModify extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			HttpSession session = request.getSession();
-			User suser = (User)session.getAttribute("user");
-			String newfilename = "user_"+suser.getId();
-			
 			UserService service = new UserServiceImpl();
-			Integer num = service.userModify(request, newfilename);
+			Integer num = service.userModify(request);
 			User user = service.userDetail(num);
 			
 			request.setAttribute("user", user);

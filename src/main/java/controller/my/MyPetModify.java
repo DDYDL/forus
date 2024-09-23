@@ -60,7 +60,7 @@ public class MyPetModify extends HttpServlet {
 			String petid = request.getParameter("pet_id");
 			String newfilename = "pet_" + petid;
 
-			Integer pet_id = service.petModify(request, newfilename);
+			Integer pet_id = service.petModify(request);
 			System.out.println(pet_id);
 			Pet pet = service.petDetail(pet_id);
 			

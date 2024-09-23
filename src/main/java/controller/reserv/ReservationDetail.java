@@ -43,14 +43,10 @@ public class ReservationDetail extends HttpServlet {
 			User user = (User)session.getAttribute("user");
 			Integer reserv_id  = Integer.parseInt(request.getParameter("reserv_id"));
 			
-//			PetService service = new PetServiceImpl();
-//			List<Pet> petList = service.selectPetList(id);
-			
 			ReservationService rservice = new ReservationServiceImpl();
 			Map<String, Object> reservation = rservice.selectReservByReservId(reserv_id);
 			
 			request.setAttribute("reserv", reservation);
-//			request.setAttribute("petList", petList);
 			request.setAttribute("user", user);
 			System.out.println(reservation.toString());
 		request.getRequestDispatcher("/reserv/reservationdetail.jsp").forward(request, response);

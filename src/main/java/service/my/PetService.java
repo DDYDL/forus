@@ -8,9 +8,9 @@ import dto.Pet;
 
 public interface PetService {
 	// 작성한 펫 프로필 데베에 저장
-	void insertPet(HttpServletRequest request, String newfilename) throws Exception;
+	void insertPet(HttpServletRequest request) throws Exception;
 
-	Integer petModify(HttpServletRequest request, String newfilename) throws Exception;
+	Integer petModify(HttpServletRequest request) throws Exception;
 
 	Pet petDetail(Integer pet_id) throws Exception;
 
