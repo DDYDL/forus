@@ -1,29 +1,28 @@
 /* 예약 일정 조정 버튼*/
-
 .check label {
-  cursor:pointer;
-}
-.check label span{
-  position: relative;
-  display: inline-block;
- background: rgba(194, 194, 194, 0.5);
-  padding: 15px 20px;
-  color: #555;
-  border-radius: 90%;
-  transition: 0.1s;
-  user-select: none;
-  overflow:hidden;
-} 
-
-.check label input[type="checkbox"]:checked ~ span{
-    background: rgba(105, 233, 46, 0.37);
-}
- 
-
-input[type="checkbox"]{
-  display:none;
+	cursor: pointer;
 }
 
-input [type="text"]{
+.check label span {
+	position: relative;
+	display: inline-block;
+	background: rgba(194, 194, 194, 0.5);
+	padding: 15px 20px;
+	color: #555;
+	border-radius: 90%;
+	transition: 0.1s;
+	user-select: none;
+	overflow: hidden;
+}
+
+.check label input[type="checkbox"]:checked ~ span {
+	background: #69E92E;
+}
+
+input[type="checkbox"] {
+	display: none;
+}
+
+input [type="text"] {
 	text-align: center;
 }

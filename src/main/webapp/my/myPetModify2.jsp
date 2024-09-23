@@ -5,11 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>반려동물 프로필 수정</title>
-<!-- <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous"> -->
+
 
 <link rel="stylesheet" href="css/my/containerprofile.css" />
 <link rel="stylesheet" href="css/my/profile.css" />
@@ -30,6 +26,12 @@
 		}
 	}
 </script>
+
+<style>
+radio {
+	background-color:
+}
+</style>
 <body>
 	<%@ include file="../mainmypage.jsp"%>
 
@@ -43,60 +45,86 @@
 
 			<table class="containerprofile">
 				<tbody>
-					<input type="hidden" name="pet_id" value="${pet.pet_id}">
+					<input type="hidden" name="pet_id" value="${pet.pet_id }">
 
-					<div>
-						<tr>
-							<td><label class="title">프로필 사진</label></td>
-						</tr>
-						<tr>
-							<td><img
-								src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&type=pet"
-								class="img-icon" alt="이미지 선택" id="preview" width="100px"
-								onclick="document.getElementById('file').click();"> <input
-								type="file" name="file" id="file" accept="image/*"
-								onchange="readURL(this);" style="display: none"></td>
-						</tr>
+					<tr>
+						<td><label class="title">프로필 사진</label></td>
+					</tr>
+
+					<tr>
+						<td><img
+							src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&type=pet"
+							class="img-icon" alt="이미지 선택" id="preview" width="100px"
+							onclick="document.getElementById('file').click();"> <input
+							type="file" name="file" id="file" accept="image/*"
+							onchange="readURL(this);" style="display: none"></td>
+					</tr>
 
 
-						<tr>
-							<td><label for="name" class="title">반려동물 이름</label></td>
-							<td><input type="text" class="underline" name="name"
-								value=${pet.pet_name }></td>
-						</tr>
+					<tr>
+						<td><label for="name" class="title">반려동물 이름</label></td>
+						<td><input type="text" class="underline" name="name"
+							value=${pet.pet_name }></td>
+					</tr>
 
-						<tr>
-							<td><label for="nickname" class="title">종류 </label></td>
-							<td><input type="text" class="underline" name="nickname"
-								value=${pet.pet_species }></td>
-						</tr>
+					<tr>
+						<td><label for="nickname" class="title">종류 </label></td>
+						<td><input type="text" class="underline" name="nickname"
+							value=${pet.pet_species }></td>
+					</tr>
 
-						<tr>
-							<td><label for="nickname" class="title">품종 </label></td>
-							<td><input type="text" class="underline" name="nickname"
-								value=${pet.pet_breed }></td>
-						</tr>
-						<tr>
-							<td><label for="nickname" class="title">동물 등록 번호 </label></td>
-							<td><input type="text" class="underline" name="nickname"
-								value=${pet.pet_num }></td>
-						</tr>
+					<tr>
+						<td><label for="nickname" class="title">품종 </label></td>
+						<td><input type="text" class="underline" name="nickname"
+							value=${pet.pet_breed }></td>
+					</tr>
+					<tr>
+						<td><label for="nickname" class="title">동물 등록 번호 </label></td>
+						<td><input type="text" class="underline" name="nickname"
+							value=${pet.pet_num }></td>
+					</tr>
 
-						<tr>
-							<td class="title">성별</td>
+					<tr>
+						<td class="title">성별</td>
+						<td><input type="radio" class="petgender-check"
+							name="pet_gender" id="radioPetgenderM" value="M"
+							autocomplete="off"
+							<c:if test="${pet.pet_gender eq 'M'}">checked</c:if>> <label
+							class="petgender-button" for="radioPetgenderM">수컷</label> <input
+							type="radio" class="petgender-check" name="pet_gender"
+							id="radioPetgenderF" value="F" autocomplete="off"
+							<c:if test="${pet.pet_gender eq 'F'}">checked</c:if>> <label
+							class="petgender-button" for="radioPetgenderF">암컷</label>
+							
+							
+							
 							
 
+							&nbsp;&nbsp;&nbsp; <input type="checkbox" class="checkbox-check"
+							name="pet_neutering" id="checkPet_neutering"
+							value="pet_neutering" autocomplete="off"
+							<c:if test="${pet.pet_neutering eq true}">checked</c:if>> <label
+							class="checkbox-button" for="checkPet_neutering">중성화</label></td>
+							
+							
+							
+							
+							
+							
 
-							<td><input type="radio" name="pet_gender" value="M"
+						<%-- <td><input type="radio" name="pet_gender" value="M"
 								<c:if test="${pet.pet_gender eq 'M'}">checked</c:if>> 수컷
 								<input type="radio" name="pet_gender" value="F"
 								<c:if test="${pet.pet_gender eq 'F'}">checked</c:if>> 암컷
-								<input type="checkbox" name="pet_neutering"
+
+								<input type="checkbox"  class="petgender-check" name="pet_neutering"
 								value="pet_neutering"
 								<c:if test="${pet.pet_neutering eq true}">checked</c:if>>
-								중성화 여부</td>
+								<label
+								class="petgender-button" for="radioPetneutering">중성화</label></td> --%>
 
-						</tr>
+					</tr>
+
 					<tr>
 						<td class="title">나이</td>
 
@@ -136,12 +164,9 @@
 					<tr>
 						<td class="title">특이사항</td>
 
-						<td><textarea style="resize: none" ; class="tdinput"
+						<td><textarea style="resize: none" class="tdinput"
 								id="input_box" cols="30" rows="4" name="pet_memo">${pet.pet_memo } </textarea></td>
 					</tr>
-
-
-
 				</tbody>
 			</table>
 			<br> <br>
