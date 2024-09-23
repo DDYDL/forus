@@ -44,8 +44,6 @@
     </div>
 
 </div>
-</body>
-</html>
 
 
 
@@ -157,6 +155,7 @@
 
 <script>
     let isInitialLoad = true;
+    // 사용자 위치 가져오기
     function getUserLocationAndAddMarker(updateHospitals = false) {
         console.log('getUserLocationAndAddMarker 호출, updateHospitals:', updateHospitals); // 로그 추가
         if (navigator.geolocation) {
@@ -174,11 +173,13 @@
                         // 사용자의 현재 위치에 마커 생성
                         addUserMarker(currentLat, currentLon);
                     }
-                    if (updateHospitals && currentPage === 1 && isInitialLoad) { // 플래그를 사용하여 첫 호출만 허용
+                    //  처음 로드 시에만 병원 목록 업데이트  , 안하면 목록이 중복 추가됨
+                    if (updateHospitals && currentPage === 1 && isInitialLoad) {
                         $('#hospitals-container').empty(); // 병원 목록 초기화
                         updateHospitalList(currentLat, currentLon);
                         isInitialLoad = false; // 이후 중복 호출 방지
                     }
+
                 },
                 function (error) {
                     alert('위치를 가져올 수 없습니다: ' + error.message);
@@ -194,9 +195,6 @@
             alert('이 브라우저에서는 위치 정보가 지원되지 않습니다.');
         }
     }
-
-
-
 </script>
 
 <script>
@@ -227,22 +225,33 @@
                     // $('#hospitals-container').html(hospitalListHTML);
 
                     $('#hospitals-container').append(hospitalListHTML);
-                    // 다음 페이지가 존재할 가능성 체크
-                    if (data.length < 5) {
-                        loadMoreButton.style.display = 'block';
-                    } else {
-                        loadMoreButton.style.display = 'none';
-                    }
 
+                    // 다음 페이지가 존재할 가능성 체크
+                    // if (data.length < 5) {
+                    //     loadMoreButton.style.display = 'block';
+                    // } else {
+                    //     loadMoreButton.style.display = 'none';
+                    // }
+
+                    if (data.length === 0) {
+                        loadMoreButton.style.display = 'none';
+                    } else if (data.length < 5) {
+                        loadMoreButton.style.display = 'none';
+                    } else {
+                        loadMoreButton.style.display = 'block';
+                    }
                 } else {
                     console.error("서버로부터 받은 데이터가 배열이 아닙니다:", data);
                 }
+
             },
             error: function (xhr, status, error) {
                 console.error("병원 목록을 불러오는 데 실패했습니다", error);
+
             }
         });
     }
+
     loadMoreButton.addEventListener('click', function () {
         currentPage++;
         isLoadMore = true;
@@ -278,18 +287,26 @@
 
 <script>
     $('#search-button').on('click', function (){
-        var keyword = $('#search-input').val().trim();
-        if (keyword !== '') {
-            isSearchingByKeyword = true;
-            currentKeyword = keyword; // 검색 키워드 저장
-            currentPage = 1; // 페이지 초기화
-            $('#hospitals-container').html('');
-            isLoadMore = false;
+            var keyword = $('#search-input').val().trim();
+            if (keyword !== '') {
+                isSearchingByKeyword = true;
+                currentKeyword = keyword; // 검색 키워드 저장
+                currentPage = 1; // 페이지 초기화
+                $('#hospitals-container').html('');
+                isLoadMore = false;
 
-            resetMarkers();
-            searchHospitalsByKeyword(keyword);
-    }
+                resetMarkers();
+                searchHospitalsByKeyword(keyword);
+            }
     });
+
+    // Enter 키로 검색 실행
+    $('#search-input').on('keypress', function (e) {
+        if (e.keyCode === 13) { // 엔터키를 확인
+            $('#search-button').click(); // 검색 버튼 클릭 이벤트 발생
+        }
+    });
+
     function searchHospitalsByKeyword(keyword, page) {
         if (page === 1 && !isLoadMore) {
             resetMarkers();  // 더보기 시에는 호출되지 않도록 플래그를 사용
@@ -350,6 +367,19 @@
 
     // 병원 목록 HTML 생성 함수
     function generateHospitalHTML(hospital) {
+    <%--    return `--%>
+    <%--    <div class="hospital-item">--%>
+    <%--        <a href="hospitalDetail?hospitalId=${"${hospital.h_id}"}" class="hospital-link">--%>
+    <%--            &lt;%&ndash;<img src="img/hospital/kosta3.png" alt="${"${hospital.h_name}"}">&ndash;%&gt;--%>
+    <%--           <img src="image?file=${"${hospital.h_picture}" == null ? 'hospitaldefault.png' : "${hospital.h_picture}"}&type=hospital" alt="${"${hospital.h_name}"}">--%>
+    <%--            <div class="hospital-info">--%>
+    <%--                <strong>${"${hospital.h_name}"}</strong>--%>
+    <%--                <p>${"${hospital.h_address}"}<br>진료동물: ${"${hospital.h_animal_type}"}</p>--%>
+    <%--            </div>--%>
+    <%--        </a>--%>
+    <%--    </div>`;--%>
+    <%--}--%>
+
         return `
         <div class="hospital-item">
             <a href="hospitalDetail?hospitalId=${"${hospital.h_id}"}" class="hospital-link">
@@ -362,4 +392,8 @@
             </a>
         </div>`;
     }
+
 </script>
+
+</body>
+</html>

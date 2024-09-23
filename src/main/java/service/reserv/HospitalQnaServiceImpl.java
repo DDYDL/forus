@@ -47,4 +47,9 @@ public class HospitalQnaServiceImpl implements HospitalQnaService {
 			return false;
 		}
 	}
+
+	@Override
+	public Integer getManagerIdByHospitalId(Integer hospitalId) {
+		return hospitalQnaDao.findManagerIdByHospitalId(hospitalId);
+	}
 }

@@ -60,4 +60,18 @@ public class HospitalQnaDaoImpl implements HospitalQnaDao {
 		}
 
 	}
+
+	@Override
+	public Integer findManagerIdByHospitalId(Integer hospitalId) {
+
+		try {
+			return sqlSession.selectOne("mapper.hospital_qna.findManagerIdByHospitalId", hospitalId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("사용자 정보 조회 중 오류가 발생했습니다.", e);
+		} finally {
+			sqlSession.close();
+		}
+
+	}
 }
