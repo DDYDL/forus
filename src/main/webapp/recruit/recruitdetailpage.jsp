@@ -159,7 +159,7 @@
 				
 				// 인근 지하철역 가져오기
 				var places = new kakao.maps.services.Places(map);
-				places.categorySearch('SW8', searchs, {location: coords, radius: 1000});
+				places.categorySearch('SW8', searchs, {location: coords, radius: 2000});
 			}
 		});
 		

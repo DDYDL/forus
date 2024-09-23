@@ -13,7 +13,7 @@
 	height: auto;
 	min-height: 50px;
 	border-radius: 10px;
-	margin-top: 15px;
+	margin-top: 10px;
 }
 #demo1 { margin: 10px 20px 5px 20px;}
 #demo2 { margin: 10px 20px 5px 20px;}
@@ -22,13 +22,13 @@
 #search_btnArea { margin: 10px 10px 10px 15px; }
 #search_btnSpecies { margin: 10px 10px 10px 15px; }
 #init_text { border-radius: 10px; padding: 15px; text-align: center; }
-.tabletd { border-style: none; margin: 0px; padding: 0px; }
-select {
-	width: 200px;
-	border-style: none;
-	margin: 0px;
-	padding: 0px;
-}
+
+.tabletd { width:300px; border-style: none; border-radius: 0px; }
+.tabletd1 { border-right:1px solid #D1D1D1; }
+.tabletd2 { border-right:1px solid #D1D1D1; }
+select { border-style: none; }
+select:focus { border:none; outline: none; }
+select::-webkit-scrollbar { display: none; }
 
 /* 리스트 설정 */
 .list-header { display:flex; justify-content:space-between; }
