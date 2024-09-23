@@ -81,4 +81,10 @@ public class HospitalDaoImpl implements HospitalDao {
 		sqlSession.commit();
 	}
 
+	@Override
+	public void insertnewTime(Hospital_time hospital_time) throws Exception {
+		sqlSession.insert("mapper.hospital_time.insertnewTime", hospital_time);
+		sqlSession.commit();
+	}
+
 }

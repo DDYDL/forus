@@ -33,7 +33,7 @@ public class MyNewPet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/my/myNewPet.jsp").forward(request, response);
+		request.getRequestDispatcher("/my/myNewPet2.jsp").forward(request, response);
 
 	}
 

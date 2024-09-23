@@ -39,6 +39,7 @@ public class HospitalServiceImpl implements HospitalService {
 		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new FileUploadRename(newfilename));
 
 		Hospital hospital = new Hospital();
+		
 		hospital.setH_id(hospital.getH_id());
 
 		request.setCharacterEncoding("utf-8");
@@ -54,8 +55,8 @@ public class HospitalServiceImpl implements HospitalService {
 		hospital.setH_manager_name(multi.getParameter("h_manager_name"));
 		hospital.setH_phone(multi.getParameter("h_phone"));
 		hospital.setH_address(multi.getParameter("h_address"));
-		// hospital.setH_longitude(multi.getParameter("longitude"));
-		// hospital.setH_latitude(multi.getParameter("latitude"));
+		hospital.setH_longitude(multi.getParameter("longitude"));
+		hospital.setH_latitude(multi.getParameter("latitude"));
 
 		String[] h_animal_types = multi.getParameterValues("h_animal_type");
 		String h_animal_type = String.join(",", h_animal_types);
@@ -77,6 +78,7 @@ public class HospitalServiceImpl implements HospitalService {
 		System.out.println(hospital);
 		hospitalDao.insertHospital(hospital);
 		userDao.ishospitalstatus(user);
+		
 
 	}
 
@@ -88,6 +90,7 @@ public class HospitalServiceImpl implements HospitalService {
 		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new FileUploadRename(newfilename));
 
 		Hospital hospital = new Hospital();
+		Hospital_time hospital_time = new Hospital_time();
 		hospital.setH_id(Integer.parseInt(multi.getParameter("h_id")));
 
 		hospital.setH_exponent_name(multi.getParameter("h_exponent_name"));
@@ -128,6 +131,7 @@ public class HospitalServiceImpl implements HospitalService {
 		}
 
 		hospitalDao.updateHospital(hospital);
+		//hospitalDao.insertnewTime(hospital_time);
 		return hospital;
 	}
 
@@ -195,5 +199,12 @@ public class HospitalServiceImpl implements HospitalService {
 	public Integer updatestatus(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void insertnewTime(Integer Hospita_time) throws Exception {
+		// TODO Auto-generated method stub
+		
+		
 	}
 }

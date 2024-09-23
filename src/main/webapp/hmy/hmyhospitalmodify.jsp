@@ -25,6 +25,10 @@
 <link rel="stylesheet" href="css/common/minibutton.css" />
 <link href="./css/recruit/calendar.css?after" rel="stylesheet"
 	type="text/css">
+
+
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=94ab9074f87bbed0edf5b0d9cb32cdbd&libraries=services"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
@@ -37,29 +41,6 @@
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
-	}
-
-	// 카카오(다음) 주소 입력
-	function daumPostcode() {
-		new daum.Postcode({
-			oncomplete : function(data) {
-				var roadAddr = data.roadAddress; // 도로명 주소 변수
-				var extraRoadAddr = ''; // 참고 항목 변수
-				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-					extraRoadAddr += data.bname;
-				}
-				if (data.buildingName !== '' && data.apartment === 'Y') {
-					extraRoadAddr += (extraRoadAddr !== '' ? ', '
-							+ data.buildingName : data.buildingName);
-				}
-				if (extraRoadAddr !== '') {
-					extraRoadAddr = ' (' + extraRoadAddr + ')';
-				}
-				document.getElementById("postcode").value = data.zonecode;
-				document.getElementById("h_address").value = roadAddr
-						+ extraRoadAddr;
-			}
-		}).open();
 	}
 </script>
 
@@ -156,36 +137,311 @@
 
 				<tbody>
 					<tr>
-						<td><label for="name"> 진료가능 목록 </label></td>
-						<td class="tdinput"><input id='강아지' type="checkbox"
-							name="h_animal_type" value="강아지"> 강아지 <input id='고양이'
-							type="checkbox" name="h_animal_type" value="고양이"> 고양이 <input
-							id='페럿' type="checkbox" name="h_animal_type" value="페럿">페럿
+						<td>포유류</td>
 
-							<c:forEach items="${h_animal_types}" var="h_animal_types">
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="강아지" value="강아지" autocomplete="off">
+							<label class="pet-button" for="강아지">강아지</label></td>
 
-								<c:if test="${h_animal_types eq '강아지'}">
-									<script>
-										$("input[id='강아지']").prop("checked",
-												true);
-									</script>
-								</c:if>
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="고양이" value="고양이" autocomplete="off">
+							<label class="pet-button" for="고양이">고양이</label></td>
 
-								<c:if test="${h_animal_types eq '고양이'}">
-									<script>
-										$("input[id='고양이']").prop("checked",
-												true);
-									</script>
-								</c:if>
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="햄스터" value="햄스터" autocomplete="off">
+							<label class="pet-button" for="햄스터">햄스터</label></td>
 
-								<c:if test="${h_animal_types eq '페럿'}">
-									<script>
-										$("input[id='페럿']").prop("checked",
-												true);
-									</script>
-								</c:if>
-							</c:forEach></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="토끼" value="토끼" autocomplete="off">
+							<label class="pet-button" for="토끼">토끼</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="기니피그" value="기니피그" autocomplete="off">
+							<label class="pet-button" for="기니피그">기니피그</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="고슴도치" value="고슴도치" autocomplete="off">
+							<label class="pet-button" for="고슴도치">고슴도치</label></td>
+
+
+
+
+
+						<!--  
+						<td><input type="checkbox" name="h_animal_type" value="강아지"
+							id="강아지">강아지</td>
+						<td><input type="checkbox" name="h_animal_type" value="고양이"
+							id="고양이">고양이</td>
+						<td><input type="checkbox" name="h_animal_type" value="햄스터"
+							id="햄스터">햄스터</td>
+						<td><input type="checkbox" name="h_animal_type" value="토끼"
+							id="토끼">토끼</td>
+						<td><input type="checkbox" name="h_animal_type" value="기니피그"
+							id="기니피그">기니피그</td>
+						<td><input type="checkbox" name="h_animal_type" value="고슴도치"
+							id="고슴도치">고슴도치</td>
+					
+					
+					-->
+
 					</tr>
+					<tr>
+						<td></td>
+						<td><input type="checkbox" name="h_animal_type" value="페럿"
+							id="페럿">페럿</td>
+						<td><input type="checkbox" name="h_animal_type" value="다람쥐"
+							id="다람쥐">다람쥐</td>
+
+						<td><input type="checkbox" name="h_animal_type" value="카피바라"
+							id="카피바라"> 카피바라</td>
+
+						<td><input type="checkbox" name="h_animal_type" value="양"
+							id="양"> 양</td>
+						<td><input type="checkbox" name="h_animal_type" value="염소"
+							id="염소"> 염소</td>
+						<td><input type="checkbox" name="h_animal_type" value="알파카"
+							id="알파카">알파카</td>
+					</tr>
+					<tr>
+						<td></td>
+
+						<td><input type="checkbox" name="h_animal_type" value="돼지"
+							id="돼지">돼지</td>
+						<td><input type="checkbox" name="h_animal_type" value="소"
+							id="소">소</td>
+						<td><input type="checkbox" name="h_animal_type" value="말"
+							id="말">말</td>
+						<td><input type="checkbox" name="h_animal_type" value="당나귀"
+							id="당나귀">당나귀</td>
+						<td><input type="checkbox" name="h_animal_type" value="노새"
+							id="노새">노새</td>
+					</tr>
+					<tr>
+						<td>조류</td>
+						<td><input type="checkbox" name="h_animal_type" value="거위"
+							id="거위">거위</td>
+						<td><input type="checkbox" name="h_animal_type" value="공작"
+							id="공작">공작</td>
+						<td><input type="checkbox" name="h_animal_type" value="닭"
+							id="닭">닭</td>
+						<td><input type="checkbox" name="h_animal_type" value="비둘기"
+							id="비둘기">비둘기</td>
+						<td><input type="checkbox" name="h_animal_type" value="앵무새"
+							id="앵무새">앵무새</td>
+						<td><input type="checkbox" name="h_animal_type" value="오리"
+							id="오리">오리</td>
+						<td><input type="checkbox" name="h_animal_type" value="타조"
+							id="타조">타조</td>
+					</tr>
+					<tr>
+						<td>파충류</td>
+						<td><input type="checkbox" name="h_animal_type" value="거북이"
+							id="거북이">거북이</td>
+						<td><input type="checkbox" name="h_animal_type" value="도마뱀"
+							id="도마뱀">도마뱀</td>
+						<td><input type="checkbox" name="h_animal_type" value="뱀"
+							id="뱀">뱀</td>
+						<td><input type="checkbox" name="h_animal_type" value="악어"
+							id="악어">악어</td>
+					</tr>
+					<tr>
+						<td>양서류</td>
+						<td><input type="checkbox" name="h_animal_type" value="도룡뇽"
+							id="도룡뇽">도룡뇽</td>
+						<td><input type="checkbox" name="h_animal_type" value="개구리"
+							id="개구리">개구리</td>
+					</tr>
+					<tr>
+						<td>어류</td>
+						<td><input type="checkbox" name="h_animal_type" value="어류"
+							id="어류">어류</td>
+					</tr>
+
+					<c:forEach items="${h_animal_types}" var="h_animal_types">
+
+						<c:if test="${h_animal_types eq '강아지'}">
+							<script>
+								$("input[id='강아지']").prop("checked", true);
+							</script>
+						</c:if>
+
+						<c:if test="${h_animal_types eq '고양이'}">
+							<script>
+								$("input[id='고양이']").prop("checked", true);
+							</script>
+						</c:if>
+
+						<c:if test="${h_animal_types eq '햄스터'}">
+							<script>
+								$("input[id='햄스터']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '토끼'}">
+							<script>
+								$("input[id='토끼']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '기니피그'}">
+							<script>
+								$("input[id='기니피그']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '고슴도치'}">
+							<script>
+								$("input[id='고슴도치']").prop("checked", true);
+							</script>
+						</c:if>
+
+
+						<c:if test="${h_animal_types eq '페럿'}">
+							<script>
+								$("input[id='페럿']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '다람쥐'}">
+							<script>
+								$("input[id='다람쥐']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '카피바라'}">
+							<script>
+								$("input[id='카피바라']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '양'}">
+							<script>
+								$("input[id='양']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '염소'}">
+							<script>
+								$("input[id='염소']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '알파카'}">
+							<script>
+								$("input[id='알파카']").prop("checked", true);
+							</script>
+						</c:if>
+
+
+
+						<c:if test="${h_animal_types eq '돼지'}">
+							<script>
+								$("input[id='돼지']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '소'}">
+							<script>
+								$("input[id='소']").prop("checked", true);
+							</script>
+						</c:if>
+
+						<c:if test="${h_animal_types eq '말'}">
+							<script>
+								$("input[id='말']").prop("checked", true);
+							</script>
+						</c:if>
+
+						<c:if test="${h_animal_types eq '당나귀'}">
+							<script>
+								$("input[id='당나귀']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '노새'}">
+							<script>
+								$("input[id='노새']").prop("checked", true);
+							</script>
+						</c:if>
+
+
+
+
+						<c:if test="${h_animal_types eq '거위'}">
+							<script>
+								$("input[id='거위']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '공작'}">
+							<script>
+								$("input[id='공작']").prop("checked", true);
+							</script>
+						</c:if>
+
+						<c:if test="${h_animal_types eq '닭'}">
+							<script>
+								$("input[id='닭']").prop("checked", true);
+							</script>
+						</c:if>
+
+						<c:if test="${h_animal_types eq '비둘기'}">
+							<script>
+								$("input[id='비둘기']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '앵무새'}">
+							<script>
+								$("input[id='앵무새']").prop("checked", true);
+							</script>
+						</c:if>
+
+						<c:if test="${h_animal_types eq '오리'}">
+							<script>
+								$("input[id='오리']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '타조'}">
+							<script>
+								$("input[id='타조']").prop("checked", true);
+							</script>
+						</c:if>
+
+
+						<c:if test="${h_animal_types eq '거북이'}">
+							<script>
+								$("input[id='거북이']").prop("checked", true);
+							</script>
+						</c:if>
+
+						<c:if test="${h_animal_types eq '도마뱀'}">
+							<script>
+								$("input[id='도마뱀']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '뱀'}">
+							<script>
+								$("input[id='뱀']").prop("checked", true);
+							</script>
+						</c:if>
+
+						<c:if test="${h_animal_types eq '악어'}">
+							<script>
+								$("input[id='악어']").prop("checked", true);
+							</script>
+						</c:if>
+
+
+						<c:if test="${h_animal_types eq '도룡뇽'}">
+							<script>
+								$("input[id='도룡뇽']").prop("checked", true);
+							</script>
+						</c:if>
+						<c:if test="${h_animal_types eq '개구리'}">
+							<script>
+								$("input[id='개구리']").prop("checked", true);
+							</script>
+						</c:if>
+
+
+						<c:if test="${h_animal_types eq '어류'}">
+							<script>
+								$("input[id='어류']").prop("checked", true);
+							</script>
+						</c:if>
+
+
+					</c:forEach>
 
 				</tbody>
 			</table>
@@ -259,15 +515,30 @@
 					</tr>
 
 					<tr>
+
+						<td class="name">주차 가능 여부</td>
+						<td><input type="radio" class="car-check" name="h_parking"
+							id="radioParkingTrue" value="true" autocomplete="off"
+							<c:if test="${hospital.h_parking eq true}">checked</c:if>>
+							<label class="car-button" for="radioParkingTrue">가능</label> <input
+							type="radio" class="car-check" name="h_parking"
+							id="radioParkingFalse" value="false" autocomplete="off"
+							<c:if test="${hospital.h_parking eq false}">checked</c:if>>
+							<label class="car-button" for="radioParkingFalse">불가능</label></td>
+
+
+						<%-- 
 						<td><label for="name"> 주차 가능 여부 </label></td>
 						<td class="tdinput"><input type="radio" name="h_parking"
 							value="true"
 							<c:if test="${hospital.h_parking eq true}">checked</c:if>>
 							가능 <input type="radio" name="h_parking" value="false"
 							<c:if test="${hospital.h_parking eq false}">checked</c:if>>
-							불가능</td>
+							불가능</td> --%>
 					</tr>
 
+					<input type="hidden" id="hospital_latitude" name="latitude">
+					<input type="hidden" id="hospital_longitudeH" name="longitude">
 				</tbody>
 			</table>
 
@@ -295,6 +566,69 @@
 		defaultHour : 12,
 		defaultMinute : 0,
 	});
+</script>
+
+<script>
+	function daumPostcode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				var roadAddr = data.roadAddress; // 도로명 주소 변수
+				var extraRoadAddr = ''; // 참고 항목 변수
+				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+					extraRoadAddr += data.bname;
+				}
+				if (data.buildingName !== '' && data.apartment === 'Y') {
+					extraRoadAddr += (extraRoadAddr !== '' ? ', '
+							+ data.buildingName : data.buildingName);
+				}
+				if (extraRoadAddr !== '') {
+					extraRoadAddr = ' (' + extraRoadAddr + ')';
+				}
+				document.getElementById('postcode').value = data.zonecode;
+				document.getElementById("h_address").value = roadAddr
+						+ extraRoadAddr;
+				getLatLngFromAddress(roadAddr);
+
+			}
+		}).open();
+	}
+</script>
+<script>
+	//위도 경도 코드
+	function getLatLngFromAddress(address) {
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		geocoder
+				.addressSearch(
+						address,
+						function(result, status) {
+							if (status === kakao.maps.services.Status.OK) {
+								var coords = result[0];
+								var latitude = coords.y; // 위도
+								var longitude = coords.x; // 경도
+
+								console.log('Latitude:', latitude,
+										'Longitude:', longitude);
+
+								// 예시: 위도와 경도를 숨겨진 input에 저장
+								document.getElementById('hospital_latitude').value = latitude;
+								document.getElementById('hospital_longitudeH').value = longitude;
+
+								console
+										.log(
+												'Hidden Field Values:',
+												'Latitude:',
+												document
+														.getElementById('hospital_latitude').value,
+												'Longitude:',
+												document
+														.getElementById('hospital_longitudeH').value);
+
+							} else {
+								alert('주소로 위도와 경도를 찾을 수 없습니다.');
+							}
+						});
+	}
 </script>
 </html>
 

@@ -48,7 +48,7 @@
 					<li>품종 (예: 포메라니안, 코리안 숏헤어, 드워프, 골든)</li>
 					<li><input type="text" class="underline" name="pet_breed"></li>
 
-					<li>동물등록번호</li>
+					<li>동물등록번호 (없을 시 미 입력)</li>
 					<li><input type="text" class="underline" name="pet_num"></li>
 
 					<li class="title">성별</li>
