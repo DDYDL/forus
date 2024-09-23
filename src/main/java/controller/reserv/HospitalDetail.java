@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Hospital;
+import dto.Hospital_qna;
 import dto.Hospital_time;
 import service.hmy.HospitalService;
 import service.reserv.HospitalDetailService;
+import service.reserv.HospitalQnaService;
+import service.reserv.HospitalQnaServiceImpl;
 import service.reserv.HospitalServiceImpl;
 
 @WebServlet("/hospitalDetail")
@@ -34,6 +37,10 @@ public class HospitalDetail extends HttpServlet {
 			List<Hospital_time> hospitalTimes = hospitalService.getHospitalTimeByHospitalId(
 				Integer.parseInt(hospitalId));
 
+			HospitalQnaService hospitalQnaService = new HospitalQnaServiceImpl();
+			Integer managerId = hospitalQnaService.getManagerIdByHospitalId(Integer.parseInt(hospitalId));
+
+			request.setAttribute("managerId", managerId);
 			request.setAttribute("hospital", hospital);
 			request.setAttribute("hospitalTimes", hospitalTimes);
 			request.getRequestDispatcher("/reserv/hospitaldetail.jsp").forward(request, response);

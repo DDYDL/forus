@@ -51,7 +51,7 @@
     font-size: 16px;
     border-radius: 20px;
     border: 1px solid #ccc;
-    padding: 7px 40px 7px 7px;
+    padding: 7px 40px 7px 11px;
 }
 
 #search-button {
@@ -147,6 +147,9 @@
     text-align: left;
 }
 
+#hospital-info-section{
+    max-height: 54%;
+}
 
 #hospital-detail-content-container {
     padding: 20px;
@@ -218,6 +221,14 @@
 }
 #hospital-detail-qna-section {
     margin-top: 20px;
+}
+
+#hospital-qna-section{
+/*    !*margin-top: 35%;*!*/
+/*margin-top: 215px;*/
+    position: relative;
+    top: -90px;
+
 }
 
 #hospital-detail-qna-button {
@@ -574,9 +585,9 @@
 
 .operation-time {
     position: relative;
-    top: -357px;
+    top: -374px;
     margin-left: 50%;
-    margin-bottom: -31%;
+    /*margin-bottom: -31%;*/
 }
 
 #hospital-detail-hospitalName{
@@ -588,6 +599,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    min-height: 40%;
 
 }
 

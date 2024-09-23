@@ -13,6 +13,29 @@
 	color: rgba(105, 233, 46);
 }
 </style>
+
+<style>
+	table td.reserv-status-completed {
+		background-color: green !important;
+		color: white !important;
+	}
+
+	table td.reserv-status-cancelled {
+		background-color: rgb(128, 128, 128) !important;
+		color: white !important;
+	}
+
+	table td.reserv-status-missed {
+		background-color: yellow !important;
+		color: black !important;
+	}
+
+	table td.reserv-status-reserved {
+		background-color: blue !important;
+		color: white !important;
+	}
+</style>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,34 +55,31 @@
 	<%@ include file="../mainhmypage.jsp"%>
 
 
-	<div id="overlay" onclick="closeSidebar()"></div>
-	<div id="sidebar">
-		<h3>예약 상세 정보</h3>
-		<p>
-			<strong>예약자 이름:</strong> <span id="reserverName"></span>
-		</p>
-		<p>
-			<strong>동물:</strong> <span id="animalType"></span>
-		</p>
-		<p>
-			<strong>종:</strong> <span id="animalBreed"></span>
-		</p>
-		<p>
-			<strong>펫이름:</strong> <span id="animalName"></span>
-		</p>
-		<p id="eventContent"></p>
+<div id="overlay" onclick="closeSidebar()"></div>
+<div id="sidebar">
+	<h3>예약 상세 정보</h3>
+	<p><strong>예약자 이름:</strong> <span id="reserverName"></span></p>
+	<p><strong>동물:</strong> <span id="animalType"></span></p>
+	<p><strong>종:</strong> <span id="animalBreed"></span></p>
+	<p><strong>펫이름:</strong> <span id="animalName"></span></p>
+	<p id="eventContent"></p>
 
-		<label for="vetNote"></label>
-		<textarea id="vetNote" placeholder="메모를 입력하세요..."></textarea>
-		<button id="saveNoteButton" onclick="saveNote()">메모 저장</button>
-		<button id="closeSidebarButton" onclick="closeSidebar()">닫기</button>
+
+	<label for="vetNote"></label>
+	<textarea id="vetNote" placeholder="메모를 입력하세요..."></textarea>
+	<button id="saveNoteButton" onclick="saveNote()">메모 저장</button>
+	<button id="closeSidebarButton" onclick="closeSidebar()">닫기</button>
+</div>
+
+
+<div class="mypage-content-list">
+	<div>
+		<h2 align="center">오늘 예약 일정</h2>
 	</div>
+	<div style="text-align: left;">
 
-
-	<div class="mypage-content-list">
 		<div>
-			<h2 align="center">오늘 예약 일정</h2>
-		</div>
+
 
 		<table class="table table-hover">
 			<thead>
@@ -81,7 +101,9 @@
 					data-reservation-id="${reservation.reserv_id}"
 					data-reservation-memo="${reservation.reserv_memo}"
 					data-reservation-content="${reservation.reserv_content}"
-					data-reservation-time="${reservation.reserv_time}">
+					data-reservation-time="${reservation.reserv_time}"
+					data-reservation-status="${reservation.reserv_status}"
+					>
 
 					<td>${i }</td>
 					<td>${reservation.reserv_id }</td>
@@ -91,17 +113,28 @@
 					<td>${reservation.pet_name }</td>
 					<td>${reservation.reserv_apply_time}</td>
 					<td>${reservation.reserv_content }</td>
-					<td>${reservation.reserv_status }</td>
+                        <c:set var="statusClass">
+                            <c:choose>
+                                <c:when test="${reservation.reserv_status == '예약'}">reserv-status-reserved</c:when>
+                                <c:when test="${reservation.reserv_status == '진료완료'}">reserv-status-completed</c:when>
+                                <c:when test="${reservation.reserv_status == '예약취소'}">reserv-status-cancelled</c:when>
+                                <c:when test="${reservation.reserv_status == '미방문'}">reserv-status-missed</c:when>
+                            </c:choose>
+                        </c:set>
+
+                        <td class="${statusClass}">
+                                ${reservation.reserv_status}
+                        </td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
 	</div>
 	</div>
-</body>
-</html>
 
-<script>
+
+
+ <script>
 	function openSidebar() {
 		document.getElementById('sidebar').style.display = 'block';
 		document.getElementById('overlay').style.display = 'block';
@@ -118,28 +151,28 @@
 		var reservationMemo = $(row).data('reservation-memo');
 		var reservationContent = $(row).data('reservation-content');
 		var reservationTime = $(row).data('reservation-time');
+		var reservationStatus = $(row).data('reservation-status');
 
 		$.ajax({
-			url : 'doctorCalendarDetail',
-			type : 'get',
-			dataType : 'json',
-			data : {
-				reservationId : reservationId
+			url: 'doctorCalendarDetail',
+			type: 'get',
+			dataType: 'json',
+			data: {
+				reservationId: reservationId
 			},
-			success : function(data) {
-				generateReservationDetails(data, reservationId,
-						reservationMemo, reservationContent, reservationTime);
+			success: function (data) {
+				generateReservationDetails(data, reservationId, reservationMemo, reservationContent, reservationTime, reservationStatus);
 				openSidebar();
 			},
-			error : function() {
+			error: function () {
 				alert('예약 상세 정보를 불러오는데 실패했습니다.');
 			}
 		});
 	}
 
-	function generateReservationDetails(data, reservationId, reservationMemo,
-			reservationContent, reservationTime) {
+	function generateReservationDetails(data, reservationId, reservationMemo, reservationContent, reservationTime, reservationStatus) {
 		$('#eventContent').empty();
+
 		document.getElementById('reserverName').textContent = data.userName;
 		document.getElementById('animalType').textContent = data.petSpecies;
 		document.getElementById('animalBreed').textContent = data.petBreed;
@@ -147,15 +180,95 @@
 
 		$('#vetNote').val(reservationMemo || '');
 
-		$('#eventContent').append(
-				'<p><strong>내용:</strong> ' + reservationContent + '</p>');
-		$('#eventContent').append(
-				'<p><strong>시간:</strong> ' + reservationTime + '</p>');
+		var statusSelect =
+				'<strong>예약상태</strong>:' +
+				'<select id="reservationStatus">' +
+				'<option value="예약"' + (reservationStatus == '예약' ? ' selected' : '') + '>예약</option>' +
+				'<option value="진료완료"' + (reservationStatus == '진료완료' ? ' selected' : '') + '>진료완료</option>' +
+				'<option value="예약취소"' + (reservationStatus == '예약취소' ? ' selected' : '') + '>예약취소</option>' +
+				'<option value="미방문"' + (reservationStatus == '미방문' ? ' selected' : '') + '>미방문</option>' +
+				'</select><br><br>';
+
+		$('#eventContent').append(statusSelect); // 상태 셀렉트 박스를 추가
+		$('#eventContent').append('<p><strong>내용:</strong> ' + reservationContent + '</p>');
+		$('#eventContent').append('<p><strong>시간:</strong> ' + reservationTime + '</p>');
+
 
 		$('#eventContent').data('reservationId', reservationId);
 
+		$('#reservationStatus').val(reservationStatus);
+
 	}
+
+
+
 </script>
+
+<script>
+	function updateReservationStatus($element) {
+		var newStatus = $element.val();
+		var originalStatus = $element.data('originalStatus');
+		var reservationId = $('#eventContent').data('reservationId');
+
+		if (confirm(newStatus + " 상태로 변경하시겠습니까?")) {
+			$.ajax({
+				url: 'updateReservationStatus',
+				type: 'POST',
+				data: {
+					reservationId: reservationId,
+					reservationStatus: newStatus
+				},
+				success: function (response) {
+					alert('예약 상태가 변경되었습니다.');
+
+					var $td = $('tr[data-reservation-id="' + reservationId + '"]').find('td:last');
+
+					// 기존 상태 클래스를 제거
+					$td.removeClass('reserv-status-reserved reserv-status-completed reserv-status-cancelled reserv-status-missed');
+
+					// 새로운 상태에 맞는 클래스를 추가
+					if (newStatus === '예약') {
+						$td.addClass('reserv-status-reserved');
+					} else if (newStatus === '진료완료') {
+						$td.addClass('reserv-status-completed');
+					} else if (newStatus === '예약취소') {
+						$td.addClass('reserv-status-cancelled');
+					} else if (newStatus === '미방문') {
+						$td.addClass('reserv-status-missed');
+					}
+
+					// 테이블의 상태 텍스트도 업데이트
+					$td.text(newStatus);
+
+
+					// 테이블의 data-reservation-status 값을 업데이트하여 사이드바에서 열릴 때 최신 상태가 유지되도록 함
+					$('tr[data-reservation-id="' + reservationId + '"]').data('reservation-status', newStatus);
+
+					$element.data('originalStatus', newStatus);
+
+				},
+				error: function () {
+					alert('예약 상태 변경에 실패했습니다.');
+					$element.val(originalStatus);
+				}
+			});
+		} else {
+			$element.val(originalStatus);
+		}
+	}
+
+
+	$(document).ready(function () {
+		$(document).on('change', '#reservationStatus', function () {
+			updateReservationStatus($(this));
+		});
+	});
+
+
+
+</script>
+
+
 
 
 <script>
@@ -169,27 +282,31 @@
 		var memo = $('#vetNote').val();
 
 		$.ajax({
-			url : 'doctorCalendarDetail',
-			type : 'post',
-			dataType : 'json',
-			data : {
-				reservationId : reservationId,
-				memo : memo
+			url: 'doctorCalendarDetail',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				reservationId: reservationId,
+				memo: memo
 			},
-			success : function(response) {
+			success: function (response) {
 				alert('메모가 저장되었습니다.');
 
 				// 메모 입력창에 입력한 메모를 표시
 				$('#vetNote').val(memo);
 
 				// 메모를 저장한 row의 메모 데이터를 업데이트
-				$('tr[data-reservation-id="' + reservationId + '"]').data(
-						'reservation-memo', memo);
+				$('tr[data-reservation-id="' + reservationId + '"]').data('reservation-memo', memo);
 			},
-			error : function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				console.error(xhr.responseText);
 				alert('메모 저장에 실패했습니다.');
 			}
 		});
 	}
 </script>
+
+
+</body>
+</html>
+

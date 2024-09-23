@@ -58,7 +58,7 @@
 	</select>
 
     <select id="findPetInfoByUserId" parameterType="Integer" resultType="dto.Pet">
-        SELECT pet_id, pet_name, pet_picture
+        SELECT pet_id, pet_name,  COALESCE(pet_picture, 'petdefault.png') AS pet_picture
         FROM pet
         WHERE user_id = #{userId}
     </select>

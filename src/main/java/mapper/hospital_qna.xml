@@ -21,6 +21,10 @@
 		WHERE qna_id = #{qnaId};
 	</update>
 
-
+	<select id="findManagerIdByHospitalId" parameterType="int" resultType="int">
+		SELECT user_id
+		FROM hospital
+		WHERE h_id = #{hospitalId};
+	</select>
 
 </mapper>
