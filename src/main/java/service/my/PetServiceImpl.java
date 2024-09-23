@@ -46,6 +46,7 @@ public class PetServiceImpl implements PetService {
 		pet.setPet_num(multi.getParameter("pet_num"));
 		pet.setPet_gender(multi.getParameter("pet_gender"));
 		pet.setPet_age(Integer.parseInt(multi.getParameter("pet_age")));
+		pet.setPet_neutering(Boolean.parseBoolean(multi.getParameter("pet_neutering")));
 		pet.setPet_memo(multi.getParameter("pet_memo"));
 		System.out.println(pet);
 		petDao.insertPet(pet);
@@ -68,6 +69,13 @@ public class PetServiceImpl implements PetService {
 		pet.setPet_num(multi.getParameter("pet_num"));
 		pet.setPet_gender(multi.getParameter("pet_gender"));
 		pet.setPet_age(Integer.parseInt(multi.getParameter("pet_age")));
+		
+		if(multi.getParameterValues("pet_neutering") !=null) {
+	         pet.setPet_neutering(true);
+	      } else {
+	         pet.setPet_neutering(false);
+	      }
+		
 		pet.setPet_memo(multi.getParameter("pet_memo"));
 
 		// 파일 수정

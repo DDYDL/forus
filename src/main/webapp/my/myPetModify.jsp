@@ -118,8 +118,8 @@
 						<li class="title">특이사항</li>
 						<br>
 						<br>
-						<li><textarea resize=none; class="tdinput" id="input_box" cols="30"
-								rows="4">${pet.pet_memo }</textarea></li>
+						<li><textarea resize:none; class="tdinput" id="input_box" cols="30"
+								rows="4" name="pet_memo">${pet.pet_memo } </textarea></li>
 						<br>
 						<br>
 						<br>

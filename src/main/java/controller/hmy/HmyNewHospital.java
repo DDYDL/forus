@@ -33,7 +33,7 @@ public class HmyNewHospital extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/hmy/hmynewhospital.jsp").forward(request, response);
+		request.getRequestDispatcher("/hmy/hmynewhospital2.jsp").forward(request, response);
 	}
 
 	/**
