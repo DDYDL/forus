@@ -33,7 +33,7 @@
 			<div>
 				<h2 align="center">반려동물 프로필 수정</h2>
 			</div>
-
+			<input id="petn" type="hidden" value="${pet.pet_neutering}">
 			<div class="containerprofile">
 				<input type="hidden" name="pet_id" value="${pet.pet_id}">
 
@@ -72,10 +72,11 @@
 							<c:if test="${pet.pet_gender eq 'M'}">checked</c:if>> 남 <input
 							type="radio" name="pet_gender" value="F"
 							<c:if test="${pet.pet_gender eq 'F'}">checked</c:if>> 여 <input
-							type="checkbox" name="pet_neutering" value="0"
-							<c:if test="${pet.pet_neutering eq 'true'}">checked</c:if>>
+							type="checkbox" name="pet_neutering" value="pet_neutering" <c:if test="${pet.pet_neutering eq true}"> checked</c:if>>
 							중성화 여부</li>
-
+						<script>
+							console.log(document.getElementById('petn').value);
+						</script>
 
 						
 

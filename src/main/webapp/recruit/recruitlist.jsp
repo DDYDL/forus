@@ -32,9 +32,9 @@
                     <thead><tr><th>시·도</th><th>시·구·군</th><th>동·읍·면</th></tr></thead>
                     <tbody>
                     <tr id="addressSearch">
-                    <td id="addressdido" class="tabletd"></td>
-                    <td id="addresssigungu" class="tabletd"><div class="collapse"></div></td>
-                    <td id="addressdongeummaen" class="tabletd"><div class="collapse"></div></td>
+                    <td id="addressdido" class="tabletd tabletd1" style="padding:5px 0 0 0;"></td>
+                    <td id="addresssigungu" class="tabletd tabletd2" style="padding:5px 0 0 0;"><div class="collapse"></div></td>
+                    <td id="addressdongeummaen" class="tabletd" style="padding:5px 0 0 0;"><div class="collapse"></div></td>
                     </tr>
                     </tbody>
                 </table>
@@ -44,16 +44,16 @@
                     <thead><tr><th>종</th><th>동물종</th></tr></thead>
                     <tbody>
                     <tr>
-                        <td class="tabletd">
-                        <select size="5">
-					    <option value="mammalia" data-bs-toggle="collapse" data-bs-target="#mammalia" onclick="speciesClick(mammalia)">포유류</option>
-					    <option value="bird" data-bs-toggle="collapse" data-bs-target="#bird" onclick="speciesClick(bird)">조류</option>
-					    <option value="reptile" data-bs-toggle="collapse" data-bs-target="#reptile" onclick="speciesClick(reptile)">파충류</option>
-					    <option value="amphibian" data-bs-toggle="collapse" data-bs-target="#amphibian" onclick="speciesClick(amphibian)">양서류</option>
-					    <option value="pisces" data-bs-toggle="collapse" data-bs-target="#pisces" onclick="speciesClick(pisces)">어류</option>
+                        <td class="tabletd tabletd1" style="padding:5px 0 0 0;">
+                        <select size="5" style="width:100%;margin:0px;padding:0px;">
+					    <option value="mammalia" style="padding:5px 10px;" data-bs-toggle="collapse" data-bs-target="#mammalia" onclick="speciesClick(mammalia)">포유류</option>
+					    <option value="bird" style="padding:5px 10px;" data-bs-toggle="collapse" data-bs-target="#bird" onclick="speciesClick(bird)">조류</option>
+					    <option value="reptile" style="padding:5px 10px;" data-bs-toggle="collapse" data-bs-target="#reptile" onclick="speciesClick(reptile)">파충류</option>
+					    <option value="amphibian" style="padding:5px 10px;" data-bs-toggle="collapse" data-bs-target="#amphibian" onclick="speciesClick(amphibian)">양서류</option>
+					    <option value="pisces" style="padding:5px 10px;" data-bs-toggle="collapse" data-bs-target="#pisces" onclick="speciesClick(pisces)">어류</option>
 	                	</select>
 	                    </td>
-	                    <td id="speciestd" class="tabletd"><div id="mammalia" class="collapse"></div></td>
+	                    <td id="speciestd" class="tabletd" style="padding:5px 0 0 0;"><div id="mammalia" class="collapse"></div></td>
                     </tr>
                     </tbody>
                 </table>
@@ -112,7 +112,7 @@
      						console.log(addressList);
      						for(var i=0; i<addressList.length; i++) {
      							list.push(addressList[i].addr_name);
-     							cdlist.push(addressList[i].cd);
+								cdlist.push(addressList[i].cd);
      						}
      						console.log(list);
      						console.log(cdlist);
@@ -137,13 +137,13 @@
         function firstSelect() {
         	// 1번째 select문 설정
             var td1 = $('#addressdido');
-        	td1.append(`<select id="addressfirst" size="5"></select>`);
+        	td1.append(`<select id="addressfirst" style="width:100%;margin:0px;padding:0px;" size="5"></select>`);
         	var select1 = $('#addressfirst');
         	console.log(list);
         	console.log(cdlist);
         	console.log(list.length);
         	for(var i=0; i<list.length; i++) {
-        		select1.append(`<option value="\${list[i]}" data-bs-toggle="collapse" data-bs-target="#\${list[i]}" onclick="checkClick('\${cdlist[i]}','\${list[i]}')">\${list[i]}</option>`);
+        		select1.append(`<option value="\${list[i]}" style="padding:5px 10px;" data-bs-toggle="collapse" data-bs-target="#\${list[i]}" onclick="checkClick('\${cdlist[i]}','\${list[i]}')">\${list[i]}</option>`);
         	}
         }
         
@@ -163,12 +163,12 @@
         	console.log(gu);
         	var td2 = $('#addresssigungu');
         	td2.children('div').attr('id', '\${gu}');
-        	td2.append(`<select id="\${gu}s" size="5"></select>`);
+        	td2.append(`<select id="\${gu}s" style="width:100%;margin:0px;padding:0px;" size="5"></select>`);
         	var select2 = $(`#\${gu}s`);
 
         	console.log(select2);
             for(var j=0; j<list.length; j++) {
-            	select2.append(`<option value="\${list[j]}" data-bs-toggle="collapse" data-bs-target="#\${list[j]}" onclick="checkClick('\${cdlist[j]}','\${list[j]}')">\${list[j]}</option>`);
+            	select2.append(`<option value="\${list[j]}" style="padding:5px 10px;" data-bs-toggle="collapse" data-bs-target="#\${list[j]}" onclick="checkClick('\${cdlist[j]}','\${list[j]}')">\${list[j]}</option>`);
         	}
         }
         
@@ -180,12 +180,25 @@
         	// 3번째 select문 설정
     		var td3 = $('#addressdongeummaen');
     		td3.children('div').attr('id', '\${dong}');
-        	td3.append(`<select id="areas" onclick="selectSearch_area()" size="5"></select>`);
+        	td3.append(`<select id="areas" style="width:100%;margin:0px;padding:0px;" onclick="selectSearch_area()" size="5"></select>`);
         	var select3 = $('#areas');
         	
         	console.log(list);
+        	
+        	// 동에서 숫자 제거 후 넣기 위함
+        	var str = [];
+        	for(var l=0; l<list.length; l++) {
+        		// 숫자가 들어간 주소에서 숫자 지우기
+        		var str2 = list[l].replace(/[0-9]/g, "");
+        		str.push(str2);
+        		str.push(list[l]);
+        	}
+        	// 중복제거
+        	var set = new Set(str);
+        	list = [...set];
+        	
         	for(var k=0; k<list.length; k++) {
-        		select3.append(`<option class="areas" value="\${list[k]}">\${list[k]}</option>`);
+        		select3.append(`<option class="areas" style="padding:5px 10px;" value="\${list[k]}">\${list[k]}</option>`);
         	}
         }
     </script>
@@ -201,12 +214,12 @@
     	function speciesClick(animal) {
     		var td = $('#speciestd');
     		td.empty();
-    		td.append(`<select id="species" onclick="selectSearch_specie()" size="5">`);
+    		td.append(`<select id="species" style="width:100%;margin:0px;padding:0px;" onclick="selectSearch_specie()" size="5">`);
 			var select = $('#species');
         	
         	console.log(animal);
         	for(var i=0; i<animal.length; i++) {
-        		select.append(`<option class="species" value="\${animal[i]}">\${animal[i]}</option>`);
+        		select.append(`<option class="species" style="padding:5px 10px;" value="\${animal[i]}">\${animal[i]}</option>`);
         	}
     		
     	}
