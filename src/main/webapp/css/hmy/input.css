@@ -35,11 +35,11 @@ input[type="radio"] {
 
 input[type="radio"]:focus-visible {
 	outline-offset: max(2px, 0.1em);
-	outline: max(2px, 0.1em) dotted #69E92E;
+	outline: max(2px, 0.1em) dotted #03C75A;
 }
 
 input[type="radio"]:checked {
-	border: 0.4em solid #69E92E;
+	border: 0.4em solid #03C75A;
 }
  */
 /* input[type="checkbox"] {
@@ -55,8 +55,8 @@ input[type="radio"]:checked {
 }
 
 input[type="checkbox"]:checked {
-	background-color: #69E92E; 체크된 상태의 배경색
-	border-color: #69E92E;
+	background-color: #03C75A; 체크된 상태의 배경색
+	border-color: #03C75A;
 }
 
 input[type="checkbox"]:checked::after {
@@ -114,7 +114,7 @@ input[type="checkbox"]:checked::after {
 .filebox label {
 	display: inline;
 	padding: 10px 20px;
-	color: #000000;
+	color: #262627;
 	vertical-align: middle;
 	background-color: transparent;
 	cursor: pointer;
@@ -146,7 +146,7 @@ input[type="checkbox"]:checked::after {
 .btnaddress {
 	text-align: left;
 	padding: 10px 20px;
-	color: #000000;
+	color: #262627;
 	vertical-align: middle;
 	background-color: transparent;
 	cursor: pointer;

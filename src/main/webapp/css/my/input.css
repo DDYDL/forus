@@ -44,8 +44,8 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-	background-color: #69E92E; /* 체크된 상태의 배경색 */
-	border-color: #69E92E;
+	background-color: #03C75A; /* 체크된 상태의 배경색 */
+	border-color: #03C75A;
 }
 
 input[type="checkbox"]:checked::after {
@@ -58,7 +58,7 @@ input[type="checkbox"]:checked::after {
 }
 
 input[type="checkbox"] {
-	accent-color: #69E92E;
+	accent-color: #03C75A;
 }
 
 .tdinput {
@@ -79,7 +79,7 @@ input[type="checkbox"] {
 .filebox label {
 	display: inline;
 	padding: 10px 20px;
-	color: #000000;
+	color: #262627;
 	vertical-align: middle;
 	background-color: #ffffff;
 	cursor: pointer;
@@ -111,7 +111,7 @@ input[type="checkbox"] {
 .btn {
 	text-align: left;
 	padding: 10px 20px;
-	color: #000000;
+	color: #262627;
 	vertical-align: middle;
 	background-color: #ffffff;
 	cursor: pointer;

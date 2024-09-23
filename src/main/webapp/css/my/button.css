@@ -17,7 +17,7 @@
 }
 
 .btnBlueGreen {
-	background: #69E92E;
+	background: #03C75A;
 }
 
 .btnBlueGreen.btnPush {
@@ -47,8 +47,8 @@
 	padding: 5px 10px;
 	font-size: 16px;
 	border-radius: 10px;
-	border: 2px solid #69E92E;
-	color: #000000;
+	border: 2px solid #03C75A;
+	color: #262627;
 	background-color: transparent;
 	transition: background-color 0.3s ease, color 0.3s ease, border-color
 		0.3s ease;
@@ -58,12 +58,12 @@
 .petgender-check:checked+.petgender-button {
 	background-color: #6CBE46;
 	color: #ffffff;
-	border-color: #69E92E;
+	border-color: #03C75A;
 }
 
 /* 마우스 오버 시 스타일 */
 .petgender-button:hover {
-	background-color: #69E92E;
+	background-color: #03C75A;
 	color: #ffffff;
 	border-color: #6CBE46;
   cursor:pointer;
@@ -89,7 +89,7 @@
 } 
 
 .check label input[type="checkbox"]:checked ~ span{
-    background: #69E92E;
+    background: #03C75A;
 }
  
 
@@ -114,8 +114,8 @@ input [type="text"]{
 	padding: 5px 10px;
 	font-size: 16px;
 	border-radius: 10px;
-	border: 2px solid #69E92E;
-	color: #000000;
+	border: 2px solid #03C75A;
+	color: #262627;
 	background-color: transparent;
 	transition: background-color 0.3s ease, color 0.3s ease, border-color
 		0.3s ease;
@@ -125,12 +125,12 @@ input [type="text"]{
 .checkbox-check:checked+.checkbox-button {
 	background-color: #6CBE46;
 	color: #ffffff;
-	border-color: #69E92E;
+	border-color: #03C75A;
 }
 
 /* 마우스 오버 시 스타일 */
 .checkbox-button:hover {
-	background-color: #69E92E;
+	background-color: #03C75A;
 	color: #ffffff;
 	border-color: #6CBE46;
   cursor:pointer;

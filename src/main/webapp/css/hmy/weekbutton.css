@@ -8,7 +8,7 @@
 	display: inline-block;
 	background: rgba(194, 194, 194, 0.5);
 	padding: 15px 20px;
-	color: #555;
+	color: #262627;
 	border-radius: 90%;
 	transition: 0.1s;
 	user-select: none;
@@ -16,7 +16,7 @@
 }
 
 .check label input[type="checkbox"]:checked ~ span {
-	background: #69E92E;
+	background: #262627;
 }
 
 input[type="checkbox"] {

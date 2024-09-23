@@ -6,6 +6,7 @@
 	padding-top: 60px;
 	padding-left: 300px;
 	padding-right: 300px;
+	overflow:hidden;
 }
 
 /* 로고 이미지 설정 */
@@ -14,9 +15,9 @@
 
 /* 메뉴 설정 */
 .menu_box { float:left; position:absolute; bottom:5px; text-align:center; right:40%; }
-a { text-decoration:none; font-size: 18px; font-weight:bold; color:black; }
-a:hover { color:#69E92E; }
-a:active-color { color:#69E92E; }
+a { text-decoration:none; font-size: 18px; font-weight:bold; color:#262627; }
+a:hover { color:#03C75A; }
+a:active-color { color:#03C75A; }
 .login { float:right; position:absolute; bottom:5px; right:300px; }
 
 /* 선 설정 */
