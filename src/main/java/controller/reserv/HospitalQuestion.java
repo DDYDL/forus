@@ -40,6 +40,7 @@ public class HospitalQuestion extends HttpServlet {
 			int offset = (page - 1) * limit;
 
 			List<Hospital_qna> hospitalQnaList = hospitalQnaService.getHospitalQnaList(hospitalId, limit, offset);
+			
 
 			Gson gson = new Gson();
 			String json = gson.toJson(hospitalQnaList);

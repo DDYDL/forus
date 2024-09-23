@@ -16,6 +16,8 @@
 <%--</head>--%>
 
 
+
+
 <div id="hospital-qna-section">
     <h3>QnA</h3>
 
@@ -209,7 +211,9 @@
             <td colspan="3" style="padding: 10px;">
                 <p><strong>ㄴ답변:</strong> ${"${qna.a_title || '답변이 없습니다.'}"}</p>
 
-                   <c:if test="${sessionUser !=null && sessionUser.ishospital == 1}">
+<%--                   <c:if test="${sessionUser !=null && sessionUser.ishospital == 1}">--%>
+                  <%-- hospitaldetail.jsp에서 불러오는값--%>
+                   <c:if test="${sessionUser.id eq managerId}">
                     <div class="answer-form">
                             <input type="text" class="answer-input form-control" data-qna-id="${"${qna.qna_id}"}" placeholder="답변을 입력하세요">
                             <button class="answer-submit-btn btn btn-outline-secondary" data-qna-id="${"${qna.qna_id}"}">답변 등록</button>
@@ -237,6 +241,7 @@
 
 
 </script>
+
 
 
 
