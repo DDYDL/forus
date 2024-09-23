@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
-					<td><input type="password" placeholder="비밀번호 다시 입력해주세요" name="passwordCheck"
+					<td><input type="password" placeholder="비밀번호 다시 입력해주세요" name="passwordCheck" id="passwordCheck"
 					class="input join-input cursorpadding"></td>
 				</tr>
 				<tr>
