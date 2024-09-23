@@ -17,6 +17,15 @@
 /*    padding-right: 15%;*/
 /*}*/
 
+.hospital-info i {
+    padding-right: 3px;
+}
+
+.operation-time i {
+    padding-right: 3px;
+}
+
+
 #content-container {
     /*padding: 20px;*/
     padding-left: 13%;
@@ -227,7 +236,8 @@
 /*    !*margin-top: 35%;*!*/
 /*margin-top: 215px;*/
     position: relative;
-    top: -90px;
+    /*top: -90px;*/
+    top: -50px;
 
 }
 
@@ -585,7 +595,8 @@
 
 .operation-time {
     position: relative;
-    top: -374px;
+    /*top: -374px;    */
+    top: -370px;
     margin-left: 50%;
     /*margin-bottom: -31%;*/
 }
