@@ -32,4 +32,6 @@ public interface HospitalService {
 	void modifyHospitalTime(Integer h_id, Integer h_interval_time, List<Hospital_time> htList) throws Exception;
 
 	void insertHospitalTime(Integer h_id, Integer h_interval_time, List<Hospital_time> htList) throws Exception;
+	
+	void insertnewTime(Integer Hospita_time)throws Exception;
 }

@@ -43,10 +43,7 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-	
-	function(e){
-		
-	}
+
 	
 	
 </script>
@@ -263,10 +260,14 @@
 					</tr>
 
 					<tr>
-						<td><label for="name"> 주차 가능 여부 </label></td>
-						<td class="tdinput"><input type="radio" name="h_parking"
-							value="true"> 가능 <input type="radio" name="h_parking"
-							value="false"> 불가능</td>
+
+						<td class="name">주차 가능 여부</td>
+						<td><input type="radio" class="car-check" name="h_parking"
+							id="radioParkingTrue" value="true" autocomplete="off"> <label
+							class="car-button" for="radioParkingTrue">가능</label> <input
+							type="radio" class="car-check" name="h_parking"
+							id="radioParkingFalse" value="false" autocomplete="off">
+							<label class="car-button" for="radioParkingFalse">불가능</label></td>
 					</tr>
 
 				</tbody>
@@ -317,41 +318,31 @@
 
 
 <script>
-
-
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				document.getElementById('preview').src = e.target.result;
+function daumPostcode() {
+	new daum.Postcode({
+		oncomplete : function(data) {
+			var roadAddr = data.roadAddress; // 도로명 주소 변수
+			var extraRoadAddr = ''; // 참고 항목 변수
+			if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+				extraRoadAddr += data.bname;
 			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	// 카카오(다음) 주소 입력
-	function daumPostcode() {
-		new daum.Postcode({
-			oncomplete : function(data) {
-				var roadAddr = data.roadAddress; // 도로명 주소 변수
-				var extraRoadAddr = ''; // 참고 항목 변수
-				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-					extraRoadAddr += data.bname;
-				}
-				if (data.buildingName !== '' && data.apartment === 'Y') {
-					extraRoadAddr += (extraRoadAddr !== '' ? ', '
-							+ data.buildingName : data.buildingName);
-				}
-				if (extraRoadAddr !== '') {
-					extraRoadAddr = ' (' + extraRoadAddr + ')';
-				}
-				document.getElementById("postcode").value = data.zonecode;
-				document.getElementById("h_address").value = roadAddr
+			if (data.buildingName !== '' && data.apartment === 'Y') {
+				extraRoadAddr += (extraRoadAddr !== '' ? ', '
+						+ data.buildingName : data.buildingName);
+			}
+			if (extraRoadAddr !== '') {
+				extraRoadAddr = ' (' + extraRoadAddr + ')';
+			}
+						document.getElementById('postcode').value = data.zonecode;
+						document.getElementById("h_address").value = roadAddr
 						+ extraRoadAddr;
-			}
-		}).open();
+						getLatLngFromAddress(roadAddr);
+
+					}
+				}).open();
 	}
 </script>
+
 
 <script>
 	//위도 경도 코드

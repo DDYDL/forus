@@ -58,7 +58,7 @@ public class PetServiceImpl implements PetService {
 		String path = request.getServletContext().getRealPath("upload" + File.separator + "pet");
 		int size = 10 * 1024 * 1024;
 
-		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8",new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
 
 		Pet pet = new Pet();
 		pet.setPet_id(Integer.parseInt(multi.getParameter("pet_id")));
@@ -68,17 +68,17 @@ public class PetServiceImpl implements PetService {
 		pet.setPet_num(multi.getParameter("pet_num"));
 		pet.setPet_gender(multi.getParameter("pet_gender"));
 		pet.setPet_age(Integer.parseInt(multi.getParameter("pet_age")));
-		
-		if(multi.getParameterValues("pet_neutering") !=null) {
-	         pet.setPet_neutering(true);
-	      } else {
-	         pet.setPet_neutering(false);
-	      }
-		
+
+		if (multi.getParameterValues("pet_neutering") != null) {
+			pet.setPet_neutering(true);
+		} else {
+			pet.setPet_neutering(false);
+		}
+
 		pet.setPet_memo(multi.getParameter("pet_memo"));
-		
+
 		System.out.println(multi.getParameterValues("pet_neutering"));
-		if(multi.getParameterValues("pet_neutering") !=null) {
+		if (multi.getParameterValues("pet_neutering") != null) {
 			pet.setPet_neutering(true);
 		} else {
 			pet.setPet_neutering(false);
@@ -117,9 +117,10 @@ public class PetServiceImpl implements PetService {
 
 		int updatedReservations = petDao.updateReservationStatusToCancelledByPetId(pet_Id);
 
-		if (updatedReservations == 0) {
-			throw new Exception("예약 취소 중 오류가 발생했습니다.");
-		}
+		/*
+		 * if (updatedReservations == 0) { throw new Exception("삭제 중 오류가 발생했습니다."); }
+		 */
+
 		// 펫 삭제
 		int deleteCount = petDao.deletePet(pet_Id);
 
