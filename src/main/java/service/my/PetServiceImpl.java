@@ -58,7 +58,7 @@ public class PetServiceImpl implements PetService {
 		String path = request.getServletContext().getRealPath("upload" + File.separator + "pet");
 		int size = 10 * 1024 * 1024;
 
-		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8",new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
 
 		Pet pet = new Pet();
 		pet.setPet_id(Integer.parseInt(multi.getParameter("pet_id")));
@@ -68,17 +68,17 @@ public class PetServiceImpl implements PetService {
 		pet.setPet_num(multi.getParameter("pet_num"));
 		pet.setPet_gender(multi.getParameter("pet_gender"));
 		pet.setPet_age(Integer.parseInt(multi.getParameter("pet_age")));
-		
-		if(multi.getParameterValues("pet_neutering") !=null) {
-	         pet.setPet_neutering(true);
-	      } else {
-	         pet.setPet_neutering(false);
-	      }
-		
+
+		if (multi.getParameterValues("pet_neutering") != null) {
+			pet.setPet_neutering(true);
+		} else {
+			pet.setPet_neutering(false);
+		}
+
 		pet.setPet_memo(multi.getParameter("pet_memo"));
-		
+
 		System.out.println(multi.getParameterValues("pet_neutering"));
-		if(multi.getParameterValues("pet_neutering") !=null) {
+		if (multi.getParameterValues("pet_neutering") != null) {
 			pet.setPet_neutering(true);
 		} else {
 			pet.setPet_neutering(false);
@@ -114,17 +114,18 @@ public class PetServiceImpl implements PetService {
 	@Override
 	public Integer petDelete(int pet_Id) throws Exception {
 		// 해당 펫의 예약 상태를 "예약취소"로 업데이트
+
+		int updatedReservations = petDao.updateReservationStatusToCancelledByPetId(pet_Id);
+
 		/*
-		 * int updatedReservations =
-		 * petDao.updateReservationStatusToCancelledByPetId(pet_Id);
-		 * 
 		 * if (updatedReservations == 0) { throw new Exception("삭제 중 오류가 발생했습니다."); }
 		 */
+
 		// 펫 삭제
 		int deleteCount = petDao.deletePet(pet_Id);
 
 		// 로그 기록 (선택)
-		//System.out.println("예약 상태 취소된 수: " + updatedReservations);
+		System.out.println("예약 상태 취소된 수: " + updatedReservations);
 
 		return deleteCount;
 	}
