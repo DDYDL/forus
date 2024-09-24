@@ -95,8 +95,9 @@
     /*max-width: 1300%;*/
     /*border-radius: 50%;*/
     /*margin-left: 0%;*/
-    max-width: 1000px; /* 원하는 너비로 조정 */
-
+ /*    max-width: 1000px; 원하는 너비로 조정
+ */
+ 	width:800px;
 
 }
 

@@ -41,7 +41,7 @@
 			<div class="divtable">
 
 				<p class="mypage-content-title" align="center">병원 진료시간 관리</p>
-				<div style="padding-bottom: 20px;">
+				<div style="padding-bottom: 20px;padding-top:30px;">
 					예약간격 <select name="intervalTime" id="interval">
 
 						<option value="10"
