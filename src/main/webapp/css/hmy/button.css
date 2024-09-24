@@ -2,10 +2,18 @@
 
 /*3d 버튼*/
 .btn {
-	text-decoration-line: none;
+	font-family: 'KCC-Hanbit';
 	border: none;
-	padding: 0 20px;
-	line-height: 2.5;
+	position: relative;
+	padding: 0;
+	margin: 10px 20px 10px 0;
+	font-weight: 600;
+	width: 120px;
+    height: 50px;
+    text-align: center;
+	line-height: 50px;
+	color: #FFF;
+	font-size:18px;
 	border-radius: 10px;
 	transition: all 0.2s;
 }

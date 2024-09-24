@@ -35,12 +35,12 @@
    float: right;
 }
 
-#pet_id:before {border: 2px solid #03C75A;}
-#pet_id {
+.petdropdown:before {border: 2px solid #03C75A; font-size: 16px;}
+.petdropdown {
 	width: 150px;
 	height: 40px;
 	padding: 5px 10px;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 10px;
     border: 2px solid #03C75A;
     color: #03C75A;
@@ -48,10 +48,10 @@
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     white-space:no wrap; overflow: ellipsis;
    	}
-#pet_id:focus {
+.petdropdown:focus {
 	height:40px;
 	padding: 5px 10px;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 10px;
     border: 2px solid #03C75A;
     color: #03C75A;

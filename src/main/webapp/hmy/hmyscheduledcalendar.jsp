@@ -30,6 +30,7 @@
 }
 
 
+
 </style>
 
 
@@ -270,7 +271,7 @@
         <tr class="reservation-row">
             <td class="reservation-label"><strong>예약상태</strong></td>
             <td class="reservation-value">
-                <select id="reservationStatus">
+                <select id="reservationStatus" >
                     <option value="예약" ${"${event.extendedProps.reservationStatus === '예약' ? 'selected' : ''}"}>예약</option>
                     <option value="진료완료" ${"${event.extendedProps.reservationStatus === '진료완료' ? 'selected' : ''}"}>진료완료</option>
                     <option value="예약취소" ${"${event.extendedProps.reservationStatus === '예약취소' ? 'selected' : ''}"}>예약취소</option>

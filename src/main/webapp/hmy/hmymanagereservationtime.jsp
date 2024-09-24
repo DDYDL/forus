@@ -13,11 +13,10 @@
 	color: #03C75A;
 }
 
-.myhospital{
+.myhospital {
 	font-weight: bold;
 	color: #03C75A;
 }
-
 </style>
 
 <!-- 캘린더 라이브러리 -->
@@ -30,18 +29,21 @@
 <link rel="stylesheet" href="css/hmy/containerbox.css" />
 <link rel="stylesheet" href="css/hmy/weekbutton.css" />
 <link rel="stylesheet" href="css/my/button.css" />
-<link href="./css/recruit/calendar.css?after" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/hmy/font.css" />
+
+<link href="./css/recruit/calendar.css?after" rel="stylesheet"
+	type="text/css">
 </head>
 <body>
 	<%@ include file="../mainhmypage.jsp"%>
 	<form action="modifyHospitalTime" method="post">
 		<div class="mypage-content">
 			<div class="divtable">
-				<div>
-					<h2 align="center">병원 진료시간 관리</h2>
-				</div>
-				<div style="padding-left: 250px; padding-bottom: 20px;">
-					예약간격 <select name="intervalTime">
+
+				<p class="mypage-content-title" align="center">병원 진료시간 관리</p>
+				<div style="padding-bottom: 20px;padding-top:30px;">
+					예약간격 <select name="intervalTime" id="interval">
+
 						<option value="10"
 							<c:if test='${hospital.h_interval_time eq "10"}'>selected="selected"</c:if>>10분</option>
 						<option value="20"
@@ -84,14 +86,13 @@
 
 
 										</td> --%>
-										
+
 										<td class="setting_td1"><label for="time">영업시간</label></td>
-								<td class="setting_td2"><input type="time"
-									class="time_start" id="timepicker" name="htime_opening_mon"
+										<td class="setting_td2"><input type="time"
+											class="time_start" id="timepicker" name="htime_opening_mon"
 											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
-									~
-									<input type="time" class="time_end" id="timepicker"
-									 name="htime_closing_mon"
+											~ <input type="time" class="time_end" id="timepicker"
+											name="htime_closing_mon"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
 
 									</tr>
@@ -116,17 +117,16 @@
 											~ <input type="time" id="input" name="htime_closing_tue"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}">
 										</td> --%>
-										
-										
+
+
 										<td class="setting_td1"><label for="time">영업시간</label></td>
-								<td class="setting_td2"><input type="time"
-									class="time_start" id="timepicker" name="htime_opening_tue"
+										<td class="setting_td2"><input type="time"
+											class="time_start" id="timepicker" name="htime_opening_tue"
 											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
-									~
-									<input type="time" class="time_end" id="timepicker"
-									 name="htime_closing_tue"
+											~ <input type="time" class="time_end" id="timepicker"
+											name="htime_closing_tue"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
-										
+
 
 									</tr>
 								</c:if>
@@ -148,17 +148,16 @@
 											~ <input type="time" id="input" name="htime_closing_wed"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}">
 											</td> --%>
-											
-											<td class="setting_td1"><label for="time">영업시간</label></td>
-								<td class="setting_td2"><input type="time"
-									class="time_start" id="timepicker" name="htime_opening_wed"
+
+										<td class="setting_td1"><label for="time">영업시간</label></td>
+										<td class="setting_td2"><input type="time"
+											class="time_start" id="timepicker" name="htime_opening_wed"
 											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
-									~
-									<input type="time" class="time_end" id="timepicker"
-									 name="htime_closing_wed"
+											~ <input type="time" class="time_end" id="timepicker"
+											name="htime_closing_wed"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
-											
-											
+
+
 									</tr>
 								</c:if>
 								<c:if test="${hospitalTime.htime_week eq 'Thursday'}">
@@ -179,17 +178,16 @@
 											~ <input type="time" id="input" name="htime_closing_thur"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}">
 											</td> --%>
-											
-											<td class="setting_td1"><label for="time">영업시간</label></td>
-								<td class="setting_td2"><input type="time"
-									class="time_start" id="timepicker" name="htime_opening_thur"
+
+										<td class="setting_td1"><label for="time">영업시간</label></td>
+										<td class="setting_td2"><input type="time"
+											class="time_start" id="timepicker" name="htime_opening_thur"
 											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
-									~
-									<input type="time" class="time_end" id="timepicker"
-									 name="htime_closing_thur"
+											~ <input type="time" class="time_end" id="timepicker"
+											name="htime_closing_thur"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
-											
-											
+
+
 
 									</tr>
 								</c:if>
@@ -211,16 +209,15 @@
 											~ <input type="time" id="input" name="htime_closing_fri"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}">
 											</td> --%>
-											
-											<td class="setting_td1"><label for="time">영업시간</label></td>
-								<td class="setting_td2"><input type="time"
-									class="time_start" id="timepicker" name="htime_opening_fri"
+
+										<td class="setting_td1"><label for="time">영업시간</label></td>
+										<td class="setting_td2"><input type="time"
+											class="time_start" id="timepicker" name="htime_opening_fri"
 											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
-									~
-									<input type="time" class="time_end" id="timepicker"
-									 name="htime_closing_fri"
+											~ <input type="time" class="time_end" id="timepicker"
+											name="htime_closing_fri"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
-											
+
 									</tr>
 								</c:if>
 								<c:if test="${hospitalTime.htime_week eq 'Saturday'}">
@@ -241,16 +238,15 @@
 											~ <input type="time" id="input" name="htime_closing_sat"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}">
 											</td> --%>
-											
-											<td class="setting_td1"><label for="time">영업시간</label></td>
-								<td class="setting_td2"><input type="time"
-									class="time_start" id="timepicker" name="htime_opening_sat"
+
+										<td class="setting_td1"><label for="time">영업시간</label></td>
+										<td class="setting_td2"><input type="time"
+											class="time_start" id="timepicker" name="htime_opening_sat"
 											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
-									~
-									<input type="time" class="time_end" id="timepicker"
-									 name="htime_closing_sat"
+											~ <input type="time" class="time_end" id="timepicker"
+											name="htime_closing_sat"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
-											
+
 									</tr>
 								</c:if>
 								<c:if test="${hospitalTime.htime_week eq 'Sunday'}">
@@ -271,16 +267,15 @@
 											~ <input type="time" id="input" name="htime_closing_sun"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}">
 											</td> --%>
-											
-											<td class="setting_td1"><label for="time">영업시간</label></td>
-								<td class="setting_td2"><input type="time"
-									class="time_start" id="timepicker" name="htime_opening_sun"
+
+										<td class="setting_td1"><label for="time">영업시간</label></td>
+										<td class="setting_td2"><input type="time"
+											class="time_start" id="timepicker" name="htime_opening_sun"
 											value="${hospitalTime.htime_opening ne null? hospitalTime.htime_opening:'09:00'}">
-									~
-									<input type="time" class="time_end" id="timepicker"
-									 name="htime_closing_sun"
+											~ <input type="time" class="time_end" id="timepicker"
+											name="htime_closing_sun"
 											value="${hospitalTime.htime_closing ne null? hospitalTime.htime_closing:'18:00'}"></td>
-											
+
 									</tr>
 								</c:if>
 							</c:forEach>
@@ -289,7 +284,7 @@
 				</div>
 
 				<div>
-					<br> <br> <br>
+					<br> <br>
 					<div class="find-btn">
 						<input type="submit" title="Button push blue/green"
 							class=" btn btnPush btnBlueGreen find-btn1" value="수정">

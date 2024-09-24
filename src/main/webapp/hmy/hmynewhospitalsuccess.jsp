@@ -18,7 +18,7 @@
 
 		<img src="img/mail.png">
 		<h2>병원 등록이 완료 되었습니다.</h2>
-		<hr width="10%">
+		<hr width="100%">
 		<p>병원 정보는 언제든 수정 가능합니다!</p>
 		<div class="find-btn">
 			<button type="button" title="Button push blue/green"

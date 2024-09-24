@@ -36,7 +36,7 @@
 				<h3 align="left" text-align="left">예약 일정 관리</h3>
 			</div>
 
-			<div style="padding-left: 50px; padding-bottom: 20px;">
+			<div style="padding-bottom: 20px;">
 				예약간격 <select name="intervalTime">
 					<option value="10">10분</option>
 					<option value="20">20분</option>

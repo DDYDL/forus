@@ -53,6 +53,7 @@
 	font-weight: bold;
 	color: #03C75A;
 }
+
 </style>
 </head>
 
@@ -65,10 +66,7 @@
 		<form action="./hmyHospitalModify" method="post"
 			enctype="multipart/form-data">
 			<input type="hidden" name="h_id" value="${hospital.h_id }">
-
-			<div>
-				<h2 align="center">내 병원 정보 수정</h2>
-			</div>
+			<p class="mypage-content-title" align="center">내 병원 정보 수정</p>
 
 			<h3 style="text-align: left">기본 정보</h3>
 
@@ -665,7 +663,7 @@
 			</table>
 
 
-			<br> <br> <br>
+			<br> <br>
 			<div class="row">
 				<div class="find-btn">
 					<input type="submit" title="Button push blue/green"

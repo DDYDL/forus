@@ -17,6 +17,10 @@
 	font-weight: bold;
 	color: #03C75A;
 }
+
+#reservationStatus {
+	border-radius:5px; width:150px; height:35px;
+}
 </style>
 
 <style>
@@ -260,36 +264,14 @@
 
 		$('#vetNote').val(reservationMemo || '');
 
-	<%--	var statusSelect =--%>
-	<%--			'<strong>예약상태</strong>' +--%>
-	<%--			'<select id="reservationStatus">' +--%>
-	<%--			'<option value="예약"' + (reservationStatus == '예약' ? ' selected' : '') + '>예약</option>' +--%>
-	<%--			'<option value="진료완료"' + (reservationStatus == '진료완료' ? ' selected' : '') + '>진료완료</option>' +--%>
-	<%--			'<option value="예약취소"' + (reservationStatus == '예약취소' ? ' selected' : '') + '>예약취소</option>' +--%>
-	<%--			'<option value="미방문"' + (reservationStatus == '미방문' ? ' selected' : '') + '>미방문</option>' +--%>
-	<%--			'</select><br><br>';--%>
-
-	<%--	$('#eventContent').append(statusSelect); // 상태 셀렉트 박스를 추가--%>
-
-
-	<%--	// $('#eventContent').append('<p><strong>내용:</strong> ' + reservationContent + '</p>');--%>
-	<%--	// $('#eventContent').append('<p><strong>시간:</strong> ' + reservationTime + '</p>');--%>
-
-	<%--	// 내용과 시간을 테이블로 변환--%>
-	<%--	var detailsTable = `--%>
-    <%--   <table class="todayreservSideContentAndTime">--%>
-    <%--        <tr>--%>
-    <%--            <th>내용</th>--%>
-    <%--            <td>${"${reservationContent}"}</td>--%>
-    <%--        </tr>--%>
-    <%--        <tr>--%>
-    <%--            <th>시간</th>--%>
-    <%--            <td>${"${reservationTime}"}</td>--%>
-    <%--        </tr>--%>
-    <%--    </table>--%>
-    <%--`;--%>
-
-
+		var statusSelect =
+				'<strong>예약상태</strong>:' +
+				'<select id="reservationStatus">' +
+				'<option value="예약"' + (reservationStatus == '예약' ? ' selected' : '') + '>예약</option>' +
+				'<option value="진료완료"' + (reservationStatus == '진료완료' ? ' selected' : '') + '>진료완료</option>' +
+				'<option value="예약취소"' + (reservationStatus == '예약취소' ? ' selected' : '') + '>예약취소</option>' +
+				'<option value="미방문"' + (reservationStatus == '미방문' ? ' selected' : '') + '>미방문</option>' +
+				'</select><br><br>';
 
 
 		// $('#eventContent').append(detailsTable);

@@ -1,36 +1,9 @@
+#reservationStatus {
+    border-radius:5px; width:150px; height:35px;
+    font-family: 'KCC-Hanbit', sans-serif !important;
+}
 
-    /*body {*/
-    /*    padding-left: 15%;*/
-    /*    padding-right: 15%;*/
-
-    /*}*/
-
-/*body {*/
-/*    background-image:*/
-/*            url('${pageContext.request.contextPath}/img/pattern.png'),*/
-/*            url('${pageContext.request.contextPath}/img/pattern.png');*/
-/*    background-repeat: repeat-y;*/
-/*    background-position: left top, right top;*/
-/*    background-size: 15%, 15%;*/
-
-
-/*    padding-left: 15%;*/
-/*    padding-right: 15%;*/
-/*}*/
-
-    /*body {*/
-    /*    background-image:*/
-    /*            url('../../img/pattern.png'), !* 왼쪽 상단에 위치할 이미지 *!*/
-    /*            url('../../img/pattern.png'); !* 오른쪽 상단에 위치할 이미지 *!*/
-    /*    background-repeat: repeat-y; !* 세로로 반복 *!*/
-    /*    background-position: left top, right top; !* 왼쪽 상단과 오른쪽 상단에 위치 *!*/
-    /*    background-size: 15%, 15%; !* 이미지 크기를 설정 *!*/
-
-    /*    padding-left: 15%;*/
-    /*    padding-right: 15%;*/
-    /*}*/
-
-    .reservation-table{
+.reservation-table{
         font-family: 'KCC-Hanbit', sans-serif !important;
     }
 
@@ -103,8 +76,9 @@
     /*max-width: 1300%;*/
     /*border-radius: 50%;*/
     /*margin-left: 0%;*/
-    max-width: 1000px; /* 원하는 너비로 조정 */
-
+ /*    max-width: 1000px; 원하는 너비로 조정
+ */
+ 	width:800px;
 
 }
 
