@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* 드랍버튼 스타일 설정 */
-.btn { background-color:#69E92ECC; border:1px solid #D1D1D1; margin-right:6px; }
+.btn { background-color:#03C75ACC; border:1px solid #D1D1D1; margin-right:6px; }
 .btn:hover { background-color:#6CBE46; border:1px solid #D1D1D1; }
 .btn:active { background-color:#6CBE46; border:1px solid #D1D1D1; }
 #dropbtnArea { display: inline-block; }
@@ -44,7 +44,7 @@ th { text-align:center; }
 /* 급여 */
 .recruit_td3 { width:150px; padding-left:30px; text-align:right; vertical-align:middle; }
 .recruit_th3 { width:150px; padding-left:30px; }
-.form_btn { border:1px solid #69E92E; background:white; border-radius:20px; font-size:12px; }
+.form_btn { border:1px solid #03C75A; background:white; border-radius:20px; font-size:12px; }
 /* 근무시간 */
 .recruit_td4 { width:70px; padding-left:30px; text-align:center; vertical-align:middle; }
 .recruit_th4 { width:70px; padding-left:30px; }

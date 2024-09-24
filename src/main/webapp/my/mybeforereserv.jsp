@@ -42,11 +42,11 @@
    <div class="overflow">
          <div class="listcnt" id="listcnt" ></div>
          <div class="over"></div>
-         <div class="isConsult floatright">
+         <div class="isConsult">
             <input type="checkbox" id="isConsult" name="isConsult" class="radio-hidden" autocomplete="off">
-            <label for="isConsult" class="label-btnstyle">진료완료만 보기</label>
+            <label for="isConsult" class="label-btnstyle btnsize1">진료완료만 보기</label>
          </div>
-         <div class="petSelect floatright">
+         <div class="petSelect">
             <select id="pet_id" name = "pet_id">
                <option value=""  class="center" selected>반려동물별</option>
             <c:forEach items="${petList }" var="pet">
@@ -54,7 +54,7 @@
             </c:forEach>
          </select>
          </div>
-         <div class="dateSelect floatright">
+         <div class="dateSelect">
                <input class="datecalendar cursorpadding" id="dateRange" name="dateRange" type="text" placeholder=" 기간 입력">
          </div>
       </div>

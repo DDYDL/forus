@@ -18,7 +18,7 @@ a.button {
   border-radius: 10px;
   transition: all 0.2s ;
 }
-.btnBlueGreen { background: #69E92E; }
+.btnBlueGreen { background: #03C75A; }
 .btnBlueGreen.btnPush { box-shadow: 0px 5px 0px 0px #6CBE46; }
 .btnPush:hover { margin-top: 15px; margin-bottom: 5px; }
 .btnBlueGreen.btnPush:hover { box-shadow: 0px 0px 0px 0px #6CBE46; }

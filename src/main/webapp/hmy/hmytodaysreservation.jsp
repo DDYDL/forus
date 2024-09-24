@@ -32,7 +32,7 @@
 
 	table td.reserv-status-missed {
 		background-color: yellow !important;
-		color: black !important;
+		color: #262627 !important;
 	}
 
 	table td.reserv-status-reserved {

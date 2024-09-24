@@ -46,7 +46,7 @@
 				</tr>
 				<tr>
 					<td><img
-						src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&id=${user_id}&type=user"
+						src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&type=user"
 						class="img-icon"></td>
 				</tr>
 
