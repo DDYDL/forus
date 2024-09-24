@@ -94,10 +94,22 @@
 
     /*max-width: 1300%;*/
     /*border-radius: 50%;*/
-    margin-left: 27%;
+    /*margin-left: 0%;*/
     max-width: 1000px; /* 원하는 너비로 조정 */
 
+
 }
+
+
+/*    #calendar {*/
+
+/*     margin-left: 34%;*/
+/*     margin-top: 2.5%;*/
+/*     max-width: 1000px;*/
+
+
+/*}*/
+
 
 .fc-timegrid-event {
     max-width: 45%;
@@ -107,7 +119,8 @@
 /*일 별 */
 .fc-timegrid-event .fc-event-main {
     padding: 1px 1px 0;
-    color: 262627;
+    color: #262627;
+
 
 }
 
@@ -188,20 +201,37 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
-#vetNote {
-    width: 100%;
-    height: 100px;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #fff;
-    resize: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 14px;
-    color: #262627;
-    transition: border-color 0.3s ease;
+/*#vetNote {*/
+/*    width: 94%;*/
+/*    height: 100px;*/
+/*    padding: 15px;*/
+/*    margin-bottom: 20px;*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 10px;*/
+/*    background-color: #fff;*/
+/*    resize: none;*/
+/*    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);*/
+/*    font-family: 'Noto Sans', sans-serif;*/
+/*    font-size: 14px;*/
+/*    color: #262627;*/
+/*    transition: border-color 0.3s ease;*/
+/*}*/
+
+    #vetNote {
+        width: 91%;
+        height: 100px;
+        padding: 15px;
+        margin-top: 5%;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #fff;
+        resize: none;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        font-family: 'Noto Sans', sans-serif;
+        font-size: 14px;
+        color: #262627;
+        transition: border-color 0.3s ease;
 }
 
 #vetNote:focus {
@@ -325,3 +355,45 @@
     /*    color: #333;*/
     /*}*/
 
+
+
+    .reservation-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* 행 스타일 */
+    .reservation-row {
+        margin-bottom: 10px;
+    }
+
+    /* 각 셀 간격과 스타일 */
+    .reservation-label {
+        font-weight: bold;
+        padding: 10px;
+        width: 150px;
+        vertical-align: top;
+        /*border-bottom: 1px solid #e0e0e0; !* 구분선 *!*/
+    }
+
+    .reservation-value {
+        padding: 10px;
+        /*border-bottom: 1px solid #e0e0e0; !* 구분선 *!*/
+        text-align: left;
+    }
+
+    /**/
+    .reservation-details-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: -17px;
+    }
+
+
+    .reservation-label {
+        font-weight: bold;
+        /*padding: 10px;*/
+        width: 150px;
+        vertical-align: top;
+        /*border-bottom: 1px solid #e0e0e0; !* 행 간 구분선 *!*/
+    }
