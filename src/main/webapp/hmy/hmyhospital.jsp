@@ -41,6 +41,9 @@
 		}
 	}
 </script> -->
+
+
+
 <style>
 .myhos {
 	font-weight: bold;
@@ -51,6 +54,7 @@
 	font-weight: bold;
 	color: #03C75A;
 }
+
 </style>
 </head>
 
@@ -69,26 +73,26 @@
 			<table class="container">
 				<tbody>
 					<tr>
-						<td><label for="name">대표자 이름</label></td>
-						<td class="tdinput"><span>${hospital.h_exponent_name  }</span></td>
+						<td class="size"><label for="name">대표자 이름</label></td>
+						<td><span>${hospital.h_exponent_name  }</span></td>
 						<td></td>
 					</tr>
 
 					<tr>
 						<td><label for="name">사업자 등록번호</label></td>
-						<td class="tdinput"><span>${hospital.h_num }</span></td>
+						<td><span>${hospital.h_num }</span></td>
 					</tr>
 					<tr>
 						<td><label for="name">병원 이름</label></td>
-						<td class="tdinput"><span>${hospital.h_name }</span></td>
+						<td><span>${hospital.h_name }</span></td>
 					</tr>
 					<tr>
 						<td><label for="name">병원장 이름</label></td>
-						<td class="tdinput"><span>${hospital.h_manager_name }</span></td>
+						<td><span>${hospital.h_manager_name }</span></td>
 					</tr>
 					<tr>
 						<td><label for="name">병원 연락처</label></td>
-						<td class="tdinput"><span>${hospital.h_phone }</span></td>
+						<td><span>${hospital.h_phone }</span></td>
 					</tr>
 
 					<tr>
@@ -108,7 +112,7 @@
 			<table class="container">
 				<tbody>
 					<tr>
-						<td></td>
+						<td class="size"></td>
 						<td class="tdinput"><span>${hospital.h_animal_type }</span>
 					</tr>
 
@@ -130,12 +134,11 @@
 				</tbody>
 			</table>
 
-
 			<h3 style="text-align: left">추가 사항</h3>
 			<table class="container">
 				<tbody>
 					<tr>
-						<td><label for="name">상세 설명</label></td>
+						<td class="size"><label for="name">상세 설명</label></td>
 						<td><span>${hospital.h_memo }</span></td>
 					</tr>
 					<tr>
@@ -146,7 +149,7 @@
 
 					<tr>
 						<td><label for="name"> SNS / Blog </label></td>
-						<td class="tdinput"><span>${hospital.h_sns }</span></td>
+						<td><span>${hospital.h_sns }</span></td>
 
 					</tr>
 
