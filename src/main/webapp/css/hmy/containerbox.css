@@ -67,5 +67,8 @@ tr {
 }
 
 .name {
-	border-buttom: 0 0 1px 0;
+	border-bottom: 0 0 1px 0;
+}
+.size{
+	width:205px;
 }
