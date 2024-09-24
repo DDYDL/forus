@@ -38,25 +38,24 @@
 
 
 <div id="hospital-detail-content-container">
-    <!-- 병원 메인 이미지 섹션 -->
+
     <section id="hospital-gallery-section">
         <div id="hospital-gallery-container">
             <div id="hospital-gallery">
                 <button id="prev-gallery-image" class="gallery-carousel-button">‹</button>
                 <div id="main-gallery-image-container">
-                    <img id="main-gallery-image" src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}"
-                         class="gallery-image active">
+                    <!-- 메인 이미지를 위한 img 태그 -->
+                    <img id="main-gallery-image" src="" alt="${hospital.h_name}" class="gallery-image active">
                 </div>
                 <button id="next-gallery-image" class="gallery-carousel-button">›</button>
             </div>
             <div id="thumbnail-gallery-container">
-    <img src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}" class="thumbnail-gallery-image active" data-index="0">
-    <img src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}" class="thumbnail-gallery-image" data-index="1">
-    <img src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}" class="thumbnail-gallery-image" data-index="2">
-
+                <!-- 썸네일을 위한 곳  이미지는 밑에 자바스크립트에서 동적으로 추가 -->
             </div>
         </div>
     </section>
+
+
 
     <!-- 병원 정보 섹션 -->
     <section id="hospital-info-section">
@@ -181,6 +180,38 @@
 
 
 </div>
+
+
+<script>
+
+    var pictureString = '${hospital.h_picture}';
+    var pictures = pictureString ? pictureString.split(',') : [];
+
+    // 썸네일을 표시할 컨테이너
+    var thumbnailGalleryContainer = document.getElementById('thumbnail-gallery-container');
+
+    // 썸네일 이미지와 메인 이미지를 업데이트하는 함수
+    function updateGalleryImages(pictures) {
+        // 메인 이미지 설정 (첫 번째 이미지 또는 기본 이미지)
+        var mainImage = document.getElementById('main-gallery-image');
+        mainImage.src = pictures.length > 0 ? `image?file=${"${pictures[0]}"}&type=hospital` : 'image?file=hospitaldefault.png&type=hospital';
+
+        // 썸네일 이미지 설정
+        for (var i = 0; i < 3; i++) {
+            var imgSrc = pictures[i] ? `image?file=${"${pictures[i]}"}&type=hospital` : 'image?file=hospitaldefault.png&type=hospital';
+            var thumbnailImage = document.createElement('img');
+            thumbnailImage.src = imgSrc;
+            thumbnailImage.alt = '${"${hospital.h_name}"}';
+            thumbnailImage.className = 'thumbnail-gallery-image';
+            thumbnailImage.dataset.index = i;
+            thumbnailGalleryContainer.appendChild(thumbnailImage);
+        }
+    }
+
+    updateGalleryImages(pictures);
+</script>
+
+
 
 
 <script>
