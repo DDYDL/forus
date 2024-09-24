@@ -12,6 +12,11 @@
 	font-weight: bold;
 	color: rgba(105, 233, 46);
 }
+
+.mypage {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
 </style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

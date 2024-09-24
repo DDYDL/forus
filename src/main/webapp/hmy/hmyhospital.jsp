@@ -41,7 +41,17 @@
 		}
 	}
 </script> -->
+<style>
+.myhos{
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
 
+.myhospital{
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+</style>
 </head>
 
 
@@ -94,10 +104,16 @@
 						<td><span>${hospital.h_lunch_time_start } ~
 								${hospital.h_lunch_time_end } </span></td>
 					</tr>
+				</tbody>
+			</table>
 
+			<h3 style="text-align: left">진료 가능 동물 목록</h3>
+			<table class="container">
+				<tbody>
 					<tr>
-						<td><label for="name">진료 가능 동물 목록</label></td>
+
 						<td class="tdinput"><span>${hospital.h_animal_type }</span>
+						
 					</tr>
 
 				</tbody>
@@ -131,7 +147,7 @@
 						<td><span>${hospital.h_memo_road }</span></td>
 					</tr>
 
-					
+
 					<tr>
 						<td><label for="name"> SNS / Blog </label></td>
 						<td class="tdinput"><span>${hospital.h_sns }</span></td>

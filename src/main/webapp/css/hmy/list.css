@@ -26,6 +26,9 @@ ul {
   line-height: 1.5;
 }
 
+tr{
+	padding:20px;
+}
 
 th, td{
 	padding:20px;

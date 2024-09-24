@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 프로필 수정</title>
 <link rel="stylesheet" href="css/my/containerprofile.css" />
 <link rel="stylesheet" href="css/my/profile.css" />
 <link rel="stylesheet" href="css/my/input.css" />
@@ -63,6 +63,11 @@
 
 <style>
 .my {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+
+.mypage {
 	font-weight: bold;
 	color: rgba(105, 233, 46);
 }

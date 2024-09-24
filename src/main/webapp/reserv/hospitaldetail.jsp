@@ -26,7 +26,12 @@
 
 
 </head>
-
+<style>
+.reservation {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+</style>
 <body>
 <%@ include file="../header.jsp" %>
 
