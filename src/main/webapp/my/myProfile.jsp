@@ -18,7 +18,7 @@
 <style>
 .my {
 	font-weight: bold;
-	color: rgba(105, 233, 46);
+	color: #03C75A;
 }
 </style>
 
@@ -41,7 +41,7 @@
 			<ul>
 				<li>프로필 사진</li>
 				<li><img
-					src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&id=${user_id}&type=user"
+					src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&type=user"
 					class="img-icon"></li>
 
 				<li class="title">이름</li>

@@ -10,6 +10,7 @@ body { margin:8px; }
 	position:relative;
 	padding-left: 300px;
 	padding-right: 300px;
+	overflow:hidden;
 }
 
 /* 로고 이미지 설정 */
@@ -18,9 +19,9 @@ body { margin:8px; }
 
 /* 메뉴 설정 */
 .menu_box { float:left; height:20px; position:absolute; left:700px; top:80px; vertical-align:bottom; text-align:left; line-height:24px; }
-a { text-decoration:none; font-size: 18px; font-weight:bold; color:black; }
-a:hover { color:#69E92E; }
-a:active-color { color:#69E92E; }
+a { text-decoration:none; font-size: 18px; font-weight:bold; color:#262627; }
+a:hover { color:#03C75A; }
+a:active-color { color:#03C75A; }
 .login { float:right; position:absolute; vertical-align:bottom; left:1200px; top:80px; line-height:24px; }
 
 /* 선 설정 */

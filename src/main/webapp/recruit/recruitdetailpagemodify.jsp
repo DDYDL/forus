@@ -20,6 +20,12 @@
 <link href="./css/recruit/recruitwriting.css?after" rel="stylesheet" type="text/css">
 <link href="./css/recruit/calendar.css?after" rel="stylesheet" type="text/css">
 </head>
+<style>
+.helpus {
+	font-weight: bold;
+	color: #03C75A;
+}
+</style>
 <body>
 <%@ include file="../header.jsp" %>
 	
@@ -165,7 +171,7 @@
     			console.log(result);
     			var res = JSON.parse(result);
     			res.petList.forEach(function(pet) {
-    				$('#pet_profile').append(`<tr onclick="touch_tr(event, '\${pet.pet_id}')" class="touch_tr"><td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&pet_id=${pet_id}&type=pet" class="img-icon pet_img"></td>
+    				$('#pet_profile').append(`<tr onclick="touch_tr(event, '\${pet.pet_id}')" class="touch_tr"><td class="pet_td1"><img src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&type=pet" class="img-icon pet_img"></td>
     										  <td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age},&nbsp;${pet.pet_gender eq 'M'? '남':'여'})</td>
     										  <td class="pet_td4">\${pet.pet_species}</td><td class="pet_td5">\${pet.pet_breed}</td>
     										  <td class="pet_td6"><label><input type="radio" name="pet_name" value="\${pet.pet_name}" class="radio_btn" id="\${pet.pet_id}" required="required"/></label></td></tr>`);

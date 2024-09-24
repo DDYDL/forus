@@ -18,7 +18,7 @@ a.minibutton {
   transition: all 0.2s;
 }
 .minibtnBlueGreen { background: #ffffff; }
-.minibtnFade.minibtnBlueGreen:hover { background: #69E92E; color:#ffffff; }
+.minibtnFade.minibtnBlueGreen:hover { background: #03C75A; color:#ffffff; }
 
 /* 더보기 버튼 설정 */
 #moreBtn {

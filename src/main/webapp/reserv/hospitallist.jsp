@@ -10,6 +10,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
+<style>
+.reservation {
+	font-weight: bold;
+	color: #03C75A;
+}
+</style>
 <body>
 <%@ include file="../header.jsp" %>
 

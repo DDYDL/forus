@@ -9,9 +9,9 @@
 <body>
 	<aside id="left">
 		<ul class="height">
-			<li><a href="myAfterReserv">예약내역</a></li><br>
-			<li><a href="myPostList">Help 요청</a></li><br>
-			<li><a href="myApplyList">Help 지원</a></li><br>
+			<li><a href="myAfterReserv" class ="reserv">예약내역</a></li><br>
+			<li><a href="myPostList" class ="request">Help 요청</a></li><br>
+			<li><a href="myApplyList" class ="support">Help 지원</a></li><br>
 			<li><a href="myProfile" class="my">내 프로필</a></li><br>
 			<li><a href="myPetList" class="pet">반려동물 프로필</a></li>
 		</ul>

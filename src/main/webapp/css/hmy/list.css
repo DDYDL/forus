@@ -7,7 +7,7 @@
 }
 
 .styled-table thead tr {
-	border-top: 1px solid #000;
+	border-top: 1px solid #262627;
 	border-bottom: 1px solid #dddddd;
 	text-align: center;
 	cursor: pointer;
@@ -26,6 +26,9 @@ ul {
   line-height: 1.5;
 }
 
+tr{
+	padding:20px;
+}
 
 th, td{
 	padding:20px;

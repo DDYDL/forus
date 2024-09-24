@@ -49,12 +49,12 @@ tr { vertical-align: middle; }
   border-radius: 10px;
   transition: all 0.2s ;
   background: #03C75A;
-  box-shadow: 0px 5px 0px 0px #6CBE46;
+  box-shadow: 0px 5px 0px 0px #03985A;
   border: 1px;
   font-family: 'KCC-Hanbit';
   cursor: pointer;
 }
-.bigbtn:hover { box-shadow: 0px 0px 0px 0px #6CBE46; margin-top: 15px; margin-bottom: 5px;}
+.bigbtn:hover { box-shadow: 0px 0px 0px 0px #03985A; margin-top: 15px; margin-bottom: 5px;}
 .join-bigbtn { background: #FFF; color: #262627; box-shadow: 0px 5px 0px 0px lightgray;} 
 
 /* join table 설정 */

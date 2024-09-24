@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 프로필 수정</title>
 <link rel="stylesheet" href="css/my/containerprofile.css" />
 <link rel="stylesheet" href="css/my/profile.css" />
 <link rel="stylesheet" href="css/my/input.css" />
@@ -64,7 +64,12 @@
 <style>
 .my {
 	font-weight: bold;
-	color: rgba(105, 233, 46);
+	color: #03C75A;
+}
+
+.mypage {
+	font-weight: bold;
+	color: #03C75A;
 }
 </style>
 
@@ -94,7 +99,7 @@
 					</tr>
 					<tr>
 						<td><img
-							src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&id=${user_id}&type=user"
+							src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&type=user"
 							class="img-icon"></td>
 					</tr>
 

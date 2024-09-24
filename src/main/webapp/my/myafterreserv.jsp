@@ -11,6 +11,17 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="${pageContext.request.contextPath}/css/my/mycommon.css" rel="stylesheet" type="text/css">
 </head>
+<style>
+.reserv {
+	font-weight: bold;
+	color: #03C75A;;
+}
+
+.mypage {
+	font-weight: bold;
+	color: #03C75A;
+}
+</style>
 <body>
 	<%@ include file="../mainmypage.jsp" %>
 	<div class = "mypage-content-list">

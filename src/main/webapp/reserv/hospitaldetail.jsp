@@ -26,7 +26,12 @@
 
 
 </head>
-
+<style>
+.reservation {
+	font-weight: bold;
+	color: #03C75A;
+}
+</style>
 <body>
 <%@ include file="../header.jsp" %>
 
@@ -38,28 +43,24 @@
 
 
 <div id="hospital-detail-content-container">
-    <!-- 병원 메인 이미지 섹션 -->
+
     <section id="hospital-gallery-section">
         <div id="hospital-gallery-container">
             <div id="hospital-gallery">
                 <button id="prev-gallery-image" class="gallery-carousel-button">‹</button>
                 <div id="main-gallery-image-container">
-                    <img id="main-gallery-image" src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}"
-                         class="gallery-image active">
+                    <!-- 메인 이미지를 위한 img 태그 -->
+                    <img id="main-gallery-image" src="" alt="${hospital.h_name}" class="gallery-image active">
                 </div>
                 <button id="next-gallery-image" class="gallery-carousel-button">›</button>
             </div>
             <div id="thumbnail-gallery-container">
-<%--                <img src="img/hospital/kosta1.png" alt="병원 이미지 1" class="thumbnail-gallery-image active" data-index="0">--%>
-<%--                <img src="img/hospital/kosta2.png" alt="병원 이미지 2" class="thumbnail-gallery-image" data-index="1">--%>
-<%--                <img src="img/hospital/kosta3.png" alt="병원 이미지 3" class="thumbnail-gallery-image" data-index="2">--%>
-    <img src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}" class="thumbnail-gallery-image active" data-index="0">
-    <img src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}" class="thumbnail-gallery-image" data-index="1">
-    <img src="image?file=${hospital.h_picture == null ? 'hospitaldefault.png' : hospital.h_picture}&type=hospital" alt="${hospital.h_name}" class="thumbnail-gallery-image" data-index="2">
-
+                <!-- 썸네일을 위한 곳  이미지는 밑에 자바스크립트에서 동적으로 추가 -->
             </div>
         </div>
     </section>
+
+
 
     <!-- 병원 정보 섹션 -->
     <section id="hospital-info-section">
@@ -73,29 +74,6 @@
             <!-- 모달 섹션  -->
             <%@ include file="hospitalmodal.jsp" %>
 
-<%--            <div id="hospital-detail-info" class="hospital-info">--%>
-<%--                <p><i class="fas fa-info-circle"></i><strong> 소개:</strong> ${hospital.h_memo}</p>--%>
-<%--                <p><i class="fas fa-user-md"></i><strong> 수의사 이름:</strong> ${hospital.h_manager_name}</p>--%>
-<%--                <p><i class="fas fa-phone-alt"></i><strong> 전화번호:</strong> ${hospital.h_phone}</p>--%>
-<%--                <p><i class="fas fa-map-marker-alt"></i><strong> 주소:</strong> ${hospital.h_address}</p>--%>
-<%--                <p><i class="fas fa-directions"></i><strong> 길찾기 메모:</strong> ${hospital.h_memo_road}</p>--%>
-<%--                <p><i class="fas fa-credit-card"></i><strong> 결제 방법:</strong> ${hospital.h_pay}</p>--%>
-<%--                <p><i class="fas fa-parking"></i><strong> 주차 가능 여부:</strong> ${hospital.h_parking}</p>--%>
-<%--&lt;%&ndash;                <p><i class="fas fa-clock"></i><strong> 운영 시간</strong>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <c:forEach var="hospitalTime" items="${hospitalTimes}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                <p>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <c:choose>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                        <c:when test="${hospitalTime.htime_opening !=null && hospitalTime.htime_closing != null}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                            ${hospitalTime.htime_week}: ${hospitalTime.htime_opening} ~ ${hospitalTime.htime_closing}&ndash;%&gt;--%>
-<%--&lt;%&ndash;                        </c:when>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                        <c:otherwise>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                            ${hospitalTime.htime_week}: 휴무&ndash;%&gt;--%>
-<%--&lt;%&ndash;                        </c:otherwise>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    </c:choose>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                </p>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                </c:forEach>&ndash;%&gt;--%>
-
-<%--            </div>--%>
             <div id="hospital-detail-info" class="hospital-info">
                 <p><i class="fas fa-info-circle"></i><strong> 소개:</strong>
                     <c:choose>
@@ -207,6 +185,38 @@
 
 
 </div>
+
+
+<script>
+
+    var pictureString = '${hospital.h_picture}';
+    var pictures = pictureString ? pictureString.split(',') : [];
+
+    // 썸네일을 표시할 컨테이너
+    var thumbnailGalleryContainer = document.getElementById('thumbnail-gallery-container');
+
+    // 썸네일 이미지와 메인 이미지를 업데이트하는 함수
+    function updateGalleryImages(pictures) {
+        // 메인 이미지 설정 (첫 번째 이미지 또는 기본 이미지)
+        var mainImage = document.getElementById('main-gallery-image');
+        mainImage.src = pictures.length > 0 ? `image?file=${"${pictures[0]}"}&type=hospital` : 'image?file=hospitaldefault.png&type=hospital';
+
+        // 썸네일 이미지 설정
+        for (var i = 0; i < 3; i++) {
+            var imgSrc = pictures[i] ? `image?file=${"${pictures[i]}"}&type=hospital` : 'image?file=hospitaldefault.png&type=hospital';
+            var thumbnailImage = document.createElement('img');
+            thumbnailImage.src = imgSrc;
+            thumbnailImage.alt = '${"${hospital.h_name}"}';
+            thumbnailImage.className = 'thumbnail-gallery-image';
+            thumbnailImage.dataset.index = i;
+            thumbnailGalleryContainer.appendChild(thumbnailImage);
+        }
+    }
+
+    updateGalleryImages(pictures);
+</script>
+
+
 
 
 <script>

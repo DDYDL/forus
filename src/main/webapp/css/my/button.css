@@ -1,3 +1,5 @@
+/*my button.css*/
+
 /*3d 버튼*/
 .btn {
 	text-decoration-line: none;
@@ -17,11 +19,11 @@
 }
 
 .btnBlueGreen {
-	background: #69E92E;
+	background: #03C75A;
 }
 
 .btnBlueGreen.btnPush {
-	box-shadow: 0px 5px 0px 0px #6CBE46;
+	box-shadow: 0px 5px 0px 0px #03985A;
 }
 
 .btnPush:hover {
@@ -30,11 +32,11 @@
 }
 
 .btnBlueGreen.btnPush:hover {
-	box-shadow: 0px 0px 0px 0px #6CBE46;
+	box-shadow: 0px 0px 0px 0px #03985A;
 }
 
 
-/*여기입니다 버튼 */
+/*동물 성별 버튼 */
 /* 기본적으로 라디오 버튼 숨기기 */
 .petgender-check {
 	position: absolute;
@@ -47,8 +49,8 @@
 	padding: 5px 10px;
 	font-size: 16px;
 	border-radius: 10px;
-	border: 2px solid #69E92E;
-	color: #000000;
+	border: 2px solid #03C75A;
+	color: #262627;
 	background-color: transparent;
 	transition: background-color 0.3s ease, color 0.3s ease, border-color
 		0.3s ease;
@@ -56,53 +58,22 @@
 
 /* 선택된 버튼 */
 .petgender-check:checked+.petgender-button {
-	background-color: #6CBE46;
+	background-color: #03985A;
 	color: #ffffff;
-	border-color: #69E92E;
+	border-color: #03C75A;
 }
 
 /* 마우스 오버 시 스타일 */
 .petgender-button:hover {
-	background-color: #69E92E;
+	background-color: #03C75A;
 	color: #ffffff;
-	border-color: #6CBE46;
+	border-color: #03985A;
   cursor:pointer;
 }
 
 
-
-/* 체크박스 버튼*/
-/* 
-.check label {
-  cursor:pointer;
-}
-.check label span{
-  position: relative;
-  display: inline-block;
- background: rgba(194, 194, 194, 0.5);
-  padding: 15px 20px;
-  color: #555;
-  border-radius: 10px;
-  transition: 0.1s;
-  user-select: none;
-  overflow:hidden;
-} 
-
-.check label input[type="checkbox"]:checked ~ span{
-    background: #69E92E;
-}
- 
-
-input[type="checkbox"]{
-  display:none;
-}
-
-input [type="text"]{
-	text-align: center;
-} */
-
-/*여기입니다 버튼 */
-/* 기본적으로 라디오 버튼 숨기기 */
+/*중성화 여부 버튼 */
+/* 기본적으로 체크박스 숨기기 */
 .checkbox-check {
 	position: absolute;
 	opacity: 0;
@@ -114,8 +85,8 @@ input [type="text"]{
 	padding: 5px 10px;
 	font-size: 16px;
 	border-radius: 10px;
-	border: 2px solid #69E92E;
-	color: #000000;
+	border: 2px solid #03C75A;
+	color: #262627;
 	background-color: transparent;
 	transition: background-color 0.3s ease, color 0.3s ease, border-color
 		0.3s ease;
@@ -123,15 +94,15 @@ input [type="text"]{
 
 /* 선택된 버튼 */
 .checkbox-check:checked+.checkbox-button {
-	background-color: #6CBE46;
+	background-color: #03985A;
 	color: #ffffff;
-	border-color: #69E92E;
+	border-color: #03C75A;
 }
 
 /* 마우스 오버 시 스타일 */
 .checkbox-button:hover {
-	background-color: #69E92E;
+	background-color: #03C75A;
 	color: #ffffff;
-	border-color: #6CBE46;
+	border-color: #03985A;
   cursor:pointer;
 }

@@ -18,6 +18,12 @@
 <link href="./css/recruit/recruitwriting.css?after" rel="stylesheet" type="text/css">
 <link href="./css/recruit/calendar.css?after" rel="stylesheet" type="text/css">
 </head>
+<style>
+.helpus {
+	font-weight: bold;
+	color: #03C75A;
+}
+</style>
 <body>
 	<%@ include file="../header.jsp" %>
 	

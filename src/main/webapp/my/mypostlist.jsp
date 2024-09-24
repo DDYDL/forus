@@ -17,6 +17,18 @@ function submitForm() {
     document.getElementById('postform').submit();
 }
 </script>
+<style>
+.request {
+	font-weight: bold;
+	color: #03C75A;
+}
+
+.mypage {
+	font-weight: bold;
+	color: #03C75A;
+}
+
+</style>
 </head>
 <body>
 	<%@ include file="../mainmypage.jsp" %>

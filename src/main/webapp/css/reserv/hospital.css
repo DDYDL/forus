@@ -17,6 +17,15 @@
 /*    padding-right: 15%;*/
 /*}*/
 
+.hospital-info i {
+    padding-right: 3px;
+}
+
+.operation-time i {
+    padding-right: 3px;
+}
+
+
 #content-container {
     /*padding: 20px;*/
     padding-left: 13%;
@@ -227,7 +236,8 @@
 /*    !*margin-top: 35%;*!*/
 /*margin-top: 215px;*/
     position: relative;
-    top: -90px;
+    /*top: -90px;*/
+    top: -50px;
 
 }
 
@@ -403,7 +413,7 @@
 
 .thumbnail-gallery-image.active {
     opacity: 1;
-    border: 2px solid #000;
+    border: 2px solid #262627;
 }
 
 .thumbnail-gallery-image:hover {
@@ -421,7 +431,7 @@
     border-radius: 4px;
     max-height: 200px;
     overflow-y: auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px #262627;
     z-index: 1000;
     display: none;
 }
@@ -493,7 +503,7 @@
 /* 버튼 스타일 */
 #qna-submit-btn {
     padding: 8px 16px;
-    background-color: #333;
+    background-color: #262627;
     color: white;
     border: none;
     border-radius: 4px;
@@ -531,7 +541,7 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f8f9fa;
-    color: #333;
+    color: #262627;
     cursor: pointer;
 }
 
@@ -585,7 +595,8 @@
 
 .operation-time {
     position: relative;
-    top: -374px;
+    /*top: -374px;    */
+    top: -370px;
     margin-left: 50%;
     /*margin-bottom: -31%;*/
 }

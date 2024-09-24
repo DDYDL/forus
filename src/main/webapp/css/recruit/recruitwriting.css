@@ -24,10 +24,10 @@ input[type="radio"] {
 }
 input[type="radio"]:focus-visible {
   	outline-offset: max(2px, 0.1em);
-  	outline: max(2px, 0.1em) dotted #69E92E;
+  	outline: max(2px, 0.1em) dotted #03C75A;
 }
 input[type="radio"]:checked {
-  	border: 0.4em solid #69E92E;
+  	border: 0.4em solid #03C75A;
 }
 
 /* 조건 설정 칸 */
