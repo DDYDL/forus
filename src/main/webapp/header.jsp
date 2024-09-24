@@ -22,7 +22,7 @@
 </head>
 <body>
 
-		<div class="header">
+		<div id="header" class="header">
 			<div class="logo_box">
 				<a href="${pageContext.request.contextPath}/hospitalList"><img
 					src="${pageContext.request.contextPath}/img/logo2.png" title="logo" /></a>
@@ -56,7 +56,7 @@
 				</c:choose>
 			</div>
 		</div>
-		<hr>
+		<hr noshade="noshade" size="1">
 
 		<script>
 			$('a').click(function() {

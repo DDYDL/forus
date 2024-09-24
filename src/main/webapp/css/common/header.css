@@ -1,9 +1,11 @@
 @charset "UTF-8";
 
 /* 헤더 영역 크기 조절 */
+#header { min-height:100px; max-height:100px; height:100px; }
 .header {
-	height:100px; position:relative;
-	padding-top: 60px;
+	margin: 0 auto;
+	padding: 0;
+	position:relative;
 	padding-left: 300px;
 	padding-right: 300px;
 	overflow:hidden;
@@ -21,7 +23,7 @@ a:active-color { color:#03C75A; }
 .login { float:right; position:absolute; bottom:5px; right:300px; }
 
 /* 선 설정 */
-hr { border:1px solid lightgray; }
+hr { border:1px solid #D1D1D1; margin: 10px 0 0 0; padding:0; }
 
 /* 로그아웃 버튼 */
-.logout	{ color: lightgray; }
+.logout	{ color: #D1D1D1; }
