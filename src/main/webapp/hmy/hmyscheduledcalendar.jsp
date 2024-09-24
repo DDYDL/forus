@@ -18,7 +18,18 @@
     <link rel="stylesheet" href="css/hmy/doctorCalendar.css">
 
 </head>
+<style>
+.managereserv {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
 
+.myhospital{
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+
+</style>
 <body>
 <%@ include file="../header.jsp" %>
 <%@ include file="../hmymenu.jsp" %>

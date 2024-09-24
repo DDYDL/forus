@@ -43,7 +43,17 @@
 		}
 	}
 </script>
+<style>
+.myhos{
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
 
+.myhospital{
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+</style>
 </head>
 
 
@@ -110,8 +120,6 @@
 					</tr>
 
 
-
-
 					<tr>
 						<%-- <td class="time"><label for="name">점심 시간</label></td>
 								<td class="tdinput time"><input type="time" id="input"
@@ -165,9 +173,6 @@
 							<label class="pet-button" for="고슴도치">고슴도치</label></td>
 
 
-
-
-
 						<!--  
 						<td><input type="checkbox" name="h_animal_type" value="강아지"
 							id="강아지">강아지</td>
@@ -180,14 +185,38 @@
 						<td><input type="checkbox" name="h_animal_type" value="기니피그"
 							id="기니피그">기니피그</td>
 						<td><input type="checkbox" name="h_animal_type" value="고슴도치"
-							id="고슴도치">고슴도치</td>
-					
-					
-					-->
+							id="고슴도치">고슴도치</td>		-->
 
 					</tr>
+					<tr></tr>
 					<tr>
 						<td></td>
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="페럿" value="페럿" autocomplete="off">
+							<label class="pet-button" for="페럿">페럿</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="다람쥐" value="다람쥐" autocomplete="off">
+							<label class="pet-button" for="다람쥐">다람쥐</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="카피바라" value="카피바라" autocomplete="off">
+							<label class="pet-button" for="카피바라">카피바라</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="양" value="양" autocomplete="off">
+							<label class="pet-button" for="양">양</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="염소" value="염소" autocomplete="off">
+							<label class="pet-button" for="염소">염소</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="알파카" value="알파카" autocomplete="off">
+							<label class="pet-button" for="알파카">알파카</label></td>
+
+						<!-- 
+
 						<td><input type="checkbox" name="h_animal_type" value="페럿"
 							id="페럿">페럿</td>
 						<td><input type="checkbox" name="h_animal_type" value="다람쥐"
@@ -201,11 +230,33 @@
 						<td><input type="checkbox" name="h_animal_type" value="염소"
 							id="염소"> 염소</td>
 						<td><input type="checkbox" name="h_animal_type" value="알파카"
-							id="알파카">알파카</td>
+							id="알파카">알파카</td> -->
 					</tr>
+					<tr></tr>
 					<tr>
 						<td></td>
 
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="돼지" value="돼지" autocomplete="off">
+							<label class="pet-button" for="돼지">돼지</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="소" value="소" autocomplete="off">
+							<label class="pet-button" for="소">소</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="말" value="말" autocomplete="off">
+							<label class="pet-button" for="말">말</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="당나귀" value="당나귀" autocomplete="off">
+							<label class="pet-button" for="당나귀">당나귀</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="노새" value="노새" autocomplete="off">
+							<label class="pet-button" for="노새">노새</label></td>
+
+						<!-- 
 						<td><input type="checkbox" name="h_animal_type" value="돼지"
 							id="돼지">돼지</td>
 						<td><input type="checkbox" name="h_animal_type" value="소"
@@ -215,10 +266,41 @@
 						<td><input type="checkbox" name="h_animal_type" value="당나귀"
 							id="당나귀">당나귀</td>
 						<td><input type="checkbox" name="h_animal_type" value="노새"
-							id="노새">노새</td>
+							id="노새">노새</td> -->
 					</tr>
+					<tr></tr>
 					<tr>
 						<td>조류</td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="거위" value="거위" autocomplete="off">
+							<label class="pet-button" for="거위">거위</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="공작" value="공작" autocomplete="off">
+							<label class="pet-button" for="공작">공작</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="닭" value="닭" autocomplete="off">
+							<label class="pet-button" for="닭">닭</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="비둘기" value="비둘기" autocomplete="off">
+							<label class="pet-button" for="비둘기">비둘기</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="앵무새" value="앵무새" autocomplete="off">
+							<label class="pet-button" for="앵무새">앵무새</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="오리" value="오리" autocomplete="off">
+							<label class="pet-button" for="오리">오리</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="타조" value="타조" autocomplete="off">
+							<label class="pet-button" for="타조">타조</label></td>
+
+						<!-- 
 						<td><input type="checkbox" name="h_animal_type" value="거위"
 							id="거위">거위</td>
 						<td><input type="checkbox" name="h_animal_type" value="공작"
@@ -232,30 +314,62 @@
 						<td><input type="checkbox" name="h_animal_type" value="오리"
 							id="오리">오리</td>
 						<td><input type="checkbox" name="h_animal_type" value="타조"
-							id="타조">타조</td>
+							id="타조">타조</td> -->
 					</tr>
+					<tr></tr>
 					<tr>
 						<td>파충류</td>
-						<td><input type="checkbox" name="h_animal_type" value="거북이"
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="거북이" value="거북이" autocomplete="off">
+							<label class="pet-button" for="거북이">거북이</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="도마뱀" value="도마뱀" autocomplete="off">
+							<label class="pet-button" for="도마뱀">도마뱀</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="뱀" value="뱀" autocomplete="off">
+							<label class="pet-button" for="뱀">뱀</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="악어" value="악어" autocomplete="off">
+							<label class="pet-button" for="악어">악어</label></td>
+
+
+						<!-- 	<td><input type="checkbox" name="h_animal_type" value="거북이"
 							id="거북이">거북이</td>
 						<td><input type="checkbox" name="h_animal_type" value="도마뱀"
 							id="도마뱀">도마뱀</td>
 						<td><input type="checkbox" name="h_animal_type" value="뱀"
 							id="뱀">뱀</td>
 						<td><input type="checkbox" name="h_animal_type" value="악어"
-							id="악어">악어</td>
+							id="악어">악어</td> -->
 					</tr>
+					<tr></tr>
 					<tr>
 						<td>양서류</td>
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="도룡뇽" value="도룡뇽" autocomplete="off">
+							<label class="pet-button" for="도룡뇽">도룡뇽</label></td>
+
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="개구리" value="개구리" autocomplete="off">
+							<label class="pet-button" for="개구리">개구리</label></td>
+						<!-- 
 						<td><input type="checkbox" name="h_animal_type" value="도룡뇽"
 							id="도룡뇽">도룡뇽</td>
 						<td><input type="checkbox" name="h_animal_type" value="개구리"
-							id="개구리">개구리</td>
+							id="개구리">개구리</td> -->
 					</tr>
+					<tr></tr>
 					<tr>
 						<td>어류</td>
-						<td><input type="checkbox" name="h_animal_type" value="어류"
-							id="어류">어류</td>
+						<td><input type="checkbox" class="pet-check"
+							name="h_animal_type" id="어류" value="어류" autocomplete="off">
+							<label class="pet-button" for="어류">어류</label></td>
+
+						<!-- <td><input type="checkbox" name="h_animal_type" value="어류"
+							id="어류">어류</td> -->
 					</tr>
 
 					<c:forEach items="${h_animal_types}" var="h_animal_types">
@@ -455,7 +569,8 @@
 						<td class="tdinput filebox"><img
 							src="image?file=${hospital.h_picture eq null? 'default.png': hospital.h_picture}&type=hospital"
 							class="img-icon" alt="이미지 선택" id="preview" style="width: 400px">
-							<label for="file">파일찾기</label> <input type="file" name="file"
+							</td>
+							<td><label for="file">파일찾기</label> <input type="file" name="file"
 							id="file" accept="image/*" onchange="readURL(this);"
 							style="display: none" name="h_picture"></td>
 
@@ -484,14 +599,21 @@
 							name="h_sns" value="${hospital.h_sns }" required></td>
 
 					</tr>
-
+<tr></tr>
 					<tr>
 						<td><label for="name"> 결제수단 </label></td>
-						<td class="tdinput"><input id="현금" type="checkbox"
-							name="h_pay" value="현금"> 현금 <input id="카드"
-							type="checkbox" name="h_pay" value="카드"> 카드 <input
-							id="제로페이" type="checkbox" name="h_pay" value="제로페이"> 제로페이
-
+						<td><input type="checkbox" class="pet-check"
+							name="h_pay" id="현금" value="현금" autocomplete="off">
+							<label class="pet-button" for="현금">현금</label>
+							
+							<input type="checkbox" class="pet-check"
+							name="h_pay" id="카드" value="카드" autocomplete="off">
+							<label class="pet-button" for="카드">카드</label>
+							
+							<input type="checkbox" class="pet-check"
+							name="h_pay" id="제로페이" value="제로페이" autocomplete="off">
+							<label class="pet-button" for="제로페이">제로페이</label>
+							
 							<c:forEach items="${h_pays}" var="h_pays">
 								<c:if test="${h_pays eq '현금'}">
 									<script>
@@ -513,18 +635,18 @@
 								</c:if>
 							</c:forEach></td>
 					</tr>
-
+<tr></tr>
 					<tr>
 
 						<td class="name">주차 가능 여부</td>
-						<td><input type="radio" class="car-check" name="h_parking"
+						<td><input type="radio" class="radio-check" name="h_parking"
 							id="radioParkingTrue" value="true" autocomplete="off"
 							<c:if test="${hospital.h_parking eq true}">checked</c:if>>
-							<label class="car-button" for="radioParkingTrue">가능</label> <input
-							type="radio" class="car-check" name="h_parking"
+							<label class="radio-button" for="radioParkingTrue">가능</label> <input
+							type="radio" class="radio-check" name="h_parking"
 							id="radioParkingFalse" value="false" autocomplete="off"
 							<c:if test="${hospital.h_parking eq false}">checked</c:if>>
-							<label class="car-button" for="radioParkingFalse">불가능</label></td>
+							<label class="radio-button" for="radioParkingFalse">불가능</label></td>
 
 
 						<%-- 

@@ -12,6 +12,12 @@
 	font-weight: bold;
 	color: rgba(105, 233, 46);
 }
+
+.myhospital{
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+
 </style>
 
 <!-- 캘린더 라이브러리 -->

@@ -28,18 +28,18 @@
 					src="${pageContext.request.contextPath}/img/logo2.png" title="logo" /></a>
 			</div>
 			<div class="menu_box">
-				<a href="${pageContext.request.contextPath}/hospitalList">병원예약</a>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="${pageContext.request.contextPath}/recruitList">Help Us</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="${pageContext.request.contextPath}/hospitalList" class="reservation">병원예약</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="${pageContext.request.contextPath}/recruitList" class="helpus">Help Us</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				
 				
 				<c:choose>
 					<c:when test="${user eq null}"></c:when>
 					<c:otherwise>
-						<a href="${pageContext.request.contextPath}/myAfterReserv">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="${pageContext.request.contextPath}/myAfterReserv" class="mypage">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				</c:otherwise>
 				</c:choose>
 				<c:if test="${user.ishospital eq 1 }">
-					<a href="${pageContext.request.contextPath}/hmyTodaysReservation">마이병원</a>
+					<a href="${pageContext.request.contextPath}/hmyTodaysReservation" class="myhospital">마이병원</a>
 				</c:if>
 			</div>
 			<div class="login">

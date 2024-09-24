@@ -15,6 +15,23 @@
 
 <link href="./css/my/mycommon.css" rel="stylesheet" type="text/css">
 </head>
+<style>
+.support {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+
+
+.support {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+
+.mypage {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+</style>
 
 <body>
 	<%@ include file="../mainmypage.jsp"%>

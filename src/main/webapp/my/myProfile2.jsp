@@ -10,9 +10,13 @@
 <link rel="stylesheet" href="css/my/profile.css" />
 <link rel="stylesheet" href="css/my/input.css" />
 <link rel="stylesheet" href="css/my/button.css" />
-
 <style>
 .my {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+
+.mypage {
 	font-weight: bold;
 	color: rgba(105, 233, 46);
 }

@@ -1,3 +1,5 @@
+/*my button.css*/
+
 /*3d 버튼*/
 .btn {
 	text-decoration-line: none;
@@ -34,7 +36,7 @@
 }
 
 
-/*여기입니다 버튼 */
+/*동물 성별 버튼 */
 /* 기본적으로 라디오 버튼 숨기기 */
 .petgender-check {
 	position: absolute;
@@ -71,38 +73,8 @@
 
 
 
-/* 체크박스 버튼*/
-/* 
-.check label {
-  cursor:pointer;
-}
-.check label span{
-  position: relative;
-  display: inline-block;
- background: rgba(194, 194, 194, 0.5);
-  padding: 15px 20px;
-  color: #555;
-  border-radius: 10px;
-  transition: 0.1s;
-  user-select: none;
-  overflow:hidden;
-} 
-
-.check label input[type="checkbox"]:checked ~ span{
-    background: #69E92E;
-}
- 
-
-input[type="checkbox"]{
-  display:none;
-}
-
-input [type="text"]{
-	text-align: center;
-} */
-
-/*여기입니다 버튼 */
-/* 기본적으로 라디오 버튼 숨기기 */
+/*중성화 여부 버튼 */
+/* 기본적으로 체크박스 숨기기 */
 .checkbox-check {
 	position: absolute;
 	opacity: 0;

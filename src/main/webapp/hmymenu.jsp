@@ -9,10 +9,10 @@
 <body>
 	<aside id="left">
 		<ul>
-			<li><a href="./hmyTodaysReservation">오늘 예약일정</a></li><br>
-			<li><a href="./doctorCalendar">예약 관리</a></li><br>
-			<li><a href="./hmyHospital">내 병원정보</a></li><br>
-			<li><a href="./hmyManagerReservationTime">진료시간 설정</a></li>
+			<li><a href="./hmyTodaysReservation" class="todays">오늘 예약일정</a></li><br>
+			<li><a href="./doctorCalendar" class="managereserv">예약 관리</a></li><br>
+			<li><a href="./hmyHospital" class ="myhos">내 병원정보</a></li><br>
+			<li><a href="./hmyManagerReservationTime" class ="manage">진료시간 설정</a></li>
 		</ul>
 	</aside>
 </body>

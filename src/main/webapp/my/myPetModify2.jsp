@@ -11,10 +11,21 @@
 <link rel="stylesheet" href="css/my/profile.css" />
 <link rel="stylesheet" href="css/my/input.css" />
 <link rel="stylesheet" href="css/my/button.css" />
+<link rel="stylesheet" href="css/hmy/font.css" />
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 
 </head>
+<style>
+.pet {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
 
+.mypage {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+</style>
 <script>
 	function readURL(input) {
 		if (input.files && input.files[0]) {
@@ -95,22 +106,22 @@ radio {
 							id="radioPetgenderF" value="F" autocomplete="off"
 							<c:if test="${pet.pet_gender eq 'F'}">checked</c:if>> <label
 							class="petgender-button" for="radioPetgenderF">암컷</label>
-							
-							
-							
-							
+
+
+
+
 
 							&nbsp;&nbsp;&nbsp; <input type="checkbox" class="checkbox-check"
 							name="pet_neutering" id="checkPet_neutering"
 							value="pet_neutering" autocomplete="off"
-							<c:if test="${pet.pet_neutering eq true}">checked</c:if>> <label
-							class="checkbox-button" for="checkPet_neutering">중성화</label></td>
-							
-							
-							
-							
-							
-							
+							<c:if test="${pet.pet_neutering eq true}">checked</c:if>>
+							<label class="checkbox-button" for="checkPet_neutering">중성화</label></td>
+
+
+
+
+
+
 
 						<%-- <td><input type="radio" name="pet_gender" value="M"
 								<c:if test="${pet.pet_gender eq 'M'}">checked</c:if>> 수컷

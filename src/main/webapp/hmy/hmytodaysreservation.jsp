@@ -12,6 +12,11 @@
 	font-weight: bold;
 	color: rgba(105, 233, 46);
 }
+
+.myhospital{
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
 </style>
 
 <style>

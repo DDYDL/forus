@@ -17,6 +17,17 @@
 <link href="${pageContext.request.contextPath}/css/my/mycommon.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/my/mybeforereserv.css" rel="stylesheet" type="text/css">
 
+<style>
+.reserv {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+
+.mypage {
+	font-weight: bold;
+	color: rgba(105, 233, 46);
+}
+</style>
 
 
 </head>
