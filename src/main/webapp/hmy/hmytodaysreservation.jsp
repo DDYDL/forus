@@ -10,18 +10,18 @@
 <style>
 .todays {
 	font-weight: bold;
-	color: rgba(105, 233, 46);
+	color: #03C75A;
 }
 
 .myhospital{
 	font-weight: bold;
-	color: rgba(105, 233, 46);
+	color: #03C75A;
 }
 </style>
 
 <style>
 	table td.reserv-status-completed {
-		background-color: green !important;
+		background-color: #03C75A !important;
 		color: white !important;
 	}
 

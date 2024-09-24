@@ -11,7 +11,7 @@
 <style>
 .manage {
 	font-weight: bold;
-	color: rgba(105, 233, 46);
+	color: #03C75A;
 }
 </style>
 <!-- 캘린더 라이브러리 -->
