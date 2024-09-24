@@ -213,7 +213,7 @@
     		<input type="hidden" name="post_id" value="${post.post_id}">
 			<p class="content-inner-title">제목</p>
     		<div>
-        		<input type="text" name="apply_title" class="title" placeholder="제목을 입력하세요">
+        		<input type="text" name="apply_title" class="title" placeholder="제목을 입력하세요" required>
     		</div>
     		<br>
     		
@@ -230,7 +230,7 @@
 			<table class="list_table">
 		    	<tr>
 		    		<td class="left"><p class="content-document">${user.name}</p></td>
-		    		<td class="middle"><p class="content-document">(${user.gender}, ${user.birthday})</p></td>
+		    		<td class="middle"><p class="content-document">(${user.gender eq 'M'? "남":"여"}, ${user.birthday})</p></td>
 		    	</tr>
 		    	<tr>
 		    		<td class="left"><p class="content-document">휴대폰</p></td>

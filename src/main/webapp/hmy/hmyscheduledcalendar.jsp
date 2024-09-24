@@ -263,7 +263,7 @@ function updateReservationStatus($element) {
      var originalStatus = $element.data('originalStatus');
      var reservationId = $('#eventContent').data('reservationId');
 
-    if (confirm(newStatus + " 상태로 변경하시겠습니까")) {
+    if (confirm(newStatus + " 상태로 변경하시겠습니까?")) {
         $.ajax({
             url: 'updateReservationStatus',
             type: 'POST',

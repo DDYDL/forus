@@ -1,9 +1,11 @@
 @charset "UTF-8";
 
+body { margin:8px; }
+
 /* 헤더 영역 크기 조절 */
 #header { min-height:100px; max-height:100px; height:100px; }
 .header {
-	margin: 0 auto;
+	margin: 0;
 	padding: 0;
 	position:relative;
 	padding-left: 300px;
@@ -11,18 +13,18 @@
 }
 
 /* 로고 이미지 설정 */
-.logo_box { float:left; position:absolute; bottom:3px; }
+.logo_box { float:left; position:absolute; left:350px; top:45px; }
 .logo_box img { width:120px; height:60px; text-align:left; }
 
 /* 메뉴 설정 */
-.menu_box { float:left; position:absolute; bottom:5px; text-align:center; right:40%; }
+.menu_box { float:left; height:20px; position:absolute; left:700px; top:80px; vertical-align:bottom; text-align:left; line-height:24px; }
 a { text-decoration:none; font-size: 18px; font-weight:bold; color:black; }
 a:hover { color:#69E92E; }
 a:active-color { color:#69E92E; }
-.login { float:right; position:absolute; bottom:5px; right:300px; }
+.login { float:right; position:absolute; vertical-align:bottom; left:1200px; top:80px; line-height:24px; }
 
 /* 선 설정 */
-hr { border:1px solid #D1D1D1; margin: 10px 0 0 0; padding:0; }
+hr { border:1px solid #D1D1D1; margin: 10px 0 0 0; padding:0; background-color:white; color:#D1D1D1; opacity: .25; }
 
 /* 로그아웃 버튼 */
 .logout	{ color: #D1D1D1; }
