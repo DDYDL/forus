@@ -44,8 +44,8 @@ td .content-document { margin:0px; }
 /* 사용자 프로필 설정 */
 .profile { padding:15px; }
 .user_profile { padding: 15px 15px 15px 25px; }
-.user_img_div { padding-left:25px; border-radius: 70%; }
-.user_img { width:100px; height:100px; object-fit: cover; }
+.user_img_div { padding-left:25px;}
+.user_img { width:100px; height:100px; border-radius: 70%; overflow: hidden; object-fit: cover; }
 .user_table { width:800px; margin-left:20px; }
 .user_td1 { padding-left:15px; padding-top:15px; }
 .user_td2 { padding-top:15px; }
