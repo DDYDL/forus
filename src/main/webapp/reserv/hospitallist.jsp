@@ -110,6 +110,7 @@
     function addHospitalMarker(hospital) {
         var position = new kakao.maps.LatLng(hospital.h_latitude, hospital.h_longitude);
         var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
+
         var imageSize = new kakao.maps.Size(24, 35);
         var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
@@ -136,6 +137,11 @@
         kakao.maps.event.addListener(marker, 'mouseout', function () {
             infowindow.close();
         });
+
+        kakao.maps.event.addListener(marker, 'click', function () {
+            window.location.href = `hospitalDetail?hospitalId=${"${hospital.h_id}"}`;
+        });
+
     }
 
 </script>
@@ -228,16 +234,8 @@
                         addHospitalMarker(hospital);
                         hospitalListHTML += generateHospitalHTML(hospital);
                     });
-                    // $('#hospitals-container').html(hospitalListHTML);
 
                     $('#hospitals-container').append(hospitalListHTML);
-
-                    // 다음 페이지가 존재할 가능성 체크
-                    // if (data.length < 5) {
-                    //     loadMoreButton.style.display = 'block';
-                    // } else {
-                    //     loadMoreButton.style.display = 'none';
-                    // }
 
                     if (data.length === 0) {
                         loadMoreButton.style.display = 'none';
@@ -373,19 +371,6 @@
 
     // 병원 목록 HTML 생성 함수
     function generateHospitalHTML(hospital) {
-    <%--    return `--%>
-    <%--    <div class="hospital-item">--%>
-    <%--        <a href="hospitalDetail?hospitalId=${"${hospital.h_id}"}" class="hospital-link">--%>
-    <%--            &lt;%&ndash;<img src="img/hospital/kosta3.png" alt="${"${hospital.h_name}"}">&ndash;%&gt;--%>
-    <%--           <img src="image?file=${"${hospital.h_picture}" == null ? 'hospitaldefault.png' : "${hospital.h_picture}"}&type=hospital" alt="${"${hospital.h_name}"}">--%>
-    <%--            <div class="hospital-info">--%>
-    <%--                <strong>${"${hospital.h_name}"}</strong>--%>
-    <%--                <p>${"${hospital.h_address}"}<br>진료동물: ${"${hospital.h_animal_type}"}</p>--%>
-    <%--            </div>--%>
-    <%--        </a>--%>
-    <%--    </div>`;--%>
-    <%--}--%>
-
         return `
         <div class="hospital-item">
             <a href="hospitalDetail?hospitalId=${"${hospital.h_id}"}" class="hospital-link">
