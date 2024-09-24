@@ -358,7 +358,7 @@
 
 
     .reservation-table {
-        width: 106%;
+        width: 78%;
         border-collapse: collapse;
     }
 
@@ -377,7 +377,7 @@
     }
 
     .reservation-value {
-        padding: 10px;
+        /*padding: 10px;*/
         /*border-bottom: 1px solid #e0e0e0; !* 구분선 *!*/
         text-align: left;
     }
