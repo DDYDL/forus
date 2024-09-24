@@ -29,11 +29,11 @@
 }
 
 .containerprofile { /*내부 입력 모으는 용 회색선 박스*/
-	margin: 0 auto;
+	margin: 0;
 	height: auto;
 	border: 1px solid;
-	width: 600px;
-	padding: 60px 30px;
+	width: 800px;
+	padding: 40px 70px;
 	border-radius: 20px;
 	border: 1px solid rgb(201, 201, 201);
 }

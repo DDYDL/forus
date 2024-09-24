@@ -12,16 +12,20 @@
 
 /* 마이페이지 내용 사이즈 설정 */
 .mypage-content {
-	margin:0 auto;
-	width: 700px;
-	padding-top: 60px;
-	padding-left: 300px;
+	margin:0;
+	padding:0;
+	position:absolute;
+	width:800px;
+	left:670px;
+	top:200px;
 }
 .mypage-content-list { /* 테이블용 */
-	margin:0 auto;
-	width: 1100px;
-	padding-top: 60px;
-	padding-left: 300px;
+	margin:0;
+	padding:0;
+	position:absolute;
+	width:800px;
+	left:670px;
+	top:200px;
 }
 
 /* div 박스 테투리 설정 */
@@ -32,4 +36,4 @@
 .content-inner-title { font-size:20px; font-weight:bold; }
 .content-document { font-size:16px; }
 /* 마이페이지 내용 제목 폰트 사이즈 설정 */
-.mypage-content-title { font-size:25px; font-weight:bold; text-align: center; }
+.mypage-content-title { font-size:25px; font-weight:bold; text-align: center; margin:0; }

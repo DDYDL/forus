@@ -62,7 +62,7 @@
 
 <div id="overlay" onclick="closeSidebar()"></div>
 <div id="sidebar">
-	<h3>예약 상세 정보</h3>
+	<p class="mypage-content-title" align="center">예약 상세 정보</p>
 	<p><strong>예약자 이름:</strong> <span id="reserverName"></span></p>
 	<p><strong>동물:</strong> <span id="animalType"></span></p>
 	<p><strong>종:</strong> <span id="animalBreed"></span></p>
@@ -79,9 +79,9 @@
 
 <div class="mypage-content-list">
 	<div>
-		<h2 align="center">오늘 예약 일정</h2>
+		<p class="mypage-content-title" align="center">오늘 예약 일정</p>
 	</div>
-	<div style="text-align: left;">
+	<div style="text-align: left;padding:30px 10px 3px 0;">
 
 		<div>
 

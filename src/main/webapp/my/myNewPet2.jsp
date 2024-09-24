@@ -48,12 +48,9 @@ radio {
 
 					<div>
 						<tr>
-							<td><label class="title">프로필 사진</label></td>
-						</tr>
-						<tr>
-							<td><img
+							<td style="text-align:center;" colspan="2"><img
 								src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&type=pet"
-								class="img-icon" alt="이미지 선택" id="preview" width="100px"
+								class="img-icon" alt="이미지 선택" id="preview" width="130px"
 								onclick="document.getElementById('file').click();"> <input
 								type="file" name="file" id="file" accept="image/*"
 								onchange="readURL(this);" style="display: none"></td>
@@ -153,7 +150,7 @@ radio {
 			<div class="find-btn">
 				<input type="submit" title="Button push blue/green"
 					class=" btn btnPush btnBlueGreen find-btn1"
-					onclick="location.href='/forus/myPetList'" value="프로필 등록하기">
+					onclick="location.href='/forus/myPetList'" value="프로필 등록">
 			</div>
 			<br> <br>
 		</div>

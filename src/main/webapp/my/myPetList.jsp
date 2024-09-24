@@ -49,11 +49,9 @@
 	<%@ include file="../mainmypage.jsp"%>
 
 	<div class="mypage-content-list">
-		<div>
-			<h3 align="center">반려동물 프로필</h3>
-		</div>
+		<p class="mypage-content-title" align="center">반려동물 프로필</p>
 
-		<table class="table table-hover">
+		<table class="table table-hover" style="margin-top:30px;">
 			<thead>
 				<tr>
 					<th></th>

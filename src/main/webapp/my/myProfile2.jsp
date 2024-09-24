@@ -27,12 +27,9 @@
 	<%@ include file="../mainmypage.jsp"%>
 
 	<div class="mypage-content">
+		<p class="mypage-content-title" align="center">내 프로필</p>
 
-		<div>
-			<h2 align="center">내 프로필</h2>
-		</div>
-
-		<div style="text-align: right; padding-right: 90px">
+		<div style="text-align: right;padding:30px 10px 3px 0;">
 			<c:if test="${user.ishospital eq 0 }">
 				<span id="authentication">병원관계자라면?&nbsp; <a
 					href="./hmyNewHospital"><img src="./img/play.png" width="16px">&nbsp;병원인증하기</a>
@@ -42,12 +39,9 @@
 		<table class="containerprofile">
 			<tbody>
 				<tr>
-					<td><label class="title">프로필 사진</label></td>
-				</tr>
-				<tr>
-					<td><img
+					<td style="text-align:center;" colspan="2"><img
 						src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&type=user"
-						class="img-icon"></td>
+						class="img-icon" style="margin-bottom:20px;"></td>
 				</tr>
 
 				<tr>
@@ -99,10 +93,9 @@
 
 	<br>
 	<br>
-	<br>
 	<div class="find-btn">
 		<button type="button" title="Button push blue/green"
-			class=" btn btnPush btnBlueGreen find-btn1"
+			class="btn btnPush btnBlueGreen find-btn1"
 			onclick="location.href='./myProfileModify?id=${user.id}'">수정</button>
 
 	</div>

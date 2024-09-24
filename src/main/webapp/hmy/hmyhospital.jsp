@@ -62,10 +62,7 @@
 
 
 		<div class="containerbox">
-
-			<div>
-				<h2 align="center">내 병원 정보</h2>
-			</div>
+			<p class="mypage-content-title" align="center">내 병원 정보</p>
 
 			<h3 style="text-align: left">기본 정보</h3>
 

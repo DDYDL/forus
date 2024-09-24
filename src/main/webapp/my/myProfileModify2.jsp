@@ -85,7 +85,7 @@
 				<h2 align="center">내 프로필</h2>
 			</div>
 
-			<div style="text-align: right; padding-right: 90px">
+			<div style="text-align: right;padding:30px 10px 3px 0;">
 				<c:if test="${user.ishospital eq 0 }">
 					<span id="authentication">병원관계자라면?&nbsp; <a
 						href="./hmyNewHospital"><img src="./img/play.png" width="16px">&nbsp;병원인증하기</a>
@@ -95,12 +95,11 @@
 			<table class="containerprofile">
 				<tbody>
 					<tr>
-						<td><label class="title">프로필 사진</label></td>
-					</tr>
-					<tr>
-						<td><img
+						<td style="text-align:center;" colspan="2"><img
 							src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&type=user"
-							class="img-icon"></td>
+							class="img-icon" alt="이미지 선택" id="preview" width="130px" onclick="document.getElementById('file').click();" style="margin-bottom:20px;"><input
+							type="file" name="file" id="file" accept="image/*"
+							onchange="readURL(this);" style="display: none"></td>
 					</tr>
 
 					<tr>
@@ -160,7 +159,7 @@
 			</table>
 
 
-			<br> <br> <br>
+			<br> <br>
 			<div class="find-btn">
 				<div class="find-btn">
 					<input type="submit" title="Button push blue/green"

@@ -42,7 +42,9 @@
 <%--</section>--%>
 
 <section>
-    <div id="calendar"></div>
+	<div class="mypage-content">
+    	<div id="calendar"></div>
+    </div>
 </section>
 
 

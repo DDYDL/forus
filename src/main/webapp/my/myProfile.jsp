@@ -27,12 +27,9 @@
 	<%@ include file="../mainmypage.jsp"%>
 
 	<div class="mypage-content" >
+		<p class="mypage-content-title" align="center">내 프로필</p>
 		
-		<div>
-			<h2 align="center">내 프로필</h2>
-		</div>
-		
-		<div style="text-align:right; padding-right: 90px"><c:if test="${user.ishospital eq 0 }">
+		<div style="text-align:right;padding:30px 0 0 0;"><c:if test="${user.ishospital eq 0 }">
 			<span id="authentication">병원관계자라면?&nbsp; <a
 				href="./hmyNewHospital"><img src="./img/play.png" width="16px">&nbsp;병원인증하기</a>
 			</span>
