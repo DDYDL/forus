@@ -25,7 +25,7 @@
 		<div id="header" class="header">
 			<div class="logo_box">
 				<a href="${pageContext.request.contextPath}/hospitalList"><img
-					src="${pageContext.request.contextPath}/img/logo2.png" title="logo" /></a>
+					src="${pageContext.request.contextPath}/img/logo4.svg" title="logo" /></a>
 			</div>
 			<div class="menu_box">
 				<a href="${pageContext.request.contextPath}/hospitalList" class="reservation">병원예약</a>&nbsp;&nbsp;&nbsp;&nbsp;
