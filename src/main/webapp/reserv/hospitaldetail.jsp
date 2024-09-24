@@ -143,11 +143,11 @@
 
                 <p><i class="fas fa-parking"></i><strong> 주차 가능 여부:</strong>
                     <c:choose>
-                        <c:when test="${not empty hospital.h_parking}">
-                            ${hospital.h_parking}
+                        <c:when test="${hospital.h_parking == 'true'}">
+                            가능
                         </c:when>
                         <c:otherwise>
-                            정보 없음
+                             불가능
                         </c:otherwise>
                     </c:choose>
                 </p>
