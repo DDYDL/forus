@@ -471,6 +471,7 @@
     vertical-align: middle;
     border-bottom: 1px solid #ddd;
     white-space: nowrap;
+    max-width: 100px;
 }
 
 
@@ -533,6 +534,7 @@
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    max-width: 100%;
 }
 
 
