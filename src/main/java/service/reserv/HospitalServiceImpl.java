@@ -18,24 +18,52 @@ public class HospitalServiceImpl implements HospitalListService, HospitalDetailS
 
 	@Override
 	public List<Hospital> getHospitalsByLocation(double latitude, double longitude, double radius, int offset, int limit) {
-		Map<String, Object> map = new java.util.HashMap<>();
+		// 매개변수로 받은 데이터를 맵에 저장
+		Map<String, Object> map = new HashMap<>();
 		map.put("latitude", latitude);
 		map.put("longitude", longitude);
 		map.put("radius", radius);
-
 		map.put("offset", offset);
 		map.put("limit", limit);
 
-		return hospitalDao.findHospitalByLocation(map);
+		// 병원 목록을 조회
+		List<Hospital> hospitals = hospitalDao.findHospitalByLocation(map);
+
+		processHospitalImages(hospitals);
+
+		return hospitals;
 	}
 
 	public List<Hospital> getHospitalsByKeyword(String keyword, int offset, int limit) {
+		// 매개변수로 받은 데이터를 맵에 저장
 		Map<String, Object> params = new HashMap<>();
 		params.put("keyword", keyword);
 		params.put("offset", offset);
 		params.put("limit", limit);
-		return hospitalDao.findHospitalByKeyword(params);
+
+		// 병원 목록을 조회
+		List<Hospital> hospitals = hospitalDao.findHospitalByKeyword(params);
+
+		processHospitalImages(hospitals);
+
+		return hospitals;
 	}
+
+	private void processHospitalImages(List<Hospital> hospitals) {
+		for (Hospital hospital : hospitals) {
+			String firstImage = extractFirstImage(hospital.getH_picture());
+			hospital.setH_picture(firstImage);
+		}
+	}
+	private String extractFirstImage(String h_picture) {
+		if (h_picture != null && !h_picture.isEmpty()) {
+			String[] pictures = h_picture.split(",");
+			return pictures[0];  // 첫 번째 이미지를 반환
+		}
+		return "hospitaldefault.png";
+	}
+
+
 
 	@Override
 	public Hospital getHospitalDetailByHospitalId(int hospitalId) {
