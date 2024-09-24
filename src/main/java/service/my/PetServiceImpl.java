@@ -34,6 +34,10 @@ public class PetServiceImpl implements PetService {
 		pet.setPet_id(pet.getPet_id());
 
 		request.setCharacterEncoding("utf-8");
+		// 파일 수정
+		if (multi.getFile("file") != null) {
+			pet.setPet_picture(multi.getFilesystemName("file"));
+		}
 		// request session의 인자 user
 		User user = (User) request.getSession().getAttribute("user");
 		// RecruitWriting에서 파라미터로 넘어온 value들을 지정
