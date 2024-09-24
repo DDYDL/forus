@@ -47,10 +47,10 @@
             <label for="isConsult" class="label-btnstyle btnsize1">진료완료만 보기</label>
          </div>
          <div class="petSelect">
-            <select id="pet_id" name = "pet_id">
-               <option value=""  class="center" selected>반려동물별</option>
+            <select id="pet_id" name = "pet_id" class="petdropdown">
+               <option value=""  class="center petSelect" selected>반려동물별</option>
             <c:forEach items="${petList }" var="pet">
-               <option value="${pet.pet_id}" class="center">${pet.pet_name}</option>
+               <option value="${pet.pet_id}" class="center petSelect">${pet.pet_name}</option>
             </c:forEach>
          </select>
          </div>
