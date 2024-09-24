@@ -51,7 +51,7 @@ public class HospitalServiceImpl implements HospitalListService, HospitalDetailS
 
 	private void processHospitalImages(List<Hospital> hospitals) {
 		for (Hospital hospital : hospitals) {
-			String firstImage = extractFirstImage(hospital.getH_picture());
+			String firstImage = extractFirstImage(hospital.getH_picture());  // 첫 번째 이미지 추출
 			hospital.setH_picture(firstImage);
 		}
 	}
