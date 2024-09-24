@@ -36,7 +36,7 @@
 		            		</c:choose>
 		            	<td class="user_img_div"><img src="image?file=${userAp.picture eq null? 'userdefault.png': userAp.picture}&type=user" class="img-icon user_img"></td>
 		                <td><div>
-		    			<p class="content-inner-title">${userAp.name}&nbsp;(${userAp.birthday},&nbsp;${userAp.gender})</p>
+		    			<p class="content-inner-title">${userAp.name}&nbsp;(${userAp.birthday},&nbsp;${userAp.gender eq "M"? "남":"여"})</p>
 		    			<p class="content-document">${recruit_apply.apply_title}</p>
 		    			</div></td>
 		    			<td>${recruit_apply.apply_time}</td>
