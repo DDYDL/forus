@@ -146,6 +146,7 @@
 		JOIN pet p ON r.pet_id = p.pet_id
 		Where r.h_id=#{h_id}
 		AND reserv_date=CURDATE()
+		ORDER BY r.reserv_time ASC
 		]]>
 	</select>
 	

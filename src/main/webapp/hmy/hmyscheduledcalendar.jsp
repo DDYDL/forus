@@ -33,7 +33,12 @@
 	border-radius:5px; width:150px; height:35px;
 }
 
+
 </style>
+
+
+
+
 <body>
 <%@ include file="../header.jsp" %>
 <%@ include file="../hmymenu.jsp" %>
@@ -57,10 +62,27 @@
 <div id="sidebar">
     <h3>예약 상세 정보</h3>
     <p id="eventContent">내용이 여기에 표시됩니다.</p>
-    <p><strong>예약자 이름:</strong> <span id="reserverName"></span></p>
-    <p><strong>동물:</strong> <span id="animalType"></span></p>
-    <p><strong>종:</strong> <span id="animalBreed"></span></p>
-    <p><strong>펫이름:</strong> <span id="animalName"></span></p>
+
+    <table class="reservation-details-table">
+        <tr>
+            <td class="reservation-label"><strong>예약자 이름</strong></td>
+            <td class="reservation-value"><span id="reserverName"></span></td>
+        </tr>
+        <tr>
+            <td class="reservation-label"><strong>동물</strong></td>
+            <td class="reservation-value"><span id="animalType"></span></td>
+        </tr>
+        <tr>
+            <td class="reservation-label"><strong>종</strong></td>
+            <td class="reservation-value"><span id="animalBreed"></span></td>
+        </tr>
+        <tr>
+            <td class="reservation-label"><strong>펫이름</strong></td>
+            <td class="reservation-value"><span id="animalName"></span></td>
+        </tr>
+    </table>
+
+
 
     <label for="vetNote"></label><textarea id="vetNote" placeholder="메모를 입력하세요..."></textarea>
     <button id="saveNoteButton" onclick="saveNote()">메모 저장</button>
@@ -244,20 +266,37 @@
     });
 
     function generateEventContent(event) {
+        var timeString = event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
         $('#eventContent').html(
-            '<strong>예약상태</strong>: ' +
-            '<select id="reservationStatus" style="padding-left:10px;">' +
-            '<option value="예약"' + (event.extendedProps.reservationStatus === '예약' ? ' selected' : '') + '>예약</option>' +
-            '<option value="진료완료"' + (event.extendedProps.reservationStatus === '진료완료' ? ' selected' : '') + '>진료완료</option>' +
-            '<option value="예약취소"' + (event.extendedProps.reservationStatus === '예약취소' ? ' selected' : '') + '>예약취소</option>' +
-            '<option value="미방문"' + (event.extendedProps.reservationStatus === '미방문' ? ' selected' : '') + '>미방문</option>' +
-            '</select>' +
-            '<br><br>' +
-            '<strong>예약 번호</strong>: ' + event.extendedProps.reservationId + '<br><br>' +
-            '<strong>예약 시간</strong>: ' + event.start.toLocaleString() + '<br><br>' +
-            '<strong>예약 항목</strong>: ' + event.extendedProps.reservationContent
-        )
-            .data('reservationId', event.extendedProps.reservationId);
+            `
+    <table class="reservation-table">
+        <tr class="reservation-row">
+            <td class="reservation-label"><strong>예약상태</strong></td>
+            <td class="reservation-value">
+                <select id="reservationStatus" >
+                    <option value="예약" ${"${event.extendedProps.reservationStatus === '예약' ? 'selected' : ''}"}>예약</option>
+                    <option value="진료완료" ${"${event.extendedProps.reservationStatus === '진료완료' ? 'selected' : ''}"}>진료완료</option>
+                    <option value="예약취소" ${"${event.extendedProps.reservationStatus === '예약취소' ? 'selected' : ''}"}>예약취소</option>
+                    <option value="미방문" ${"${event.extendedProps.reservationStatus === '미방문' ? 'selected' : ''}"}>미방문</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="reservation-row">
+            <td class="reservation-label"><strong>예약 번호</strong></td>
+            <td class="reservation-value">${"${event.extendedProps.reservationId}"}</td>
+        </tr>
+        <tr class="reservation-row">
+            <td class="reservation-label"><strong>예약 시간</strong></td>
+            <td class="reservation-value">${"${timeString}"}</td>
+        </tr>
+        <tr class="reservation-row">
+            <td class="reservation-label"><strong>예약 항목</strong></td>
+            <td class="reservation-value">${"${event.extendedProps.reservationContent}"}</td>
+        </tr>
+    </table>
+    `
+        ).data('reservationId', event.extendedProps.reservationId);
 
         $('#vetNote').val(event.extendedProps.reservationMemo || '');
 

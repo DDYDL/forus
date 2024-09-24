@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/my/profile.css" />
 <link rel="stylesheet" href="css/my/input.css" />
 <link rel="stylesheet" href="css/my/button.css" />
+<link rel="stylesheet" href="css/hmy/font.css" />
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 
 </head>
