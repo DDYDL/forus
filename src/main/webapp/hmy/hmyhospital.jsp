@@ -42,12 +42,12 @@
 	}
 </script> -->
 <style>
-.myhos{
+.myhos {
 	font-weight: bold;
 	color: #03C75A;
 }
 
-.myhospital{
+.myhospital {
 	font-weight: bold;
 	color: #03C75A;
 }
@@ -108,9 +108,8 @@
 			<table class="container">
 				<tbody>
 					<tr>
-
+						<td></td>
 						<td class="tdinput"><span>${hospital.h_animal_type }</span>
-						
 					</tr>
 
 				</tbody>
@@ -123,7 +122,7 @@
 					<tr>
 						<td><label for="name">등록된 대표 사진</label></td>
 						<td><img
-							src="image?file=${hospital.h_picture eq null? 'h_default.png': hospital.h_picture}
+							src="image?file=${hospital.h_picture eq null? 'hospitaldefault.png': hospital.h_picture}
 								&id=${hospital_h_id}&type=hospital"
 							style="width: 500px; height: 300px;"></td>
 

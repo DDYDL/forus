@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/my/profile.css" />
 <link rel="stylesheet" href="css/my/input.css" />
 <link rel="stylesheet" href="css/my/button.css" />
+<link rel="stylesheet" href="css/hmy/font.css" />
 <!-- 캘린더 라이브러리 -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -85,7 +86,7 @@
 				<h2 align="center">내 프로필</h2>
 			</div>
 
-			<div style="text-align: right;padding:30px 10px 3px 0;">
+			<div style="text-align: right; padding: 30px 10px 3px 0;">
 				<c:if test="${user.ishospital eq 0 }">
 					<span id="authentication">병원관계자라면?&nbsp; <a
 						href="./hmyNewHospital"><img src="./img/play.png" width="16px">&nbsp;병원인증하기</a>
@@ -95,11 +96,13 @@
 			<table class="containerprofile">
 				<tbody>
 					<tr>
-						<td style="text-align:center;" colspan="2"><img
+						<td style="text-align: center;" colspan="2"><img
 							src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&type=user"
-							class="img-icon" alt="이미지 선택" id="preview" width="130px" onclick="document.getElementById('file').click();" style="margin-bottom:20px;"><input
-							type="file" name="file" id="file" accept="image/*"
-							onchange="readURL(this);" style="display: none"></td>
+							class="img-icon" alt="이미지 선택" id="preview" width="130px"
+							onclick="document.getElementById('file').click();"
+							style="margin-bottom: 20px;"><input type="file" name="file"
+							id="file" accept="image/*" onchange="readURL(this);"
+							style="display: none"></td>
 					</tr>
 
 					<tr>
@@ -135,15 +138,9 @@
 
 					<tr>
 						<td><label for="address" class="title">주소</label></td>
-						<td><input type="text" id="address" placeholder=" 주소"
-							class="user-input join-input" name="address"
-							value="${user.address }"></td>
-					</tr>
-
-					<tr>
-						<td></td>
-						<td><input onclick="daumPostcode()" class="minibtn"
-							value="주소 검색"></td>
+						<td><input type="address" id="address" placeholder=" 주소"
+							class="underlinesmall" name="address" value="${user.address }">  <button type="button" onclick="daumPostcode()"
+							class="minibutton minibtnFade minibtnBlueGreen" value="주소 검색">주소 검색</button></td>
 					</tr>
 
 					<tr>
@@ -168,7 +165,9 @@
 				</div>
 				<br> <br>
 			</div>
+		</div>
 	</form>
+
 </body>
 
 

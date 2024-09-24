@@ -30,6 +30,8 @@
 <link rel="stylesheet" href="css/hmy/containerbox.css" />
 <link rel="stylesheet" href="css/hmy/weekbutton.css" />
 <link rel="stylesheet" href="css/my/button.css" />
+<link rel="stylesheet" href="css/hmy/font.css" />
+
 <link href="./css/recruit/calendar.css?after" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -40,8 +42,8 @@
 				<div>
 					<h2 align="center">병원 진료시간 관리</h2>
 				</div>
-				<div style="padding-left: 250px; padding-bottom: 20px;">
-					예약간격 <select name="intervalTime">
+				<div style="padding-left: 150px; padding-bottom: 20px;">
+					예약간격 <select name="intervalTime" id="interval">
 						<option value="10"
 							<c:if test='${hospital.h_interval_time eq "10"}'>selected="selected"</c:if>>10분</option>
 						<option value="20"

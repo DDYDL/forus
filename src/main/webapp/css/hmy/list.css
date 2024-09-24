@@ -48,7 +48,7 @@ th, td{
 }
 
 input[type=text] {
-	width: 150px;
+	width: 120px;
 	height: 40px;
 	border-radius: 5px;
 	border: 1px solid rgb(201, 201, 201);
