@@ -29,7 +29,7 @@
 <style>
 .reservation {
 	font-weight: bold;
-	color: rgba(105, 233, 46);
+	color: #03C75A;
 }
 </style>
 <body>

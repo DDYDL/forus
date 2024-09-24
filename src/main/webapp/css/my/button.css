@@ -23,7 +23,7 @@
 }
 
 .btnBlueGreen.btnPush {
-	box-shadow: 0px 5px 0px 0px #6CBE46;
+	box-shadow: 0px 5px 0px 0px #03985A;
 }
 
 .btnPush:hover {
@@ -32,7 +32,7 @@
 }
 
 .btnBlueGreen.btnPush:hover {
-	box-shadow: 0px 0px 0px 0px #6CBE46;
+	box-shadow: 0px 0px 0px 0px #03985A;
 }
 
 
@@ -58,7 +58,7 @@
 
 /* 선택된 버튼 */
 .petgender-check:checked+.petgender-button {
-	background-color: #6CBE46;
+	background-color: #03985A;
 	color: #ffffff;
 	border-color: #03C75A;
 }
@@ -67,7 +67,7 @@
 .petgender-button:hover {
 	background-color: #03C75A;
 	color: #ffffff;
-	border-color: #6CBE46;
+	border-color: #03985A;
   cursor:pointer;
 }
 
@@ -94,7 +94,7 @@
 
 /* 선택된 버튼 */
 .checkbox-check:checked+.checkbox-button {
-	background-color: #6CBE46;
+	background-color: #03985A;
 	color: #ffffff;
 	border-color: #03C75A;
 }
@@ -103,6 +103,6 @@
 .checkbox-button:hover {
 	background-color: #03C75A;
 	color: #ffffff;
-	border-color: #6CBE46;
+	border-color: #03985A;
   cursor:pointer;
 }

@@ -10,12 +10,12 @@
 <style>
 .pet {
 	font-weight: bold;
-	color: rgba(105, 233, 46);
+	color: #03C75A;
 }
 
 .mypage {
 	font-weight: bold;
-	color: rgba(105, 233, 46);
+	color: #03C75A;
 }
 </style>
 <meta charset="utf-8">
