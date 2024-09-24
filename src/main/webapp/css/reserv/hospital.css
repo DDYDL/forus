@@ -524,15 +524,17 @@
 
 
 /* 답변 입력 필드 스타일 */
+
 .answer-input {
     flex: 1;
     height: 50px;
-    width: 128%;
-    margin-left: -48%;
+    width: 111%;
+    margin-left: -29%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+
 
 /* 답변 등록 버튼 스타일 */
 .answer-submit-btn {
