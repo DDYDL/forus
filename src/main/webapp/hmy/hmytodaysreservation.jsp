@@ -17,6 +17,10 @@
 	font-weight: bold;
 	color: #03C75A;
 }
+
+#reservationStatus {
+	border-radius:5px; width:150px; height:35px;
+}
 </style>
 
 <style>
@@ -187,7 +191,7 @@
 
 		var statusSelect =
 				'<strong>예약상태</strong>:' +
-				'<select id="reservationStatus">' +
+				'<select id="reservationStatus" style="padding-left:10px;">' +
 				'<option value="예약"' + (reservationStatus == '예약' ? ' selected' : '') + '>예약</option>' +
 				'<option value="진료완료"' + (reservationStatus == '진료완료' ? ' selected' : '') + '>진료완료</option>' +
 				'<option value="예약취소"' + (reservationStatus == '예약취소' ? ' selected' : '') + '>예약취소</option>' +

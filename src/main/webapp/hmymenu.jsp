@@ -8,6 +8,7 @@
 </head>
 <body>
 	<aside id="left">
+		<hr id="menuhr">
 		<ul>
 			<li><a href="./hmyTodaysReservation" class="todays">오늘 예약일정</a></li>
 			<li><a href="./doctorCalendar" class="managereserv">예약 관리</a></li>

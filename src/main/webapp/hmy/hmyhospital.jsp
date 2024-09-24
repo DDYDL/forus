@@ -168,7 +168,7 @@
 				</tbody>
 			</table>
 
-			<br> <br> <br>
+			<br> <br>
 			<div class="row">
 				<div class="find-btn">
 					<button type="button" title="Button push blue/green"
