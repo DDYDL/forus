@@ -37,10 +37,8 @@
 	<form action="modifyHospitalTime" method="post">
 		<div class="mypage-content">
 			<div class="divtable">
-				<div>
-					<h2 align="center">병원 진료시간 관리</h2>
-				</div>
-				<div style="padding-left: 250px; padding-bottom: 20px;">
+				<p class="mypage-content-title" align="center">병원 진료시간 관리</p>
+				<div style="padding-bottom: 20px;">
 					예약간격 <select name="intervalTime">
 						<option value="10"
 							<c:if test='${hospital.h_interval_time eq "10"}'>selected="selected"</c:if>>10분</option>
@@ -289,7 +287,7 @@
 				</div>
 
 				<div>
-					<br> <br> <br>
+					<br> <br>
 					<div class="find-btn">
 						<input type="submit" title="Button push blue/green"
 							class=" btn btnPush btnBlueGreen find-btn1" value="수정">
