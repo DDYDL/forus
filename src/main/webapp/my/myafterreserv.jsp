@@ -49,8 +49,8 @@
 							<td class="center">
 								<c:choose>			
 									<c:when test="${reserv.pet_picture eq null}">
-									<img src="upload/pet/petdefault.png" style="width:50px;"></c:when>
-									<c:otherwise><img src="image?file=${reserv.pet_picture}&type=pet" style="width:50px;"></c:otherwise>
+									<img src="upload/pet/petdefault.png" class="pet_img-small"></c:when>
+									<c:otherwise><img src="image?file=${reserv.pet_picture}&type=pet" class="pet_img-small"></c:otherwise>
 								</c:choose>
 							</td>
 							<c:choose>

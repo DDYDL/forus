@@ -135,8 +135,8 @@
                     });
 
                     row.html(`<td>\${reserv.reserv_date}</td>`)
-                    if (reserv.pet_picture == null) { row.append(`<td><img src="upload/pet/petdefault.png" style="width:50px;"></td>`);}
-                    else { row.append(`<td><img src="image?file=${reserv.pet_picture}&id=${pet_id}&type=pet" style="width:50px;"></td>`);}
+                    if (reserv.pet_picture == null) { row.append(`<td><img src="upload/pet/petdefault.png" class="pet_img-small"></td>`);}
+                    else { row.append(`<td><img src="image?file=${reserv.pet_picture}&id=${pet_id}&type=pet" class="pet_img-small"></td>`);}
                     row.append(`<td class="textalign_left">\${reserv.pet_name}</td>
                         		<td>\${reserv.h_name}</td>
                         		<td>\${reserv.reserv_status}</td>

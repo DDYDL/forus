@@ -10,11 +10,11 @@
 	<aside id="left">
 		<hr id="menuhr">
 		<ul class="height">
-			<li><img src="img/booking-icon.png" class="icon">&nbsp;&nbsp;<a href="myAfterReserv" class ="reserv">예약내역</a></li>
-			<li><img src="img/animal-icon.png" class="icon">&nbsp;&nbsp;<a href="myPostList" class ="request">Help 요청</a></li>
-			<li><img src="img/hand-icon.png" class="icon">&nbsp;&nbsp;<a href="myApplyList" class ="support">Help 지원</a></li>
-			<li><img src="img/user-icon.png" class="icon">&nbsp;&nbsp;<a href="myProfile" class="my">내 프로필</a></li>
-			<li><img src="img/pet-icon.png" class="icon">&nbsp;&nbsp;<a href="myPetList" class="pet">반려동물 프로필</a></li>
+			<li><img src="img/icon/booking-icon.png" class="icon">&nbsp;&nbsp;<a href="myAfterReserv" class ="reserv">예약내역</a></li>
+			<li><img src="img/icon/animal-icon.png" class="icon">&nbsp;&nbsp;<a href="myPostList" class ="request">Help 요청</a></li>
+			<li><img src="img/icon/hand-icon.png" class="icon">&nbsp;&nbsp;<a href="myApplyList" class ="support">Help 지원</a></li>
+			<li><img src="img/icon/user-icon.png" class="icon">&nbsp;&nbsp;<a href="myProfile" class="my">내 프로필</a></li>
+			<li><img src="img/icon/pet-icon.png" class="icon">&nbsp;&nbsp;<a href="myPetList" class="pet">반려동물 프로필</a></li>
 		</ul>
 	</aside>
 </body>

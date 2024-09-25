@@ -81,9 +81,10 @@
 					</tr>
 					<tr>
 						<td><label for="name">의사 면허증</label></td>
-						<td class=" tdinput filebox"><input class="upload-name"
-							value="첨부파일" placeholder="첨부  파일"> <label for="file">파일찾기</label>
-							<input type="file" id="file" name="h_license"></td>
+						<td class="tdinput filebox"><input class="upload-name"
+							value="첨부파일" placeholder="첨부  파일">
+							<label for="h_license">파일찾기</label>
+							<input type="file" id="h_license" name="h_license"></td>
 
 					</tr>
 					<script>
@@ -303,12 +304,12 @@
 				<tbody>
 					<tr>
 						<td><label for="name">대표 사진 등록</label></td>
-						<td class="tdinput filebox"><img
-							src="image?file=${hospital.h_picture eq null? 'default.png': hospital.h_picture}&type=hospital"
-							alt="이미지 선택" id="preview" width="400px"> <label for="file">파일찾기</label>
-							<input type="file" id="file" accept="image/*"
-							onchange="readURL(this); "
-							style="display: none; vertical-align: top;" name="h_picture"></td>
+						<td class="tdinput filebox">
+						<img src="image?file=${hospital.h_picture eq null? 'hospitaldefault.png': hospital.h_picture}&type=hospital"
+							alt="이미지 선택" id="preview" style="width:400px;"> <label for="file">파일찾기</label>
+							<input type="file" id="file" accept="image/*" onchange="readURL(this);"
+							style="display: none; vertical-align: top;" name="file">
+						</td>
 
 					</tr>
 				</tbody>

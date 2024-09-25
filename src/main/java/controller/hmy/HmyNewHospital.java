@@ -52,7 +52,6 @@ public class HmyNewHospital extends HttpServlet {
 		try {
 
 			String hid = request.getParameter("h_id");
-			String newfilename = "hospital_" + hid;
 
 			service.insertHospital(request);
 			response.sendRedirect("hmyNewHospitalSuccess");

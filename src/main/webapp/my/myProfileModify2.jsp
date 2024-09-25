@@ -96,13 +96,12 @@
 			<table class="containerprofile">
 				<tbody>
 					<tr>
-						<td style="text-align: center;" colspan="2"><img
-							src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&type=user"
-							class="img-icon" alt="이미지 선택" id="preview" width="130px"
+						<td style="text-align: center;" colspan="2">
+						<img src="image?file=${user.picture eq null? 'userdefault.png': user.picture}&type=user"
+							class="img-icon" alt="이미지 선택" id="preview"
 							onclick="document.getElementById('file').click();"
-							style="margin-bottom: 20px;"><input type="file" name="file"
-							id="file" accept="image/*" onchange="readURL(this);"
-							style="display: none"></td>
+							style="width=130px; margin-bottom: 20px;">
+							<input type="file" name="file" id="file" accept="image/*" onchange="readURL(this);" style="display: none;"></td>
 					</tr>
 
 					<tr>
