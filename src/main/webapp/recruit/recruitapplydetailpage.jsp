@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>recruit apply detail page</title>
+<title>Help지원 상세페이지</title>
 <link href="./css/recruit/recruitapplydetailpage.css" rel="stylesheet" type="text/css">
 </head>
 <body>

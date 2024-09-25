@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>병원 진료시간 관리하기</title>
+<title>마이병원-진료시간</title>
 <style>
 .manage {
 	font-weight: bold;

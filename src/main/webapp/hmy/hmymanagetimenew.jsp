@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>병원 일정 새로 등록</title>
+<title>마이병원-진료시간설정</title>
 <link rel="stylesheet" href="css/button.css" />
 <style>
 .manage {
