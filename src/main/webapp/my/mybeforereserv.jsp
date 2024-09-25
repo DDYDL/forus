@@ -39,6 +39,8 @@
 			<a href="${pageContext.request.contextPath}/myAfterReserv">이후 예약</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 			<a href="${pageContext.request.contextPath}/myBeforeReserv">지난 예약</a>
 		</div>
+			<c:choose>
+            <c:when test="${not empty reservList}">
    <div class="overflow">
          <div class="listcnt" id="listcnt" ></div>
          <div class="over"></div>
@@ -74,6 +76,16 @@
 		<br>
 	<div id="paging">
 	</div>
+	            </c:when>
+            <c:otherwise>
+            <div align="center">
+                <br><br><br>
+                <img src="https://img.icons8.com/?size=100&id=106514&format=png">
+                <br><br>
+                <p>이전 예약이 없습니다</p>
+                </div>
+            </c:otherwise>
+		</c:choose>
 		<br>
 		<br>
 </div>

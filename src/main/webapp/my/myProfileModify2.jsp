@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 프로필 수정</title>
+<title>마이페이지-프로필수정</title>
 <link rel="stylesheet" href="css/my/containerprofile.css" />
 <link rel="stylesheet" href="css/my/profile.css" />
 <link rel="stylesheet" href="css/my/input.css" />

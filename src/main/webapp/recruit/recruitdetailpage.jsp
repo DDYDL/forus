@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>recruit detail page</title>
+<title>Help요청 상세페이지</title>
 <!-- 카카오 지도 API -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a46ab533ae3e523e60dc7d0057f867b&libraries=services">
 <!-- jquery 라이브러리 -->

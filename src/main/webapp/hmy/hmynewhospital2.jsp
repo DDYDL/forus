@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신규 병원 등록</title>
+<title>마이페이지-병원등록</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
