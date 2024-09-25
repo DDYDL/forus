@@ -29,12 +29,12 @@
 			<a href="${pageContext.request.contextPath}/myAfterReserv">이후 예약</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 			<a href="${pageContext.request.contextPath}/myBeforeReserv">지난 예약</a>
 		</div>
+		
+			<c:choose>
+            <c:when test="${not empty afterReservList}">
 			<div class="listcnt">
 				<p>총 ${afterReservList.size() }건</p>
 			</div>
-			<c:choose>
-				<c:when test="${afterReservList eq null}"><br><br><p class="center">남은 예약이 없습니다.</p></c:when>
-				<c:otherwise>
 				<table class="table table-hover mytable">
 						<tr>
 							<th id="date">날짜</th>
@@ -61,8 +61,16 @@
 						</tr>
 						</c:forEach>
 				</table>
-				</c:otherwise>
-				</c:choose>
+            </c:when>
+            <c:otherwise>
+            <div align="center">
+                <br><br><br>
+                <img src="https://img.icons8.com/?size=100&id=106514&format=png">
+                <br><br>
+                <p>남은 예약이 없습니다</p>
+                </div>
+            </c:otherwise>
+		</c:choose>
 </div>
 </body>
 </html>

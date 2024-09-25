@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>병원등록완료</title>
 <link rel="stylesheet" href="css/hmy/list.css" />
 <link rel="stylesheet" href="css/hmy/font.css" />
 <link rel="stylesheet" href="css/hmy/button.css" />

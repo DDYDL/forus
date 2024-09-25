@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>반려동물 프로필 수정</title>
+<title>마이페이지-반려동물수정</title>
 
 
 <link rel="stylesheet" href="css/my/containerprofile.css" />

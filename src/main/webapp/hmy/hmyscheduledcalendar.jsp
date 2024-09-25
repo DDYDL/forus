@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>동물 예약 시스템</title>
+    <title>마이병원-예약일정캘린더</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

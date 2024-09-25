@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>마이병원-오늘예약일정</title>
 
     <style>
         .todays {
@@ -221,7 +221,12 @@
             </c:when>
 
             <c:otherwise>
-                <p align="center">오늘은 예약된 일정이 없습니다.......</p>
+                <div align="center">
+                <br><br><br>
+	           <img src="https://img.icons8.com/?size=100&id=61080&format=png">
+                <br><br>
+                <p>오늘은 예약된 일정이 없습니다</p>
+                </div>
             </c:otherwise>
 		</c:choose>
         </div>

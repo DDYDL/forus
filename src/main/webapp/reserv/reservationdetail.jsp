@@ -23,7 +23,7 @@
   	<tr>
   		<td class="pet_profile-td1"> <c:choose>			
 			<c:when test="${reserv.pet_picture eq null}">
-			<img src="https://img.icons8.com/?size=70&id=4yaLj4zUSDEW&format=png&color=#34A853" class="pet_img-big""></c:when>
+			<img src="upload/pet/petdefault.png" class="pet_img-big""></c:when>
 			<c:otherwise><img src="image?file=${reserv.pet_picture}&type=pet" class="pet_img-big"></c:otherwise>
 		</c:choose> </td>
 		<td class="pet_profile-td2">${reserv.pet_name}&nbsp;&nbsp;</td>
