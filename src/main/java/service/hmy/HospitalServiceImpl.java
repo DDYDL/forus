@@ -49,7 +49,6 @@ public class HospitalServiceImpl implements HospitalService {
 
 		hospital.setH_exponent_name(multi.getParameter("h_exponent_name"));
 		hospital.setH_num(Integer.parseInt(multi.getParameter("h_num")));
-		hospital.setH_license(multi.getParameter("h_license"));
 		hospital.setH_name(multi.getParameter("h_name"));
 		hospital.setH_manager_name(multi.getParameter("h_manager_name"));
 		hospital.setH_phone(multi.getParameter("h_phone"));
@@ -62,9 +61,13 @@ public class HospitalServiceImpl implements HospitalService {
 		String h_animal_type = String.join(",", h_animal_types);
 		hospital.setH_animal_type(h_animal_type);
 
-		// 파일 수정
 		if (multi.getFile("file") != null) {
+			System.out.println(multi.getFilesystemName("file"));
 			hospital.setH_picture(multi.getFilesystemName("file"));
+		}
+		
+		if (multi.getFile("h_license") != null) {
+			hospital.setH_picture(multi.getFilesystemName("h_license"));
 		}
 
 		hospital.setH_memo(multi.getParameter("h_memo"));
@@ -111,7 +114,6 @@ public class HospitalServiceImpl implements HospitalService {
 
 		hospital.setH_exponent_name(multi.getParameter("h_exponent_name"));
 		hospital.setH_num(Integer.parseInt(multi.getParameter("h_num")));
-		hospital.setH_license(multi.getParameter("h_license"));
 		hospital.setH_name(multi.getParameter("h_name"));
 		hospital.setH_manager_name(multi.getParameter("h_manager_name"));
 		hospital.setH_phone(multi.getParameter("h_phone"));
@@ -131,13 +133,10 @@ public class HospitalServiceImpl implements HospitalService {
 		if (latitude != null && !latitude.isEmpty()) {
 			hospital.setH_latitude(latitude);
 		}
-
 		
 		System.out.println(longitude);
 		System.out.println(latitude);
 
-		
-		
 		String[] h_animal_types = multi.getParameterValues("h_animal_type");
 		String h_animal_type = String.join(",", h_animal_types);
 		hospital.setH_animal_type(h_animal_type);
@@ -159,14 +158,12 @@ public class HospitalServiceImpl implements HospitalService {
 		hospital.setH_lunch_time_end(LocalTime.parse(multi.getParameter("h_lunch_time_end")));
 		System.out.println("set hospital:" + hospital);
 
-		// 파일 수정
 		if (multi.getFile("file") != null) {
 			hospital.setH_license(multi.getFilesystemName("file"));
 		}
 
-		// 파일 수정
-		if (multi.getFile("file") != null) {
-			hospital.setH_picture(multi.getFilesystemName("file"));
+		if (multi.getFile("h_license") != null) {
+			hospital.setH_picture(multi.getFilesystemName("h_license"));
 		}
 
 		hospitalDao.updateHospital(hospital);

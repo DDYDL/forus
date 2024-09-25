@@ -559,12 +559,12 @@
 					<tr>
 						<td><label for="name">대표 사진 등록</label></td>
 						<td class="tdinput filebox"><img
-							src="image?file=${hospital.h_picture eq null? 'default.png': hospital.h_picture}&type=hospital"
-							class="img-icon" alt="이미지 선택" id="preview" style="width: 400px"
+							src="image?file=${hospital.h_picture eq null? 'hospitaldefault.png': hospital.h_picture}&type=hospital"
+							class="img-icon" alt="이미지 선택" id="preview" style="width: 400px;"
 							onclick="document.getElementById('file').click();"></td>
 						<td><label for="file">파일찾기</label> <input type="file"
 							name="file" id="file" accept="image/*" onchange="readURL(this);"
-							style="display: none" name="h_picture"></td>
+							style="display: none;" name="h_picture"></td>
 
 					</tr>
 				</tbody>
