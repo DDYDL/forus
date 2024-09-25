@@ -102,7 +102,6 @@ public class HospitalServiceImpl implements HospitalService {
 
 		hospital.setH_longitude(multi.getParameter("longitude"));
 		hospital.setH_latitude(multi.getParameter("latitude"));
-
 		String[] h_animal_types = multi.getParameterValues("h_animal_type");
 		String h_animal_type = String.join(",", h_animal_types);
 		hospital.setH_animal_type(h_animal_type);
