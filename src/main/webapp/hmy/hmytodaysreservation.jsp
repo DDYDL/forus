@@ -221,7 +221,7 @@
             </c:when>
 
             <c:otherwise>
-                <p align="center">오늘은 예약된 일정이 없습니다</p>
+                <p align="center">오늘은 예약된 일정이 없습니다.......</p>
             </c:otherwise>
 		</c:choose>
         </div>
