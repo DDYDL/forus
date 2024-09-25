@@ -70,25 +70,25 @@ radio {
 
 
 					<tr>
-						<td><label for="name" class="title">반려동물 이름</label></td>
-						<td><input type="text" class="underline" name="name"
+						<td><label for="pet_name" class="title">반려동물 이름</label></td>
+						<td><input type="text" class="underline" name="pet_name"
 							value=${pet.pet_name }></td>
 					</tr>
 
 					<tr>
-						<td><label for="nickname" class="title">종류 </label></td>
-						<td><input type="text" class="underline" name="nickname"
+						<td><label for="pet_species" class="title">종류 </label></td>
+						<td><input type="text" class="underline" name="pet_species"
 							value=${pet.pet_species }></td>
 					</tr>
 
 					<tr>
-						<td><label for="nickname" class="title">품종 </label></td>
-						<td><input type="text" class="underline" name="nickname"
+						<td><label for="pet_breed" class="title">품종 </label></td>
+						<td><input type="text" class="underline" name="pet_breed"
 							value=${pet.pet_breed }></td>
 					</tr>
 					<tr>
-						<td><label for="nickname" class="title">동물 등록 번호 </label></td>
-						<td><input type="text" class="underline" name="nickname"
+						<td><label for="pet_num" class="title">동물 등록 번호 </label></td>
+						<td><input type="text" class="underline" name="pet_num"
 							value=${pet.pet_num }></td>
 					</tr>
 

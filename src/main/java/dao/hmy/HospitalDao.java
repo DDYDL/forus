@@ -30,5 +30,6 @@ public interface HospitalDao {
 	void insertHospitalTime(Hospital_time hospital_time) throws Exception;
 
 	void insertnewTime(Hospital_time hospital_time) throws Exception;
-
+	
+	Hospital selectHospitaluser(Integer user_id) throws Exception;
 }
