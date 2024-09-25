@@ -29,6 +29,11 @@ public class HospitalDaoImpl implements HospitalDao {
 	}
 
 	@Override
+	public Hospital selectHospitaluser(Integer user_id) throws Exception {
+		return sqlSession.selectOne("mapper.hospital.selectHospitaluser", user_id);
+	}
+
+	@Override
 	public void updateHospital(Hospital hospital) throws Exception {
 		sqlSession.update("mapper.hospital.updateHospital", hospital);
 		sqlSession.commit();

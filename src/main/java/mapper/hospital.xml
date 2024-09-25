@@ -27,6 +27,13 @@
 	<![CDATA[
 		select * from hospital where h_id = #{h_id}]]>
 	</select>
+	
+	
+	<select id="selectHospitaluser" parameterType="Integer"
+		resultType="Hospital">
+	<![CDATA[
+		select distinct * from hospital where user_id = #{user_id} order by h_id limit 1]]>
+	</select>
 
 
 	<update id="updateHospital" parameterType="Hospital">

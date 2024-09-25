@@ -11,7 +11,7 @@
 	<%@ include file="../mainmypage.jsp" %>
 	
 	<div class="mypage-content">
-		<p class="mypage-content-title">지원자</p>
+		<p class="mypage-content-title">지원자</p><br>
     
     <!-- user 프로필 가져오기 -->
     <div class="box profile">
@@ -63,6 +63,7 @@
     <br>
     <div class="btndiv">
     	<c:choose>
+    		<c:when test="${apply_user.id eq user.id}"></c:when>
 	    	<c:when test="${recruit_post.post_status eq '마감'}">
 	    		<a href="recruitApplyHire?apply_id=${recruit_apply.apply_id}" title="Button push blue/green" class="button btnPush btnBlueGreen">채용변경</a>
 	    	</c:when>

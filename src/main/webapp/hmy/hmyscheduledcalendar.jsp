@@ -29,9 +29,6 @@
 	color: #03C75A;
 }
 
-#reservationStatus {
-	border-radius:5px; width:150px; height:35px;
-}
 
 
 </style>

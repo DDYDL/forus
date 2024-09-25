@@ -16,6 +16,8 @@ public interface HospitalService {
 	Integer updatestatus(Integer id) throws Exception;
 
 	Hospital hmyHospital(Integer h_id) throws Exception;
+	
+	Hospital selecthospitaluser (Integer user_id) throws Exception;
 
 	Hospital hospitalModify(HttpServletRequest request) throws Exception;
 

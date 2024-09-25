@@ -44,16 +44,15 @@
 	}
 </script>
 <style>
-.myhos{
+.myhos {
 	font-weight: bold;
 	color: #03C75A;
 }
 
-.myhospital{
+.myhospital {
 	font-weight: bold;
 	color: #03C75A;
 }
-
 </style>
 </head>
 
@@ -65,7 +64,7 @@
 
 		<form action="./hmyHospitalModify" method="post"
 			enctype="multipart/form-data">
-			<input type="hidden" name="h_id" value="${hospital.h_id }">
+			<input type="hidden" name="h_id" value="${hospital.h_id }"> 
 			<p class="mypage-content-title" align="center">내 병원 정보 수정</p>
 
 			<h3 style="text-align: left">기본 정보</h3>
@@ -104,16 +103,11 @@
 
 					<tr>
 						<td>병원 주소</td>
-						<td><input type="text" id="postcode" placeholder=" 우편번호"
-							class="user-input join-input-short">&nbsp; <input
+
+						<td><input type="address" id="h_address" placeholder=" 주소"
+							name="h_address" value="${hospital.h_address }"> <input
 							onclick="daumPostcode()"
-							class="minibutton minibtnFade minibtnBlueGreen" value="주소 검색">
-					</tr>
-					<tr>
-						<td></td>
-						<td><input type="text" id="h_address" placeholder=" 주소"
-							class="user-input join-input" name="h_address"
-							value="${hospital.h_address }"></td>
+							class="minibutton minibtnFade minibtnBlueGreen" value="주소 검색"></td>
 
 					</tr>
 
@@ -566,10 +560,10 @@
 						<td><label for="name">대표 사진 등록</label></td>
 						<td class="tdinput filebox"><img
 							src="image?file=${hospital.h_picture eq null? 'default.png': hospital.h_picture}&type=hospital"
-							class="img-icon" alt="이미지 선택" id="preview" style="width: 400px">
-							</td>
-							<td><label for="file">파일찾기</label> <input type="file" name="file"
-							id="file" accept="image/*" onchange="readURL(this);"
+							class="img-icon" alt="이미지 선택" id="preview" style="width: 400px"
+							onclick="document.getElementById('file').click();"></td>
+						<td><label for="file">파일찾기</label> <input type="file"
+							name="file" id="file" accept="image/*" onchange="readURL(this);"
 							style="display: none" name="h_picture"></td>
 
 					</tr>
@@ -594,25 +588,22 @@
 					<tr>
 						<td><label for="name"> SNS / Blog </label></td>
 						<td class="tdinput"><input type="text" id="input"
-							name="h_sns" value="${hospital.h_sns }" required></td>
+							name="h_sns" value="${hospital.h_sns }"></td>
 
 					</tr>
-<tr></tr>
+					<tr></tr>
 					<tr>
 						<td><label for="name"> 결제수단 </label></td>
-						<td><input type="checkbox" class="pet-check"
-							name="h_pay" id="현금" value="현금" autocomplete="off">
-							<label class="pet-button" for="현금">현금</label>
-							
-							<input type="checkbox" class="pet-check"
-							name="h_pay" id="카드" value="카드" autocomplete="off">
-							<label class="pet-button" for="카드">카드</label>
-							
-							<input type="checkbox" class="pet-check"
-							name="h_pay" id="제로페이" value="제로페이" autocomplete="off">
-							<label class="pet-button" for="제로페이">제로페이</label>
-							
-							<c:forEach items="${h_pays}" var="h_pays">
+						<td><input type="checkbox" class="pet-check" name="h_pay"
+							id="현금" value="현금" autocomplete="off"> <label
+							class="pet-button" for="현금">현금</label> <input type="checkbox"
+							class="pet-check" name="h_pay" id="카드" value="카드"
+							autocomplete="off"> <label class="pet-button" for="카드">카드</label>
+
+							<input type="checkbox" class="pet-check" name="h_pay" id="제로페이"
+							value="제로페이" autocomplete="off"> <label
+							class="pet-button" for="제로페이">제로페이</label> <c:forEach
+								items="${h_pays}" var="h_pays">
 								<c:if test="${h_pays eq '현금'}">
 									<script>
 										$("input[id='현금']").prop("checked",
@@ -633,7 +624,7 @@
 								</c:if>
 							</c:forEach></td>
 					</tr>
-<tr></tr>
+					<tr></tr>
 					<tr>
 
 						<td class="name">주차 가능 여부</td>
@@ -692,19 +683,24 @@
 	function daumPostcode() {
 		new daum.Postcode({
 			oncomplete : function(data) {
-				var roadAddr = data.roadAddress; // 도로명 주소 변수
-				var extraRoadAddr = ''; // 참고 항목 변수
-				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+				var roadAddr = data.roadAddress;
+				var extraRoadAddr = '';
+
+				// 참고 항목 변수를 설정한다
+				// ~동/로/가 로 끝나는 주소 넣기
+				if (data.bulidingName !== '' && /[동|로|가]$/g.test(data.bname)) {
 					extraRoadAddr += data.bname;
 				}
+				// 빌딩, 아파트 이름 넣기
 				if (data.buildingName !== '' && data.apartment === 'Y') {
 					extraRoadAddr += (extraRoadAddr !== '' ? ', '
 							+ data.buildingName : data.buildingName);
 				}
+				// 참고 항목이 있으면 괄호 안에 넣는다.
 				if (extraRoadAddr !== '') {
 					extraRoadAddr = ' (' + extraRoadAddr + ')';
 				}
-				document.getElementById('postcode').value = data.zonecode;
+				// 선택한 주소를 필드에 넣는다.
 				document.getElementById("h_address").value = roadAddr
 						+ extraRoadAddr;
 				getLatLngFromAddress(roadAddr);
