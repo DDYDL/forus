@@ -64,11 +64,7 @@
 
 		<form action="./hmyHospitalModify" method="post"
 			enctype="multipart/form-data">
-			<input type="hidden" name="h_id" value="${hospital.h_id }"> <input
-				type="hidden" id="hospital_latitude" name="latitude"
-				value="${hospital.h_latitude }"> <input type="hidden"
-				id="hospital_longitudeH" name="longitude"
-				value="${hospital.h_longitude }">
+			<input type="hidden" name="h_id" value="${hospital.h_id }"> 
 			<p class="mypage-content-title" align="center">내 병원 정보 수정</p>
 
 			<h3 style="text-align: left">기본 정보</h3>

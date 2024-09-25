@@ -128,11 +128,16 @@ public class HospitalServiceImpl implements HospitalService {
 		if (longitude != null && !longitude.isEmpty()) {
 			hospital.setH_longitude(longitude);
 		}
-
 		if (latitude != null && !latitude.isEmpty()) {
 			hospital.setH_latitude(latitude);
 		}
 
+		
+		System.out.println(longitude);
+		System.out.println(latitude);
+
+		
+		
 		String[] h_animal_types = multi.getParameterValues("h_animal_type");
 		String h_animal_type = String.join(",", h_animal_types);
 		hospital.setH_animal_type(h_animal_type);

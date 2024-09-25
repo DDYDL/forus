@@ -43,6 +43,61 @@
 		background-color: blue !important;
 		color: white !important;
 	}
+
+	.todayreservSide {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 20px 0;
+	}
+
+	.todayreservSide th, .todayreservSide td {
+		padding: 10px;
+		text-align: left;
+		vertical-align: top;
+		width: 40%;
+	}
+
+	.todayreservHeader {
+		width: 30%;
+		background-color: #f9f9f9;
+		font-weight: bold;
+	}
+
+	.todayreservRow td {
+		width: 70%;
+	}
+
+	.todayreservRow {
+
+	}
+
+	.todayreservSideContentAndTime {
+		/* width: 100%; */
+		/* border-collapse: collapse; */
+		/* margin: 20px 0; */
+		width: 104%;
+		border-collapse: collapse;
+		margin: -17px 0px;
+
+	}
+
+	.todayreservSideContentAndTime th, .todayreservSideContentAndTime td {
+		padding: 10px;
+		text-align: left;
+		vertical-align: top;
+		width: 40%;
+	}
+	#reservationStatus {
+		border-radius:5px; width:150px; height:35px;
+	}
+
+	#todayreservSide{
+		font-size: 18px;
+		font-weight: bold;
+		text-align: left;
+		margin: 0;
+	}
+
 </style>
 
 <meta charset="utf-8">
@@ -66,11 +121,31 @@
 
 <div id="overlay" onclick="closeSidebar()"></div>
 <div id="sidebar">
-	<p class="mypage-content-title" align="center">예약 상세 정보</p>
-	<p><strong>예약자 이름:</strong> <span id="reserverName"></span></p>
-	<p><strong>동물:</strong> <span id="animalType"></span></p>
-	<p><strong>종:</strong> <span id="animalBreed"></span></p>
-	<p><strong>펫이름:</strong> <span id="animalName"></span></p>
+	<p id="todayreservSide" align="center">예약 상세 정보</p>
+<%--	<p><strong>예약자 이름:</strong> <span id="reserverName"></span></p>--%>
+<%--	<p><strong>동물:</strong> <span id="animalType"></span></p>--%>
+<%--	<p><strong>종:</strong> <span id="animalBreed"></span></p>--%>
+<%--	<p><strong>펫이름:</strong> <span id="animalName"></span></p>--%>
+
+	<table class="todayreservSide">
+		<tr class="todayreservRow">
+			<th class="todayreservHeader">예약자 이름</th>
+			<td><span id="reserverName"></span></td>
+		</tr>
+		<tr class="todayreservRow">
+			<th class="todayreservHeader">동물</th>
+			<td><span id="animalType"></span></td>
+		</tr>
+		<tr class="todayreservRow">
+			<th class="todayreservHeader">종</th>
+			<td><span id="animalBreed"></span></td>
+		</tr>
+		<tr class="todayreservRow">
+			<th class="todayreservHeader">펫 이름</th>
+			<td><span id="animalName"></span></td>
+		</tr>
+	</table>
+
 	<p id="eventContent"></p>
 
 
@@ -191,21 +266,47 @@
 
 		var statusSelect =
 				'<strong>예약상태</strong>:' +
-				'<select id="reservationStatus" style="padding-left:10px;">' +
+				'<select id="reservationStatus">' +
 				'<option value="예약"' + (reservationStatus == '예약' ? ' selected' : '') + '>예약</option>' +
 				'<option value="진료완료"' + (reservationStatus == '진료완료' ? ' selected' : '') + '>진료완료</option>' +
 				'<option value="예약취소"' + (reservationStatus == '예약취소' ? ' selected' : '') + '>예약취소</option>' +
 				'<option value="미방문"' + (reservationStatus == '미방문' ? ' selected' : '') + '>미방문</option>' +
 				'</select><br><br>';
 
-		$('#eventContent').append(statusSelect); // 상태 셀렉트 박스를 추가
-		$('#eventContent').append('<p><strong>내용:</strong> ' + reservationContent + '</p>');
-		$('#eventContent').append('<p><strong>시간:</strong> ' + reservationTime + '</p>');
+
+		// $('#eventContent').append(detailsTable);
+		var detailsTable = `
+       <table class="todayreservSideContentAndTime">
+            <tr>
+                <th>예약 상태</th>
+                <td>
+                    <select id="reservationStatus">
+                        <option value="예약"${"${reservationStatus}" == '예약' ? ' selected' : ''}>예약</option>
+                        <option value="진료완료"${"${reservationStatus}" == '진료완료' ? ' selected' : ''}>진료완료</option>
+                        <option value="예약취소"${"${reservationStatus}" == '예약취소' ? ' selected' : ''}>예약취소</option>
+                        <option value="미방문"${"${reservationStatus}" == '미방문' ? ' selected' : ''}>미방문</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td>${"${reservationContent}"}</td>
+            </tr>
+            <tr>
+                <th>시간</th>
+                <td>${"${reservationTime}"}</td>
+            </tr>
+        </table>
+    `;
+
+		$('#eventContent').append(detailsTable);
+
+
 
 
 		$('#eventContent').data('reservationId', reservationId);
-
 		$('#reservationStatus').val(reservationStatus);
+
 
 	}
 
