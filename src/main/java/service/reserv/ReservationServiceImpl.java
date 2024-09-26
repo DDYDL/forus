@@ -113,8 +113,7 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	private static boolean isDuringLunchTime(LocalTime currentTime, LocalTime lunchStartTime, LocalTime lunchEndTime) {
-		return currentTime.isAfter(lunchStartTime.minusMinutes(1)) && currentTime.isBefore(
-			lunchEndTime.plusMinutes(1));
+		return currentTime.isAfter(lunchStartTime.minusMinutes(1)) && currentTime.isBefore(lunchEndTime.plusMinutes(1));
 	}
 
 
