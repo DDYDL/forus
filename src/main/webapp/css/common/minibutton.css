@@ -10,7 +10,7 @@ a.minibutton {
   width: 120px;
   height: 30px;
   padding: 0;
-  margin: 10px 20px 10px 0;
+  margin: 10px 0px 10px 0;
   text-align: center;
   line-height: 30px;
   border: 1px solid #D1D1D1;
@@ -18,7 +18,7 @@ a.minibutton {
   transition: all 0.2s;
 }
 .minibtnBlueGreen { background: #ffffff; }
-.minibtnFade.minibtnBlueGreen:hover { background: #69E92E; color:#ffffff; }
+.minibtnFade.minibtnBlueGreen:hover { background: #03C75A; color:#ffffff; }
 
 /* 더보기 버튼 설정 */
 #moreBtn {
@@ -27,7 +27,7 @@ a.minibutton {
   width: 50px;
   height: 50px;
   padding: 0;
-  margin: 10px 20px 10px 0;
+  margin: 10px 0px 10px 0;
   text-align: center;
   line-height: 30px;
   border: 1px solid #D1D1D1;

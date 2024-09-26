@@ -17,6 +17,7 @@ import dto.Hospital;
 import dto.Hospital_time;
 import dto.TimeSlot;
 import dto.User;
+import util.PageInfo;
 
 public class ReservationServiceImpl implements ReservationService {
 
@@ -125,18 +126,34 @@ public class ReservationServiceImpl implements ReservationService {
 			reservationContent = customContent;
 		}
 
+		if(StringNullCheck.isEmpty(hospitalId)) {
+			throw new IllegalArgumentException("병원 ID가 없습니다.");
+		}
+
+		if(StringNullCheck.isEmpty(userId)) {
+			throw new IllegalArgumentException("사용자 ID가 없습니다.");
+		}
+
+		if(StringNullCheck.isEmpty(petId)) {
+			throw new IllegalArgumentException("펫 ID가 없습니다.");
+		}
+
+		Integer parsedHospitalId = IntegerNullCheck.parseInteger(hospitalId);
+		Integer parsedUserId = IntegerNullCheck.parseInteger(userId);
 		Integer parsedPetId = IntegerNullCheck.parseInteger(petId);
+
 
 		LocalDate reservationDate = LocalDate.parse(selectedDate);
 		LocalTime reservationTime = LocalTime.parse(selectedTime);
 
 		Reservation reservation = new Reservation();
-		reservation.sethId(Integer.parseInt(hospitalId));
-		reservation.setUserId(Integer.parseInt(userId));
+		reservation.sethId(parsedHospitalId);
+		reservation.setUserId(parsedUserId);
 		reservation.setPetId(parsedPetId);
 		reservation.setReservDate(reservationDate);
 		reservation.setReservTime(reservationTime);
 		reservation.setReservContent(reservationContent);
+		reservation.setReservStatus("예약");
 
 
 		return reservation;
@@ -157,26 +174,44 @@ public class ReservationServiceImpl implements ReservationService {
 		reservationDao.insertReservation(reservation);
 	}
 
-
-
 	@Override
 	public List<Map<String, Object>> myAfterReservList(Integer id) throws Exception {
 		return reservationDao.selectMyAfterReservList(id);
 	}
-
+	
 	@Override
-	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception {
-		 return reservationDao.selectMyBeforeReservList(id, pet_id, startDate, endDate, isConsult);
+	public Integer selectMyBeforeReservCount(Integer id, Integer pet_id, String startDate, String endDate,
+			boolean isConsult) throws Exception {
+		return reservationDao.selectMyBeforeReservCount(id, pet_id, startDate, endDate, isConsult);
 	}
-
+	
 	@Override
-	public Reservation reservDetail(Integer reserv_id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map<String, Object>> selectMyBeforeReservList(Integer id, Integer pet_id, String startDate, String endDate, boolean isConsult, PageInfo pageInfo) throws Exception {
+		Integer allCount = reservationDao.selectMyBeforeReservCount(id, pet_id, startDate, endDate, isConsult);
+
+		Integer allPage = (int)Math.ceil((double)allCount/10);
+		//startPage : 1~10 => 1, 11~20 => 11
+		Integer startPage = (pageInfo.getCurPage()-1)/10*10+1;
+		Integer endPage = startPage+10-1;
+		if(endPage>allPage) endPage = allPage;	
+		
+		pageInfo.setAllPage(allPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+			
+		Integer row = (pageInfo.getCurPage()-1)*10+1;
+		return reservationDao.selectMyBeforeReservList(id, pet_id, startDate, endDate, isConsult, row-1);
+	}
+	
+	@Override
+	public Map<String, Object> selectReservByReservId(Integer reserv_id) throws Exception {
+		return reservationDao.selectReservByReservId(reserv_id);
 	}
 
 	@Override
 	public Integer deleteReservation(int reserv_id) throws Exception {
 		return reservationDao.deleteReserv(reserv_id);
 	}
+
+
 }

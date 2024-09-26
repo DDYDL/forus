@@ -50,7 +50,7 @@ public class MyBeforeReserv extends HttpServlet {
 			PetService service = new PetServiceImpl();
 			List<Pet> petList = service.selectPetList(id);
 			request.setAttribute("petList", petList);
-
+			
 			request.getRequestDispatcher("my/mybeforereserv.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,12 +71,6 @@ public class MyBeforeReserv extends HttpServlet {
 		String endDate = null;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		
-		// 페이징
-		String paramPage = request.getParameter("page");
-		Integer page = 1;
-		if (paramPage != null) {
-			page = Integer.parseInt(paramPage);
-		}
 		
         try {
         	JSONParser parser = new JSONParser();
@@ -87,31 +81,33 @@ public class MyBeforeReserv extends HttpServlet {
         	System.out.println(spet_id);
             if(spet_id != null && !spet_id.isEmpty()) {
             	pet_id = Integer.parseInt(spet_id);
-            } else { pet_id = null;}
+            } 
             
             String dateRange = (String)jsonObj.get("dateRange");
             System.out.println(dateRange);
             if (dateRange != null && dateRange != "") {
                 String[] dates = dateRange.split(" ~ ");
+                startDate = dates[0].trim();
                 if (dates.length == 2) {
-		            startDate = dates[0].trim();
 		            endDate = dates[1].trim();
-                } else { System.out.println("기간을 선택해주세요"); }
+                } else {
+                	endDate = dates[0].trim();
+                }
             }
+            
             String sIsConsult = (String)jsonObj.get("isConsult");
             boolean isConsult = "true".equals(sIsConsult);
             System.out.println(isConsult);
             
+            Long page = (Long)jsonObj.get("page");
+            System.out.println(page);
+            
+            PageInfo pageInfo = new PageInfo();
+            pageInfo.setCurPage(page.intValue());
+            
             ReservationService service = new ReservationServiceImpl();
-            List<Map<String, Object>> beforeReservList = service.selectMyBeforeReservList(id, pet_id, startDate, endDate, isConsult);
-            
-            // 페이징처리
-            Integer reservCnt = beforeReservList.size();
-            System.out.println(reservCnt);
-            
-            PageService pservice = new PageServiceImpl();
-            PageInfo pageInfo = pservice.newPageInfo(reservCnt, page);
-    		
+            List<Map<String, Object>> beforeReservList = service.selectMyBeforeReservList(id, pet_id, startDate, endDate, isConsult, pageInfo);
+    		System.out.println(beforeReservList);
             JSONArray jsonArray = new JSONArray();
 			for(Map<String, Object> reserv : beforeReservList) {
 				JSONObject jsonReserv = new JSONObject();
@@ -127,10 +123,15 @@ public class MyBeforeReserv extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			
+			
 			JSONObject responseJson = new JSONObject();
 			System.out.println(pageInfo);
 			responseJson.put("result", jsonArray);
 
+			Integer listcnt = service.selectMyBeforeReservCount(id, pet_id, startDate, endDate, isConsult);
+			System.out.println(listcnt);
+			responseJson.put("listcnt", listcnt.toString());
+			
 			JSONObject pageJson = new JSONObject();
 			pageJson.put("curPage", pageInfo.getCurPage());
 			pageJson.put("allPage", pageInfo.getAllPage());
@@ -138,9 +139,6 @@ public class MyBeforeReserv extends HttpServlet {
 			pageJson.put("endPage", pageInfo.getEndPage());
 			responseJson.put("pageInfo", pageJson);
             
-            Integer row = (pageInfo.getCurPage()-1)*10+1;
-            responseJson.put("iRow", row);
-    		
             System.out.println(responseJson.toJSONString());
             response.getWriter().write(responseJson.toString());
         } catch (Exception e) {

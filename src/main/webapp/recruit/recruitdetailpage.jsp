@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>recruit detail page</title>
+<title>Help요청 상세페이지</title>
 <!-- 카카오 지도 API -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a46ab533ae3e523e60dc7d0057f867b&libraries=services">
 <!-- jquery 라이브러리 -->
@@ -14,15 +14,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- css 파일 -->
 <link href="./css/recruit/recruitapplydetailpage.css" rel="stylesheet" type="text/css">
 <link href="./css/recruit/modal.css" rel="stylesheet" type="text/css">
 </head>
+<style>
+.helpus {
+	font-weight: bold;
+	color: #03C75A;
+}
+</style>
 <body> 
 	<%@ include file="../header.jsp" %>
 	
 	<div class="content">
-		<p class="content-title">${post.post_title}</p>
+		<div><p class="content-title" id="post_title">${post.post_title}</p>
+		<p class="content-document" id="post_time_content"></p></div>
 	
 	<!-- pet_id를 위한 필드 -->
     <input id="post_pet_id" type="hidden" value="${post.pet_id}">
@@ -30,15 +39,21 @@
 	<!-- user 프로필 가져오기 -->
     <p class="content-inner-title">작성자</p>
     <div class="box">
-    	<div class="profile">
-    	<div><img src="${post_user.picture}"><p class="content-document">${post_user.name}</p></div>
+    	<div class="user_profile">
+    	<div><img src="image?file=${post_user.picture eq null? 'userdefault.png': post_user.picture}&type=user" class="img-icon user_img"><p class="content-document">${post_user.name}</p></div>
     	<p class="content-document">${post_user.email}</p>
     	</div>
     </div>
+    <br>
+    <script>
+    	var post_time = `${post.post_time}`.slice(0,16);
+    	document.getElementById('post_time_content').innerText = post_time;
+    </script>
 
 	<!-- pet 프로필 가져오기 -->
     <p class="content-inner-title">이번에 맡길 동물은요</p>
-    <div class="box"><table id="post_pet_profile"></table></div>
+    <div class="box" id="pet_box"><table id="post_pet_profile" class="pet_profile"></table></div>
+    <br>
     
     <script>
     	// post user의 pet 리스트 가져오기
@@ -48,36 +63,42 @@
 			async:true,
 			data:{post_user:${post_user.id}},
 			success:function(result) {
-				console.log(result);
 				var res = JSON.parse(result);
 				var pet_id = document.getElementById('post_pet_id').value;
 				res.post_petList.forEach(function(pet) {
 					if(pet_id == pet.pet_id) {
-						$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="img?file=\${pet.pet_picture}"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,\${pet.pet_gender})</td><td class="pet_td3">\${pet.pet_species}</td><td class="pet_td3">\${pet.pet_breed}</td><td class="pet_td3">\${pet.pet_memo}</td></tr>`);
+						$('#post_pet_profile').append(`<tr><td class="pet_td1"><img src="image?file=\${pet.pet_picture == null? 'petdefault.png': pet.pet_picture}&type=pet" class="img-icon pet_img"></td><td class="pet_td2">\${pet.pet_name}</td><td class="pet_td3">(\${pet.pet_age}살,&nbsp;${pet.pet_gender eq "M"? "남":"여"})</td><td class="pet_td4">\${pet.pet_species}</td><td class="pet_td5">\${pet.pet_breed}</td><td class="pet_td6">${pet.pet_memo ne null? pet.pet_memo:""}</td></tr>`);
 					}
 				})
+				// post의 pet이 null일 경우
+				if(document.getElementById("post_pet_profile").childNodes.length === 0) {
+					var pet_box = document.getElementById("pet_box");
+					pet_box.innerHTML = "동물이 없습니다";
+					pet_box.style.padding = "15px 25px";
+					return;
+				}
 			}
 		})
     </script>
     
     <p class="content-inner-title">조건</p>
-    <div class="box">
+    <div class="box profile">
     	<table>
     		<tr>
-    			<td><label for="pay">급여</label></td>
-    			<td>${post.post_form}</td>
-    			<td>${post.post_pay}&nbsp;원</td>
+    			<td class="condition_td1"><label for="pay">급여</label></td>
+    			<td class="condition_td2">${post.post_form}&nbsp;&nbsp;${post.post_pay}&nbsp;원</td>
     		</tr>
     		<tr>
-    			<td><label for="time">시간</label></td>
-    			<td id="time_td"></td>
+    			<td class="condition_td1"><label for="time">시간</label></td>
+    			<td class="condition_td2" id="time_td"></td>
     		</tr>
     		<tr>
-    			<td><label for="week">요일</label></td>
-    			<td>${post.post_date}</td>
+    			<td class="condition_td1"><label for="week">요일</label></td>
+    			<td class="condition_td2">${post.post_date}</td>
     		</tr>
     	</table>
     </div>
+    <br>
     
     <script>
     	var start_time = `${post.post_start_time}`.slice(0,5);
@@ -93,15 +114,16 @@
     	<table style="width:100%">
     		<tr><td colspan="3"><div id="map" style="width:100%; height:200px;"></div></td></tr>
     		<tr>
-    			<td><label for="location">근무위치</label></td>
-    			<td id="post_address">${post.post_address}</td>
+    			<td class="area_td1"><label for="location">근무위치</label></td>
+    			<td class="area_td2" id="post_address">${post.post_address}</td>
     		</tr>
     		<tr>
-    			<td><label for="subway">인근지하철</label></td>
-    			<td id="subway"></td>
+    			<td class="area_td1"><label for="subway">인근지하철</label></td>
+    			<td class="area_td2" id="subway"></td>
     		</tr>
     	</table>
 	</div>
+	<br>
 	
 	<!-- 카카오 지도 API -->
 	<script>
@@ -143,7 +165,7 @@
 				
 				// 인근 지하철역 가져오기
 				var places = new kakao.maps.services.Places(map);
-				places.categorySearch('SW8', searchs, {location: coords, radius: 1000});
+				places.categorySearch('SW8', searchs, {location: coords, radius: 2000});
 			}
 		});
 		
@@ -167,9 +189,10 @@
 	</script>
 	
     <p class="content-inner-title">상세요강</p>
-    <div class="box">
-        <p>${post.post_content}</p>
+    <div class="box profile">
+        <p class="content_p">${post.post_content}</p>
     </div>
+    <br>
     
     <!-- 모달 -->
     <script>
@@ -190,26 +213,30 @@
     
     <div id="modal" class="modal">
     	<p class="content-title">지원하기</p>
-    	<p class="content-inner-title">강아지 산책시켜주실 분!!</p>
+    	<p class="content-inner-title">${post.post_title}</p>
 		<form action="recruitApply" method="post">
 			<!-- post_id를 위한 필드 -->
     		<input type="hidden" name="post_id" value="${post.post_id}">
 			<p class="content-inner-title">제목</p>
     		<div>
-        		<input type="text" name="apply_title" class="title" placeholder="제목을 입력하세요">
+        		<input type="text" name="apply_title" class="title" placeholder="제목을 입력하세요" required>
     		</div>
+    		<br>
+    		
 			<p class="content-inner-title">전달 메시지</p>
 		    <div>
 		        <textarea name="apply_content" class="textarea" cols="63" rows="10" placeholder="전달할 메시지를 입력하세요"></textarea>
 		    </div>
+		    <br>
+		    
 		    <div class="list-header">
-		        <div><p class="content-inner-title">지원정보 확인</p></div>
+		        <div class="check_div"><p class="content-inner-title">지원정보 확인</p></div>
 		        <div class="btndiv"><a href="myProfile" class="minibutton minibtnFade minibtnBlueGreen">회원정보수정</a></div>
 		    </div>
-			<table>
+			<table class="list_table">
 		    	<tr>
 		    		<td class="left"><p class="content-document">${user.name}</p></td>
-		    		<td class="right"><p class="content-document">(${user.gender}, ${user.birthday})</p></td>
+		    		<td class="middle"><p class="content-document">(${user.gender eq 'M'? "남":"여"}, ${user.birthday})</p></td>
 		    	</tr>
 		    	<tr>
 		    		<td class="left"><p class="content-document">휴대폰</p></td>
@@ -222,6 +249,7 @@
 		    		<td class="right"><p class="content-document">공개</p></td>
 		    	</tr>
 		    </table>
+		    <br>
 		    <div class="btndiv"><input type="submit" class="button btnPush btnBlueGreen" value="지원"></div>
     	</form>
     </div>

@@ -14,9 +14,9 @@
 			<p class="content-title">로그인</p>
 			<br> <br>
 			<div>
-				<input type="text" placeholder=" 이메일 아이디" name="email"
-					class="user-input"><br> <br> <input type="password"
-					placeholder=" 비밀번호" name="password" class="user-input"><br>
+				<input type="text" placeholder="이메일 아이디" name="email"
+					class="input user-input cursorpadding"><br> <br> <input type="password"
+					placeholder="비밀번호" name="password" class="input user-input cursorpadding"><br>
 				<br> <br> <br>
 			</div>
 			<div>

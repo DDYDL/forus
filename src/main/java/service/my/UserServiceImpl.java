@@ -1,5 +1,7 @@
 package service.my;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.oreilly.servlet.MultipartRequest;
@@ -54,9 +56,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Integer userModify(HttpServletRequest request) throws Exception {
-		String path = request.getServletContext().getRealPath("upload");
+		String path = request.getServletContext().getRealPath("upload" + File.separator + "user");
 		int size = 10 * 1024 * 1024;
-
+		
 		MultipartRequest multi = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
 
 		User user = new User();
@@ -67,17 +69,17 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(multi.getParameter("password"));
 		user.setPhone(multi.getParameter("phone"));
 		user.setBirthday(multi.getParameter("birthday"));
-		user.setGender(multi.getParameter("gender"));
+		user.setAddress(multi.getParameter("address"));
 
 		// 파일 수정
 		if (multi.getFile("file") != null) {
 			user.setPicture(multi.getFilesystemName("file"));
 		}
 
-		System.out.println(user);
+		System.out.println("1"+user);
 		userDao.updateUser(user);
 		User suser = userDao.selectUserId(user.getId());
-		System.out.println(suser);
+		System.out.println("2"+suser);
 		return user.getId();
 	}
 

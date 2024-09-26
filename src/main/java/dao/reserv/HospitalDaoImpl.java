@@ -27,6 +27,9 @@ public class HospitalDaoImpl implements HospitalDao {
 		return sqlSession.selectList("mapper.hospital.findHospitalByKeyword", params);
 	}
 
+
+
+
 	@Override
 	public Hospital findHospitalDetailByHospitalId(int hospitalId) {
 		return sqlSession.selectOne("mapper.hospital.findHospitalDetailByHospitalId", hospitalId);

@@ -5,12 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지-반려동물리스트</title>
 
 <style>
 .pet {
 	font-weight: bold;
-	color: rgba(105, 233, 46);
+	color: #03C75A;
+}
+
+.mypage {
+	font-weight: bold;
+	color: #03C75A;
 }
 </style>
 <meta charset="utf-8">
@@ -22,10 +27,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<link rel="stylesheet" href="css/my/font.css" />
-
-<link rel="stylesheet" href="css/my/containerbox.css" />
-<link rel="stylesheet" href="css/my/list.css" />
+<link rel="stylesheet" href="css/hmy/list.css" />
 <script>
 	function delete_list(num) {
 		// let name = this.$('li').text()
@@ -45,13 +47,11 @@
 </head>
 <body>
 	<%@ include file="../mainmypage.jsp"%>
-	
-	<div class="mypage-content-list">
-		<div>
-			<h3 align="center">반려동물 프로필</h3>
-		</div>
 
-		<table class="table table-hover">
+	<div class="mypage-content-list">
+		<p class="mypage-content-title" align="center">반려동물 프로필</p>
+
+		<table class="table table-hover" style="margin-top:30px;">
 			<thead>
 				<tr>
 					<th></th>
@@ -65,23 +65,31 @@
 			<tbody>
 				<c:forEach items="${petList }" var="pet">
 					<tr id="petlist">
-					  <td><input type="checkbox" name="petIds" value="${pet.pet_id}"/></td>
-						<!-- <td><input type="checkbox" value="${pet.pet_id }"/></td>-->
-						<td><div class="profilebox">
-								<img class="profile" src="/img/dog1.png">
-							</div></td>
+						<td><input type="checkbox" name="petIds"
+							value="${pet.pet_id}" /></td>
+						<td>	
+							<img src="image?file=${pet.pet_picture eq null? 'petdefault.png': pet.pet_picture}&type=pet"
+							class="img-icon">
+						</td>
 						<td><a href="./myPetModify?pet_id=${pet.pet_id}">${pet.pet_name }</a></td>
 						<td>${pet.pet_species }</td>
 						<td>${pet.pet_breed }</td>
-						<td>${pet.pet_gender }</td>
+						<td>
+						 <c:choose>
+								<c:when test="${pet.pet_gender eq 'M' }"> 수컷</c:when>
+								<c:when test="${pet.pet_gender eq 'F' }"> 암컷</c:when>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 
 			</tbody>
 		</table>
-		<div>
-			<button class="btnright" onclick="location.href='./myNewPet'">등록</button>
-			   <button class="btnright" type="button" onclick="deleteSelectedPets()">삭제</button>
+		<div style="text-align: right">
+			<button class="minibutton minibtnFade minibtnBlueGreen"
+				onclick="location.href='./myNewPet'">등록</button>
+			<button class="minibutton minibtnFade minibtnBlueGreen" type="button"
+				onclick="deleteSelectedPets()">삭제</button>
 			<!--  <button class="btnright" onclick="location.href='./myPetDelete?pet_id=${pet_id}'">삭제</button>-->
 		</div>
 	</div>
@@ -92,18 +100,19 @@
 </html>
 
 <script>
-    function deleteSelectedPets() {
-        // 선택된 체크박스가 있는지 확인
-        var checkboxes = document.querySelectorAll('input[name="petIds"]:checked');
-        if (checkboxes.length > 0) {
-            // 첫 번째 체크된 체크박스의 pet_id 값을 가져와서 서버로 전송
-            var firstCheckedCheckbox = checkboxes[0];
-            var petId = firstCheckedCheckbox.value;
-            
-            // GET 방식으로 pet_id를 URL에 포함
-            window.location.href = './myPetDelete?pet_id=' + petId;
-        } else {
-            alert("삭제할 펫을 선택해 주세요.");
-        }
-    }
+	function deleteSelectedPets() {
+		// 선택된 체크박스가 있는지 확인
+		var checkboxes = document
+				.querySelectorAll('input[name="petIds"]:checked');
+		if (checkboxes.length > 0) {
+			// 첫 번째 체크된 체크박스의 pet_id 값을 가져와서 서버로 전송
+			var firstCheckedCheckbox = checkboxes[0];
+			var petId = firstCheckedCheckbox.value;
+
+			// GET 방식으로 pet_id를 URL에 포함
+			window.location.href = './myPetDelete?pet_id=' + petId;
+		} else {
+			alert("삭제할 펫을 선택해 주세요.");
+		}
+	}
 </script>

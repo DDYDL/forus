@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -8,92 +9,105 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>예약상세정보</title>
-  <style>
-/*     body { */
-/*       font-family: Arial, sans-serif; */
-/*       margin: 40px; */
-/*     } */
-/*     #reservationDetail { */
-/*       width: 300px; */
-/*       margin: auto; */
-/*     } */
-/*     #reservationDetail .pet-selection { */
-/*       list-style-type: none; */
-/*       padding: 0; */
-/*     } */
-/*     #reservationDetail .pet-selection li { */
-/*       display: flex; */
-/*       align-items: center; */
-/*       margin-bottom: 10px; */
-/*     } */
-/*     #reservationDetail .pet-selection img { */
-/*       width: 40px; */
-/*       height: 40px; */
-/*       border-radius: 50%; */
-/*       margin-right: 10px; */
-/*     } */
-/*     #reservationDetail .reserve-item, */
-/*     #reservationDetail .reserve-date, */
-/*     #reservationDetail .guardian-info { */
-/*       margin-bottom: 20px; */
-/*     } */
-/*     #reservationDetail input[type="text"], */
-/*     #reservationDetail input[type="date"], */
-/*     #reservationDetail input[type="time"] { */
-/*       width: 100%; */
-/*       padding: 5px; */
-/*       margin-top: 5px; */
-/*       box-sizing: border-box; */
-/*       background-color: #f0f0f0; */
-/*       border: 1px solid #ccc; */
-/*       cursor: not-allowed; */
-/*     } */
-/*     #reservationDetail input[type="checkbox"] { */
-/*       margin-right: 5px; */
-/*       cursor: not-allowed; */
-/*     } */
-
-  </style>
+<link href="${pageContext.request.contextPath}/css/my/mycommon.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+	<%@ include file="../mainmypage.jsp" %>
 <div id="reservationDetail" class="mypage-content">
-  <div class="pet-selection">
-    <h3>펫 선택</h3>
-    <ul>
-      <li><input type="radio" name="pet" checked disabled> <img src="https://via.placeholder.com/40" alt="또치"> 또치</li>
-      <li><input type="radio" name="pet" disabled> <img src="https://via.placeholder.com/40" alt="두치"> 두치</li>
-      <li><input type="radio" name="pet" disabled> <img src="https://via.placeholder.com/40" alt="한치"> 한치</li>
-    </ul>
+	<div class="mytitle">
+		<p>예약 상세 정보</p>
+	</div>
+    <p class="box-title">반려동물</p>
+  <div class="pet-selection box mybox">
+  <table class="center">
+  	<tr>
+  		<td class="pet_profile-td1"> <c:choose>			
+			<c:when test="${reserv.pet_picture eq null}">
+			<img src="upload/pet/petdefault.png" class="pet_img-big""></c:when>
+			<c:otherwise><img src="image?file=${reserv.pet_picture}&type=pet" class="pet_img-big"></c:otherwise>
+		</c:choose> </td>
+		<td class="pet_profile-td2">${reserv.pet_name}&nbsp;&nbsp;</td>
+		<td class="pet_profile-td3">(${reserv.pet_age}살, &nbsp;${reserv.pet_gender eq 'M'? '남':'여'})&nbsp;&nbsp;</td>
+	    <td class="pet_profile-td3">${reserv.pet_species}&nbsp;&nbsp;</td>
+	  	<td>${reserv.pet_breed}</td>
+  	</tr>
+  </table>
   </div>
-
-  <div class="reserve-item">
-    <h3>예약 항목</h3>
-    <input type="checkbox" checked disabled> 진료
-    <input type="checkbox" disabled> 상담
-    <input type="checkbox" disabled> 미용
-    <input type="checkbox" disabled> 기타
-    <input type="text" value="기타 입력된 내용" readonly>
+    <br>
+    <p class="box-title">예약 정보</p>
+  <div class="reserve-item box mybox">
+      	<table class="reserv_table">
+    		<tr>
+    			<td class="firstcloumn">병원 이름</td>
+    			<td class="user_td2">${reserv.h_name}</td>
+    		</tr>
+    		<tr>
+    			<td><label for="reserv_date">날짜</label></td>
+    			<td>${reserv.reserv_date}<br>
+</td>
+    		</tr>
+    		<tr>
+    			<td><label for="reserv_time">시간</label></td>
+    			<td>${reserv.reserv_time}<br>
+</td>
+    		</tr>
+    		<tr>
+    			<td>예약내용</td>
+    			<td>
+    			<div class="radio-align" >
+    			<input type="radio" class="radio-hidden" id="consult" name="reserv_content"
+               <c:choose>
+                   <c:when test="${reserv.reserv_content eq '진료'}">checked</c:when>
+                   <c:otherwise>unchecked</c:otherwise>
+               </c:choose> disabled>
+               <label for="consult" class="label-btnstyle btnstyle2" >진료</label>
+        		<input type="radio" class="radio-hidden" id="counseling" name="reserv_content"
+               <c:choose>
+                   <c:when test="${reserv.reserv_content eq '상담'}">checked</c:when>
+                   <c:otherwise>unchecked</c:otherwise>
+               </c:choose> disabled>
+               <label for="counseling" class="label-btnstyle btnstyle2">상담</label>
+        	<input type="radio" class="radio-hidden" id="beauty" name="reserv_content"
+               <c:choose>
+                   <c:when test="${reserv.reserv_content eq '미용'}">checked</c:when>
+                   <c:otherwise>unchecked</c:otherwise>
+               </c:choose> disabled>
+               <label for="beauty" class="label-btnstyle btnstyle2">미용</label>
+        	<input type="radio" class="radio-hidden" id="etc" name="reserv_content"
+               <c:choose>
+                   <c:when test="${reserv.reserv_content ne '진료' && reserv.reserv_content ne '상담' && reserv.reserv_content ne '미용'}">checked</c:when>
+                   <c:otherwise>unchecked</c:otherwise>
+               </c:choose> disabled> 
+               <label for="etc" class="label-btnstyle btnstyle2">기타</label>
+               <c:if test="${reserv.reserv_content ne '진료' && reserv.reserv_content ne '상담' && reserv.reserv_content ne '미용'}"> - "${reserv.reserv_content}"</c:if>
+  			</div>
+  			</td>
+    		</tr>
+    	</table>
+    </div>
+    <br>
+    <p class="box-title">보호자 정보</p>
+  <div class="guardian-info box mybox">
+  <table class="reserv_table">
+    <tr>
+	    <td class="firstcloumn"><label for="name">이름</label></td>
+	    <td>${user.name }</td>
+    </tr>
+    <tr>
+	    <td><label for="phone">휴대폰</label></td>
+	    <td>${user.phone }</td>
+    </tr>
+    <tr>
+	    <td><label for="email">이메일</label></td>
+	    <td>${user.email }</td>
+  	</tr>
+  	</table>
   </div>
-
-  <div class="reserve-date">
-    <h3>예약 날짜</h3>
-    <p>병원이름: 도마뱀 병원</p>
-    <label for="date">예약 날짜</label>
-    <input type="date" id="date" value="2024-08-08" readonly>
-    <label for="time">예약 시간</label>
-    <input type="time" id="time" value="09:00" readonly>
+  <br>
+  <div class="btn-box">
+  <a href="javascript:window.history.back();" id="back" class="button btnPush btnBlueGreen">목록으로</a>
   </div>
-
-  <div class="guardian-info">
-    <h3>보호자 정보</h3>
-    <label for="name">이름</label>
-    <input type="text" id="name" value="르브론" readonly>
-    <label for="phone">휴대폰</label>
-    <input type="text" id="phone" value="010-1234-5678" readonly>
-    <label for="email">이메일</label>
-    <input type="text" id="email" value="gohome@kosta.org" readonly>
-  </div>
+  <br>
 </div>
 
 </body>

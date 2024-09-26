@@ -14,5 +14,6 @@ public interface UserService {
 	User userDetail(Integer id) throws Exception;
 
 	Integer userModify(HttpServletRequest request) throws Exception;
-
+	
+//	User selectUser(Integer id) throws Exception;
 }

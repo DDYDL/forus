@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이병원-내병원정보</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -42,6 +42,20 @@
 	}
 </script> -->
 
+
+
+<style>
+.myhos {
+	font-weight: bold;
+	color: #03C75A;
+}
+
+.myhospital {
+	font-weight: bold;
+	color: #03C75A;
+}
+
+</style>
 </head>
 
 
@@ -50,132 +64,124 @@
 
 	<div class="mypage-content">
 
-		<div class="bodybox">
 
-			<div class="containerbox">
+		<div class="containerbox">
+			<p class="mypage-content-title" align="center">내 병원 정보</p>
 
-				<div>
-					<h3>내 병원 수정하기</h3>
-				</div>
+			<h3 style="text-align: left">기본 정보</h3>
 
-				<h4>기본 정보</h4>
+			<table class="container">
+				<tbody>
+					<tr>
+						<td class="size"><label for="name">대표자 이름</label></td>
+						<td><span>${hospital.h_exponent_name  }</span></td>
+						<td></td>
+					</tr>
 
-				<table class="container">
-					<tbody>
-						<tr>
-							<td><label for="name">대표자 이름</label></td>
-							<td class="tdinput"><span>${hospital.h_exponent_name  }</span></td>
-							<td></td>
-						</tr>
+					<tr>
+						<td><label for="name">사업자 등록번호</label></td>
+						<td><span>${hospital.h_num }</span></td>
+					</tr>
+					<tr>
+						<td><label for="name">병원 이름</label></td>
+						<td><span>${hospital.h_name }</span></td>
+					</tr>
+					<tr>
+						<td><label for="name">병원장 이름</label></td>
+						<td><span>${hospital.h_manager_name }</span></td>
+					</tr>
+					<tr>
+						<td><label for="name">병원 연락처</label></td>
+						<td><span>${hospital.h_phone }</span></td>
+					</tr>
 
-						<tr>
-							<td><label for="name">사업자 등록번호</label></td>
-							<td class="tdinput"><span>${hospital.h_num }</span></td>
-						</tr>
-						<tr>
-							<td><label for="name">병원 이름</label></td>
-							<td class="tdinput"><span>${hospital.h_name }</span></td>
-						</tr>
-						<tr>
-							<td><label for="name">병원장 이름</label></td>
-							<td class="tdinput"><span>${hospital.h_manager_name }</span></td>
-						</tr>
-						<tr>
-							<td><label for="name">병원 연락처</label></td>
-							<td class="tdinput"><span>${hospital.h_phone }</span></td>
-						</tr>
+					<tr>
+						<td><label for="name">병원 주소</label></td>
+						<td><span>${hospital.h_address}</span></td>
 
-						<tr>
-							<td><label for="name">병원 주소</label></td>
-							<td><span>${hospital.h_address}</span></td>
+					</tr>
+					<tr>
+						<td><label for="name">점심 시간</label></td>
+						<td><span>${hospital.h_lunch_time_start } ~
+								${hospital.h_lunch_time_end } </span></td>
+					</tr>
+				</tbody>
+			</table>
 
-						</tr>
-						<tr>
-							<td class="time"><label for="name">점심 시간</label></td>
-							<td class="tdinput time">
-							
-							시작<input type="time" id="h_lunch_time_start" name="h_lunch_time_start"
-								value="${hospital.h_lunch_time_start }"> &nbsp; &nbsp;
-								
-								종료 <input type="time" id="h_lunch_time_end" name="h_lunch_time_end"
-								value="${hospital.h_lunch_time_end }"></td>
-						</tr>
-						<tr>
-							<td><label for="name">진료 가능 동물 목록</label></td>
-							<td class="tdinput"><span>${hospital.h_animal_type }</span>
-						</tr>
+			<h3 style="text-align: left">진료 가능 동물 목록</h3>
+			<table class="container">
+				<tbody>
+					<tr>
+						<td class="size"></td>
+						<td class="tdinput"><span>${hospital.h_animal_type }</span>
+					</tr>
 
-					</tbody>
-				</table>
+				</tbody>
+			</table>
 
 
-				<h4>병원 대표 사진 등록</h4>
-				<table class="container">
-					<tbody>
-						<tr>
-							<td><label for="name">대표 사진 등록</label></td>
-							<td class=" tdinput filebox"><input class="upload-name"
-								value="첨부파일"> <label for="file">파일찾기</label> <input
-								type="file" name="file" id="file" accept="image/*"
-								onchange="readURL(this);" style="display: none" name="h_picture"></td>
+			<h3 style="text-align: left">병원 대표 사진</h3>
+			<table class="container">
+				<tbody>
+					<tr>
+						<td><label for="name">등록된 대표 사진</label></td>
+						<td><img
+							src="image?file=${hospital.h_picture eq null? 'hospitaldefault.png': hospital.h_picture}
+								&id=${hospital_h_id}&type=hospital"
+							style="width: 500px; height: 300px;"></td>
 
-						</tr>
-					</tbody>
-				</table>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3 style="text-align: left">추가 사항</h3>
+			<table class="container">
+				<tbody>
+					<tr>
+						<td class="size"><label for="name">상세 설명</label></td>
+						<td><span>${hospital.h_memo }</span></td>
+					</tr>
+					<tr>
+						<td><label for="name">찾아오는 길</label></td>
+						<td><span>${hospital.h_memo_road }</span></td>
+					</tr>
 
 
-				<h4>추가 사항</h4>
-				<table class="container">
-					<tbody>
-						<tr>
-							<td><label for="name">상세 설명</label></td>
-							<td><span>${hospital.h_memo }</span></td>
-						</tr>
-						<tr>
-							<td><label for="name">찾아오는 길</label></td>
-							<td><span>${hospital.h_memo_road }</span></td>
-						</tr>
+					<tr>
+						<td><label for="name"> SNS / Blog </label></td>
+						<td><span>${hospital.h_sns }</span></td>
 
-						<tr>
-							<td><h3>편의사항</h3></td>
-						</tr>
-						<tr>
-							<td><label for="name"> SNS / Blog </label></td>
-							<td class="tdinput"><span>${hospital.h_sns }</span></td>
+					</tr>
 
-						</tr>
+					<tr>
+						<td><label for="name"> 결제수단 </label></td>
+						<td><span>${hospital.h_pay }</span></td>
 
-						<tr>
-							<td><label for="name"> 결제수단 </label></td>
-							<td class="tdinput"><input type="checkbox" name="h_pay"
-								value="1"> 현금 <input type="checkbox" name="h_pay"
-								value="2"> 카드 <input type="checkbox" name="h_pay"
-								value="3"> 제로페이</td>
-						</tr>
+					</tr>
 
-						<tr>
-							<td><label for="name"> 주차 가능 여부 </label></td>
-							<td class="tdinput"><input type="radio" name="h_parking"
-								value="T"> 가능 <input type="radio" name="h_parking"
-								value="F"> 불가능</td>
-						</tr>
+					<tr>
+						<td><label for="name"> 주차 가능 여부 </label></td>
+						<td><c:choose>
+								<c:when test='${hospital.h_parking eq true }'> 가능</c:when>
+								<c:when test='${hospital.h_parking eq false }'> 불가능</c:when>
+							</c:choose></td>
 
-					</tbody>
-				</table>
+					</tr>
 
-				<br> <br> <br>
-				<div class="row">
-					<div class="find-btn">
-						<button type="button" title="Button push blue/green"
-							class=" btn btnPush btnBlueGreen find-btn1"
-							onclick="location.href='/forus/hmyHospitalModify'">수정</button>
+				</tbody>
+			</table>
 
-					</div>
+			<br> <br>
+			<div class="row">
+				<div class="find-btn">
+					<button type="button" title="Button push blue/green"
+						class=" btn btnPush btnBlueGreen find-btn1"
+						onclick="location.href='./hmyHospitalModify'">수정</button>
+
 				</div>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
 

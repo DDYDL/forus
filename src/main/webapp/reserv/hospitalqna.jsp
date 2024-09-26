@@ -9,11 +9,13 @@
 
 <c:set var="sessionUser" value="${sessionScope.user}" />
 
-<html>
-<head>
-    <title></title>
+<%--<html>--%>
+<%--<head>--%>
+<%--    <title></title>--%>
 
-</head>
+<%--</head>--%>
+
+
 
 
 <div id="hospital-qna-section">
@@ -33,17 +35,19 @@
         </tr>
         </thead>
         <tbody id="qna-list">
-        <!-- 비동기적으로 QnA 항목들이 추가됩니다 -->
+        <!-- 비동기적으로 QnA 항목들이 추가 -->
         </tbody>
     </table>
     <div id="load-more-container" style="text-align: center;">
-        <button id="load-more-btn" class="btn btn-primary">더보기</button>
+        <button id="load-more-btn" class="minibutton minibtnFade minibtnBlueGreen">
+            <img src="./img/plus.png" style="width:20px">
+        </button>
     </div>
 
 
 </div>
 
-</html>
+<%--</html>--%>
 
 
 <script>
@@ -54,13 +58,16 @@
 </script>
 
 
-
-
 <script>
     $(document).ready(function () {
         // QnA 등록 버튼 클릭 시
         $('#qna-submit-btn').on('click', function () {
             var qnaInput = $('#qna-input').val();
+
+            if(!isLongedIn){
+                alert('로그인 후 이용해주세요.');
+                return;
+            }
 
             if (qnaInput === '') {
                 alert('질문을 입력해주세요.');
@@ -166,8 +173,8 @@
                     $('#qna-list').append(qnaRow);
                 });
 
-                if (data.items.length < pageSize || currentPage * pageSize >= data.total) {
-
+                // if (data.items.length < pageSize || currentPage * pageSize >= data.total) {
+                if (data.length < pageSize) {
                     $('#load-more-btn').hide();
                 } else {
                     $('#load-more-btn').show();
@@ -204,7 +211,9 @@
             <td colspan="3" style="padding: 10px;">
                 <p><strong>ㄴ답변:</strong> ${"${qna.a_title || '답변이 없습니다.'}"}</p>
 
-                   <c:if test="${sessionUser !=null && sessionUser.ishospital == 1}">
+<%--                   <c:if test="${sessionUser !=null && sessionUser.ishospital == 1}">--%>
+                  <%-- hospitaldetail.jsp에서 불러오는값--%>
+                   <c:if test="${sessionUser.id eq managerId}">
                     <div class="answer-form">
                             <input type="text" class="answer-input form-control" data-qna-id="${"${qna.qna_id}"}" placeholder="답변을 입력하세요">
                             <button class="answer-submit-btn btn btn-outline-secondary" data-qna-id="${"${qna.qna_id}"}">답변 등록</button>
@@ -232,6 +241,7 @@
 
 
 </script>
+
 
 
 

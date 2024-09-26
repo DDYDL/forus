@@ -22,22 +22,14 @@ public interface ReservationDao {
 	List<Pet> findPetsByUserId(Integer userId);
 
 	void insertReservation(Reservation reservation);
-
-
-	void insertReserv(Reservation reserv) throws Exception;
-	void updateReserv(Reservation reservation) throws Exception;
-	void deleteReserv(Reservation reservation) throws Exception;
-	Reservation selectReserv(Integer id) throws Exception;
-
 	
 	// 오늘 이후, 지난 예약 조회
 	List<Map<String, Object>> selectMyAfterReservList(Integer id) throws Exception;
-	List<Map<String, Object>> selectMyBeforeReservList(Integer userId, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception;
+	List<Map<String, Object>> selectMyBeforeReservList(Integer userId, Integer pet_id, String startDate, String endDate, boolean isConsult, Integer row) throws Exception;
+	Integer selectMyBeforeReservCount (Integer userId, Integer pet_id, String startDate, String endDate, boolean isConsult) throws Exception;
 	
-	// 지난 예약 검색 옵션(펫별, 진료완료, 기간별)
-	List<Map<String, Object>> selectPetReservList(Integer id) throws Exception;
-	List<Map<String, Object>> selectCompleteReservList(Integer id) throws Exception;
-	List<Map<String, Object>> selectPeriodReservList(Integer id) throws Exception;
+	// reserv_id에 해당하는 reservation 정보 select
+	Map<String, Object> selectReservByReservId(Integer reserv_id) throws Exception;
 	
 	Integer deleteReserv(int reserv_id) throws Exception;
 	

@@ -1,9 +1,10 @@
-
 input[type=text] {
+	padding-left: 10px;
 	width: 300px;
 	height: 40px;
 	border-radius: 5px;
 	border: 1px solid rgb(201, 201, 201);
+	padding: 0 5px;
 }
 
 input[type=tel] {
@@ -11,22 +12,86 @@ input[type=tel] {
 	height: 40px;
 	border-radius: 5px;
 	border: 1px solid rgb(201, 201, 201);
+	padding: 0 5px;
 }
-
 input[type=address] {
-	width: 200px;
+	padding-left: 10px;
+	width: 230px;
 	height: 40px;
 	border-radius: 5px;
 	border: 1px solid rgb(201, 201, 201);
 }
 
+/* 
+input[type="radio"] {
+	vertical-align: middle;
+	appearance: none;
+	border: max(1px, 0.1em) solid #D1D1D1;
+	border-radius: 50%;
+	width: 1.25em;
+	height: 1.25em;
+}
+
+input[type="radio"]:focus-visible {
+	outline-offset: max(2px, 0.1em);
+	outline: max(2px, 0.1em) dotted #03C75A;
+}
+
+input[type="radio"]:checked {
+	border: 0.4em solid #03C75A;
+}
+ */
+/* input[type="checkbox"] {
+	vertical-align: middle;
+	appearance: none; 기본 체크박스 모양을 없앰
+	width: 1.25em;
+	height: 1.25em;
+	border: 1px solid #D1D1D1;
+	border-radius: 20%;
+	background-color: white;
+	cursor: pointer;
+	transition: background-color 0.1s ease;
+}
+
+input[type="checkbox"]:checked {
+	background-color: #03C75A; 체크된 상태의 배경색
+	border-color: #03C75A;
+}
+
+input[type="checkbox"]:checked::after {
+	content: "✓";
+	font-size: 16px;
+	color: white;
+	display: block;
+	text-align: center;
+	line-height: 18px;
+} */
+#postcode {
+	width: 100px;
+}
+
+#timepicker {
+	width: 125px;
+	padding-left: 5px;
+	text-align: center;
+}
+
 #input_box {
+	padding-left: 10px;
 	width: 300px;
 	height: 150px;
 	border-radius: 5px;
 	border: 1px solid rgb(201, 201, 201);
-	white-space:nowrap;
-	word-break:normal;
+}
+
+.text {
+	width: 300px;
+	height: 150px;
+	border-radius: 5px;
+	border: 1px solid rgb(201, 201, 201);
+	white-space: nowrap;
+	word-break: normal;
+	resize: none;
 }
 
 .tdinput {
@@ -37,7 +102,7 @@ input[type=address] {
 	display: inline;
 	height: 40px;
 	padding: 0 10px;
-	vertical-align:middle;
+	vertical-align: middle;
 	border: 1px solid rgb(201, 201, 201);
 	width: 50%;
 	color: #999999;
@@ -47,7 +112,7 @@ input[type=address] {
 .filebox label {
 	display: inline;
 	padding: 10px 20px;
-	color: #000000;
+	color: #262627;
 	vertical-align: middle;
 	background-color: transparent;
 	cursor: pointer;
@@ -69,7 +134,7 @@ input[type=address] {
 	display: inline;
 	height: 40px;
 	padding: 0 10px;
-	vertical-align:middle;
+	vertical-align: middle;
 	border: 1px solid rgb(201, 201, 201);
 	width: 50%;
 	color: #999999;
@@ -78,8 +143,8 @@ input[type=address] {
 
 .btnaddress {
 	text-align: left;
-	padding : 10px 20px;
-	color: #000000;
+	padding: 10px 20px;
+	color: #262627;
 	vertical-align: middle;
 	background-color: transparent;
 	cursor: pointer;
@@ -87,5 +152,16 @@ input[type=address] {
 	margin-left: 10px;
 	border-radius: 10px;
 	border: 1px solid rgb(201, 201, 201);
+}
 
+.searchbox {
+	border: 1px solid #D1D1D1;
+	height: auto;
+	min-height: 50px;
+	border-radius: 10px;
+	margin-top: 15px;
+}
+
+#demo2 {
+	margin: 10px 20px 5px 20px;
 }

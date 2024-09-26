@@ -1,34 +1,15 @@
+#reservationStatus {
+    border-radius:5px; width:150px; height:35px;
+    font-family: 'KCC-Hanbit', sans-serif !important;
+}
 
-    /*body {*/
-    /*    padding-left: 15%;*/
-    /*    padding-right: 15%;*/
+.reservation-table{
+        font-family: 'KCC-Hanbit', sans-serif !important;
+    }
 
-    /*}*/
-
-/*body {*/
-/*    background-image:*/
-/*            url('${pageContext.request.contextPath}/img/pattern.png'),*/
-/*            url('${pageContext.request.contextPath}/img/pattern.png');*/
-/*    background-repeat: repeat-y;*/
-/*    background-position: left top, right top;*/
-/*    background-size: 15%, 15%;*/
-
-
-/*    padding-left: 15%;*/
-/*    padding-right: 15%;*/
-/*}*/
-
-    /*body {*/
-    /*    background-image:*/
-    /*            url('../../img/pattern.png'), !* 왼쪽 상단에 위치할 이미지 *!*/
-    /*            url('../../img/pattern.png'); !* 오른쪽 상단에 위치할 이미지 *!*/
-    /*    background-repeat: repeat-y; !* 세로로 반복 *!*/
-    /*    background-position: left top, right top; !* 왼쪽 상단과 오른쪽 상단에 위치 *!*/
-    /*    background-size: 15%, 15%; !* 이미지 크기를 설정 *!*/
-
-    /*    padding-left: 15%;*/
-    /*    padding-right: 15%;*/
-    /*}*/
+    .reservation-details-table, .reservation-details-table td, .reservation-details-table th {
+        font-family: 'KCC-Hanbit', sans-serif !important;
+    }
 
 
 .fc-daygrid-day {
@@ -36,8 +17,12 @@
     border: 1px solid #e0e0e0;
     padding: 9px;
     background-color: #fff;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    /*transition: background-color 0.3s ease, box-shadow 0.3s ease;*/
+    min-width: 120px; /* 셀의 최소 너비를 지정 */
+    width: 100%;
 }
+
+
 
 .fc-daygrid-day:hover {
     background-color: #f0f0f0;
@@ -90,21 +75,34 @@
 
     /*max-width: 1300%;*/
     /*border-radius: 50%;*/
-    margin-left: 27%;
-    max-width: 1000px; /* 원하는 너비로 조정 */
+    /*margin-left: 0%;*/
+ /*    max-width: 1000px; 원하는 너비로 조정
+ */
+ 	width:800px;
 
 }
 
+
+/*    #calendar {*/
+
+/*     margin-left: 34%;*/
+/*     margin-top: 2.5%;*/
+/*     max-width: 1000px;*/
+
+
+/*}*/
+
+
 .fc-timegrid-event {
-    max-width: 15%;
+    max-width: 45%;
 
 }
 
 /*일 별 */
-
 .fc-timegrid-event .fc-event-main {
     padding: 1px 1px 0;
-    color: black;
+    color: #262627;
+
 
 }
 
@@ -117,17 +115,47 @@
 
 
 .fc-event {
-    background-color: rgb(168, 213, 255);
-    color: #1a1a1a;
-    border: none;
-    border-radius: 8px;
-    padding: 5px;
-    text-align: center;
-    font-size: 14px;
-    margin-bottom: 5px;
+    /*background-color: rgb(168, 213, 255);*/
+    /*background-color: rgb(232 242 251);*/
+    /*color: #1a1a1a;*/
+    /*border: none;*/
+    /*border-radius: 8px;*/
+    /*padding: 5px;*/
+    /*text-align: center;*/
+    /*font-size: 14px;*/
+    /*margin-bottom: 5px;*/
+
+    border-radius: 8px !important;
+    padding: 5px !important;
+    color: #1a1a1a !important;
+    text-align: center !important;
+    font-size: 14px !important;
+    margin-bottom: 5px !important;
+
 }
 
+    /* 상태별 스타일 */
+    .status-reservation {
+        background-color: rgb(216 238 252) !important;
+        border: 1px solid rgb(216 238 252) !important;
+    }
 
+    .status-complete {
+        /*background-color: #e2f3e2 !important;*/
+        /*border: 1px solid #daf3da !important;*/
+        background-color: rgb(223, 253, 229) !important;
+        border: 1px solid #d6fce1 !important;
+    }
+
+    .status-no-show {
+        background-color: rgb(255, 242, 0) !important;
+        border: 1px solid #ffffff !important;
+    }
+
+    .status-cancelled {
+        background-color: rgb(208, 208, 208) !important;
+        border: 1px solid #cccaca !important;
+    }
 
 
 
@@ -155,20 +183,37 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
-#vetNote {
-    width: 100%;
-    height: 100px;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #fff;
-    resize: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 14px;
-    color: #333;
-    transition: border-color 0.3s ease;
+/*#vetNote {*/
+/*    width: 94%;*/
+/*    height: 100px;*/
+/*    padding: 15px;*/
+/*    margin-bottom: 20px;*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 10px;*/
+/*    background-color: #fff;*/
+/*    resize: none;*/
+/*    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);*/
+/*    font-family: 'Noto Sans', sans-serif;*/
+/*    font-size: 14px;*/
+/*    color: #262627;*/
+/*    transition: border-color 0.3s ease;*/
+/*}*/
+
+    #vetNote {
+        width: 91%;
+        height: 100px;
+        padding: 15px;
+        margin-top: 5%;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #fff;
+        resize: none;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        font-family: 'Noto Sans', sans-serif;
+        font-size: 14px;
+        color: #262627;
+        transition: border-color 0.3s ease;
 }
 
 #vetNote:focus {
@@ -265,7 +310,72 @@
         border-color: #28a745;
     }
 
-    #reservationTimeButton:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    /*#reservationTimeButton:focus {*/
+    /*    outline: none;*/
+    /*    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);*/
+    /*}*/
+
+    .fc .fc-daygrid-day.fc-day-today{
+        background-color: rgb(249 180 237 / 15%);
+
+    }
+
+
+    #reservationStatus {
+        padding: 1px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        font-size: 14px;
+        color: #333;
+
+    }
+
+    /*#reservationStatus option {*/
+    /*    padding: 10px;*/
+    /*    background-color: #fff;*/
+    /*    color: #333;*/
+    /*}*/
+
+
+
+    .reservation-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* 행 스타일 */
+    .reservation-row {
+        margin-bottom: 10px;
+    }
+
+    /* 각 셀 간격과 스타일 */
+    .reservation-label {
+        font-weight: bold;
+        padding: 10px;
+        width: 150px;
+        vertical-align: top;
+        /*border-bottom: 1px solid #e0e0e0; !* 구분선 *!*/
+    }
+
+    .reservation-value {
+        /*padding: 10px;*/
+        /*border-bottom: 1px solid #e0e0e0; !* 구분선 *!*/
+        text-align: left;
+    }
+
+    /**/
+    .reservation-details-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: -17px;
+    }
+
+
+    .reservation-label {
+        font-weight: bold;
+        /*padding: 10px;*/
+        width: 150px;
+        vertical-align: top;
+        /*border-bottom: 1px solid #e0e0e0; !* 행 간 구분선 *!*/
     }

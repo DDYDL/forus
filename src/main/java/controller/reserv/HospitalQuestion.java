@@ -39,17 +39,8 @@ public class HospitalQuestion extends HttpServlet {
 			int limit = 3; // 한 페이지에 보여줄 QnA 개수
 			int offset = (page - 1) * limit;
 
-			//페이징 처리 디버그
-
-			System.out.println("page: " + page);
-			System.out.println("limit: " + limit);
-			System.out.println("offset: " + offset);
-
 			List<Hospital_qna> hospitalQnaList = hospitalQnaService.getHospitalQnaList(hospitalId, limit, offset);
-
-			//페이징 처리 디버그
-			System.out.println("hospitalQnaList: " + hospitalQnaList);
-
+			
 
 			Gson gson = new Gson();
 			String json = gson.toJson(hospitalQnaList);

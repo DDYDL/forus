@@ -13,7 +13,7 @@ public interface HospitalQnaDao {
 	public void insertHospitalAnswer(int qnaId, Hospital_qna hospitalQna);
 
 
-
+	public Integer findManagerIdByHospitalId(Integer hospitalId);
 
 
 

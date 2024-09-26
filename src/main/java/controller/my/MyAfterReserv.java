@@ -37,6 +37,7 @@ public class MyAfterReserv extends HttpServlet {
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
 			Integer id = user.getId();
+			System.out.println("session user id: ");
 			ReservationService service = new ReservationServiceImpl();
 			List<Map<String, Object>> afterReservList = service.myAfterReservList(id);
 			System.out.println(afterReservList);
@@ -48,9 +49,4 @@ public class MyAfterReserv extends HttpServlet {
 			request.getRequestDispatcher("err.jsp").forward(request, response);
 		}
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	}
-
 }

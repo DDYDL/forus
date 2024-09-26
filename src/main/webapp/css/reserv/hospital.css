@@ -17,6 +17,15 @@
 /*    padding-right: 15%;*/
 /*}*/
 
+.hospital-info i {
+    padding-right: 3px;
+}
+
+.operation-time i {
+    padding-right: 3px;
+}
+
+
 #content-container {
     /*padding: 20px;*/
     padding-left: 13%;
@@ -51,7 +60,7 @@
     font-size: 16px;
     border-radius: 20px;
     border: 1px solid #ccc;
-    padding: 7px 40px 7px 7px;
+    padding: 7px 40px 7px 11px;
 }
 
 #search-button {
@@ -134,12 +143,12 @@
 }
 
 
-.hospital-item img {
-    width: 62%;
-    height: 98%;
+/*.hospital-item img {*/
+/*    width: 62%;*/
+/*    height: 98%;*/
 
 
-}
+/*}*/
 
 
 .hospital-info {
@@ -147,6 +156,9 @@
     text-align: left;
 }
 
+#hospital-info-section{
+    max-height: 54%;
+}
 
 #hospital-detail-content-container {
     padding: 20px;
@@ -162,6 +174,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    max-width: 51%;
 }
 
 #hospital-detail-img {
@@ -218,6 +231,15 @@
 }
 #hospital-detail-qna-section {
     margin-top: 20px;
+}
+
+#hospital-qna-section{
+/*    !*margin-top: 35%;*!*/
+/*margin-top: 215px;*/
+    position: relative;
+    /*top: -90px;*/
+    top: -50px;
+
 }
 
 #hospital-detail-qna-button {
@@ -364,8 +386,9 @@
 }
 
 #main-gallery-image-container {
-    width: 800px;
-    height: 450px;
+
+    /*width: 800px;*/
+    /*height: 450px;*/
     position: relative;
 }
 
@@ -383,7 +406,6 @@
 }
 
 .thumbnail-gallery-image {
-    width: 100px;
     height: 56px;
     cursor: pointer;
     opacity: 0.6;
@@ -392,7 +414,7 @@
 
 .thumbnail-gallery-image.active {
     opacity: 1;
-    border: 2px solid #000;
+    border: 2px solid #262627;
 }
 
 .thumbnail-gallery-image:hover {
@@ -410,7 +432,7 @@
     border-radius: 4px;
     max-height: 200px;
     overflow-y: auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px #262627;
     z-index: 1000;
     display: none;
 }
@@ -450,6 +472,7 @@
     vertical-align: middle;
     border-bottom: 1px solid #ddd;
     white-space: nowrap;
+    max-width: 100px;
 }
 
 
@@ -482,7 +505,7 @@
 /* 버튼 스타일 */
 #qna-submit-btn {
     padding: 8px 16px;
-    background-color: #333;
+    background-color: #262627;
     color: white;
     border: none;
     border-radius: 4px;
@@ -503,15 +526,18 @@
 
 
 /* 답변 입력 필드 스타일 */
+
 .answer-input {
     flex: 1;
     height: 50px;
-    width: 128%;
-    margin-left: -48%;
+    width: 111%;
+    margin-left: -29%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    max-width: 100%;
 }
+
 
 /* 답변 등록 버튼 스타일 */
 .answer-submit-btn {
@@ -520,6 +546,85 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f8f9fa;
-    color: #333;
+    color: #262627;
     cursor: pointer;
+}
+
+/*hospitalList 더보기 버튼 */
+#load-more{
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #D1D1D1;
+    border-radius: 30px;
+    transition: all 0.2s;
+    margin: 10px 20px 10px 48%;
+}
+
+/*qna 더보기 버튼 */
+#load-more-btn{
+
+    position: relative;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #D1D1D1;
+    border-radius: 30px;
+    transition: all 0.2s;
+    margin: 10px 20px 10px ;
+
+}
+
+
+
+#hospital-detail-container {
+    margin-top: 3%;
+
+}
+
+.hospital-info,
+.operation-time {
+
+
+}
+
+.hospital-info {
+
+}
+
+.operation-time {
+    position: relative;
+    /*top: -374px;    */
+    top: -370px;
+    margin-left: 58%;
+    /*margin-bottom: -31%;*/
+}
+
+#hospital-detail-hospitalName{
+    margin-top: 5%;
+
+}
+
+#hospital-detail-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 40%;
+
+}
+
+
+.hospital-item img {
+    max-width: 27%;
+    max-height: 7%;
+    width: 70%;
+    height: 100%;
+
+
 }

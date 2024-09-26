@@ -47,6 +47,11 @@ public class PetDaoImpl implements PetDao {
 		
 	}
 
+
+	@Override
+	public int updateReservationStatusToCancelledByPetId(int petId) {
+		return sqlSession.update("mapper.reservation.updateReservationStatusToCancelledByPetId", petId);
+	}
 	
 	
 

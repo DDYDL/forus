@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import service.hmy.HospitalService;
 import service.hmy.HospitalServiceImpl;
 
@@ -31,7 +33,7 @@ public class HmyNewHospital extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/hmy/hmynewhospital.jsp").forward(request, response);
+		request.getRequestDispatcher("/hmy/hmynewhospital2.jsp").forward(request, response);
 	}
 
 	/**
@@ -42,10 +44,17 @@ public class HmyNewHospital extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
+		String latitude = request.getParameter("latitude");
+		String longitude = request.getParameter("longitude");
+
+
 		HospitalService service = new HospitalServiceImpl();
 		try {
+
+			String hid = request.getParameter("h_id");
+
 			service.insertHospital(request);
-			response.sendRedirect("success");
+			response.sendRedirect("hmyNewHospitalSuccess");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "등록 오류");
