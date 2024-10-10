@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
+import dto.JoinedHospitalData;
 import dto.Pet;
 import dto.Reservation;
 import dto.Hospital;
@@ -32,6 +33,10 @@ public interface ReservationDao {
 	Map<String, Object> selectReservByReservId(Integer reserv_id) throws Exception;
 	
 	Integer deleteReserv(int reserv_id) throws Exception;
-	
+
+
+
+		List<JoinedHospitalData> findJoinedHospitalData(Map<String, Object> params);
+
 
 }

@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-
+import dto.JoinedHospitalData;
 import dto.Pet;
 import dto.Reservation;
 import dto.Hospital;
@@ -50,6 +50,8 @@ public class ReservationDaoImpl implements ReservationDao {
 	public List<Pet> findPetsByUserId(Integer userId) {
 		return sqlSession.selectList("mapper.reservation.findPetInfoByUserId", userId);
 	}
+
+
 
 	@Override
 	public void insertReservation(Reservation reservation) {
@@ -107,5 +109,9 @@ public class ReservationDaoImpl implements ReservationDao {
 		return deleteReserv;
 	}
 
+	@Override
+	public List<JoinedHospitalData> findJoinedHospitalData(Map<String, Object> params) {
+		return sqlSession.selectList("findJoinedHospitalData", params);
+	}
 
 }

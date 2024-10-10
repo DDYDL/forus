@@ -71,13 +71,12 @@ public class Reservation extends HttpServlet {
 
 			ReservationService reservationService = new ReservationServiceImpl();
 
+
 			dto.Reservation reservation = reservationService.createReservation(selectedDate, selectedTime,
 				reservationContent, customContent, userId, petId, hospitalId);
 
 			reservationService.insertReservation(reservation);
 
-			// response.setContentType("text/html; charset=UTF-8");
-			// response.getWriter().write("예약완료.");
 			response.setStatus(HttpServletResponse.SC_OK);
 
 		} catch (NumberFormatException e) {

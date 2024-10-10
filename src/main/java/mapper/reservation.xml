@@ -162,4 +162,17 @@
 		AND reserv_status != '예약취소';  <!-- 이미 취소된 예약은 제외 -->
 	</update>
 
+
+	<select id="findJoinedHospitalData" parameterType="map" resultType="dto.JoinedHospitalData">
+		SELECT ht.htime_opening, ht.htime_closing, h.h_lunch_time_start, h.h_lunch_time_end,
+			   h.h_interval_time, r.reserv_time
+		FROM hospital_time ht
+				 JOIN hospital h ON ht.h_id = h.h_id
+				 LEFT JOIN reservation r ON h.h_id = r.h_id AND r.reserv_date = #{date}
+		WHERE ht.h_id = #{hospitalId}
+		  AND ht.htime_week = DATE_FORMAT(#{date}, '%W');
+	</select>
+
+
+
 </mapper>
