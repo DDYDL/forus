@@ -9,6 +9,7 @@ import java.util.Map;
 
 import controller.reserv.check.IntegerNullCheck;
 import controller.reserv.check.StringNullCheck;
+import controller.reserv.check.TimeNullCheck;
 import dao.reserv.ReservationDao;
 import dao.reserv.ReservationDaoImpl;
 import dto.JoinedHospitalData;
@@ -52,7 +53,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 	}
 
-	private List<TimeSlot> calculateAvailableTimeSlots(
+	private  List<TimeSlot> calculateAvailableTimeSlots(
 		List<Hospital_time> hospitalTimes, List<LocalTime> reservedTimes, Hospital hospital,
 		LocalDate reservationDate) {
 
@@ -62,21 +63,19 @@ public class ReservationServiceImpl implements ReservationService {
 		int intervalMinutes = hospital.getH_interval_time();
 
 		List<TimeSlot> availableTimeSlots = new ArrayList<>();
-		LocalTime nowTime = LocalTime.now();
 		LocalDate today = LocalDate.now();
+		LocalTime nowTime = LocalTime.now();
 
 		for (Hospital_time time : hospitalTimes) {
 			LocalTime openingTime = time.getHtime_opening();
 			LocalTime closingTime = time.getHtime_closing();
 
-			if (openingTime == null || closingTime == null) {
+			if (TimeNullCheck.isNull(openingTime) || TimeNullCheck.isNull(closingTime)) {
 				availableTimeSlots.add(new TimeSlot(LocalTime.of(0, 0), false));
 				continue;
 			}
 
-			TimeSlotContext timeSlotContext = createTimeSlotContext(reservationDate, openingTime, closingTime,
-				lunchStartTime, lunchEndTime, today, nowTime,
-				intervalMinutes);
+			TimeSlotContext timeSlotContext = createTimeSlotContext(reservationDate, openingTime, closingTime,lunchStartTime, lunchEndTime, today, nowTime,intervalMinutes);
 
 			//시간대 별로 예약 가능한 시간을 계산
 			validateAvailableTimeSlots(reservedTimes, timeSlotContext, availableTimeSlots);
