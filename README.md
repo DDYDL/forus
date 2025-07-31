@@ -14,3 +14,6 @@ Skills
 - Java, Spring Frameworks, Servlet
 - MySQL, MyBatis
 - GitHub, Confluence, Notion
+
+ERD
+<img width="802" height="787" alt="ERD3" src="https://github.com/user-attachments/assets/9f55499b-6ea9-47f5-b02a-b9be3effd9ab" />
